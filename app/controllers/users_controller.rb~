@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :destroy, :create, :update, :edit]
   before_action :user_params, only: [:create, :update]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :authenticate?, :only => [:edit, :update, :index, :destroy]
@@ -18,10 +18,10 @@ private
       @user = User.find(params[:id])
   end
 
-# a mettre dans le modèle, mais ca marche pas
-  def is_admin?
-	redirect_to(root_path) unless current_user.admin?	
-  end
+# in application controller
+  #def is_admin?
+  #	redirect_to(root_path) unless current_user.admin?	
+  #end
 
 public
 

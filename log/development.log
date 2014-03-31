@@ -1,0 +1,1659 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:06:42 +0200
+
+ActiveRecord::PendingMigrationError (Migrations are pending; run 'bin/rake db:migrate RAILS_ENV=development' to resolve this issue.):
+  activerecord (4.0.2) lib/active_record/migration.rb:379:in `check_pending!'
+  activerecord (4.0.2) lib/active_record/migration.rb:366:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.2) lib/active_support/callbacks.rb:373:in `_run__3231777169919987717__call__callbacks'
+  activesupport (4.0.2) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.2) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/clement/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /home/clement/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /home/clement/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/clement/.rvm/gems/ruby-2.0.0-p353@railstutorial_rails_4_0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/clement/.rvm/gems/ruby-2.0.0-p353@railstutorial_rails_4_0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /home/clement/.rvm/gems/ruby-2.0.0-p353@railstutorial_rails_4_0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /home/clement/.rvm/gems/ruby-2.0.0-p353@railstutorial_rails_4_0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.9ms)
+  [1m[36m (13.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (10.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140311192931)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "salt" varchar(255), "encrypt_password" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140311192931"]]
+  [1m[36m (12.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddEmailUniquenessIndex (20140311193612)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140311193612"]]
+  [1m[36m (9.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminToUsers (20140311194135)
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140311194135"]]
+  [1m[36m (12.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateGroups (20140322201437)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140322201437"]]
+  [1m[36m (11.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRelationgroups (20140323155632)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "relationgroups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "group_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE INDEX "index_relationgroups_on_user_id" ON "relationgroups" ("user_id")
+  [1m[36m (0.4ms)[0m  [1mCREATE INDEX "index_relationgroups_on_group_id" ON "relationgroups" ("group_id")[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "index_relationgroups_on_user_id_and_group_id" ON "relationgroups" ("user_id", "group_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140323155632"]]
+  [1m[35m (11.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:07:27 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered sessions/_form.html.erb (41.9ms)
+  Rendered sessions/new.html.erb within layouts/application (45.9ms)
+Warning. Error encountered while saving cache 3484f69ecf496d0844b6f77760c5f6dc4e14c2aa/application.css.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache 9551b7efbab0059e45858e78abb302535c504654/bootstrap.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_variables.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_mixins.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_normalize.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_print.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_scaffolding.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_type.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_code.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_grid.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_tables.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_forms.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_buttons.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_component-animations.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_glyphicons.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_dropdowns.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_button-groups.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_input-groups.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_navs.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_navbar.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_breadcrumbs.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_pagination.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_pager.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_labels.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_badges.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_jumbotron.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_thumbnails.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_alerts.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_progress-bars.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_media.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_list-group.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_panels.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_wells.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_close.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_modals.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_tooltip.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_popovers.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_carousel.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_utilities.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_responsive-utilities.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache 3484f69ecf496d0844b6f77760c5f6dc4e14c2aa/groups.css.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache 3484f69ecf496d0844b6f77760c5f6dc4e14c2aa/scaffolds.css.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache 9551b7efbab0059e45858e78abb302535c504654/bootstrap.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_variables.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_mixins.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_normalize.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_print.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_scaffolding.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_type.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_code.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_grid.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_tables.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_forms.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_buttons.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_component-animations.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_glyphicons.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_dropdowns.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_button-groups.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_input-groups.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_navs.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_navbar.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_breadcrumbs.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_pagination.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_pager.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_labels.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_badges.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_jumbotron.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_thumbnails.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_alerts.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_progress-bars.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_media.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_list-group.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_panels.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_wells.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_close.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_modals.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_tooltip.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_popovers.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_carousel.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_utilities.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache dcc506b997d82cb7a00bc409bf2aea15b521927a/_responsive-utilities.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache 3484f69ecf496d0844b6f77760c5f6dc4e14c2aa/sessions.css.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Warning. Error encountered while saving cache 3484f69ecf496d0844b6f77760c5f6dc4e14c2aa/users.css.scssc: can't dump anonymous class #<Class:0x000000037fef88>
+
+Completed 200 OK in 5299ms (Views: 5268.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:32 +0200
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-03-31 18:07:42 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "session"=>{"email"=>"admin@admin.fr", "password"=>"[FILTERED]"}, "commit"=>"sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.fr' LIMIT 1[0m
+  Rendered sessions/_form.html.erb (2.1ms)
+  Rendered sessions/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 15ms (Views: 12.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:43 +0200
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "session"=>{"email"=>"admin@admin.fr", "password"=>"[FILTERED]"}, "commit"=>"sign in"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.fr' LIMIT 1
+  Rendered sessions/_form.html.erb (2.1ms)
+  Rendered sessions/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 11ms (Views: 9.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:07:55 +0200
+
+
+Started GET "/signup" for 127.0.0.1 at 2014-03-31 18:08:38 +0200
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered users/_form.html.erb (11.5ms)
+  Rendered users/new.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:39 +0200
+
+
+Started POST "/users" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user"=>{"name"=>"admin", "email"=>"admin@admin.fr", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('admin@admin.fr') LIMIT 1
+  [1m[36mSQL (7.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypt_password", "name", "salt", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 31 Mar 2014 16:08:51 UTC +00:00], ["email", "admin@admin.fr"], ["encrypt_password", "3cc271ec88c45c683f190acef6fd353deca68db777e9d3683ef176967284c8db"], ["name", "admin"], ["salt", "275addc439a28edf5d1cc243061c527ae77a7ff042e538944c4c084e46af94bc"], ["updated_at", Mon, 31 Mar 2014 16:08:51 UTC +00:00]]
+  [1m[35m (13.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 154ms (ActiveRecord: 21.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:08:51 +0200
+
+
+Started DELETE "/signout" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4="}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered sessions/_form.html.erb (1.5ms)
+  Rendered sessions/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:06 +0200
+
+
+Started GET "/signup" for 127.0.0.1 at 2014-03-31 18:09:11 +0200
+Processing by UsersController#new as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered users/_form.html.erb (3.1ms)
+  Rendered users/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 46ms (Views: 43.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user"=>{"name"=>"mpm", "email"=>"mpm@mpm.fr", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"submit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('mpm@mpm.fr') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypt_password", "name", "salt", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 31 Mar 2014 16:09:23 UTC +00:00], ["email", "mpm@mpm.fr"], ["encrypt_password", "7bae05593f821a1d706cf953cc4b66d61786a93ce95a633dd8cf2416c5ed9bc3"], ["name", "mpm"], ["salt", "2236ca61fc611dcf35edd6da57fd778105c30c9321dbe4b1af967425cf19e101"], ["updated_at", Mon, 31 Mar 2014 16:09:23 UTC +00:00]]
+  [1m[36m (104.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 114ms (ActiveRecord: 105.8ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:09:23 +0200
+
+
+Started GET "/users/2/groups" for 127.0.0.1 at 2014-03-31 18:09:26 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+  [1m[36mGroup Load (0.2ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered groups/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 39ms (Views: 12.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:09:30 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:09:30 +0200
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:09:30 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 14ms (Views: 11.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:09:35 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:09:35 +0200
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:09:35 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:10:07 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 13ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:10:07 +0200
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:10:07 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 12ms (Views: 8.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:10:08 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:10:08 +0200
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:10:08 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:10:08 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:10:08 +0200
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:10:08 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 16ms (Views: 12.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:10:09 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:10:09 +0200
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+Redirected to http://localhost:3000/users/2
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2014-03-31 18:10:09 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered users/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:10:32 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+  Rendered users/_form.html.erb (2.6ms)
+  Rendered users/edit.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 55ms (Views: 10.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/2/groups" for 127.0.0.1 at 2014-03-31 18:10:35 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+  [1m[35mGroup Load (0.3ms)[0m  SELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?  [["user_id", 2]]
+  Rendered groups/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 26ms (Views: 11.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/2/groups/new" for 127.0.0.1 at 2014-03-31 18:10:37 +0200
+Processing by GroupsController#new as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+  Rendered groups/_form.html.erb (10.9ms)
+  Rendered groups/new.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 28ms (Views: 22.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users/2/groups" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "group"=>{"name"=>"mpmGroup1"}, "commit"=>"Create Group", "user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "groups" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Mon, 31 Mar 2014 16:10:58 UTC +00:00], ["name", "mpmGroup1"], ["updated_at", Mon, 31 Mar 2014 16:10:58 UTC +00:00]]
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 31 Mar 2014 16:10:58 UTC +00:00], ["group_id", 1], ["updated_at", Mon, 31 Mar 2014 16:10:58 UTC +00:00], ["user_id", 2]]
+  [1m[35m (10.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/2/groups
+Completed 302 Found in 32ms (ActiveRecord: 12.0ms)
+
+
+Started GET "/users/2/groups" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1
+  [1m[36mGroup Load (0.3ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 2]]
+  Rendered groups/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 19ms (Views: 14.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:10:58 +0200
+
+
+Started GET "/users/2/groups/new" for 127.0.0.1 at 2014-03-31 18:11:13 +0200
+Processing by GroupsController#new as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+  Rendered groups/_form.html.erb (1.8ms)
+  Rendered groups/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 13ms (Views: 8.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users/2/groups" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "group"=>{"name"=>"mpmGroup2"}, "commit"=>"Create Group", "user_id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "groups" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Mon, 31 Mar 2014 16:11:20 UTC +00:00], ["name", "mpmGroup2"], ["updated_at", Mon, 31 Mar 2014 16:11:20 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Mon, 31 Mar 2014 16:11:20 UTC +00:00], ["group_id", 2], ["updated_at", Mon, 31 Mar 2014 16:11:20 UTC +00:00], ["user_id", 2]]
+  [1m[36m (101.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/2/groups
+Completed 302 Found in 109ms (ActiveRecord: 102.5ms)
+
+
+Started GET "/users/2/groups" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+  [1m[35mGroup Load (0.2ms)[0m  SELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?  [["user_id", 2]]
+  Rendered groups/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:20 +0200
+
+
+Started DELETE "/signout" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4="}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered sessions/_form.html.erb (1.6ms)
+  Rendered sessions/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:23 +0200
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "session"=>{"email"=>"admin@admin.fr", "password"=>"[FILTERED]"}, "commit"=>"sign in"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.fr' LIMIT 1[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:30 +0200
+
+
+Started GET "/users/1/groups/new" for 127.0.0.1 at 2014-03-31 18:11:32 +0200
+Processing by GroupsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered groups/_form.html.erb (3.0ms)
+  Rendered groups/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 17ms (Views: 13.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "group"=>{"name"=>"adminGroup1"}, "commit"=>"Create Group", "user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "groups" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Mon, 31 Mar 2014 16:11:38 UTC +00:00], ["name", "adminGroup1"], ["updated_at", Mon, 31 Mar 2014 16:11:38 UTC +00:00]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 31 Mar 2014 16:11:38 UTC +00:00], ["group_id", 3], ["updated_at", Mon, 31 Mar 2014 16:11:38 UTC +00:00], ["user_id", 1]]
+  [1m[35m (12.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/groups
+Completed 302 Found in 20ms (ActiveRecord: 13.1ms)
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGroup Load (0.1ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 10ms (Views: 8.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:38 +0200
+
+
+Started GET "/users/1/groups/new" for 127.0.0.1 at 2014-03-31 18:11:40 +0200
+Processing by GroupsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered groups/_form.html.erb (2.3ms)
+  Rendered groups/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "group"=>{"name"=>"adminGroup2"}, "commit"=>"Create Group", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "groups" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Mon, 31 Mar 2014 16:11:45 UTC +00:00], ["name", "adminGroup2"], ["updated_at", Mon, 31 Mar 2014 16:11:45 UTC +00:00]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Mon, 31 Mar 2014 16:11:45 UTC +00:00], ["group_id", 4], ["updated_at", Mon, 31 Mar 2014 16:11:45 UTC +00:00], ["user_id", 1]]
+  [1m[36m (17.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1/groups
+Completed 302 Found in 26ms (ActiveRecord: 18.9ms)
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGroup Load (0.1ms)[0m  SELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:45 +0200
+
+
+Started GET "/users/1/allgroups" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+Processing by GroupsController#show_all as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGroup Load (0.3ms)[0m  [1mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/show_all.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 15ms (Views: 12.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:47 +0200
+
+
+Started POST "/user/1/group/1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+Processing by GroupsController#join_group as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1", "group_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 31 Mar 2014 16:11:55 UTC +00:00], ["group_id", 1], ["updated_at", Mon, 31 Mar 2014 16:11:55 UTC +00:00], ["user_id", 1]]
+  [1m[35m (114.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/groups
+Completed 302 Found in 121ms (ActiveRecord: 114.9ms)
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGroup Load (0.2ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 20ms (Views: 12.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:11:55 +0200
+
+
+Started DELETE "/user/1/group/1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+Processing by GroupsController#leave_group as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1", "group_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "relationgroups" WHERE "relationgroups"."group_id" = 1
+  [1m[36mRelationgroup Load (0.2ms)[0m  [1mSELECT "relationgroups".* FROM "relationgroups" WHERE (user_id = '1' and group_id = '1')[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "relationgroups" WHERE "relationgroups"."id" = ?[0m  [["id", 5]]
+  [1m[35m (13.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/groups
+Completed 302 Found in 22ms (ActiveRecord: 14.8ms)
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGroup Load (0.1ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 18ms (Views: 12.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:00 +0200
+
+
+Started GET "/users/1/allgroups" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+Processing by GroupsController#show_all as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGroup Load (0.1ms)[0m  SELECT "groups".* FROM "groups"
+  Rendered groups/show_all.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:01 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:02 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:02 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:02 +0200
+
+
+Started POST "/user/1/group/4" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+Processing by GroupsController#join_group as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1", "group_id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Mon, 31 Mar 2014 16:12:18 UTC +00:00], ["group_id", 4], ["updated_at", Mon, 31 Mar 2014 16:12:18 UTC +00:00], ["user_id", 1]]
+SQLite3::ConstraintException: columns user_id, group_id are not unique: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/users/1/groups
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGroup Load (0.1ms)[0m  SELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 14ms (Views: 8.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:18 +0200
+
+
+Started DELETE "/user/1/group/3" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+Processing by GroupsController#leave_group as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1", "group_id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "relationgroups" WHERE "relationgroups"."group_id" = 3[0m
+  [1m[35mGroup Load (0.2ms)[0m  SELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ? AND "groups"."id" = ? LIMIT 1  [["user_id", 1], ["id", "3"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "relationgroups" WHERE "relationgroups"."group_id" = ?  [["group_id", 3]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "groups" WHERE "groups"."id" = ?[0m  [["id", 3]]
+  [1m[35m (113.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/groups
+Completed 302 Found in 122ms (ActiveRecord: 114.6ms)
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGroup Load (0.1ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 14ms (Views: 10.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:33 +0200
+
+
+Started GET "/users/1/allgroups" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+Processing by GroupsController#show_all as HTML
+  Parameters: {"authenticity_token"=>"RT9pNu9v7BMH44tJfIdfncgaHcFOKq1QqbPdO+lNTk4=", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGroup Load (0.1ms)[0m  SELECT "groups".* FROM "groups"
+  Rendered groups/show_all.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 12ms (Views: 8.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:35 +0200
+
+
+Started GET "/users/1/groups" for 127.0.0.1 at 2014-03-31 18:12:44 +0200
+Processing by GroupsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGroup Load (0.1ms)[0m  [1mSELECT "groups".* FROM "groups" INNER JOIN "relationgroups" ON "groups"."id" = "relationgroups"."group_id" WHERE "relationgroups"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered groups/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 11ms (Views: 8.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:12:50 +0200
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at 2014-03-31 18:12:52 +0200
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :correct_user rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:12:52 +0200
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Redirected to http://localhost:3000/users/1
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-03-31 18:12:52 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Redirected to http://localhost:3000/users/1
+Filter chain halted as :not_authenticate? rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/groups.css?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/groups.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-31 18:13:40 +0200
