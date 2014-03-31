@@ -1,0 +1,5 @@
+class AddIndexToCoupleUserIdGroupid < ActiveRecord::Migration
+  def change
+	add_index :relationgroups, [:user_id, :group_id], :unique => true
+  end
+end

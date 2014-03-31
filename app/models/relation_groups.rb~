@@ -1,0 +1,2 @@
+class RelationGroups < ActiveRecord::Base
+end

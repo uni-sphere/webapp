@@ -1,0 +1,25 @@
+<h1>All groups</h1>
+
+ 
+<table class="container">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= link_to 'Join', joingroup_path(@user, group), method: :post %></td>
+	<td><%= link_to 'Destroy', [@user, group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+	
+<%= link_to 'sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', user_groups_path(@user) %>
+
+

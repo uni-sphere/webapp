@@ -1,0 +1,10 @@
+class CreateGroupRelations < ActiveRecord::Migration
+  def change
+    create_table :group_relations do |t|
+      t.integer :user_id
+      t.intege :group_id
+
+      t.timestamps
+    end
+  end
+end
