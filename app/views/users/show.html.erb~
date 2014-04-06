@@ -10,10 +10,15 @@
   <%= @user.email %>
 </p>
 
+<p>
+
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Show all', users_path %> |
 <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Groups', user_groups_path(@user) %>
+<%= link_to 'Groups', user_groups_path(@user) %> |
+<%= link_to 'New group', new_user_group_path(@user) %>
 

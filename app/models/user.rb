@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 	has_many :relationgroups
 	has_many :groups, through: :relationgroups
 
+	has_many :documents, dependent: :delete_all
+	accepts_nested_attributes_for :documents
+
 # accessor	
 
  	attr_accessor :password

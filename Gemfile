@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Paperclip
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
@@ -9,7 +12,7 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
-# Bootstrap de twitter
+# Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use Uglifier as compressor for JavaScript assets

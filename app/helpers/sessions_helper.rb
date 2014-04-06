@@ -57,7 +57,7 @@ private
 	end
 
 	def correct_user
-      		redirect_to(root_path) unless current_user?(@user) or current_user.admin?
+      		redirect_to(root_path) unless current_user?(@user) or current_user.nil? or current_user.admin?
     	end
 
 
