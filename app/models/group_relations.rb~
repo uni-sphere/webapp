@@ -1,2 +1,0 @@
-class GroupRelations < ActiveRecord::Base
-end

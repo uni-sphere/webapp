@@ -1,6 +1,0 @@
-class AddUserIdAndGroupIdIndex < ActiveRecord::Migration
-  def change
-	add_index :RelationGroups, :user_id, :unique => true
-	add_index :RelationGroups, :group_id, :unique => true
-  end
-end

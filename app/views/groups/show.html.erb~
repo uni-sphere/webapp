@@ -1,9 +1,0 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
-
-<%= link_to 'Edit', edit_user_group_path(@user, @group) %> |
-<%= link_to 'Back', user_groups_path(@user) %>
