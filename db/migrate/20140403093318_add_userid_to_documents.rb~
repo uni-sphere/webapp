@@ -1,4 +1,0 @@
-class AddUseridToDocuments < ActiveRecord::Migration
-  def change
-  end
-end

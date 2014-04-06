@@ -1,4 +1,0 @@
-class AddUserIdAndGroupIdIndex < ActiveRecord::Migration
-  def change
-  end
-end
