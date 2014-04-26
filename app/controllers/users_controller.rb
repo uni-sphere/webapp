@@ -64,7 +64,7 @@ public
   end
 
   def create
-    #@user = User.new(user_params)
+    @user = User.new(user_params)
     respond_to do |format|
       if @user.save #and @user.documents.create(params[:file])
         format.html { redirect_to @user, notice: 'User created' }

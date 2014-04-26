@@ -63,7 +63,7 @@ class GroupsController < ApplicationController
 	@relation = Relationgroup.where(group_id: params[:group_id]).count
 	
 	if @relation <= 1
-		@user.groups.find(params[:group_id]).destroy
+		@user.groups.find(params[:group_id]).delete
 	else	
 		Relationgroup.where(["user_id = :user_id and group_id = :group_id", { user_id: params[:user_id], group_id: params[:group_id] }]).destroy_all
 	end
