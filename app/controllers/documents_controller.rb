@@ -17,7 +17,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = @target.documents.new(params[:file])
+    @document = @target.documents.new(document_params)
     respond_to do |format|
       if @document.save
         format.html { redirect_to user_documents_path, notice: 'Document was successfully created.' }
@@ -64,6 +64,6 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-      params.require(:document).permit(:user_id, :group_id, :file)
+      params.require(:document).permit(:document)
     end
 end
