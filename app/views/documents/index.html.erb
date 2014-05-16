@@ -11,9 +11,9 @@
   </thead>
 
   <tbody>
-    <% @documents.each do |document| %>
+    <% @documents.each do |file| %>
       <tr>
-        <td><%= document.user_id %></td>
+        <td><%= file.file_file_name %></td>
         <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_document_path(document) %></td>
         <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,4 +24,3 @@
 
 <br>
 
-<%= link_to 'New Document', new_document_path %>

@@ -79,8 +79,8 @@ class GroupsController < ApplicationController
 	begin 
 		@relation.save!	
 		redirect_to user_groups_path(@user)
-	rescue ActiveRecord::RecordNotUnique => e
-		if e.message == 'SQLite3::ConstraintException: columns user_id, group_id are not unique: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
+	rescue ActiveRecord::StatementInvalid => e
+		if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
 		respond_to do |format|
 		  format.html { redirect_to user_groups_path(@user), notice: 'You join the group !' }
          	  format.json { render action: 'show', status: :created}

@@ -1,10 +1,11 @@
 Lms::Application.routes.draw do
 
   resources :users do
-	resources :groups
+	resources :groups do
+		resources :documents
+		end
+	resources :documents
 	end	
-
-  resources :documents
 
   resources :sessions, :only => [:new, :create, :destroy]
 

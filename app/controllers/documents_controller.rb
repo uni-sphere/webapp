@@ -1,35 +1,26 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
- 
-
-  # GET /documents
-  # GET /documents.json
+  before_action :set_target, only: [:new, :show, :edit, :update, :destroy, :create]
+  
   def index
     @documents = Document.all
   end
 
-  # GET /documents/1
-  # GET /documents/1.json
   def show
   end
 
-  # GET /documents/new
   def new
-    @document = Document.new
+    @document = @target.documents.new
   end
 
-  # GET /documents/1/edit
   def edit
   end
 
-  # POST /documents
-  # POST /documents.json
   def create
-    @document = Document.new(document_params, user: current_user)
-
+    @document = @target.documents.new(params[:file])
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to user_documents_path, notice: 'Document was successfully created.' }
         format.json { render action: 'show', status: :created, location: @document }
       else
         format.html { render action: 'new' }
@@ -38,8 +29,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1
-  # PATCH/PUT /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params, user: current_user)
@@ -52,8 +41,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # DELETE /documents/1
-  # DELETE /documents/1.json
   def destroy
     @document.destroy
     respond_to do |format|
@@ -63,13 +50,20 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = Document.find(params[:id])
+
+    def set_target
+      if request.original_url =~ /groups(.*)/
+	@target = Group.find(params[:group_id])    	
+      else
+        @target = User.find(params[:user_id])
+      end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_document
+      @document = @target.documents.find(params[:id])
+    end
+
     def document_params
-      params.require(:document).permit(:user_id, :file)
+      params.require(:document).permit(:user_id, :group_id, :file)
     end
 end

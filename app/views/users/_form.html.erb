@@ -27,13 +27,6 @@
     <%= f.label :password_confirmation, "Confirmation" %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-	
-  <div>
-    <%= f.fields_for :documents do |f| %>
-    	<%= f.label :file %><br>
-    	<%= f.file_field :file, :multiple =>:true %>
-    <% end %>
-  </div>
 
   <div class="actions">
     <%= f.submit "submit" %>
