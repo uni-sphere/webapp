@@ -57,10 +57,16 @@ private
 	end
 
 	def correct_user
-      		redirect_to(root_path) unless current_user?(@user) or current_user.nil? or current_user.admin?
+      		redirect_to root_path unless current_user?(@user) or current_user.nil? or current_user.admin?
     	end
 
-
+	def correct_target
+		if request.original_url =~ /groups(.*)/
+			redirect_to root_path unless current_user?(@user) and current_user.groups.find(params[:group_id]).present? or current_user.nil? or current_user.admin? 
+		elsif request.original_url !~ /groups(.*)/
+			redirect_to root_path unless current_user?(@target) or current_user.nil? or current_user.admin?
+		end
+	end
 
 end
 

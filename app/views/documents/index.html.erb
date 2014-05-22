@@ -1,9 +1,9 @@
 <h1>Listing documents</h1>
 
-<table>
+<table class="container">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Docs</th>
       <th></th>
       <th></th>
       <th></th>
@@ -11,16 +11,22 @@
   </thead>
 
   <tbody>
-    <% @documents.each do |file| %>
+    <% @documents.each do |document| %>
       <tr>
-        <td><%= file.file_file_name %></td>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	
+	<% if request.original_url =~ /groups(.*)/ and document.group_id != nil%>
+	<td><%= document.file_file_name %></td>
+	<td><%= link_to 'see in html', document.file.url %></td>
+	<td><%= link_to 'Edit', edit_user_group_document_path(@user, @target, document) %>
+	<td><%= link_to 'Destroy', [@user, @target, document], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% elsif document.group_id == nil and document.user_id != nil and request.original_url !~ /groups(.*)/ %>
+	<td><%= document.file_file_name %></td>
+	<td><%= link_to 'see in html', document.file.url %></td>
+	<td><%= link_to 'Edit', edit_user_document_path(@target, document) %></td>
+	<td><%= link_to 'Destroy', user_document_path(@target, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
 

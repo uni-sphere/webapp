@@ -21,4 +21,5 @@
 <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Groups', user_groups_path(@user) %> |
 <%= link_to 'New group', new_user_group_path(@user) %> |
-<%= link_to 'New doc', new_user_document_path(@user) %>
+<%= link_to 'New doc', new_user_document_path(@user) %> |
+<%= link_to 'Docs', user_documents_path(@user) %>

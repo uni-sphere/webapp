@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140408213640) do
 
   create_table "documents", force: true do |t|
     t.integer  "user_id"
+    t.integer  "group_id"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"

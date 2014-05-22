@@ -60,7 +60,6 @@ public
   end
 
   def edit
-    @user.documents.new
   end
 
   def create

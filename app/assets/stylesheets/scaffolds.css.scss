@@ -5,6 +5,8 @@ body {
   text-align: center;
   color: black;
   line-height: 40px;
+  font-size: 20px;
+  color: #fd5320;
 }
 
 #notice {
@@ -28,20 +30,20 @@ body {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
-    font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
     background-color: #c00;
     color: #fff;
   }
   ul li {
-    font-size: 12px;
     list-style: square;
   }
 }
 
 .container {
-	width: 500px;	
+  width: 1200px;	
+  font-size: 25px;
+  line-height: 100px;
 }
 
 th {
@@ -54,23 +56,21 @@ th {
 /*
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
   line-height: 18px;
 }
 
 pre {
   background-color: #eee;
   padding: 10px;
-  font-size: 11px;
 }
 
 a {
   color: #000;
   &:visited {
-    color: #666;
+    color: #fd5320;
   }
   &:hover {
-    color: #fff;
+    color: #fd5320;
     background-color: #000;
   }
 }

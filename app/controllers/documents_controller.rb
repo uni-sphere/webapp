@@ -1,12 +1,12 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
-  before_action :set_target, only: [:new, :show, :edit, :update, :destroy, :create]
-  
-  def index
-    @documents = Document.all
-  end
+  before_action :document_params, only: [:create, :update]
+  before_filter :authenticate?, :only => [:edit, :update, :index, :destroy, :show]
+  before_action :set_target, only: [:index, :new, :edit, :update, :create, :destroy]
+  before_action :set_document, only: [:edit, :update]
+  before_filter :correct_target, :only => [:index, :show, :edit, :update, :destroy]
 
-  def show
+  def index
+    @documents = @target.documents.all
   end
 
   def new
@@ -17,7 +17,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = @target.documents.new(params[:file])
+    @document = @target.documents.new(document_params)
     respond_to do |format|
       if @document.save
         format.html { redirect_to user_documents_path, notice: 'Document was successfully created.' }
@@ -31,8 +31,8 @@ class DocumentsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @document.update(document_params, user: current_user)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+      if @document.update(document_params)
+        format.html { redirect_to user_documents_path, notice: 'Document was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -42,9 +42,10 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    @document = Document.find(params[:id])
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url }
+      format.html { redirect_to user_path(@target) }
       format.json { head :no_content }
     end
   end
@@ -53,14 +54,15 @@ class DocumentsController < ApplicationController
 
     def set_target
       if request.original_url =~ /groups(.*)/
-	@target = Group.find(params[:group_id])    	
+	@target = Group.find(params[:group_id])  
+	@user = User.find(params[:user_id])  	
       else
         @target = User.find(params[:user_id])
       end
     end
 
     def set_document
-      @document = @target.documents.find(params[:id])
+      	@document = @target.documents.find(params[:id])
     end
 
     def document_params
