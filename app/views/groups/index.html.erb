@@ -1,4 +1,4 @@
-<h1>Listing groups</h1>
+<h1>All groups</h1>
 
 <table class="container">
   <thead>
@@ -25,6 +25,6 @@
 <br>
 
 <%= link_to 'New Group', new_user_group_path(@user) %> |
-<%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', user_path(@user) %> |
 <%= link_to 'All groups', allgroups_path(@user), method: :get %>
 

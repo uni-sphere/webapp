@@ -1,21 +1,30 @@
 @import "bootstrap";
 
+html {
+  font-weight: bold;
+}
+
 body {
-  background-color: white;
   text-align: center;
   color: black;
-  line-height: 40px;
-  font-size: 20px;
+  line-height: 75px;
   color: #fd5320;
+  font-size: 30px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-#notice {
-  color: orange;
-  font-style: bold;
+h1 {
+  border-bottom: 10px solid white;
+  padding-bottom: 30px;
 }
+
+th {
+  text-align: center;
+}
+
 
 .field_with_errors {
-  background-color: red;
+  background-color: blue;
   display: table;
 }
 
@@ -40,38 +49,20 @@ body {
   }
 }
 
-.container {
-  width: 1200px;	
-  font-size: 25px;
-  line-height: 100px;
+
+p, ol, ul, li, td {
+  text-align: center;
 }
 
-th {
-	text-align: center;
-}
 
-#link {
-	border: 2px solid #555555;
-}
-/*
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  line-height: 18px;
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-}
 
 a {
   color: #000;
-  &:visited {
-    color: #fd5320;
+  &:link {
+	text-decoration: none;
   }
   &:hover {
-    color: #fd5320;
-    background-color: #000;
+	color: white;
   }
 }
 
@@ -81,9 +72,3 @@ div {
   }
 }
 
-
-
-
-
-
-*/
