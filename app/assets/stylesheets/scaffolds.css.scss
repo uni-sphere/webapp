@@ -13,11 +13,6 @@ body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-h1 {
-  border-bottom: 10px solid white;
-  padding-bottom: 30px;
-}
-
 th {
   text-align: center;
 }
@@ -62,7 +57,7 @@ a {
 	text-decoration: none;
   }
   &:hover {
-	color: white;
+	color: blue;
   }
 }
 

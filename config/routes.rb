@@ -2,9 +2,9 @@ Lms::Application.routes.draw do
 
   resources :users do
 	resources :groups do
-		resources :documents
+		resources :documents, :except => [:show]
 		end
-	resources :documents
+	resources :documents, :except => [:show]
 	end	
 
   resources :sessions, :only => [:new, :create, :destroy]

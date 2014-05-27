@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to allgroups_path	 }
+      format.html { redirect_to allgroups_path }
       format.json { head :no_content }
     end
   end

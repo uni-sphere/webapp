@@ -1,9 +1,9 @@
 class DocumentsController < ApplicationController
   before_action :document_params, only: [:create, :update]
-  before_filter :authenticate?, :only => [:edit, :update, :index, :destroy, :show]
-  before_action :set_target, only: [:index, :new, :edit, :update, :create, :destroy]
+  before_action :authenticate?, only: [:edit, :update, :index, :destroy]
+  before_action :set_target, only: [:index, :new, :edit, :update, :create]
   before_action :set_document, only: [:edit, :update]
-  before_filter :correct_target, :only => [:index, :show, :edit, :update, :destroy]
+  #before_filter :correct_target, :only => [:index, :edit, :update, :destroy]
 
   def index
     @documents = @target.documents.all
@@ -45,7 +45,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to user_path(@target) }
+      format.html { redirect_to user_documents_path }
       format.json { head :no_content }
     end
   end
