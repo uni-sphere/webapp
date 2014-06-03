@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 	has_many :documents, dependent: :delete_all
 	accepts_nested_attributes_for :documents
 
+	has_many :calendars, dependent: :delete_all
+
 # accessor	
 
  	attr_accessor :password

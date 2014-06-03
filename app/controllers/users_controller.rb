@@ -56,7 +56,6 @@ public
 
   def new
     @user = User.new
-    #@file = @user.documents.new
   end
 
   def edit
@@ -65,7 +64,7 @@ public
   def create
     @user = User.new(user_params)
     respond_to do |format|
-      if @user.save #and @user.documents.create(params[:file])
+      if @user.save
         format.html { redirect_to @user, notice: 'User created' }
         format.json { render action: 'show', status: :created, location: @user }
 	sign_in @user
