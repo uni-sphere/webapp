@@ -1,4 +1,4 @@
 json.array!(@calendars) do |calendar|
-  json.extract! calendar, :id, :user_id, :name
-  json.url user_url(user, format: :json)
+  json.extract! calendar, :id, :name
+  json.url calendar_url(calendar, format: :json)
 end

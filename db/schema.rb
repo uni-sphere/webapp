@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603113955) do
+ActiveRecord::Schema.define(version: 20140604215424) do
 
   create_table "calendars", force: true do |t|
     t.integer  "user_id"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20140603113955) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.boolean  "allDay"
+    t.datetime "start"
+    t.datetime "end"
+    t.boolean  "editable"
+    t.boolean  "adminevent"
+    t.integer  "calendar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

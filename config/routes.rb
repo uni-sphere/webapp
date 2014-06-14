@@ -1,7 +1,9 @@
 Lms::Application.routes.draw do
   
   resources :users do
-	resources :calendars, :only => [:new, :create, :destroy, :index, :show]
+	resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
+		resources :events, :only => [:create, :update, :destroy, :index]
+		end
 	resources :groups do
 		resources :documents, :except => [:show]
 		end

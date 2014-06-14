@@ -2,7 +2,7 @@ class CalendarsController < ApplicationController
 
   before_action :calendar_params, only: [:create]
   before_action :set_user
-  before_action :set_calendar, :only => [:show, :destroy]
+  before_action :set_calendar, only: [:show, :destroy]
   #before_filter :correct_user, :only => [:edit, :update]
   #before_filter :authenticate?, :only => [:edit, :update, :index, :destroy, :show]
   #before_filter :not_authenticate?, :only => [:new, :create]
@@ -17,7 +17,7 @@ class CalendarsController < ApplicationController
     		respond_to do |format|
      		 if @calendar.save
      		   format.html { redirect_to user_calendars_path, notice: 'Document was successfully created.' }
-     		   format.json { render action: 'show', status: :created, location: @calendar }
+     		   format.json { render action: 'index', status: :created, location: @event }
      		 else
      		   format.html { render action: 'new' }
      		   format.json { render json: @calendar.errors, status: :unprocessable_entity }
@@ -30,7 +30,12 @@ class CalendarsController < ApplicationController
 	end
 
 	def show
-		
+		@events = @calendar.events.all
+		@events = @calendar.events.between(params['start'],params['end']) if (params['start'] && params['end'])
+			respond_to do |format|
+				format.html	
+		      		format.json { render json: @events }
+		    	end
 	end
 
 	def destroy
@@ -52,7 +57,11 @@ private
 	end
 
 	def set_calendar
-		@calendar = Calendar.find(params[:id]) 
+		if params[:format] != nil and params[:format] == 'json'
+			@calendar = Calendar.find(params[:calendar_id])
+		else
+			@calendar = Calendar.find(params[:id]) 
+		end
 	end
 
 end

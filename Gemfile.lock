@@ -53,7 +53,8 @@ GEM
     coffee-script-source (1.7.0)
     erubis (2.7.0)
     execjs (2.0.2)
-    fullcalendar-rails (1.6.4.0)
+    fullcalendar2-rails (2.0.2.2)
+      momentjs-rails
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -68,6 +69,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (4.7.5)
+    momentjs-rails (2.6.0)
+      railties (>= 3.1)
     multi_json (1.9.0)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -127,7 +130,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   coffee-rails (~> 4.0.0)
-  fullcalendar-rails (~> 1.6.4.0)
+  fullcalendar2-rails (~> 2.0.2.2)
   jbuilder (~> 1.2)
   jquery-rails
   paperclip!

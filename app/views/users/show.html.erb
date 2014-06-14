@@ -12,6 +12,7 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Show all', users_path %> |
+<%= link_to 'Calendars', user_calendars_path(@user) %> |
 <%= link_to 'Groups', user_groups_path(@user) %> |
 <%= link_to 'Docs', user_documents_path(@user) %> |
 <%= link_to 'New doc', new_user_document_path(@user, @group) %> |

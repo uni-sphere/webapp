@@ -16,7 +16,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 
 # FullCalendar
-gem 'fullcalendar-rails', '~> 1.6.4.0'
+gem 'fullcalendar2-rails', '~> 2.0.2.2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
