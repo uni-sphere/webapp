@@ -11,13 +11,14 @@ class Event < ActiveRecord::Base
 	end
 
 	def as_json(options = {})
-	    {   :id => self.id,
-		:title => self.title,
-		:start => self.start.rfc822,
-		:end => self.end.rfc822,
-		:allDay => self.allDay,
-		:editable => self.editable,
-		:adminevent => self.adminevent
+	    {   
+	    	:id => self.id,
+				:title => self.title,
+				:start => self.start.rfc822,
+				:end => self.end.rfc822,
+				:allDay => self.allDay,
+				:editable => self.editable,
+				:adminevent => self.adminevent
 	    }
 	  end
 

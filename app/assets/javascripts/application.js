@@ -13,6 +13,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require fullcalendar
 //= require gcal
 //= require_tree .

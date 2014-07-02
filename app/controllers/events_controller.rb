@@ -1,46 +1,42 @@
 class EventsController < ApplicationController
 
   before_action :calendar_params, only: [:create, :update]
-  before_action :set_calendar, only: [:update, :create, :index, :update]
-  before_action :set_user, only: [:create] 
-#  before_action :set_event, only: [:update, :destroy]
- 
-
-	def index
-		@events = @calendar.events.all
-		@events = @calendar.events.between(params['start'],params['end']) if (params['start'] && params['end'])
-			respond_to do |format|
-				format.html	
-		      		format.json { render json: @events }
-		    	end
-	end
+  before_action :set_calendar, only: [:update, :create, :index, :update, :destroy]
+  before_action :set_user, only: [:create, :update, :destroy] 
+  before_action :set_event, only: [:update, :destroy]
 
 	def create
 		@event = @calendar.events.new(calendar_params)
 		respond_to do |format|
-			if @event.save	
+			if @event.save
+							if @user.admin == true
+								adminevent = true
+								@event.update_attributes(adminevent: adminevent)	
+							end
 		      		format.json { render action: 'index' }
 	      		else
-				format.json { render json: @event.errors, status: :unprocessable_entity }
+							format.json { render json: @event.errors, status: :unprocessable_entity }
 			end
-	  	end 
+	  end 
 	end
 
 
 	def update
+			has_access?
 	    @event = @calendar.events.find(params[:id])
 	    respond_to do |format|
-	      if @event.update_attributes(params[:event])
-		format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-		format.json { head :no_content }
+	      if @event.update_attributes(calendar_params)
+					format.html {  }
+					format.json { render action: 'index' }
 	      else
-		format.html { render action: "edit" }
-		format.json { render json: @event.errors, status: :unprocessable_entity }
+			format.html {  }
+			format.json { render json: @event.errors, status: :unprocessable_entity }
 	      end
 	    end
 	  end
 	
 	def destroy
+		has_access?
 		@event.destroy
     		respond_to do |format|
 	     		format.html { redirect_to root_path }

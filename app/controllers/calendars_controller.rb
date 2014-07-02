@@ -3,10 +3,9 @@ class CalendarsController < ApplicationController
   before_action :calendar_params, only: [:create]
   before_action :set_user
   before_action :set_calendar, only: [:show, :destroy]
-  #before_filter :correct_user, :only => [:edit, :update]
-  #before_filter :authenticate?, :only => [:edit, :update, :index, :destroy, :show]
-  #before_filter :not_authenticate?, :only => [:new, :create]
-  #before_filter :is_admin?, :only => [:destroy]
+  before_filter :correct_user, only: [:new, :edit, :update, :show, :destroy, :index]
+  before_filter :authenticate?
+ 
   
 	def new
 		@calendar = @user.calendars.new
@@ -31,7 +30,6 @@ class CalendarsController < ApplicationController
 
 	def show
 		@events = @calendar.events.all
-		@events = @calendar.events.between(params['start'],params['end']) if (params['start'] && params['end'])
 			respond_to do |format|
 				format.html	
 		      		format.json { render json: @events }
