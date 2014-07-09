@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 		@event = @calendar.events.new(calendar_params)
 		respond_to do |format|
 			if @event.save
-							if @user.admin == true
+							if current_user.admin == true
 								adminevent = true
 								@event.update_attributes(adminevent: adminevent)	
 							end
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
 
 	def update
-			has_access?
+		unless @event.adminevent == true and current_user.admin != true
 	    @event = @calendar.events.find(params[:id])
 	    respond_to do |format|
 	      if @event.update_attributes(calendar_params)
@@ -34,14 +34,16 @@ class EventsController < ApplicationController
 	      end
 	    end
 	  end
+	end
 	
 	def destroy
-		has_access?
-		@event.destroy
-    		respond_to do |format|
-	     		format.html { redirect_to root_path }
-	      		format.json { head :no_content }
-    		end
+		unless @event.adminevent == true and current_user.admin != true
+			@event.destroy
+		  		respond_to do |format|
+			   		format.html { redirect_to root_path }
+			    		format.json { head :no_content }
+		  		end
+		end
 	end
 
 private
