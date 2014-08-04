@@ -1,0 +1,30 @@
+<h1>Listing documents</h1>
+
+<table class="container">
+  <thead>
+    <tr>
+      <th>Docs</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+	
+	<% if request.original_url =~ /groups(.*)/ and document.group_id != nil%>
+	<td><%= link_to document.file_file_name, document.file.url %></td>
+	<td><%= link_to 'Browse', edit_user_group_document_path(@user, @target, document) %>
+	<td><%= link_to 'Destroy', user_group_document_path(@user, @target, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% elsif document.group_id == nil and document.user_id != nil and request.original_url !~ /groups(.*)/ %>
+	<td><%= link_to document.file_file_name, document.file.url %></td>
+	<td><%= link_to 'Browse', edit_user_document_path(@target, document) %></td>
+	<td><%= link_to 'Destroy', user_document_path(@target, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

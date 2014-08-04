@@ -1,0 +1,16 @@
+
+<div class="container" >
+<p>
+  <strong>Name</strong>
+  <%= @group.name %>
+  <table class="microposts" summary="Micro-messages de l'utilisateur">
+  <%= render @microposts %>
+	</table>
+	<h1>Answer...</h1>
+	<%= render 'microposts/micropost_form' %>
+</p>
+</div>
+<%= link_to 'Back', user_groups_path(@user) %> |
+<%= link_to 'New doc', new_user_group_document_path(@user, @group) %> |
+<%= link_to 'Docs', user_group_documents_path(@user, @group) %>
+
