@@ -16,10 +16,12 @@ class GroupsController < ApplicationController
   end
 
   def show
+  	@titre = @user.name
+  	@user = User.find(params[:user_id])
   	@micropost = Micropost.new
-    @user = User.find(params[:user_id])
     @microposts = @group.microposts.paginate(:page => params[:page])
-    @titre = @user.name
+    @task = Task.new
+    @tasks = @group.tasks.all
   end
 
   def new

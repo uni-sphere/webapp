@@ -5,6 +5,7 @@ Lms::Application.routes.draw do
 			resources :events, :only => [:create, :update, :destroy, :index]
 			end
 		resources :groups do
+			resources :tasks, :only => [:create, :edit, :update, :index, :destroy]
 			resources :documents, :except => [:show]
 		  resources :microposts, :only => [:create]
 			end

@@ -6,7 +6,7 @@ $(document).ready(function () {
 // Functions
     var update_function = function (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
 					$.ajax({
-            url: window.location.href + '/events/' +event._id,
+            url: window.location.href + '/events/' + event._id,
             dataType:"json",
             type:"PUT",
             data:{
@@ -43,7 +43,7 @@ $(document).ready(function () {
          if (event.which == 46 ) { //si a touche est "suppr"
             if (confirm("Are you sure ?")) { // Demande de confirmation
                $.ajax({ //Envoi de la requête de suppression
-                  url: window.location.href + '/events/' +selected_event._id, // prb d'url à modifier
+                  url: window.location.href + '/events/' + event._id, // prb d'url à modifier
                   dataType:'json',
                   type:"DELETE"
                }).done(function(){

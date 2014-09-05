@@ -1,12 +1,21 @@
 
 <div class="container" >
 <p>
-  <strong>Name</strong>
   <%= @group.name %>
-  <table class="microposts" summary="Micro-messages de l'utilisateur">
+  
+  <table class="tasks">
+  <% @tasks.each do |task| %>
+      <tr><td name="<%= task.id %>"><%= task.name %></td>
+					<td><%= link_to 'Delete', user_group_task_path(@user, @group, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+    <% end %>
+  </table>
+  <%= render 'tasks/task_form' %>
+  
+  <table class="microposts" summary="Discussion">
   <%= render @microposts %>
 	</table>
-	<h1>Answer...</h1>
+	<h3>Answer...</h3>
 	<%= render 'microposts/micropost_form' %>
 </p>
 </div>

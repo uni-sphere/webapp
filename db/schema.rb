@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702151328) do
+ActiveRecord::Schema.define(version: 20140815103839) do
 
   create_table "calendars", force: true do |t|
     t.integer  "user_id"
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 20140702151328) do
   add_index "relationgroups", ["group_id"], name: "index_relationgroups_on_group_id"
   add_index "relationgroups", ["user_id", "group_id"], name: "index_relationgroups_on_user_id_and_group_id", unique: true
   add_index "relationgroups", ["user_id"], name: "index_relationgroups_on_user_id"
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.time     "date"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
