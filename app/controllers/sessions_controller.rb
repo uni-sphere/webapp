@@ -12,22 +12,22 @@ class SessionsController < ApplicationController
                              params[:session][:password])
     respond_to do |format|
       if !user.nil?
-        format.html { redirect_to user, notice: 'session created' }
+        format.html { redirect_to user }
         format.json { head :no_content }
-	sign_in user
+	      sign_in user
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
-	render 'new'
-	return
+        return
       end
     end
   end
 
   def destroy
-	sign_out
-	redirect_to root_path
+	  sign_out
+	  redirect_to root_path
   end
+  
 end
 
 

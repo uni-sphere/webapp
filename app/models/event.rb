@@ -20,6 +20,6 @@ class Event < ActiveRecord::Base
 				:editable => self.editable,
 				:adminevent => self.adminevent
 	    }
-	  end
+	end
 
 end
