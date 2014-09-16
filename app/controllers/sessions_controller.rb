@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   
-  before_filter :not_authenticate?, :only => [:new]
-  before_filter :authenticate?, :only => [:destroy]
-  skip_before_filter :verify_authenticity_token, :only => [:create]
+  before_filter :not_authenticate?, only: [:new]
+  before_filter :authenticate?, only: [:destroy]
+  skip_before_filter :verify_authenticity_token, only: [:create]
   
   def new
   end

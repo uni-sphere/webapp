@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate?, :except => [:new, :create]
-  before_filter :not_authenticate?, :only => [:new, :create]
-  before_filter :is_admin?, :only => [:destroy]
+  before_action :authenticate?, except: [:new, :create]
+  before_filter :not_authenticate?, only: [:new, :create]
+  before_filter :is_admin?, only: [:destroy]
   before_action :user_params, only: [:create, :update]
   before_action :set_user_origin, only: [:show, :destroy, :update, :edit]
-  before_filter :correct_user?, :except => [:new, :create]
-  skip_before_filter :verify_authenticity_token, :only => [:create, :update]
+  before_filter :correct_user?, except: [:new, :create, :index]
+  skip_before_filter :verify_authenticity_token, only: [:create, :update]
 
   def new
     @user = User.new

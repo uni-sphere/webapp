@@ -2,18 +2,12 @@
 
  
 <table class="container">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @calendars.each do |calendar| %>
       <tr>
         <td><%= calendar.name %></td>
-	<td><%= link_to 'Show', [@user, calendar] %></td>
-	<td><%= link_to 'Destroy', [@user, calendar], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<td><%= link_to 'Show', [@user, calendar] %></td>
+				<td><%= link_to 'Destroy', [@user, calendar], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

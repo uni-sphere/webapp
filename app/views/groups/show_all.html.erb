@@ -13,7 +13,7 @@
       <tr>
         <td><%= group.name %></td>
         <td><%= link_to 'Join', joingroup_path(@user, group), method: :post %></td>
-	<td><%= link_to 'Destroy', [@user, group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<td><%= link_to 'Destroy', [@user, group], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

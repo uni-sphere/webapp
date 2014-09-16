@@ -2,7 +2,6 @@
   <% if @calendar.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@calendar.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
       <% @calendar.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -19,4 +18,5 @@
   <div class="actions">
     <%= f.submit "submit" %>
   </div>
+	
 <% end %>

@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
   before_action :authenticate?, only: [:edit, :update, :index, :destroy]
   before_action :set_target, only: [:index, :new, :edit, :update, :create]
   before_action :set_document, only: [:edit, :update]
-  before_filter :correct_target, :only => [:index, :edit, :update, :destroy]
+  before_filter :correct_target, only: [:index, :edit, :update, :destroy]
 
   def new
     @document = @target.documents.new
