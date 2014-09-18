@@ -18,6 +18,7 @@ gem 'public_activity'
 gem 'roo'
 gem 'iconv'
 gem 'bootstrap_tokenfield_rails'
+gem 'unicorn-rails'  # Switches the development server from Webricks to unicorn
 
 group :development, :test do
   gem 'spring-commands-rspec'
