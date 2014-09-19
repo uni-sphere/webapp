@@ -5,7 +5,7 @@
 <%# <%= link_to 'Sign up now !', signup_path %>
 
 
-<%= form_for(:session, :url => sessions_path) do |f| %>
+<!-- <%= form_for(:session, :url => sessions_path) do |f| %>
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
@@ -17,7 +17,7 @@
   <div class="actions">
     <%= f.submit "sign in" %>
   </div>
-<% end %>
+<% end %> -->
 
 <%# <%= form_for(:session, :url => sessions_path) do |f| %>
 <div class="container">
@@ -33,9 +33,19 @@
             <div class="wrap">
                 <p class="form-title">Sign In</p>
                 <form class="login">
-                  <input type="text" placeholder="Username" />
-                  <input type="password" placeholder="Password" />
-                  <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+									<%= form_for(:session, :url => sessions_path) do |f| %>
+								  <div class="field email">
+								    <%= f.label :email %><br>
+								    <%= f.text_field :email %>
+								  </div>
+								  <div class="field psw">
+								    <%= f.label :password %><br>
+								    <%= f.password_field :password %>
+								  </div>
+					
+								    <%= f.submit "sign in" , class: "actions btn btn-success btn-sm"%>
+									
+									<% end %>
                   <div class="remember-forgot">
                       <div class="row">
                           <div class="col-md-6">
