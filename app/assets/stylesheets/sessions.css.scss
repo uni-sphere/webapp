@@ -30,18 +30,13 @@ p.form-title
     letter-spacing: 4px;
 }
 
-#form-login
+form
 {
     width: 250px;
     margin: 0 auto;
 }
 
-
-input {
-    -webkit-colore:blue;
-}
-
-.email, .password
+form.login input[type="text"], form.login input[type="password"]
 {
     width: 100%;
     margin: 0;
@@ -59,7 +54,7 @@ input {
     outline: 0;
 }
 
-.submit
+form.login input[type="submit"]
 {
     width: 100%;
     font-size: 14px;

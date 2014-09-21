@@ -1,43 +1,19 @@
-<!-- <h1>Sign in :)</h1> -->
-
-<%# <%= render 'form' %>
-
-<%# <%= link_to 'Sign up now !', signup_path %>
-
-
- <!-- <%= form_for(:session, :url => sessions_path) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "sign in" %>
-  </div>
-<% end %>  -->
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="pr-wrap">
                 <div class="pass-reset">
                     <label>Enter the email you signed up with</label>
-                    <input type="session_email" placeholder="email" />
+                    <input type="email" placeholder="Email" />
                     <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
                 </div>
             </div>
             <div class="wrap">
                 <p class="form-title">Sign In</p>
-								<div id="form-login">
-									<%= form_for(:session, :url => sessions_path) do |f| %>
-                  <input class="email" type="text" name="session[email]" placeholder="Email" />
-                  <input class="password" type="password" name="session[password]" placeholder="Password" />
-									<div class="action">
-                  	<input type="submit" value="Sign In" class="btn btn-success btn-sm submit" />
-									</div>
+                <form accept-charset="UTF-8" action="/sessions" class="login" method="post">
+                  <input type="text" name="session[email]" placeholder="Email" />
+                  <input type="password" name="session[password]" placeholder="Password" />
+                  <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
                   <div class="remember-forgot">
                       <div class="row">
                           <div class="col-md-6">
@@ -47,57 +23,14 @@
                           </div>
                           <div class="col-md-6 forgot-pass-content">
                               <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+															<%= link_to 'Sign up now !', signup_path %>
                           </div>
                       </div>
                   </div>
-                <% end %>
-							</div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-						<div class="pr-wrap">
-						                <div class="pass-reset">
-						                    <label>Enter the email you signed up with</label>
-						                    <input type="email" placeholder="Email" />
-						                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
-						                </div>
-						            </div>
-            <div class="wrap">
-                <p class="form-title">Sign In</p>
-<%= form_for(:session, :url => sessions_path) do |f| %>
-  <div class="email">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="password" >
-    <%= f.label :password %> <br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "sign in" %>
-  </div>
-<% end %>
-                  <div class="remember-forgot">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="checkbox">
-                                  <label><input type="checkbox" />Remember Me</label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 forgot-pass-content">
-                              <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
-                          </div>
-                      </div>
-                  </div>
-
-            </div>
-        </div>
-    </div>
-</div> -->
 
 
