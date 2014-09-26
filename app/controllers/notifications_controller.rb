@@ -1,5 +1,11 @@
 class NotificationsController < ApplicationController
+  before_action :set_datas
+  
+  def set_datas
+    @groups = current_user.groups.all.select(:id)
+  end
+  
   def index
-    @activities = PublicActivity::Activity.order("created_at desc").where(recipient_id: current_user.id)
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @groups)
   end
 end

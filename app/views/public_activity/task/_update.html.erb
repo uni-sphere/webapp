@@ -1,8 +1,6 @@
-updated a task called
-
 <% if activity.trackable %>
-  <%= activity.trackable.name %>
-	in
+	<%= activity.trackable.name %>
+	has been updated in
 	<%= Group.find(activity.trackable.group_id).name %>
 <% else %>
   which has since been removed

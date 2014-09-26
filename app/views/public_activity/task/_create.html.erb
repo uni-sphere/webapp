@@ -1,8 +1,6 @@
-added a task called
-
 <% if activity.trackable %>
-  <%= activity.trackable.name %>
-	to
+	<%= activity.trackable.name %>
+	has been added to
 	<%= Group.find(activity.trackable.group_id).name %>
 <% else %>
   which has since been removed
