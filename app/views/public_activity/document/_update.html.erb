@@ -1,0 +1,8 @@
+<% if activity.trackable.group_id != nil %>
+	<%= activity.trackable.file_file_name %>
+	has been updated in
+	<%= Group.find(activity.trackable.group_id).name %>
+<% end %>
+
+
+
