@@ -1,0 +1,12 @@
+added
+
+<% if activity.trackable %>
+  <%= activity.trackable.file_file_name %>
+	to
+	<%= Group.find(activity.trackable.group_id).name %>
+<% else %>
+  which has since been removed
+<% end %>
+
+
+

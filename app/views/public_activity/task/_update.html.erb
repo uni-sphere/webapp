@@ -1,0 +1,9 @@
+updated a task called
+
+<% if activity.trackable %>
+  <%= activity.trackable.name %>
+	in
+	<%= Group.find(activity.trackable.group_id).name %>
+<% else %>
+  which has since been removed
+<% end %>

@@ -7,7 +7,7 @@ module SessionsHelper
 	
 	def current_user
     @current_user ||= user_from_remember_token
-  end	
+  end
 
 	def self.authenticate(email, submitted_password)
     user = find_by_email(email)

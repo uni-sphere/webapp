@@ -56,10 +56,7 @@ class UsersController < ApplicationController
     end
   end 
   
-  def autocomplete
-    @search = User.select(:email).where('email LIKE ?', "#{params[:query]}%")
-    render json: @search
-  end 
+
       
   private
 

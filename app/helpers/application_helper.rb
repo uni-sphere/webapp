@@ -15,7 +15,6 @@ module ApplicationHelper
   
   def set_group
     @group = Group.find(params[:group_id]) 
-    authorized_acces_group?
   end
   
   def is_member?		

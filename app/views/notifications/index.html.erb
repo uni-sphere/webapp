@@ -1,0 +1,6 @@
+<% @activities.each do |activity| %>
+	<div class="activity">
+		<%= current_user.name %>
+	  <%= render_activity activity %>
+	</div>
+<% end %>

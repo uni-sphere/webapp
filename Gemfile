@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'momentjs-rails'
 gem 'twitter-typeahead-rails'
+gem 'public_activity'
 
 group :development, :test do
   gem 'spring-commands-rspec'

@@ -1,9 +1,10 @@
 Lms::Application.routes.draw do
-  
+
   resources :users do
 		resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
 			resources :events, :only => [:create, :update, :destroy, :index]
-			end
+		end
+    resources :notifications, :only => [:index]  
 		resources :groups do
       member do
         get 'autocomplete'
