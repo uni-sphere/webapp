@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate?, except: [:new, :create]
+  before_action :authenticate?, except: [:new, :create, :autocomplete]
   before_filter :not_authenticate?, only: [:new, :create]
   before_filter :is_admin?, only: [:destroy]
   before_action :user_params, only: [:create, :update]
   before_action :set_user_origin, only: [:show, :destroy, :update, :edit]
-  before_filter :correct_user?, except: [:new, :create, :index]
+  before_filter :correct_user?, except: [:new, :create, :index, :autocomplete]
   skip_before_filter :verify_authenticity_token, only: [:create, :update]
 
   def new
@@ -56,6 +56,11 @@ class UsersController < ApplicationController
     end
   end 
   
+  def autocomplete
+    @search = User.select(:email).where('email LIKE ?', "#{params[:query]}%")
+    render json: @search
+  end 
+      
   private
 
   def user_params

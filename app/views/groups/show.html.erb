@@ -1,14 +1,18 @@
-
 <div class="container" >
-  <%= @group.name %>
-  
+  <%= @group.name %></br>
+	
+	<div id="user_search">
+ 		<input class="typeahead" type="text" placeholder="Invite a user">
+		<%= link_to "clear", user_group_path, class: "btn btn-default"%>
+	</div>
+
   <table class="tasks">
   <% @tasks.each do |task| %>
-      <tr>
-				<td name="<%= task.id %>"><%= task.name %></td>
-				<td><%= link_to 'Delete', user_group_task_path(@user, @group, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-			</tr>
-    <% end %>
+  	<tr>
+			<td name="<%= task.id %>"><%= task.name %></td>
+			<td><%= link_to 'Delete', user_group_task_path(@user, @group, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+  <% end %>
   </table>
   <%= render 'tasks/task_form' %>
   
@@ -18,10 +22,19 @@
 	<h3>Answer...</h3>
 	
 	<%= render 'microposts/micropost_form' %>
+
+  <% @documents.each do |document| %>
+      <tr>
+					<td><%= link_to document.file_file_name, document.file.url %></td>
+					<td><%= link_to 'Browse', edit_user_group_document_path(@user, @group, document) %>
+					<td><%= link_to 'Destroy', user_group_document_path(@user, @group, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+		
 </div>
 
 <%= link_to 'Back', user_groups_path(@user) %> |
-<%= link_to 'New doc', new_user_group_document_path(@user, @group) %> |
-<%= link_to 'Docs', user_group_documents_path(@user, @group) %> |
-<%= link_to 'Invite a teammate', user_group_documents_path(@user, @group) %> |
+<%= link_to 'New doc', new_user_group_document_path(@user, @group) %> 
 
+
+			

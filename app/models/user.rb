@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-# link between tables
-
 	has_many :relationgroups
 	has_many :groups, through: :relationgroups
 

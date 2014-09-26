@@ -5,6 +5,9 @@ Lms::Application.routes.draw do
 			resources :events, :only => [:create, :update, :destroy, :index]
 			end
 		resources :groups do
+      member do
+        get 'autocomplete'
+      end
 			resources :tasks, :only => [:create, :edit, :update, :index, :destroy]
 			resources :documents, :except => [:show]
 		  resources :microposts, :only => [:create]
@@ -23,5 +26,4 @@ Lms::Application.routes.draw do
   get '/users/:user_id/allgroups', :to => 'groups#show_all', as: 'allgroups'
   post '/user/:user_id/group/:group_id', :to => 'groups#join_group', as: 'joingroup'
   delete '/user/:user_id/group/:group_id', :to => 'groups#leave_group', as: 'leavegroup'
-
 end

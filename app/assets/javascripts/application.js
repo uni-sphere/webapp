@@ -14,7 +14,10 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require moment
 //= require fullcalendar
 //= require gcal
+//= require twitter/typeahead
+//= require bootstrap-sprockets
 //= require_tree .
 

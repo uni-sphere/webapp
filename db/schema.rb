@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140815103839) do
-=======
-ActiveRecord::Schema.define(version: 20140702151328) do
->>>>>>> 0afe2b98219b91f91d5d8b149f0027f5a0864bb9
 
   create_table "calendars", force: true do |t|
     t.integer  "user_id"
@@ -72,7 +68,6 @@ ActiveRecord::Schema.define(version: 20140702151328) do
   add_index "relationgroups", ["user_id", "group_id"], name: "index_relationgroups_on_user_id_and_group_id", unique: true
   add_index "relationgroups", ["user_id"], name: "index_relationgroups_on_user_id"
 
-<<<<<<< HEAD
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.time     "date"
@@ -81,8 +76,6 @@ ActiveRecord::Schema.define(version: 20140702151328) do
     t.datetime "updated_at"
   end
 
-=======
->>>>>>> 0afe2b98219b91f91d5d8b149f0027f5a0864bb9
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"

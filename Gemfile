@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-
+gem "paperclip"
 gem 'rails' 
 gem 'sass-rails' 
 gem 'bootstrap-sass'
@@ -13,8 +12,8 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'momentjs-rails'
+gem 'twitter-typeahead-rails'
 
 group :development, :test do
   gem 'spring-commands-rspec'
@@ -30,9 +29,9 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :doc do
-  gem 'sdoc', require: false
-end
+# group :doc do
+#   gem 'sdoc', require: false
+# end
 
 
 

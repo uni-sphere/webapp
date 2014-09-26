@@ -38,8 +38,31 @@
 
 };
 
+// users search engine
+
+	var users = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  limit: 5,
+	  remote: {
+	    url: '../groups/:id/autocomplete?query=%QUERY',
+	  }
+	});
+
+// docs search engine
+
 $(document).ready(function() {
 	tasks.init();
+	
+	// users search engine
+	
+	users.initialize();
+		$('#user_search .typeahead').typeahead(null, {
+		  name: 'users',
+		  displayKey: 'email',
+		  source: users.ttAdapter()
+		});
+	
 });
 
 

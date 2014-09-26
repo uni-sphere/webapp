@@ -48,7 +48,11 @@ class EventsController < ApplicationController
 	end
 
   private
-
+  
+	def set_calendar
+		@calendar = Calendar.find(params[:calendar_id])
+	end
+  
 	def set_event
 		@event = @calendar.events.find(params[:id])
 	end

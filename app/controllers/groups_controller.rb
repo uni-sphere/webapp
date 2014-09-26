@@ -1,11 +1,12 @@
 class GroupsController < ApplicationController
 
-  before_action :authenticate?
+  before_action :authenticate?, except: [:autocomplete]
   before_action :is_admin?, only: [:destroy]
   before_action :set_user
-  before_action :correct_user?
-  before_action :authorized_acces_group?, only: [:dset_group]
+  before_action :correct_user?, except: [:autocomplete]
+  before_action :authorized_acces_group?, only: [:set_group]
   before_action :set_group_origin, only: [:show, :edit, :update]
+  
 
   def new
     @group = @user.groups.new
@@ -45,7 +46,7 @@ class GroupsController < ApplicationController
   def index
     @groups = @user.groups
   end
-
+  
   def show
   	@titre = @user.name
   	@user = User.find(params[:user_id])
@@ -53,6 +54,8 @@ class GroupsController < ApplicationController
     @microposts = @group.microposts.paginate(:page => params[:page])
     @task = Task.new
     @tasks = @group.tasks.all
+    @group = Group.find(params[:id]) 
+    @documents = @group.documents.all
   end
   
   def join_group
@@ -91,15 +94,20 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def autocomplete
+    @search = User.select(:email).where('email LIKE ?', "#{params[:query]}%")
+    render json: @search
+  end 
 
   private 
 
   def set_group_origin
     @group = @user.groups.find(params[:id])
   end
-    
+  
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :query)
   end
   
 end
