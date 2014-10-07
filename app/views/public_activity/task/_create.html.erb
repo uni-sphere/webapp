@@ -1,7 +1,5 @@
-<% if activity.trackable %>
+<% if activity.trackable and current_user.groups.exists?(id: activity.owner_id) %>
 	<%= activity.trackable.name %>
 	has been added to
-	<%= Group.find(activity.trackable.group_id).name %>
-<% else %>
-  which has since been removed
+	<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(current_user, Group.find(activity.trackable.group_id)) %>
 <% end %>

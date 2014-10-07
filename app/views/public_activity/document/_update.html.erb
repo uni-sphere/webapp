@@ -1,7 +1,7 @@
-<% if activity.trackable.group_id != nil %>
-	<%= activity.trackable.file_file_name %>
+<% if activity.trackable.group_id != nil and current_user.groups.exists?(id: activity.owner_id) %>
+	<%= link_to activity.trackable.file_file_name, activity.trackable.file.url %>
 	has been updated in
-	<%= Group.find(activity.trackable.group_id).name %>
+	<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(current_user, Group.find(activity.trackable.group_id)) %>
 <% end %>
 
 

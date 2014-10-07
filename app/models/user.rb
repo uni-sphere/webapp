@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include PublicActivity::Common
 
 	has_many :relationgroups
 	has_many :groups, through: :relationgroups

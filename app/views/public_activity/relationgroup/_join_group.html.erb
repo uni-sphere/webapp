@@ -1,0 +1,5 @@
+<% if activity.trackable and current_user.groups.exists?(id: activity.owner_id) %>
+	<%= User.find(activity.trackable.user_id).name %>
+	has join
+	<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(User.find(activity.trackable.user_id), Group.find(activity.trackable.group_id)) %>
+<% end %>

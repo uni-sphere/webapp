@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
 
-  before_action :authenticate?, except: [:autocomplete]
+  before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
   before_action :set_user
-  before_action :correct_user?, except: [:autocomplete]
+  before_action :correct_user?, except: [:autocomplete, :send_invitation]
   before_action :authorized_acces_group?, only: [:set_group]
-  before_action :set_group_origin, only: [:show, :edit, :update]
+  before_action :set_group_origin, only: [:show, :edit, :update, :send_invitation]
   
 
   def new
@@ -61,7 +61,8 @@ class GroupsController < ApplicationController
   def join_group
 	  @relation = Relationgroup.new(user_id: params[:user_id], group_id: params[:group_id])	
 	    begin 
-		    @relation.save!	
+		    @relation.save!
+        @relation.create_activity :join_group, owner: set_group, recipient: @user
 		    redirect_to user_groups_path(@user)
 	    rescue ActiveRecord::StatementInvalid => e
 		    if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
@@ -99,6 +100,12 @@ class GroupsController < ApplicationController
     @search = User.select(:email).where('email LIKE ?', "#{params[:query]}%")
     render json: @search
   end 
+
+  def send_invitation
+    @user = User.where(email: params[:user][:email]).first
+    @user.create_activity :send_invitation, owner: @group, recipient: @user
+    redirect_to root_path
+  end
 
   private 
 

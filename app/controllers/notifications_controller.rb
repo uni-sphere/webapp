@@ -6,6 +6,6 @@ class NotificationsController < ApplicationController
   end
   
   def index
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: @groups)
+    @activities = PublicActivity::Activity.order("created_at desc")
   end
 end

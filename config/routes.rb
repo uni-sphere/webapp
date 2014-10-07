@@ -8,6 +8,7 @@ Lms::Application.routes.draw do
 		resources :groups do
       member do
         get 'autocomplete'
+        patch 'send_invitation'
       end
 			resources :tasks, :only => [:create, :edit, :update, :index, :destroy]
 			resources :documents, :except => [:show]

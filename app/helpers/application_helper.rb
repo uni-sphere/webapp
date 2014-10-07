@@ -20,7 +20,7 @@ module ApplicationHelper
   def is_member?		
     current_user.groups.each do |current_user_group|
       @answer = true if current_user_group.id == @group.id
-  end
+    end
     return @answer
   end
 

@@ -1,11 +1,13 @@
 <div class="container" >
   <%= @group.name %></br>
 	
-	<div id="user_search">
- 		<input class="typeahead" type="text" placeholder="Invite a user">
-		<%= link_to "clear", user_group_path, class: "btn btn-default"%>
-	</div>
-
+	<%= form_for @group, url: { action: "send_invitation" } do |f| %>
+		<div id="user_search">
+ 			<input class="typeahead" type="text" placeholder="Invite a user" name="user[email]">
+			<input type="submit" value="Submit">
+		</div>
+	<% end %>
+	
   <table class="tasks">
   <% @tasks.each do |task| %>
   	<tr>
@@ -24,11 +26,11 @@
 	<%= render 'microposts/micropost_form' %>
 
   <% @documents.each do |document| %>
-      <tr>
-					<td><%= link_to document.file_file_name, document.file.url %></td>
-					<td><%= link_to 'Browse', edit_user_group_document_path(@user, @group, document) %>
-					<td><%= link_to 'Destroy', user_group_document_path(@user, @group, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  	<tr>
+			<td><%= link_to document.file_file_name, document.file.url %></td>
+			<td><%= link_to 'Browse', edit_user_group_document_path(@user, @group, document) %>
+			<td><%= link_to 'Destroy', user_group_document_path(@user, @group, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
     <% end %>
 		
 </div>
