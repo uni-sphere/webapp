@@ -31,3 +31,10 @@
     <%= f.submit "submit" %>
   </div>
 <% end %>
+
+<h5>Import Products</h5>
+
+<%= form_tag import_for_creating_users_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>

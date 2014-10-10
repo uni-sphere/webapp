@@ -23,8 +23,9 @@ class User < ActiveRecord::Base
 			:format     => { :with => email_regex },
 			:uniqueness => { :case_sensitive => false }
 	validates :password, :presence => true,
-                        :confirmation  => true,
-                        :length        => { :within => 6..40 }
+      :on        => :create,
+      :confirmation  => true,
+      :length        => { :within => 6..40 }
 
 # callbacks
 
@@ -40,7 +41,47 @@ class User < ActiveRecord::Base
     user = find_by_email(email)
       return nil  if user.nil?
       return user if user.has_password?(submitted_password)
+  end
+  
+  def self.import_for_creating(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      user = find_by_id(row["id"]) || new
+      user.attributes = row.to_hash
+      user.save!
     end
+  end
+  
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
+  
+  def self.import_for_involving(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      relation = Relationgroup.new
+      relation.attributes = row.to_hash
+      relation.save!
+    end
+  end
+  
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+    when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
 
   private
 

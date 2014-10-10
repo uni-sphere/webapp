@@ -1,6 +1,10 @@
 Lms::Application.routes.draw do
 
   resources :users do
+    collection do 
+      post :import_for_creating
+      post :import_for_involving
+    end
 		resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
 			resources :events, :only => [:create, :update, :destroy, :index]
 		end

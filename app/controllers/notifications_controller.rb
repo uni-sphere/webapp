@@ -6,6 +6,6 @@ class NotificationsController < ApplicationController
   end
   
   def index
-    @activities = PublicActivity::Activity.order("created_at desc")
+    @activities = PublicActivity::Activity.order("created_at desc").paginate(page: 1, per_page: 7)
   end
 end

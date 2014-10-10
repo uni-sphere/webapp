@@ -7,6 +7,10 @@
 			<input type="submit" value="Submit">
 		</div>
 	<% end %>
+	<%= form_tag import_for_involving_users_path, multipart: true do %>
+	  <%= file_field_tag :file %>
+	  <%= submit_tag "Import" %>
+	<% end %>
 	
   <table class="tasks">
   <% @tasks.each do |task| %>

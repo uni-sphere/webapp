@@ -2,7 +2,8 @@ class GroupsController < ApplicationController
 
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
-  before_action :set_user
+  before_action :set_user 
+  before_action :set_users, only: [:send_invitation]
   before_action :correct_user?, except: [:autocomplete, :send_invitation]
   before_action :authorized_acces_group?, only: [:set_group]
   before_action :set_group_origin, only: [:show, :edit, :update, :send_invitation]
@@ -102,13 +103,21 @@ class GroupsController < ApplicationController
   end 
 
   def send_invitation
-    @user = User.where(email: params[:user][:email]).first
-    @user.create_activity :send_invitation, owner: @group, recipient: @user
+    @users.each do |email|
+      if @user = User.where(email: email).first
+        @user.create_activity :send_invitation, owner: @group, recipient: @user
+      end
+    end
     redirect_to root_path
   end
 
   private 
 
+  def set_users
+    @users = params[:user][:email].gsub(/[ ]/, '').split(',') 
+    logger.debug @users.each { |email| puts User.find_by_email(email)}
+  end
+  
   def set_group_origin
     @group = @user.groups.find(params[:id])
   end

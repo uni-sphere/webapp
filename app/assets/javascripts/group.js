@@ -47,22 +47,19 @@
 	  remote: {
 	    url: '../groups/:id/autocomplete?query=%QUERY',
 	  }
+		
 	});
-
-// docs search engine
 
 $(document).ready(function() {
 	tasks.init();
-	
-	// users search engine
-	
 	users.initialize();
-		$('#user_search .typeahead').typeahead(null, {
-		  name: 'users',
-		  displayKey: 'email',
-		  source: users.ttAdapter()
-		});
-	
+	$('.typeahead').tokenfield({
+	  typeahead: (null, {
+			name: 'users',
+	  	displayKey: 'email',
+	  	source: users.ttAdapter()})
+	});
+
 });
 
 

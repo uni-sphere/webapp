@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate?, except: [:new, :create, :autocomplete]
+  before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving]
   before_filter :not_authenticate?, only: [:new, :create]
   before_filter :is_admin?, only: [:destroy]
   before_action :user_params, only: [:create, :update]
   before_action :set_user_origin, only: [:show, :destroy, :update, :edit]
-  before_filter :correct_user?, except: [:new, :create, :index, :autocomplete]
+  before_filter :correct_user?, except: [:new, :create, :index, :autocomplete, :import_for_creating, :import_for_involving]
   skip_before_filter :verify_authenticity_token, only: [:create, :update]
 
   def new
@@ -26,6 +26,16 @@ class UsersController < ApplicationController
     end 
   end
   
+  def import_for_creating
+    User.import_for_creating(params[:file])
+    redirect_to root_url, notice: "Users imported"
+  end
+  
+  def import_for_involving
+    User.import_for_involving(params[:file])
+    redirect_to root_url, notice: "Members imported"
+  end
+  
   def edit
   end
   
@@ -43,6 +53,11 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    respond_to do |format|
+        format.html
+        format.csv { send_data @users.to_csv }
+        format.xls { send_data @users.to_csv(col_sep: "\t") }
+    end
   end
 
   def show

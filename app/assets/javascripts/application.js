@@ -18,6 +18,7 @@
 //= require fullcalendar
 //= require gcal
 //= require twitter/typeahead
+//= require bootstrap-tokenfield
 //= require bootstrap-sprockets
 //= require_tree .
 

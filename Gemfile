@@ -15,6 +15,9 @@ gem 'jbuilder'
 gem 'momentjs-rails'
 gem 'twitter-typeahead-rails'
 gem 'public_activity'
+gem 'roo'
+gem 'iconv'
+gem 'bootstrap_tokenfield_rails'
 
 group :development, :test do
   gem 'spring-commands-rspec'
