@@ -1,36 +1,32 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="pr-wrap">
-                <div class="pass-reset">
-                    <label>Enter the email you signed up with</label>
-                    <input type="email" placeholder="Email" />
-                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
-                </div>
+  <div class="row">
+    <div class="col-md-12" id="plop">
+      <p class="form-title">Sign In</p>
+      <form accept-charset="UTF-8" action="/sessions" class="login" method="post">
+        <%= form_for(:session, :url => sessions_path) do |f| %>
+        <input type="text" placeholder="Email" class="field-input"
+          <%= f.text_field :email %>
+        <input type="password" placeholder="Password" class="field-input"
+          <%= f.password_field :password %>
+        <input type="submit" class="btn btn-success btn-sm" id="sign-in-submit-btn"
+          <%= f.submit "sign in" %>
+        <%end%>
+
+        <div class="remember-forgot">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="checkbox">
+                <label><input type="checkbox" id="booo" />Remember Me</label>
+              </div>
             </div>
-            <div class="wrap">
-                <p class="form-title">Sign In</p>
-                <form accept-charset="UTF-8" action="/sessions" class="login" method="post">
-                  <input type="text" name="session[email]" placeholder="Email" />
-                  <input type="password" name="session[password]" placeholder="Password" />
-                  <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
-                  <div class="remember-forgot">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="checkbox">
-                                  <label><input type="checkbox" />Remember Me</label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 forgot-pass-content">
-                              <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
-															<%= link_to 'Sign up now !', signup_path %>
-                          </div>
-                      </div>
-                  </div>
-                </form>
+            <div class="col-md-6 forgot-pass">
+              <a href="#">Forgot Password</a>
             </div>
+          </div>
         </div>
+      </form>
     </div>
+  </div>
 </div>
 
 
