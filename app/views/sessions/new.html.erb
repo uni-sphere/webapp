@@ -4,12 +4,9 @@
       <p class="form-title">Sign In</p>
       <form accept-charset="UTF-8" action="/sessions" class="login" method="post">
         <%= form_for(:session, :url => sessions_path) do |f| %>
-        <input type="text" placeholder="Email" class="field-input"
-          <%= f.text_field :email %>
-        <input type="password" placeholder="Password" class="field-input"
-          <%= f.password_field :password %>
-        <input type="submit" class="btn btn-success btn-sm" id="sign-in-submit-btn"
-          <%= f.submit "sign in" %>
+          <%= f.text_field :email, class: "field-input", placeholder: "Email" %>
+          <%= f.password_field :password, class: "field-input", placeholder: "Password" %>
+          <%= f.submit "sign in", class: "btn btn-success btn-sm", id: "sign-in-submit-btn"%>
         <%end%>
 
         <div class="remember-forgot">
