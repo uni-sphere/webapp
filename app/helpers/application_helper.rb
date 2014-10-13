@@ -1,7 +1,15 @@
 module ApplicationHelper
   
+  def full_title(page_title)
+    base_title = "InfiniTree"
+    if page_title.empty?
+      base_title
+    else
+      "#{base_title} | #{page_title}"
+    end
+  end
+
   # user
-  
   def is_admin?
 	  redirect_to(root_path) unless current_user.admin?	
     return current_user.admin
@@ -12,7 +20,6 @@ module ApplicationHelper
   end
   
   # group
-  
   def set_group
     @group = Group.find(params[:group_id]) 
   end
@@ -29,3 +36,4 @@ module ApplicationHelper
   end
   
 end
+

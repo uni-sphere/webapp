@@ -56,6 +56,8 @@ GEM
     erubis (2.7.0)
     execjs (2.2.1)
     ffi (1.9.6)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     fullcalendar2-rails (2.0.2.2)
       momentjs-rails
@@ -223,6 +225,7 @@ DEPENDENCIES
   bootstrap_tokenfield_rails
   capybara
   coffee-rails
+  font-awesome-rails
   fullcalendar2-rails
   guard-rspec
   iconv

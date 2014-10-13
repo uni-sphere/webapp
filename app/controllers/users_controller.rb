@@ -61,6 +61,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @title = "groups"
+    @notification = true
   end
   
   def destroy

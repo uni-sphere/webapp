@@ -1,0 +1,99 @@
+<div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" >
+  <div class="column col-sm-1 hidden-small" id="sidebar-padding">
+  </div>
+
+  <ul class="nav visible-small" data-no-turbolink id="chevron">
+    <li><a href="#" data-toggle="offcanvas" class="text-center visible-small"><i class="fa fa-chevron-right"></i></a></li>
+  </ul>
+
+  <div class="column col-sm-11 row-offcanvas hidden-small" id="sidebar-main-wrapper">
+
+    <div id="tabs-default" class="hidden-small">
+      <% if @title == "perso" %> 
+        <a href="/" class="column col-sm-6 tab active">Perso</a>
+        <a href="/groups" class="column col-sm-6 tab offset-margin">Group</a>
+      <% else %>
+        <a href="/" class="column col-sm-6 tab">Perso</a>
+        <a href="/groups" class="column col-sm-6 tab active offset-margin">Group</a>
+      <% end %>
+    </div>
+
+    <ul class="visible-small" id="tabs-small">
+      <li><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
+      <li><a href="/groups"><i class="fa fa-group"></i><span>Group</span></a></li>
+    </ul>
+
+    <div id="content-wrapper">
+      <% if @title == "perso" %>
+      <% elsif @title == "groups" %>
+
+        <div id="active-group">
+          <div class="panel panel-default" id="heading-group">
+            <div class="panel-heading">
+              <span class="group-pic"><img alt="group pic" src="#"></span>
+              <span class="group-name">Grid computing</span>
+            </div>
+
+            <div class="panel-body" id="nav-group">
+              <ul class="nav">
+                <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
+                <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
+                <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="list-groups-wrapper">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <span> Groups </span>
+            </div>
+            <div class="panel-body">
+              <ul class="nav" id="list-groups">
+                <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">hpc</span></a></li>
+                <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">java</span></a></li>
+                <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">c++</span></a></li>
+              </ul>
+              <div class="line-separator"></div>
+              <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span>See all groups</span></a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+  <ul class="nav visible-small" id="sidebar-small" >
+    <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+  </ul>
+</div>
+
+
+<div id="groups-search" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        Personal Todo list 
+      </div>
+      <div class="modal-body">
+        <form class="form center-block">
+          <div class="form-group">
+            <textarea class="form-control input-lg" autofocus="" placeholder="Keep your thoughts in a safe place.."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

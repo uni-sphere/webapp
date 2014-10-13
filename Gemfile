@@ -19,6 +19,7 @@ gem 'roo'
 gem 'iconv'
 gem 'bootstrap_tokenfield_rails'
 gem 'unicorn-rails'  # Switches the development server from Webricks to unicorn
+gem 'font-awesome-rails'    # Imports nice svgs
 
 group :development, :test do
   gem 'spring-commands-rspec'
