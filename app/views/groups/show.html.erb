@@ -35,7 +35,34 @@
 			<td><%= link_to 'Browse', edit_user_group_document_path(@user, @group, document) %>
 			<td><%= link_to 'Destroy', user_group_document_path(@user, @group, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
-    <% end %>
+  <% end %>
+		
+	<%= form_for([@user, @group, @calendar]) do |f| %>
+	  <% if @calendar.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@calendar.errors.count, "error") %> prohibited this user from being saved:</h2>
+	      <ul>
+	      <% @calendar.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+		New Calendar
+		
+		<div id="calendar">
+		</div>
+		
+	  <div class="field">
+	    <%= f.label :name %><br>
+	    <%= f.text_field :name %>
+	  </div>
+  
+	  <div class="actions">
+	    <%= f.submit "submit" %>
+	  </div>
+	<% end %>	
 		
 </div>
 

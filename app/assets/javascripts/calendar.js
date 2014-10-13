@@ -88,7 +88,7 @@ $(document).ready(function () {
 		select: function (start, end, allDay) {
 			var title = prompt('Create an event');
 				if (title) {
-					$.post(window.location.href+'/events.json',
+					$.post(window.location.href + '/events.json',
 						{ 
 							dataType: 'json',
         			event:{

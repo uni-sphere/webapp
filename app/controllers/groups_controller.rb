@@ -57,6 +57,7 @@ class GroupsController < ApplicationController
     @tasks = @group.tasks.all
     @group = Group.find(params[:id]) 
     @documents = @group.documents.all
+    @calendar = Calendar.new
   end
   
   def join_group
@@ -114,8 +115,7 @@ class GroupsController < ApplicationController
   private 
 
   def set_users
-    @users = params[:user][:email].gsub(/[ ]/, '').split(',') 
-    logger.debug @users.each { |email| puts User.find_by_email(email)}
+    @users = params[:user][:email].gsub(/[ ]/, '').split(',')
   end
   
   def set_group_origin

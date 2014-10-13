@@ -17,7 +17,10 @@ Lms::Application.routes.draw do
 			resources :tasks, :only => [:create, :edit, :update, :index, :destroy]
 			resources :documents, :except => [:show]
 		  resources :microposts, :only => [:create]
-			end
+  		resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
+  			resources :events, :only => [:create, :update, :destroy, :index]
+  		end
+		end
 		resources :documents, :except => [:show]
 	end	
 

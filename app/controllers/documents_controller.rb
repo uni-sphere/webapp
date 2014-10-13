@@ -53,16 +53,6 @@ class DocumentsController < ApplicationController
 
   private
 
-  def set_target
-    if request.original_url =~ /groups(.*)/
-	    @target = Group.find(params[:group_id])  
-	    @user = User.find(params[:user_id])
-      correct_user?  	
-    else
-      @target = User.find(params[:user_id])
-    end
-  end
-
   def set_document
   	@document = @target.documents.find(params[:id])
   end

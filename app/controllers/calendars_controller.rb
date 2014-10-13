@@ -2,19 +2,19 @@ class CalendarsController < ApplicationController
 
   before_action :authenticate?
   before_action :calendar_params, only: [:create]
-  before_action :set_user
+  before_action :set_target
   before_action :correct_user?
   before_action :set_calendar, only: [:show, :destroy]
  
 	def new
-		@calendar = @user.calendars.new
+		@calendar = @target.calendars.new
 	end
 
 	def create
-		@calendar = @user.calendars.new(calendar_params)
+		@calendar = @target.calendars.new(calendar_params)
     respond_to do |format|
       if @calendar.save
-     	  format.html { redirect_to user_calendars_path }
+     	  format.html { redirect_to root_path }
      		format.json { render action: 'index', status: :created, location: @event }
      	else
      		format.html { render action: 'new' }
@@ -24,7 +24,7 @@ class CalendarsController < ApplicationController
 	end
 
 	def index
-		@calendars = @user.calendars.all
+		@calendars = @target.calendars.all
 	end
 
 	def show

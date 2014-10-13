@@ -35,5 +35,18 @@ module ApplicationHelper
     redirect_to(root_path) unless is_member? or current_user.admin?
   end
   
+  # all
+  
+  def set_target
+    if request.original_url =~ /groups(.*)/
+	    @target = Group.find(params[:group_id])  
+	    @user = User.find(params[:user_id])
+      correct_user?  	
+    else
+      @target = User.find(params[:user_id])
+      @user = @target
+    end
+  end
+  
 end
 
