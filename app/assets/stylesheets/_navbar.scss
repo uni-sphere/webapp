@@ -6,17 +6,21 @@
   background: $side-bg ;
   color:#ffffff;
   top:0;
-  right: 13px;
-}
-.top-fixed{
   position: fixed !important;
   width: inherit !important;
-
+}
+.top-fixed{
+  right: 13px;
 }
 
 .top-relative{
-  position: relative !important;
-  width: 100% !important;
+
+  left: 33%;
+
+  // float: left;
+  // position: relative !important;
+  // width: 66% !important;
+
 }
 
 
@@ -24,12 +28,14 @@
 @media screen and (max-width: $navbar-collapse) {
   #navbar{
     right: 0;
+    height: 50px;
+    // overflow-y: hidden; 
   }
-  /*
-   * #main-page{
-   *   margin-right: -10px;
-   * }
-   */
+  #main-page{
+    // float: left;
+    // margin-top: 0;
+    // padding-top:0;
+  }
 }
 
 // --------------------
@@ -103,11 +109,6 @@
 }
 
 
-@media (max-width: $navbar-collapse){
-  #navbar{
-    height: 50px;
-  }
-}
 
 
 // ---------------
@@ -310,7 +311,5 @@
     border-bottom-color: #68dff0 !important;
     border-top-color: #68dff0 !important;
 }
-
-
 
 
