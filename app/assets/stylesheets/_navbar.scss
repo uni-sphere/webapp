@@ -24,19 +24,6 @@
 }
 
 
-// Config for little screens
-@media screen and (max-width: $navbar-collapse) {
-  #navbar{
-    right: 0;
-    height: 50px;
-    // overflow-y: hidden; 
-  }
-  #main-page{
-    // float: left;
-    // margin-top: 0;
-    // padding-top:0;
-  }
-}
 
 // --------------------
 // Right navigation bar
@@ -45,9 +32,8 @@
 #navbar-right{ 
   display: inline-block;
   margin-right: 50px;
-  margin-left: 30%;
-  // background: red;
-  padding-top: 0px;
+  // background: blue;
+  padding-top: 0;
   li{
     float: left;
   }
@@ -55,13 +41,11 @@
     display:inline-block;
     padding: 5px 5px 10px 5px;
     margin: 8px 2px 2px 15px;
-    // text-align:center;
     border-style: none;
-    // padding-bottom: 4px;
-    // height: 30px;
     background: $button-bg;
-    // background: blue;
+    // background: red;
     color: $button-color;
+    overflow: hidden;
     white-space: nowrap;
   }
   a::after {
@@ -69,44 +53,52 @@
     top: 76%;
     right: 0px;
     width: 90%;
-    // height: 5px;
     background: white;
     content: '';
-    // opacity: 1;
-    // -webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
-    // -moz-transition: height 0.3s, opacity 0.3s, -moz-transform 0.3s;
-    // transition: height 0.3s, opacity 0.3s, transform 0.3s;
   }
   a:hover::after,
   a:focus::after {
     height: 4px;
-    // opacity: 1;
-    // -webkit-transform: translateY(0px);
-    // -moz-transform: translateY(0px);
-    // transform: translateY(0px);
   }
 }
 
-@media (max-width: 568px){
+
+@media screen and (max-width: 768px) {
   #navbar-right{
-    margin-left: 20%;
-    margin-right: 0;
+    padding-top: 0;
+
+    float: right;
+    margin-right: 50px;
+    // margin-right: 50px;
+
+    a{
+      margin-top: 0 ;
+    }
   }
 }
 
-@media (max-width: 468px){
-  #navbar-right{
-    margin-left: 10%;
-    margin-right: 0;
-  }
-}
-
-@media (max-width: 398px){
-  #navbar-right{
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
+/*
+ * @media (max-width: 568px){
+ *   #navbar-right{
+ *     margin-left: 20%;
+ *     margin-right: 0;
+ *   }
+ * }
+ * 
+ * @media (max-width: 468px){
+ *   #navbar-right{
+ *     margin-left: 10%;
+ *     margin-right: 0;
+ *   }
+ * }
+ * 
+ * @media (max-width: 398px){
+ *   #navbar-right{
+ *     margin-left: 0;
+ *     margin-right: 0;
+ *   }
+ * }
+ */
 
 
 
@@ -177,18 +169,6 @@
     text-shadow: none;
     right: -4px;
     top: -10px;
-  }
-}
-
-@media (max-width: 1068px){
-  #navbar-left li{
-    margin-right: 10px;
-  }
-}
-
-@media (max-width: 768px){
-  #navbar-left{
-    margin-left: 30px;
   }
 }
 
@@ -313,3 +293,36 @@
 }
 
 
+// Config for little screens
+@media screen and (max-width: 768px) {
+  #navbar{
+    right: 0;
+    height: 50px;
+    // overflow-y: hidden; 
+  }
+  #navbar-left{
+    margin-left: 20px;
+    .dropdown{
+      margin-right: 20px;
+      .dropdown-toggle {
+        i:hover{
+          font-size: 22px;
+        }
+      }
+    }
+  }
+  #navbar-right{
+    margin-right: 50px;
+
+    a:hover::after,
+    a:focus::after {
+      height: 0px;
+    }
+  }
+
+  #main-page{
+    // float: left;
+    // margin-top: 0;
+    // padding-top:0;
+  }
+}

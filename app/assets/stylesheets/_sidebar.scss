@@ -12,11 +12,53 @@
 #sidebar-main-wrapper{
   padding:0;
 }
-
 #sidebar{
   background: $main-bg;
+  // background: red;
   // border-right: solid 1px $grey-light;
   padding:0;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar{
+    border-right: solid 1px $violet;
+  }
+  #chevron{
+    :hover, :focus{
+      background: $tab-main-bg;
+    }
+  a{
+    height: 50px;
+    padding: 12px 0 0 0;
+    // background: blue;
+    outline: none; 
+    color: $tab-main-color;
+    :hover{
+      color: $tab-main-hover-color;
+    }
+    .fa{
+        // margin-top: 2px;
+        // padding: 3px;
+      }
+    }
+  }
+  #sidebar-small{
+    a{
+      // background: blue;
+      margin:15px 0px;
+      padding: 0;
+
+      &:hover{
+        background: white;
+      }
+    }
+    .fa{
+      font-size: 22px;
+      color: $violet;
+      padding:0;
+
+    } 
+  }
 }
 
 
@@ -154,14 +196,26 @@
 
   #more-groups{
     float: left;
-    // background: yellow;
-    margin-left: 15px;
+    clear: left;
+    display: block;
+    width: 100%;
+    padding-left: 15px;
     font-size: 12px;
+
+    .ellipsis{
+      float: left;
+      width: 80%;
+      text-align: left;
+      white-space: nowrap;  
+      overflow: hidden;    
+      text-overflow: ellipsis; 
+    }
     font-style: italic;
     &:hover, &:focus{
       text-decoration: none;
     }
     .fa{
+      float: left;
       margin-right: 5px;
     }
   }
@@ -220,7 +274,7 @@
   }
 }
 
-@media screen and (min-width: $navbar-collapse) {
+@media screen and (min-width: 768px) {
   .hidden-small{
     display: visible;
   }
@@ -230,26 +284,7 @@
   }
 }
 // Config for little screens
-@media screen and (max-width: $navbar-collapse) {
-  #chevron{
-    display: block;
-    height: 50px;
-    :hover, :focus{
-      background: $tab-main-bg;
-    }
-  a{
-    outline: none; 
-    color: $tab-main-color;
-    :hover{
-      color: $tab-main-hover-color;
-    }
-    i{
-        margin-top: 2px;
-        padding: 0;
-        padding: 3px;
-      }
-    }
-  }
+@media screen and (max-width: 768px) {
 
   .box {
     overflow-x: hidden;

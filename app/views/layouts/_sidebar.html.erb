@@ -1,4 +1,4 @@
-<div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" >
+<div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" >
   <div class="column col-sm-1 hidden-small" id="sidebar-padding">
   </div>
 
@@ -18,12 +18,13 @@
       <% end %>
     </div>
 
-    <ul class="visible-small" id="tabs-small">
-      <li><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
-      <li><a href="/groups"><i class="fa fa-group"></i><span>Group</span></a></li>
-    </ul>
 
     <div id="content-wrapper">
+
+      <ul class="visible-small" id="tabs-small">
+        <li><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
+        <li><a href="/groups"><i class="fa fa-group"></i><span>Group</span></a></li>
+      </ul>
       <% if @title == "perso" %>
       <% elsif @title == "groups" %>
 
@@ -56,7 +57,7 @@
                 <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">c++</span></a></li>
               </ul>
               <div class="line-separator"></div>
-              <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span>See all groups</span></a>
+              <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span class="ellipsis">See all groups</span></a>
             </div>
           </div>
         </div>
@@ -65,9 +66,9 @@
     </div>
   </div>
   <ul class="nav visible-small" id="sidebar-small" >
-    <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
-    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
-    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+    <li><a href="#"><i class="fa fa-folder-open"></i></a></li>
+    <li><a href="#"><i class="fa fa-wechat"></i></a></li>
+    <li><a href="#"><i class="fa fa-calendar"></i></a></li>
   </ul>
 </div>
 
