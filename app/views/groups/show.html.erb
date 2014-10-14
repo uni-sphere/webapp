@@ -1,6 +1,10 @@
 <div class="container" >
   <%= @group.name %></br>
 	
+	<div id="examplePadBasic">
+	</div>
+	
+	
 	<%= form_for @group, url: { action: "send_invitation" } do |f| %>
 		<div id="user_search">
  			<input class="typeahead" type="text" placeholder="Invite a user" name="user[email]">

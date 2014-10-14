@@ -54,6 +54,8 @@ GEM
     coffee-script-source (1.8.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    etherpad-lite (0.3.0)
+      rest-client (>= 1.6)
     execjs (2.2.1)
     ffi (1.9.6)
     font-awesome-rails (4.2.0.0)
@@ -98,7 +100,11 @@ GEM
     momentjs-rails (2.8.3)
       railties (>= 3.1)
     multi_json (1.10.1)
+<<<<<<< HEAD
     mysql (2.9.1)
+=======
+    netrc (0.7.7)
+>>>>>>> problem with user doc _form fixed, still problems with group calendars
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     paperclip (4.2.0)
@@ -143,6 +149,9 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     roo (1.13.2)
       nokogiri
       rubyzip
@@ -226,6 +235,7 @@ DEPENDENCIES
   bootstrap_tokenfield_rails
   capybara
   coffee-rails
+  etherpad-lite
   font-awesome-rails
   fullcalendar2-rails
   guard-rspec

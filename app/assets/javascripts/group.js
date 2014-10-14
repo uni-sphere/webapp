@@ -52,6 +52,7 @@
 
 $(document).ready(function() {
 	tasks.init();
+	$('#examplePadBasic').pad({'padId':'test'});
 	users.initialize();
 	$('.typeahead').tokenfield({
 	  typeahead: (null, {

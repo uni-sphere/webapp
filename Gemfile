@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "paperclip"
+gem 'paperclip'
 gem 'rails' 
 gem 'sass-rails' 
 gem 'bootstrap-sass'
@@ -18,6 +18,7 @@ gem 'public_activity'
 gem 'roo'
 gem 'iconv'
 gem 'bootstrap_tokenfield_rails'
+gem 'etherpad-lite'
 gem 'unicorn-rails'  # Switches the development server from Webricks to unicorn
 gem 'font-awesome-rails'    # Imports nice svgs
 

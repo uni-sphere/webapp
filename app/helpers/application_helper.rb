@@ -44,7 +44,7 @@ module ApplicationHelper
       correct_user?  	
     else
       @target = User.find(params[:user_id])
-      @user = @target
+      # @user = @target
     end
   end
   
