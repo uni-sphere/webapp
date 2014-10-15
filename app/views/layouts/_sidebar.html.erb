@@ -3,10 +3,10 @@
   </div>
 
   <ul class="nav visible-small" data-no-turbolink id="chevron">
-    <li><a href="#" data-toggle="offcanvas" class="text-center visible-small"><i class="fa fa-chevron-right"></i></a></li>
+    <li><a href="#" data-toggle="offcanvas" class="text-center visible-small"><i id="chevron-class" class="fa fa-chevron-right" ></i></a></li>
   </ul>
 
-  <div class="column col-sm-11 row-offcanvas hidden-small" id="sidebar-main-wrapper">
+  <div class="column col-sm-11 row-offcanvas" id="sidebar-main-wrapper">
 
     <div id="tabs-default" class="hidden-small">
       <% if @title == "perso" %> 
@@ -21,10 +21,17 @@
 
     <div id="content-wrapper">
 
-      <ul class="visible-small" id="tabs-small">
-        <li><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
-        <li><a href="/groups"><i class="fa fa-group"></i><span>Group</span></a></li>
+      <ul class="visible-xs hidden-small container-fluid" id="tabs-small">
+        <li class="column col-xs-6"><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
+        <li class="column col-xs-6"><a href="/groups"><i class="fa fa-group"></i><span>Group</span></a></li>
       </ul>
+
+      <ul class="nav visible-xs visible-small" id="tabs-small-toggle">
+        <li><a href="/"><i class="fa fa-child"></i></a></li>
+        <li><a href="/groups"><i class="fa fa-group"></i></a></li>
+      </ul>
+
+      <div class="hidden-small" id="tabs-perso-groups">
       <% if @title == "perso" %>
       <% elsif @title == "groups" %>
 
@@ -62,14 +69,20 @@
           </div>
         </div>
       <% end %>
+      </div>
 
+      <ul class="nav visible-small" id="sidebar-small" >
+        <li><a href="#"><i class="fa fa-folder-open"></i></a></li>
+        <li><a href="#"><i class="fa fa-wechat"></i></a></li>
+        <li><a href="#"><i class="fa fa-calendar"></i></a></li>
+      </ul>
+
+      <ul class="nav visible-small" id="group-choice-small" >
+        <li><a href="#"><i class="fa fa-sort"></i></a></li>
+      </ul>
     </div>
+
   </div>
-  <ul class="nav visible-small" id="sidebar-small" >
-    <li><a href="#"><i class="fa fa-folder-open"></i></a></li>
-    <li><a href="#"><i class="fa fa-wechat"></i></a></li>
-    <li><a href="#"><i class="fa fa-calendar"></i></a></li>
-  </ul>
 </div>
 
 

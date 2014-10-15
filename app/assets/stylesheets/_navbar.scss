@@ -39,11 +39,10 @@
   }
   a{
     display:inline-block;
-    padding: 5px 5px 10px 5px;
+    padding: 7px 5px 10px 5px;
     margin: 8px 2px 2px 15px;
     border-style: none;
     background: $button-bg;
-    // background: red;
     color: $button-color;
     overflow: hidden;
     white-space: nowrap;
@@ -60,22 +59,12 @@
   a:focus::after {
     height: 4px;
   }
-}
-
-
-@media screen and (max-width: 768px) {
-  #navbar-right{
-    padding-top: 0;
-
-    float: right;
-    margin-right: 50px;
-    // margin-right: 50px;
-
-    a{
-      margin-top: 0 ;
-    }
+  :hover, :focus{
+    outline: none;
   }
 }
+
+
 
 /*
  * @media (max-width: 568px){
@@ -311,16 +300,31 @@
       }
     }
   }
+
+
   #navbar-right{
+    padding-top: 0;
+    li{
+    }
+
+    float: right;
     margin-right: 50px;
 
     a:hover::after,
     a:focus::after {
       height: 0px;
     }
+    a{
+      // background:red;
+      border-radius: 5px;
+      margin-top: 0 ;
+      &:hover{
+        background: $violet-darker;
+      }
+    }
   }
-
   #main-page{
+    border-left: solid 1px $violet;
     // float: left;
     // margin-top: 0;
     // padding-top:0;

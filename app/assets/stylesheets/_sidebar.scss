@@ -15,18 +15,15 @@
 #sidebar{
   background: $main-bg;
   // background: red;
+  // background: red;
   // border-right: solid 1px $grey-light;
   padding:0;
 }
 
-@media screen and (max-width: 768px) {
-  #sidebar{
-    border-right: solid 1px $violet;
+#chevron{
+  :hover, :focus{
+    background: $tab-main-bg;
   }
-  #chevron{
-    :hover, :focus{
-      background: $tab-main-bg;
-    }
   a{
     height: 50px;
     padding: 12px 0 0 0;
@@ -36,28 +33,65 @@
     :hover{
       color: $tab-main-hover-color;
     }
-    .fa{
-        // margin-top: 2px;
-        // padding: 3px;
-      }
-    }
   }
-  #sidebar-small{
-    a{
-      // background: blue;
-      margin:15px 0px;
-      padding: 0;
+}
 
-      &:hover{
-        background: white;
+@media screen and (max-width: 768px) {
+  #sidebar-small, #tabs-small-toggle, #group-choice-small{
+    margin-top: 10px;
+    li{
+      width: 70%;
+      margin-left: 15%;
+    }
+    a{
+      // background: red;
+      margin:5px 0px;
+      padding: 5px;
+      border-radius: 5px;
+
+      &:hover, :hover{
+        background: $button-small-hover-bg;
+        .fa{
+        color: $button-small-hover-color;
+        }
       }
     }
     .fa{
       font-size: 22px;
       color: $violet;
-      padding:0;
-
     } 
+  }
+
+  #tabs-small{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li{
+      color: $tab-main-color;
+      padding: 0;
+    }
+    a{
+      float: left;
+      width: 100%;
+      border-radius: 5px;
+      background: $tab-main-bg;
+      &:hover{
+        background: $button-small-hover-bg;
+      }
+      span:hover{
+        background: $button-small-hover-bg;
+      }
+    }
+    .fa{
+      margin-right: 5px;
+      &:hover{
+        background: $button-small-hover-bg;
+      }
+    }
+    :hover{
+      text-decoration: none;
+      color: $button-small-hover-color;
+    }
   }
 }
 
@@ -136,11 +170,17 @@
   }
   #nav-group{
     text-align: left;
-    margin-left: 5px;
+    // margin-left: 5px;
     li a{
-      width: 80px;
+      // background: red;
+      width: 90px;
       margin:3px 0px 3px 0px;
       padding: 0;
+      padding-left: 9px;
+      border-left: solid 2px $tab-main-bg;
+      &:hover{
+        border-left: solid 2px $violet;
+      }
       // background: green;
     }
     .fa{
@@ -160,7 +200,6 @@
   float:left;
   clear: left;
   #list-groups{
-    margin-left: 5px;
     img{
       float: left;
       height: 30px;
@@ -179,6 +218,11 @@
       float:left;
       clear:left;
       display: block;
+      padding-left: 9px;
+      border-left: solid 2px $tab-main-bg;
+      &:hover{
+        border-left: solid 2px $violet;
+      }
     }
     .name-group{
       float: left;
@@ -256,23 +300,6 @@
   
 
 
-#tabs-small{
-  display: visible;
-  list-style: none;
-  padding: 3px 0px 3px 0px;
-  margin-left: 5px;
-  a{
-    background: $tab-main-bg;
-    color: $tab-main-color;
-  }
-  .fa{
-    margin-right: 5px;
-  }
-  :hover{
-    text-decoration: none;
-    background: $tab-main-hover-bg;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .hidden-small{
@@ -282,9 +309,28 @@
   .visible-small{
     display: none;
   }
+
+
+  // #tabs-small, #tabs-perso-groups{
+  //   visibility: visible;
+  // }
+  // #sidebar-small{
+  //   visibility: hidden;
+  // }
+  #navbar{
+
+  }
 }
 // Config for little screens
 @media screen and (max-width: 768px) {
+
+
+  // #tabs-small, #tabs-perso-groups{
+  //   visibility: hidden;
+  // }
+  // #sidebar-small{
+  //   visibility: visible;
+  // }
 
   .box {
     overflow-x: hidden;
@@ -297,17 +343,16 @@
     transition: all 0.25s ease-out;
   }
 
-  .row-offcanvas-left.active {
-    left: 33%;
-  }
+    .row-offcanvas-left.active {
+      left: 33%;
+    }
 
-  .row-offcanvas-left.active .sidebar-offcanvas {
-    left: -33%;
-    position: absolute;
-    top: 0;
-    width: 33%;
-    margin-left: 5px;
-  }
+    .row-offcanvas-left.active .sidebar-offcanvas {
+      left: -33%;
+      position: absolute;
+      top: 0;
+      width: 33%;
+    }
 
 
 
@@ -326,3 +371,5 @@
   }
 
 }
+
+
