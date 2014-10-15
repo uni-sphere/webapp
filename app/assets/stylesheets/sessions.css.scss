@@ -4,6 +4,12 @@ body{
   background-size: cover;
 }
 
+#container{
+  position: absolute;
+  padding: 0;
+  width: 350px;
+  margin-left: calc(50% - 175px);
+}
 
 .form-title{
   font-family: 'Open Sans' , sans-serif;
@@ -11,20 +17,19 @@ body{
   font-weight: 600;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 5%;
+  margin-top: 15%;
   text-transform: uppercase;
   letter-spacing: 4px;
 }
 
 form{
-  padding-top: 40px;
-  width: 350px;
-  margin: 0 auto;
+  margin-top: 30px;
 
   .field-input{
     width: 100%;
     margin: 0;
     padding: 5px 10px;
+
     background: 0;
     border: 0;
     border-bottom: 1px solid #FFFFFF;
@@ -49,17 +54,21 @@ form{
   }
 }
 
-.remember-forgot{
+#remember-forgot{
 
-  width: 350px;
-  margin: 0 auto;
   color: white;
-  #booo:focus, .checkbox:focus{
-    border: none;
+
+  .checkbox{
+    float: left;
+    width: 40%;
+    margin: 10px 0;
+    padding: 0;
   }
 
   .forgot-pass{
-    margin-top: 10px;
+    float: right;
+    width: 40%;
+    margin: 10px 0;
     a{
       color: white;
       outline: none;
@@ -69,3 +78,14 @@ form{
     }
   }
 }
+
+
+@media screen and (max-width: 768px) {
+  #container{
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    margin: 0;
+  }
+}
+

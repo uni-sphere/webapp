@@ -14,39 +14,42 @@
 }
 #sidebar{
   background: $main-bg;
-  // background: red;
-  // background: red;
-  // border-right: solid 1px $grey-light;
   padding:0;
 }
 
 #chevron{
   :hover, :focus{
-    background: $tab-main-bg;
+    // background: $tab-main-bg;
+    // background: $violet;
   }
   a{
     height: 50px;
     padding: 12px 0 0 0;
-    // background: blue;
     outline: none; 
     color: $tab-main-color;
+    color: white;
+    background: $violet;
+    border-right: solid 1px white;
     :hover{
-      color: $tab-main-hover-color;
+      // color: $tab-main-hover-color;
     }
   }
 }
 
 @media screen and (max-width: 768px) {
   #sidebar-small, #tabs-small-toggle, #group-choice-small{
-    margin-top: 10px;
+    margin-top: 40px;
     li{
       width: 70%;
-      margin-left: 15%;
+      // margin-right: 15%;
     }
     a{
       // background: red;
       margin:5px 0px;
+      margin-left: calc( 50% - 14px );
       padding: 5px;
+      width: 38px;
+      height: 34px;
       border-radius: 5px;
 
       &:hover, :hover{
@@ -107,10 +110,8 @@
   width: 100%;
   height: calc(100vh - 50px); 
   border-right: solid 1px $panel-separator-bg;
-  // overflow-y: none;
   color: $tab-main-color;
   background: $tab-main-bg;
-  // background: red;
   :hover{
     background: $tab-main-bg;
   }
@@ -135,11 +136,9 @@
   }
 }
 
-
 #active-group{
   margin-top: 20px;
   #heading-group{
-    // background: red;
     .group-name{
       float:left;
       text-align: left;
@@ -190,7 +189,6 @@
   }
 }
 
-
 #list-groups-wrapper{
   .panel-heading{
     padding-top: 15px; 
@@ -235,7 +233,6 @@
     margin-bottom: 5px;
     height: 1px;
     background: $panel-separator-bg;
-    // border-bottom:1px solid #313030
   }
 
   #more-groups{
@@ -297,79 +294,49 @@
     margin-left: -13px;
   }
 }
-  
-
-
 
 @media screen and (min-width: 768px) {
   .hidden-small{
     display: visible;
   }
-
   .visible-small{
     display: none;
-  }
-
-
-  // #tabs-small, #tabs-perso-groups{
-  //   visibility: visible;
-  // }
-  // #sidebar-small{
-  //   visibility: hidden;
-  // }
-  #navbar{
-
   }
 }
 // Config for little screens
 @media screen and (max-width: 768px) {
-
-
-  // #tabs-small, #tabs-perso-groups{
-  //   visibility: hidden;
-  // }
-  // #sidebar-small{
-  //   visibility: visible;
-  // }
-
   .box {
     overflow-x: hidden;
   }
-
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
   }
+  .row-offcanvas-left.active {
+    left: 33%;
+  }
 
-    .row-offcanvas-left.active {
-      left: 33%;
-    }
-
-    .row-offcanvas-left.active .sidebar-offcanvas {
-      left: -33%;
-      position: absolute;
-      top: 0;
-      width: 33%;
-    }
-
-
-
+  .row-offcanvas-left.active .sidebar-offcanvas {
+    left: -33%;
+    position: absolute;
+    top: 0;
+    width: 33%;
+  }
   .hidden-small{
     display: none;
+  }
+
+  #content-wrapper{
+    border-right: solid 1px $violet;
   }
   .visible-small{
     display: visible;
   }
-
-
   #sidebar{
     overflow-y: hidden;
-    // margin-right: -15px;
-    // height: 400px;
   }
-
 }
 
 

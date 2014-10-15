@@ -1,6 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12" id="plop">
+    <div class="column col-md-12" id="container">
       <p class="form-title">Sign In</p>
       <form accept-charset="UTF-8" action="/sessions" class="login" method="post">
         <%= form_for(:session, :url => sessions_path) do |f| %>
@@ -9,22 +7,17 @@
           <%= f.submit "sign in", class: "btn btn-success btn-sm", id: "sign-in-submit-btn"%>
         <%end%>
 
-        <div class="remember-forgot">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="checkbox">
-                <label><input type="checkbox" id="booo" />Remember Me</label>
-              </div>
+        <div id="remember-forgot">
+            <div class="checkbox">
+                <label><input type="checkbox"/>Remember Me</label>
             </div>
-            <div class="col-md-6 forgot-pass">
+            <div class="forgot-pass">
               <a href="#">Forgot Password</a>
             </div>
           </div>
         </div>
+        <%# <%= link_to 'Sign up now !', signup_path %>
       </form>
-      <%= link_to 'Sign up now !', signup_path %>
     </div>
-  </div>
-</div>
 
 
