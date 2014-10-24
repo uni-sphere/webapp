@@ -8,15 +8,15 @@
   top:0;
   position: fixed !important;
   width: inherit !important;
+  height: 37px;
 }
 .top-fixed{
-  right: 13px;
+  right: 1px;
 }
 
 .top-relative{
   left: 33%;
 }
-
 
 
 // --------------------
@@ -33,9 +33,10 @@
   }
   a{
     display:inline-block;
-    padding: 7px 5px 10px 5px;
-    margin: 8px 2px 2px 15px;
+    padding: 5px 5px 10px 5px;
+    margin: 2px 2px 2px 7px;
     border-style: none;
+    font-size: 13px;
     background: $button-bg;
     color: $button-color;
     overflow: hidden;
@@ -51,7 +52,7 @@
   }
   a:hover::after,
   a:focus::after {
-    height: 4px;
+    height: 3px;
   }
   :hover, :focus{
     outline: none;
@@ -93,7 +94,7 @@
 #navbar-left{
 
   padding:0;
-  margin-top: 13px;
+  margin-top: 5px;
   margin-left: 60px;
   // background: yellow;
   float:left;
@@ -106,16 +107,16 @@
     text-align: center; 
 
     .dropdown-toggle {
-      font-size:22px;
+      font-size:19px;
       vertical-align: middle;
       background: $notif-bg;
       color: $notif-color;
       i:hover{
-        font-size: 25px;
+        font-size: 22px;
       }
 
       &.i:active{
-        font-size: 25px;
+        font-size: 22px;
       }
     }
   }

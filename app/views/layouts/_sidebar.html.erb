@@ -9,10 +9,10 @@
   <div class="column col-sm-11 row-offcanvas" id="sidebar-main-wrapper">
 
     <div id="tabs-default" class="hidden-small">
-      <%= link_to 'Perso', user_path , class: column col-sm-6 tab active_class?(user_path) %>
-      <%= link_to 'Groups', root_path, class: "column col-sm-6 tab offset-margin" %>
+      <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-6 tab #{active_class?(user_path(current_user))}" %>
+      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-6 tab offset-margin #{active_class?(user_groups_path(current_user))}" %>
       <%# <% if @title == "perso" %> 
-        <a href="/" class="column col-sm-6 tab active">Perso</a>
+        <!-- <a href="/" class="column col&#45;sm&#45;6 tab active">Perso</a> -->
         <!-- <a href="/groups" class="column col&#45;sm&#45;6 tab offset&#45;margin">Group</a> -->
       <%# <% else %>
         <!-- <a href="/" class="column col&#45;sm&#45;6 tab">Perso</a> -->
@@ -36,62 +36,62 @@
       </ul>
 
       <div class="hidden-small" id="tabs-perso-groups">
-      <% if @title == "perso" %>
-        <div id="active-group">
-          <div class="panel panel-default" id="heading-group">
-            <div class="panel-heading">
-              <span class="group-pic"><img alt="group pic" src="#"></span>
-              <span class="group-name">Grid computing</span>
-            </div>
+        <% if request.url =~ /groups(.*)/ %>
+          <div id="active-group">
+            <div class="panel panel-default" id="heading-group">
+              <div class="panel-heading">
+                <span class="group-pic"><img alt="group pic" src="#"></span>
+                <span class="group-name">Grid computing</span>
+              </div>
 
-            <div class="panel-body" id="nav-group">
-              <ul class="nav">
-                <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
-                <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
-                <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
-              </ul>
+              <div class="panel-body" id="nav-group">
+                <ul class="nav">
+                  <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
+                  <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
+                  <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      <% elsif @title == "groups" %>
-        <div id="active-group">
-          <div class="panel panel-default" id="heading-group">
-            <div class="panel-heading">
-              <span class="group-pic"><img alt="group pic" src="#"></span>
-              <span class="group-name">Grid computing</span>
-            </div>
 
-            <div class="panel-body" id="nav-group">
-              <ul class="nav">
-                <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
-                <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
-                <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
-              </ul>
+          <div id="list-groups-wrapper">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span> Groups </span>
+              </div>
+              <div class="panel-body">
+                <ul class="nav" id="list-groups">
+                  <%# <% @groups.each do |group| %>
+                    <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group"> group.name </span></a></li> -->
+                  <%# <% end %>
+                    
+                  <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">hpc</span></a></li>
+                  <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">java</span></a></li>
+                  <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">c++</span></a></li>
+                </ul>
+                <div class="line-separator"></div>
+                <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span class="ellipsis">See all groups</span></a>
+              </div>
             </div>
           </div>
-        </div>
+        <% elsif  %>
+          <div id="active-group">
+            <div class="panel panel-default" id="heading-group">
+              <div class="panel-heading">
+                <span class="group-pic"><img alt="group pic" src="#"></span>
+                <span class="group-name">Grid computing</span>
+              </div>
 
-        <div id="list-groups-wrapper">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <span> Groups </span>
-            </div>
-            <div class="panel-body">
-              <ul class="nav" id="list-groups">
-                <%# <% @groups.each do |group| %>
-                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group"> group.name </span></a></li> -->
-                <%# <% end %>
-                  
-                <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">hpc</span></a></li>
-                <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">java</span></a></li>
-                <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">c++</span></a></li>
-              </ul>
-              <div class="line-separator"></div>
-              <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span class="ellipsis">See all groups</span></a>
+              <div class="panel-body" id="nav-group">
+                <ul class="nav">
+                  <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
+                  <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
+                  <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
       </div>
 
       <ul class="nav visible-small" id="sidebar-small" >

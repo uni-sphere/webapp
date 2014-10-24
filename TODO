@@ -1,5 +1,8 @@
 - Improve Gemfile 
 - Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
+- make the sidebar fixed ( problem on safari when sliding)
+- make the navbar full length on the right ( going over the scrollbar )
+
 
 
 

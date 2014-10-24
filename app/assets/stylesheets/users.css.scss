@@ -44,7 +44,7 @@ html, body {
 }
 
 .full{
-	padding-top:70px;
+	// padding-top:50px;
 }
 
 .box {
@@ -68,8 +68,15 @@ html, body {
 
 #main-page {
   padding-top: 50px;
+  margin-left : 16%;
   background: $main-bg;
 }
+
+// main{
+//   padding:0;
+//   padding-top: 50px;
+//   background: $main-bg;
+// }
 
 /*
  * #main-page .img-circle {
