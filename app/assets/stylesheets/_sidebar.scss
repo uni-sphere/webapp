@@ -108,7 +108,7 @@
   padding: 4%;
   float: left;
   width: 100%;
-  height: calc(100vh - 50px); 
+  height: calc(100vh - 52px); 
   border-right: solid 1px $panel-separator-bg;
   color: $tab-main-color;
   background: $tab-main-bg;
@@ -268,9 +268,11 @@
 
 #tabs-default{
   height: 50px; 
+  // margin-top: 3px;
   background: $side-bg; 
   padding-top: 6px;
   .tab{
+    margin-top: 2px;
     background: $tab-bg;
     color: $tab-color;
     list-style: none;
