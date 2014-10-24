@@ -68,7 +68,9 @@ html, body {
 
 #main-page {
   padding-top: 50px;
-  margin-left : 16%;
+  // margin-left : 16%;
+  position: fixed;
+  right: 0;
   background: $main-bg;
 }
 

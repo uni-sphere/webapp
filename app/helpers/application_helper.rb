@@ -48,8 +48,13 @@ module ApplicationHelper
     end
   end
 
-  def active_class?(test_path)
-    return 'active' if request.path == test_path
+  def url_groups? 
+    return 'active' if request.path =~ /groups(.*)/
+    ''
+  end
+
+  def url_perso? 
+    return 'active' if !(request.path =~ /groups(.*)/)
     ''
   end
   

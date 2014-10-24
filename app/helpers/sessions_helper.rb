@@ -9,6 +9,11 @@ module SessionsHelper
     @current_user ||= user_from_remember_token
   end
 
+  def current_groups
+    @current_groups = current_user.groups
+  end
+
+
 	def self.authenticate(email, submitted_password)
     user = find_by_email(email)
     return nil  if user.nil?

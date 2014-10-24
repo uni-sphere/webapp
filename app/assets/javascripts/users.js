@@ -30,6 +30,21 @@ $(document).ready(function(){
 
   }).resize();
 
+  if(window.location.href.indexOf("groups") > -1) {
+    console.log("your url contains the name franky");
+  }
+
+  // $('#tab-perso').click(function(){
+  //   $(this).addClass('active');
+  //   console.log("hello");
+  //   $('#tabs-groups').removeClass('active');
+  // });
+  //
+  // $('#tab-groups').click(function(){
+  //   $(this).addClass('active');
+  //   $('#tabs-perso').removeClass('hidden-active');
+  // });
+
 
 
 });

@@ -9,8 +9,8 @@
   <div class="column col-sm-11 row-offcanvas" id="sidebar-main-wrapper">
 
     <div id="tabs-default" class="hidden-small">
-      <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-6 tab #{active_class?(user_path(current_user))}" %>
-      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-6 tab offset-margin #{active_class?(user_groups_path(current_user))}" %>
+      <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-6 tab #{url_perso?}" %>
+      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-6 tab offset-margin #{url_groups?}"%>
       <%# <% if @title == "perso" %> 
         <!-- <a href="/" class="column col&#45;sm&#45;6 tab active">Perso</a> -->
         <!-- <a href="/groups" class="column col&#45;sm&#45;6 tab offset&#45;margin">Group</a> -->
@@ -61,13 +61,13 @@
               </div>
               <div class="panel-body">
                 <ul class="nav" id="list-groups">
-                  <%# <% @groups.each do |group| %>
-                    <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group"> group.name </span></a></li> -->
-                  <%# <% end %>
+                  <% current_groups.each do |group| %>
+                    <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group"> <%= group.name %></span></a></li>
+                  <% end %>
                     
-                  <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">hpc</span></a></li>
-                  <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">java</span></a></li>
-                  <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group">c++</span></a></li>
+                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">hpc</span></a></li> -->
+                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">java</span></a></li> -->
+                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">c++</span></a></li> -->
                 </ul>
                 <div class="line-separator"></div>
                 <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span class="ellipsis">See all groups</span></a>
