@@ -3,6 +3,7 @@ class CalendarsController < ApplicationController
   before_action :authenticate?
   before_action :calendar_params, only: [:create]
   before_action :set_target
+  before_action :set_user
   before_action :correct_user?
   before_action :set_calendar, only: [:show, :destroy]
  

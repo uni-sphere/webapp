@@ -52,7 +52,7 @@
 
 $(document).ready(function() {
 	tasks.init();
-	$('#examplePadBasic').pad({'padId':'test'});
+	$('#pad').pad({'padId':'infinitree'});
 	users.initialize();
 	$('.typeahead').tokenfield({
 	  typeahead: (null, {

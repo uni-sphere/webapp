@@ -58,6 +58,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id]) 
     @documents = @group.documents.all
     @calendar = Calendar.new
+    @etherpads = @group.etherpads.all
+    @etherpad = Etherpad.new
   end
   
   def join_group
@@ -69,7 +71,7 @@ class GroupsController < ApplicationController
 	    rescue ActiveRecord::StatementInvalid => e
 		    if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
 		      respond_to do |format|
-		        format.html { redirect_to user_groups_path(@user), notice: 'You join the group !' }
+		        format.html { redirect_to user_groups_path(@user) }
          	  format.json { render action: 'show', status: :created}
           end
 		    end

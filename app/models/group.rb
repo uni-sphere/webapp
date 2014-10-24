@@ -7,5 +7,6 @@ class Group < ActiveRecord::Base
 	accepts_nested_attributes_for :documents
 	has_many :tasks, dependent: :destroy
   has_many :calendars, dependent: :delete_all
+  has_many :etherpads, dependent: :delete_all
   
 end

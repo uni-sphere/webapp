@@ -1,9 +1,24 @@
 <div class="container" >
   <%= @group.name %></br>
+
+<!-- etherpad -->
+	Pad
+  <% @etherpads.each do |pad| %>
+  	<tr>
+			<td><%= link_to pad.name, user_group_etherpad_path(@user, @group, pad) %></td>
+			<td><%= link_to 'Destroy', user_group_etherpad_path(@user, @group, pad), method: :delete %>
+		</tr>
+  <% end %>
+	<%= form_for @etherpad, url: user_group_etherpads_path(@user, @group, @etherpad)  do |f| %>
+	  <div class="field">
+	    <%= f.text_area :name %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "New pad" %>
+	  </div>
+	<% end %>
 	
-	<div id="examplePadBasic">
-	</div>
-	
+	<!-- user invitation -->
 	
 	<%= form_for @group, url: { action: "send_invitation" } do |f| %>
 		<div id="user_search">
@@ -16,6 +31,8 @@
 	  <%= submit_tag "Import" %>
 	<% end %>
 	
+	<!-- tasks -->
+	Task
   <table class="tasks">
   <% @tasks.each do |task| %>
   	<tr>
@@ -24,8 +41,11 @@
 		</tr>
   <% end %>
   </table>
-  <%= render 'tasks/task_form' %>
   
+	<%= render 'tasks/task_form' %>
+  
+	<!-- chat -->
+	
   <table class="microposts" summary="Discussion">
   	<%= render @microposts %>
 	</table>
@@ -41,6 +61,8 @@
 		</tr>
   <% end %>
 		
+	<!-- calendar -->
+	
 	<%= form_for([@user, @group, @calendar]) do |f| %>
 	  <% if @calendar.errors.any? %>
 	    <div id="error_explanation">
