@@ -36,6 +36,12 @@
       </ul>
 
       <div class="hidden-small" id="tabs-perso-groups">
+        <div id="avatar-deco">
+          <%# <%= current_user.name %>
+          <%# <%= current_user.gravatar_url %> 
+          <!-- <img src=""> -->
+          <%= asset_path('arbre.png') %>
+        </div>
         <% if request.url =~ /groups(.*)/ %>
           <div id="active-group">
             <div class="panel panel-default" id="heading-group">

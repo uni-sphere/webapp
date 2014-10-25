@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
-  include PublicActivity::Common
 
+  include Gravtastic
+  gravtastic secure: true,
+    filetype: :png,
+    default: "identicon",
+    size: 40
+
+  include PublicActivity::Common
 	has_many :relationgroups
 	has_many :groups, through: :relationgroups
 

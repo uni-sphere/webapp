@@ -10,15 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require turbolinks
 //= require moment
 //= require fullcalendar
 //= require gcal
 //= require twitter/typeahead
 //= require bootstrap-tokenfield
 //= require bootstrap-sprockets
+//= require gravtastic
 //= require_tree .
 
