@@ -269,10 +269,10 @@
 // ------------------
 
 #tabs-default{
-  height: 37px; 
+  height: 30px; 
   // margin-top: 3px;
   background: $side-bg; 
-  padding-top: 6px;
+  padding-top: 4px;
   .tab{
     font-size: 13px;
     background: $tab-bg;
@@ -280,7 +280,7 @@
     list-style: none;
     outline: none;
     text-align:center;
-    padding-top: 4px;
+    padding-top: 2px;
     border-radius: 20px 20px 0 0;
     &.active, &.active:hover{
       color: $tab-active-color;
