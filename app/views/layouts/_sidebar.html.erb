@@ -40,7 +40,8 @@
           <%# <%= current_user.name %>
           <%# <%= current_user.gravatar_url %> 
           <!-- <img src=""> -->
-          <%= asset_path('arbre.png') %>
+          <!-- <img src="http://gravatar.com/avatar/dbaedd0cf158a0ce54fc0d89644b8642.png?d=identicon&#38;r=PG&#38;s=40"/> -->
+          <%= image_tag current_user.gravatar_url %>
         </div>
         <% if request.url =~ /groups(.*)/ %>
           <div id="active-group">
