@@ -9,6 +9,8 @@ $(document).ready(function(){
     $('#tabs-perso-groups').toggleClass('hidden-small').toggleClass('visible-small');
     $('#sidebar-small').toggleClass('visible-small').toggleClass('hidden-small');
     $('#navbar').toggleClass('top-fixed').toggleClass('top-relative');
+    $('#main-page').toggleClass('slide-left');
+    $('#sidebar').toggleClass('sidebar-fixed');
     
   });
 
@@ -23,6 +25,8 @@ $(document).ready(function(){
       $('#tabs-small').addClass('visible-xs').addClass('hidden-small').removeClass('visible-small');
       $('#tabs-small-toggle').addClass('visible-xs').addClass('visible-small').removeClass('hidden-small');
       $('#group-choice-small').removeClass('hidden-small').addClass('visible-small');
+      $('#main-page').removeClass('slide-left');
+      $('#sidebar').addClass('sidebar-fixed');
     } else{
       $('#tabs-small').removeClass('visible-xs');
       $('#tabs-small-toggle').removeClass('visible-xs');

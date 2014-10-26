@@ -15,8 +15,11 @@
 #sidebar{
   background: $main-bg;
   padding:0;
-  position: fixed;
+  // position: fixed;
   z-index: 5;
+  .sidebar-fixed{
+    position: fixed !important;
+  }
 }
 
 #chevron{
@@ -108,6 +111,7 @@
 #content-wrapper {
   margin: 0 auto;
   padding: 4%;
+  display: fixed;
   float: left;
   width: 100%;
   height: calc(100vh - 54px); 
@@ -314,9 +318,9 @@
   }
   .row-offcanvas {
     position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
+    // -webkit-transition: all 0.25s ease-out;
+    // -moz-transition: all 0.25s ease-out;
+    // transition: all 0.25s ease-out;
   }
   .row-offcanvas-left.active {
     left: 33%;

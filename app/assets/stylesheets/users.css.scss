@@ -20,6 +20,7 @@ html, body {
    height: 100%;
    margin-left:0;
    margin-right:0;
+   // overflow-x: hidden;
 }
 
 .wrapper:before, .wrapper:after,
@@ -53,6 +54,7 @@ html, body {
     position: absolute;
     right: 0;
     top: 0;
+    overflow-x:hidden;
     // background-color:#444444;
   /*
     background-image:url('/assets/example/bg_suburb.jpg');
@@ -70,8 +72,14 @@ html, body {
   padding-top: 50px;
   // margin-left : 16%;
   position: fixed;
+  // left:33%;
+  // overflow-x: hidden;
   right: 0;
   background: $main-bg;
+}
+
+.slide-left{
+  left: 33%;
 }
 
 // main{
