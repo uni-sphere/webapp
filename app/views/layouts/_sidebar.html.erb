@@ -37,11 +37,9 @@
 
       <div class="hidden-small" id="tabs-perso-groups">
         <div id="avatar-deco">
-          <%# <%= current_user.name %>
-          <%# <%= current_user.gravatar_url %> 
-          <!-- <img src=""> -->
-          <!-- <img src="http://gravatar.com/avatar/dbaedd0cf158a0ce54fc0d89644b8642.png?d=identicon&#38;r=PG&#38;s=40"/> -->
-          <%= image_tag current_user.gravatar_url %>
+          <%= image_tag current_user.gravatar_url, alt: "Gravatar" %>
+            <!-- <button type="button" class="btn btn&#45;primary btn&#45;sm">Sign out</button> -->
+          <%# <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> 
         </div>
         <% if request.url =~ /groups(.*)/ %>
           <div id="active-group">

@@ -3,17 +3,22 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails' 
-gem 'sass-rails' 
-gem 'bootstrap-sass'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'turbolinks'
+
+
+# Bootstrap sass dependences
+gem 'bootstrap-sass'  
+gem 'sass-rails'
+gem 'autoprefixer-rails'  # Automatically adds vendor prefixes
+
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'fullcalendar2-rails'
 gem 'will_paginate'
-gem 'turbolinks'
 gem 'jbuilder'
 gem 'momentjs-rails'
 gem 'twitter-typeahead-rails'

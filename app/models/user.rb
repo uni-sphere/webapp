@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   include Gravtastic
-  gravtastic secure: false,
+  gravtastic secure: true,
     filetype: :png,
     default: "identicon",
     size: 40
