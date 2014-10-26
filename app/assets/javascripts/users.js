@@ -11,7 +11,7 @@ $(document).ready(function(){
     $('#navbar').toggleClass('top-fixed').toggleClass('top-relative');
     $('#main-page').toggleClass('slide-left');
     $('#sidebar').toggleClass('sidebar-fixed');
-    
+
   });
 
   $(window).resize(function() {
@@ -34,21 +34,13 @@ $(document).ready(function(){
 
   }).resize();
 
-  if(window.location.href.indexOf("groups") > -1) {
-    console.log("your url contains the name franky");
-  }
+  $('.groups-links').click(function() {
+    $('#active-group').removeClass('hidden');
+  });
 
-  // $('#tab-perso').click(function(){
-  //   $(this).addClass('active');
-  //   console.log("hello");
-  //   $('#tabs-groups').removeClass('active');
+  // $('.groups-tab-link').click(function() {
+  //   console.log('ti');
+  //   $('#active-group').addClass('hidden');
   // });
-  //
-  // $('#tab-groups').click(function(){
-  //   $(this).addClass('active');
-  //   $('#tabs-perso').removeClass('hidden-active');
-  // });
-
-
 
 });

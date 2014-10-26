@@ -1,9 +1,12 @@
-- Improve Gemfile 
-- Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
-- make the sidebar fixed ( problem on safari when sliding)
-- make the navbar full length on the right ( going over the scrollbar )
 
 
 
 
 web: bundle exec rails server -p $PORT
+
+GAB: 
+
+- Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
+- Make tabs larger with margin-right: -5px
+- gravatar, use css instead of html image_tag
+  - find a good identicon gem for groups pics instead of using gravatar.

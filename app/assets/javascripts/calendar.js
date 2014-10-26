@@ -20,7 +20,7 @@ $(document).ready(function () {
             }}
         });  
     };
- 
+
     var click_in_event = function(event, jsEvent, view) {
     clear_selection();
         if (selected_div) {   // si il existe un évènement précédement séléctionné
@@ -30,14 +30,14 @@ $(document).ready(function () {
         selected_event = event; // on mémorise l'évènement
         $(this).css('opacity', '0.7');
         $(this).css('background-color', '#8600db');
-        
+
     };
- 
+
     function clear_selection(){
         selected_div = null;
         selected_event = null;
     };
-    
+
     var key_up_handler = function(event){
       if (selected_event) { // si il y a une sélection active
          if (event.which == 46 ) { //si a touche est "suppr"
@@ -104,16 +104,16 @@ $(document).ready(function () {
 			$("#calendar").fullCalendar("refetchEvents");
       $("#calendar").fullCalendar("unselect");  	
 			},
-    
+
 		// Drag&Drop
 		eventDrop: update_function,
-						
+
 		// Rezise	
 		eventResize: update_function,
-		
+
 		// On clik
 		eventClick: click_in_event,
-		
+
 		//
 	})
 	$(document.documentElement).bind('keyup',key_up_handler)

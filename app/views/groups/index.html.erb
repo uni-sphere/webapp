@@ -11,7 +11,7 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= link_to 'Show', [@user, group] %></td>
+        <td><%= link_to 'Show', user_group_path(@user, group) %></td>
         <td><%= link_to 'Edit', edit_user_group_path(@user, group) %></td>
         <td><%= link_to 'Leave', leavegroup_path(@user, group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

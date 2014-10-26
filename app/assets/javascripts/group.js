@@ -2,19 +2,19 @@
  	function clear_selection() {
 			$('.highlighted').removeClass('highlighted');
 	}
-		
+
 	var tasks = {
-	
+
 	init: function() {
 		$('.tasks').on('click', 'td',  this.select);  
 		$('.tasks').on('dblclick', 'td', this.suppr);
 	},
-	
+
 	select: function() {
   	clear_selection();
   	$(this).addClass('highlighted');
   },
-	
+
  	dblclick: function() {
 		$.ajax({
 		    url:"user_group_path",
@@ -25,7 +25,7 @@
 		    }
 		});
  	}, 
- 	
+
  	suppr: function() {
 			var task_id = $(this).attr("name");
 			$.ajax({
@@ -47,7 +47,7 @@
 	  remote: {
 	    url: '../groups/:id/autocomplete?query=%QUERY',
 	  }
-		
+
 	});
 
 $(document).ready(function() {

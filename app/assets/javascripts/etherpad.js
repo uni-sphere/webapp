@@ -20,11 +20,11 @@
       'toggleTextOn'      : 'Disable Rich-text',
       'toggleTextOff'     : 'Enable Rich-text'
     };
-    
+
     var $self = this;
     if (!$self.length) return;
     if (!$self.attr('id')) throw new Error('No "id" attribute');
-    
+
     var useValue = $self[0].tagName.toLowerCase() == 'textarea';
     var selfId = $self.attr('id');
     var epframeId = 'epframe'+ selfId;
@@ -33,7 +33,7 @@
       if ( options ) {
         $.extend( settings, options );
       }
-      
+
       var iFrameLink = '<iframe id="'+epframeId;
           iFrameLink = iFrameLink +'" name="'+epframeId;
           iFrameLink = iFrameLink +'" src="'+settings.host+settings.baseUrl+settings.padId;
@@ -51,10 +51,10 @@
           iFrameLink = iFrameLink +';" width="'+ '100%';//settings.width;
           iFrameLink = iFrameLink +'" height="'+ settings.height; 
           iFrameLink = iFrameLink +'"></iframe>';
-      
-      
+
+
       var $iFrameLink = $(iFrameLink);
-      
+
       if (useValue) {
         var $toggleLink = $('<a href="#'+ selfId +'">'+ settings.toggleTextOn +'</a>').click(function(){
           var $this = $(this);
@@ -82,19 +82,19 @@
 
       // perform an ajax call on contentsUrl and write it to the parent
       $.get(contentsUrl, function(data) {
-        
+
         if (target.is(':input')) {
           target.val(data).show();
         }
         else {
           target.html(data);
         }
-        
+
         $('#'+ epframeId).remove();
       });
     }
-    
-    
+
+
     return $self;
   };
 })( jQuery );

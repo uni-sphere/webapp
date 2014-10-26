@@ -1,4 +1,4 @@
-<div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar" >
+<div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
   <div class="column col-sm-1 hidden-small" id="sidebar-padding">
   </div>
 
@@ -10,7 +10,7 @@
 
     <div id="tabs-default" class="hidden-small">
       <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-6 tab #{url_perso?}" %>
-      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-6 tab offset-margin #{url_groups?}"%>
+      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-6 tab offset-margin #{url_groups?} groups-tab-link"%>
       <%# <% if @title == "perso" %> 
         <!-- <a href="/" class="column col&#45;sm&#45;6 tab active">Perso</a> -->
         <!-- <a href="/groups" class="column col&#45;sm&#45;6 tab offset&#45;margin">Group</a> -->
@@ -42,7 +42,7 @@
           <%# <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> 
         </div>
         <% if request.url =~ /groups(.*)/ %>
-          <div id="active-group">
+          <div id="active-group" class="hidden">
             <div class="panel panel-default" id="heading-group">
               <div class="panel-heading">
                 <span class="group-pic"><img alt="group pic" src="#"></span>
@@ -65,9 +65,9 @@
                 <span> Groups </span>
               </div>
               <div class="panel-body">
-                <ul class="nav" id="list-groups">
+                <ul class="nav" id="list-groups" data-no-turbolink>
                   <% current_groups.each do |group| %>
-                    <li><a href="#"><span><img alt="pic" src="#"></span><span class="name-group"> <%= group.name %></span></a></li>
+                    <li><a href="<%= user_group_path(current_user, group.id) %>" class="groups-links"><span><img alt="pic" src="#"></span><span class="name-group"> <%= group.name %></span></a></li>
                   <% end %>
                     
                   <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">hpc</span></a></li> -->
