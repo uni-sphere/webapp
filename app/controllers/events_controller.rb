@@ -22,10 +22,10 @@ class EventsController < ApplicationController
   end
   
   def index
-    @events = @calendar.events.between(params['start'], params['end'])
+    @events = @calendar.events.all
     respond_to do |format|
       format.html { }
-      format.json { render json: @events, status: :created, location: [@user, @calendar, @event]  }
+      format.json { render json: @events  }
     end
   end
   
@@ -37,12 +37,7 @@ class EventsController < ApplicationController
           adminevent = true
           @event.update_attributes(adminevent: adminevent)
         end
-        logger.debug "before render events"
-        # format.json { render json: @event, status: :created, location: [@user, @calendar, @event] }
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: [@user, @calendar, @event] }
-        format.js {head :ok}
-        logger.debug "after render events"
+        format.json { render json: @event }
       else
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end

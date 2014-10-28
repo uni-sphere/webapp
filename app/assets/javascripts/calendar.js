@@ -17,15 +17,8 @@ $(document).ready(function () {
 					setTimeout(function(){
 						$('#calendar').fullCalendar('unselect');
 						$('#calendar').fullCalendar('refetchEvents');
-						}, 100);
+						}, 90);
 					$(this).dialog('close');
-
-                    // $('#event_form').submit(function(){
-// 											console.log(	);
-// 	                    $('#calendar').fullCalendar('unselect');
-// 	                    $('#calendar').fullCalendar('refetchEvents');
-// 										})
-// 										$(this).dialog('close');
                }
             },
       open: function() {
@@ -80,10 +73,10 @@ $(document).ready(function () {
 
 	var key_up_handler = function(event){
 		if (selected_event) {
-			if (event.which == 46 ) {
+			if (event.which == 8 ) {
 				if (confirm("Are you sure ?")) {
 					$.ajax({
-						url: window.location.href + '/events/' + event._id,
+						url: window.location.href + '/events/' + selected_event._id,
 						dataType:'json',
             type:"DELETE"
 					}).done(function(){
@@ -105,9 +98,9 @@ $(document).ready(function () {
 		slotEventOverlap: true,
 		allDaySlot: false,
 		header: {
-			left:   'prev,next',
-		  center: '',
-		  right:  'agendaWeek,month'
+			left:   '',
+		  center: 'prev,next',
+		  right:  ''
 		},
 		weekMode: 'liquid',
 		eventColor: '#8600db',
@@ -145,6 +138,7 @@ $(document).ready(function () {
 		// 	$("#calendar").fullCalendar("refetchEvents");
 		//  $("#calendar").fullCalendar("unselect");
 		// 	},
+		
 		select:function (start, end, allDay) {
 			$.ajax({
 				url: window.location.href + '/events/new.js',
