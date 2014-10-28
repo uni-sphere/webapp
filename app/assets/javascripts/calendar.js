@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+//
 	var selected_div = null;
   var selected_event = null;
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
 					setTimeout(function(){
 						$('#calendar').fullCalendar('unselect');
 						$('#calendar').fullCalendar('refetchEvents');
-						}, 80);
+						}, 100);
 					$(this).dialog('close');
 
                     // $('#event_form').submit(function(){
@@ -73,7 +73,7 @@ $(document).ready(function () {
 		$(this).css('background-color', '#8600db');
 	};
 
-  function clear_selection(){
+  function clear_selection() {
 		selected_div = null;
 		selected_event = null;
   };
@@ -119,12 +119,12 @@ $(document).ready(function () {
 //  dynamic
 		selectable: true,
 		editable: true,
-		events: window.location.href,
+		events: window.location.href + '/events.json',
 
 // callbacks
 
 		//création évenement
-   selectHelper:true,
+		   selectHelper:true,
 
 		// select: function (start, end, allDay) {
 		// 	var title = prompt('Create an event');
@@ -167,7 +167,7 @@ $(document).ready(function () {
 		// On clik
 		eventClick: click_in_event,
 
-		//Dialog box
+		// Dialog box
 		eventRender: function(event, element) {
 			element.bind('dblclick', function() {
 				$.ajax({
@@ -184,3 +184,4 @@ $(document).ready(function () {
 	})
 	$(document.documentElement).bind('keyup',key_up_handler)
 });
+

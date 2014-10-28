@@ -21,6 +21,14 @@ class EventsController < ApplicationController
     end
   end
   
+  def index
+    @events = @calendar.events.between(params['start'], params['end'])
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @events, status: :created, location: [@user, @calendar, @event]  }
+    end
+  end
+  
   def create
     @event = @calendar.events.new(event_params)
     respond_to do |format|

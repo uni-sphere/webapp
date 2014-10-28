@@ -6,7 +6,7 @@ Lms::Application.routes.draw do
       post :import_for_involving
     end
 		resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
-			resources :events, :only => [:create, :new, :update, :edit, :destroy]
+			resources :events, :only => [:create, :new, :update, :edit, :destroy, :index]
 		end
     resources :notifications, :only => [:index]  
 		resources :groups do

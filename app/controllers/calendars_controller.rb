@@ -1,6 +1,5 @@
 class CalendarsController < ApplicationController
   
-  respond_to :html
   
   before_action :authenticate?
   before_action :calendar_params, only: [:create]
