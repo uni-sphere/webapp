@@ -3,15 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 @import "var";
 
 /* custom template */
-html, body {
-   height: 100%;
-   font-family: 'Ubuntu',sans-serif;
-   color:#555555;
+body {
+  height: 100%;
+  font-family: 'Ubuntu',sans-serif;
+  color:#555555;
+  // background: white;
 }
 
+ 
 #huge{
   height: 2000px;
 }

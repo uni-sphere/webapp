@@ -13,6 +13,9 @@ module SessionsHelper
     @current_groups = current_user.groups
   end
 
+  # def current_group
+
+
 
 	def self.authenticate(email, submitted_password)
     user = find_by_email(email)

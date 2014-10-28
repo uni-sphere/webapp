@@ -9,4 +9,10 @@ GAB:
 - Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
 - Make tabs larger with margin-right: -5px
 - gravatar, use css instead of html image_tag
-  - find a good identicon gem for groups pics instead of using gravatar.
+- find a good identicon gem for groups pics instead of using gravatar.
+
+
+CLEM:
+
+- Créer un helper rendant les 3 groupes les plus pertinant dans la sidebar
+- 

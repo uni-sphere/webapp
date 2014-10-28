@@ -57,6 +57,16 @@ module ApplicationHelper
     return 'active' if !(request.path =~ /groups(.*)/)
     ''
   end
+
+  def group_active?(group_id) 
+    if group_id == "12" 
+      puts "yes!!"
+      return "active"
+    end
+
+    # return 'active' if group_id == @group.id
+    # ''
+  end
   
 end
 
