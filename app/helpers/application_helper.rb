@@ -28,7 +28,7 @@ module ApplicationHelper
     current_user.groups.each do |current_user_group|
       @answer = true if current_user_group.id == @group.id
     end
-    return @answer
+  return @answer
   end
 
   def authorized_acces_group?

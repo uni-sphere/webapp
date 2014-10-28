@@ -6,7 +6,7 @@ Lms::Application.routes.draw do
       post :import_for_involving
     end
 		resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
-			resources :events, :only => [:create, :update, :destroy, :index]
+			resources :events, :only => [:create, :new, :update, :edit, :destroy]
 		end
     resources :notifications, :only => [:index]  
 		resources :groups do
@@ -18,7 +18,7 @@ Lms::Application.routes.draw do
 			resources :documents, :except => [:show]
 		  resources :microposts, :only => [:create]
   		resources :calendars, :only => [:new, :create, :destroy, :index, :show] do
-  			resources :events, :only => [:create, :update, :destroy, :index]
+  			resources :events, :only => [:create, :new, :update, :edit, :destroy]
   		end
       resources :etherpads, :only => [:create, :destroy, :show]
 		end

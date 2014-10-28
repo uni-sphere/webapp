@@ -1,5 +1,7 @@
 class CalendarsController < ApplicationController
-
+  
+  respond_to :html
+  
   before_action :authenticate?
   before_action :calendar_params, only: [:create]
   before_action :set_target
@@ -29,9 +31,9 @@ class CalendarsController < ApplicationController
 	end
 
 	def show
-		@events = @calendar.events.all
+		@events = @calendar.events
 		respond_to do |format|
-		  format.html	
+		  format.html	{  }
 		  format.json { render json: @events }
 		end
 	end

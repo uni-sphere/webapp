@@ -8,6 +8,10 @@ module SessionsHelper
 	def current_user
     @current_user ||= user_from_remember_token
   end
+  
+  def current_groups
+    current_groups = current_user.groups.all
+  end
 
   def current_groups
     @current_groups = current_user.groups

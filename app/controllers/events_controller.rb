@@ -1,36 +1,59 @@
 class EventsController < ApplicationController
   
+  respond_to :html, :js, :json
+  
   before_action :authenticate?
-  before_action :calendar_params, only: [:create, :update]
-  before_action :set_calendar, only: [:update, :create, :index, :update, :destroy]
+  before_action :event_params, only: [:create, :update]
+  before_action :set_calendar, only: [:update, :new, :create, :index, :update, :destroy, :edit]
   before_action :set_user
   before_action :correct_user? 
-  before_action :set_event, only: [:update, :destroy]
+  before_action :set_event, only: [:update, :destroy, :edit]
 
-	def create
-		@event = @calendar.events.new(calendar_params)
-		respond_to do |format|
-			if @event.save
-			  if current_user.is_admin? 
-				  adminevent = true
-					@event.update_attributes(adminevent: adminevent)	
-				end
-		    format.json { render action: 'index' }
-	    else
-				format.json { render json: @event.errors, status: :unprocessable_entity }
-			end
-	  end 
-	end
-
+  def new
+    @event = @calendar.events.new
+    @event.start = params[:start] if params[:start]
+    @event.end = params[:end] if params[:end]
+    @event.editable = true
+    respond_to do |format|
+      format.html { }
+      format.json { }
+      format.js { render 'edit.js.erb' }
+    end
+  end
+  
+  def create
+    @event = @calendar.events.new(event_params)
+    respond_to do |format|
+      if @event.save
+        if current_user.admin?
+          adminevent = true
+          @event.update_attributes(adminevent: adminevent)
+        end
+        logger.debug "before render events"
+        # format.json { render json: @event, status: :created, location: [@user, @calendar, @event] }
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render json: @event, status: :created, location: [@user, @calendar, @event] }
+        format.js {head :ok}
+        logger.debug "after render events"
+      else
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def edit
+    respond_to do |format|
+      format.js { }
+    end
+  end
+  
 	def update
-		unless @event.adminevent == true and current_user.admin != true
+		if !(@event.adminevent == true and current_user.admin != true)
 	    @event = @calendar.events.find(params[:id])
 	    respond_to do |format|
-	      if @event.update_attributes(calendar_params)
-					format.html {  }
-					format.json { render action: 'index' }
+	      if @event.update_attributes(event_params)
+          format.json { render json: @event, status: :created, location: [@user, @calendar, @event] } 
 	      else
-			    format.html {  }
 			    format.json { render json: @event.errors, status: :unprocessable_entity }
 	      end
 	    end
@@ -57,7 +80,7 @@ class EventsController < ApplicationController
 		@event = @calendar.events.find(params[:id])
 	end
 
-	def calendar_params
+	def event_params
     params.require(:event).permit(:title, :start, :end, :allDay, :editable, :adminevent)
   end
   
