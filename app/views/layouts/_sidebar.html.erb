@@ -42,7 +42,7 @@
           <%# <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> 
         </div>
         <% if request.url =~ /groups(.*)/ %>
-          <%= if !current_group.nil? %>
+          <% if !current_group.nil? %>
             <div id="active-group">
               <div class="panel panel-default" id="heading-group">
                 <div class="panel-heading">
