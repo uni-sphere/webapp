@@ -106,6 +106,7 @@ $(document).ready(function () {
 		},
 		weekMode: 'liquid',
 		eventColor: '$violet',
+
 		eventBorderColor: 'white',
 		dragOpacity: {
     	agenda: 1
