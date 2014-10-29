@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include PublicActivity::StoreController
   include SessionsHelper
+  include LayoutsHelper
   include ApplicationHelper
+  
   
 end

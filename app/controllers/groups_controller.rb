@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 
+  before_action :group_params, only: [:create, :update]
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
   before_action :set_user 
@@ -15,7 +16,7 @@ class GroupsController < ApplicationController
   
   def create
     respond_to do |format|
-      if @user.groups.create(group_params)
+      if @user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar')
         format.html { redirect_to user_groups_path(@user) }
         format.json { render action: 'show', status: :created, location: @group }
       else
@@ -57,7 +58,7 @@ class GroupsController < ApplicationController
     @tasks = @group.tasks.all
     @group = Group.find(params[:id]) 
     @documents = @group.documents.all
-    @calendar = Calendar.new
+    @calendar = @group.calendar 
     @etherpads = @group.etherpads.all
     @etherpad = Etherpad.new
   end
@@ -125,7 +126,7 @@ class GroupsController < ApplicationController
   end
   
   def group_params
-    params.require(:group).permit(:name, :query)
+    params.require(:group).permit(:name)
   end
   
 end

@@ -8,18 +8,6 @@ module SessionsHelper
 	def current_user
     @current_user ||= user_from_remember_token
   end
-  
-  def current_groups
-    current_groups = current_user.groups.all
-  end
-
-  def current_groups
-    @current_groups = current_user.groups
-  end
-
-  # def current_group
-
-
 
 	def self.authenticate(email, submitted_password)
     user = find_by_email(email)

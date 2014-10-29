@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
   
-  respond_to :html, :js, :json
-  
   before_action :authenticate?
   before_action :event_params, only: [:create, :update]
   before_action :set_calendar, only: [:update, :new, :create, :index, :update, :destroy, :edit]
@@ -45,9 +43,6 @@ class EventsController < ApplicationController
   end
   
   def edit
-    respond_to do |format|
-      format.js { }
-    end
   end
   
 	def update

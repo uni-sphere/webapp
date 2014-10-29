@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
 //
 	var selected_div = null;
@@ -9,7 +11,7 @@ $(document).ready(function () {
 			height:400,
       width: 410,
       resizable: true,
-			title: 'informations',
+			title: '',
       modal:true,
       buttons: {
 				'submit': function(){
@@ -103,7 +105,7 @@ $(document).ready(function () {
 		  right:  ''
 		},
 		weekMode: 'liquid',
-		eventColor: '#8600db',
+		eventColor: '$violet',
 		eventBorderColor: 'white',
 		dragOpacity: {
     	agenda: 1

@@ -15,11 +15,13 @@
 #sidebar{
   background: $main-bg;
   padding:0;
-  // position: fixed;
+
   z-index: 5;
-  .sidebar-fixed{
-    position: fixed !important;
-  }
+  
+}
+
+.sidebar-fixed{
+  position: fixed !important;
 }
 
 #chevron{

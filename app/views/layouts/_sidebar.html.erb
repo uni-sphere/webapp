@@ -1,4 +1,4 @@
-<div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+<div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas sidebar-fixed" id="sidebar">
   <div class="column col-sm-1 hidden-small" id="sidebar-padding">
   </div>
 
@@ -35,35 +35,38 @@
         <li><a href="/groups"><i class="fa fa-group"></i></a></li>
       </ul>
 
-      <div class="hidden-small" id="tabs-perso-groups">
+      <div class="hidden-small box" id="tabs-perso-groups">
         <div id="avatar-deco">
           <%# <%= image_tag current_user.gravatar_url, alt: "Gravatar" %>
             <!-- <button type="button" class="btn btn&#45;primary btn&#45;sm">Sign out</button> -->
           <%# <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> 
         </div>
         <% if request.url =~ /groups(.*)/ %>
-          <div id="active-group" class="">
-            <div class="panel panel-default" id="heading-group">
-              <div class="panel-heading">
-                <%= image_tag "group-pic.png", class: "group-pic"%>
-                <!-- <span class="group&#45;pic"><img alt="group pic" src="#"></span> -->
-                <span class="group-name">Grid computing</span>
-              </div>
+          <%= if !current_group.nil? %>
+            <div id="active-group">
+              <div class="panel panel-default" id="heading-group">
+                <div class="panel-heading">
+                  <%= image_tag "group-pic.png", class: "group-pic"%>
+                  <!-- <span class="group&#45;pic"><img alt="group pic" src="#"></span> -->
+                  <span class="group-name">Grid computing</span>
+                </div>
 
-              <div class="panel-body" id="nav-group">
-                <ul class="nav">
-                  <!-- <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
-                  <%# <%= nav_link_to "#{fa_icon "folder-open", text: "Drive"}", root_path %>
-                  <%= nav_link_to fa_icon("folder-open", text: "Drive"), root_path %>
-                  <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
-                  <%= nav_link_to fa_icon("calendar", text: "Calendar"), root_path %>
-                  <!-- <li><a href="#"><%= fa_icon "folder&#45;open" %>drive</a></li> -->
-                  <!-- <li><a href="#"><%= fa_icon "wechat" %>chat</a></li> -->
-                  <!-- <li><a href="#"><%= fa_icon "calendar" %>calendar</a></li> -->
-                </ul>
+                <div class="panel-body" id="nav-group">
+                  <ul class="nav">
+                    <!-- <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
+                    <%# <%= nav_link_to "#{fa_icon "folder-open", text: "Drive"}", root_path %>
+                    
+                    <%= nav_link_to fa_icon("folder-open", text: "Drive"), root_path %>
+                    <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
+                    
+                    <!-- <li><a href="#"><%= fa_icon "folder&#45;open" %>drive</a></li> -->
+                    <!-- <li><a href="#"><%= fa_icon "wechat" %>chat</a></li> -->
+                    <!-- <li><a href="#"><%= fa_icon "calendar" %>calendar</a></li> -->
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
 
           <div id="list-groups-wrapper">
             <div class="panel panel-default">
@@ -71,7 +74,7 @@
                 <span> Groups </span>
               </div>
               <div class="panel-body">
-                <ul class="nav" id="list-groups">
+                <ul class="nav" id="list-groups" data-no-turbolink>
                   <% current_groups.each do |group| %>
                     <!-- <li> -->
                     <!--   <a href="<%= user_group_path(current_user, group.id) %>" class="groups&#45;links"> -->
@@ -80,9 +83,10 @@
                     <!--   </a> -->
                     <!-- </li> -->
 
-                    <li>
+                    <!-- <li class="groups&#45;links"> -->
                     <%# <%= link_to user_group_path(current_user, group.id), class: "groups-links #{group_active? "#{group.id}"}" do %>
-                    <%= link_to user_group_path(current_user, group.id), class: "groups-links" do %>
+                    <li>
+                      <%= link_to user_group_path(current_user, group.id) do %>
                         <%# <%= image_tag "#{group.name}.png" %>
                         <%= image_tag "group-pic.png" %>
                         <span class="name-group"> <%= group.name %></span>

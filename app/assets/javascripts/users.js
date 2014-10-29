@@ -34,9 +34,9 @@ $(document).ready(function(){
 
   }).resize();
 
-  $('.groups-links').click(function() {
-    $('#active-group').removeClass('hidden');
-  });
+  // $('#list-groups').on('click', 'li', function(event) {
+  //   $('#active-group').removeClass('hidden');
+  // });
 
   // $('.groups-tab-link').click(function() {
   //   console.log('ti');
