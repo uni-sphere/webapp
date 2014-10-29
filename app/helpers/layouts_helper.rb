@@ -9,7 +9,10 @@ module LayoutsHelper
   end
   
   def current_group
-    current_user.groups.find(params[:group_id]).nil? ? nil : current_group = current_user.groups.find(params[:group_id])
+    current_group = current_user.groups.find(params[:group_id])
   end
-
+  
+  def current_group_exists?
+    current_user.groups.exists?(params[:group_id])
+  end
 end
