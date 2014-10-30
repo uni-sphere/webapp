@@ -1,5 +1,9 @@
-<% if activity.trackable and current_user.groups.exists?(id: activity.owner_id) %>
-	<%= activity.trackable.name %>
-	has been added to
-	<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(current_user, Group.find(activity.trackable.group_id)) %>
+<% if current_user.groups.exists?(id: activity.owner_id) %>
+	<% if activity.trackable %>
+		<%= activity.trackable.name %>
+		has been added to
+		<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(current_user, Group.find(activity.trackable.group_id)) %>
+	<% else %>
+		a new task has been removed from <%= link_to Group.find(activity.owner_id).name, user_group_path(current_user, Group.find(activity.owner_id)) %>
+	<% end %>
 <% end %>

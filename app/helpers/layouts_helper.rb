@@ -15,4 +15,11 @@ module LayoutsHelper
   def current_group_exists?
     current_user.groups.exists?(params[:group_id])
   end
+  
+  def notification_exists?
+    current_groups.each do |group|
+      @answer = true if PublicActivity::Activity.exists?(owner_id: group.id)
+    end
+    return @answer
+  end
 end

@@ -7,5 +7,19 @@ class ApplicationController < ActionController::Base
   include LayoutsHelper
   include ApplicationHelper
   
+  before_action :set_datas, only: [:index_notification]
+  before_action :index_notification
+  
+  def set_datas
+    @groups = current_user.groups.all.select(:id)
+  end
+  
+  def index_notification
+    @activities = PublicActivity::Activity.order("created_at desc").paginate(page: 1, per_page: 4)
+    current_groups.each do |group|
+      @notification_amount =+ PublicActivity::Activity.where(owner_id: group).count
+    end
+    return @notification_amount
+  end
   
 end

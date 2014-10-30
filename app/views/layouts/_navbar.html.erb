@@ -1,53 +1,56 @@
 <div class="top-fixed" role="navigation" id="navbar">
   <div class="navbar-wrapper">
-    <ul class="" id="navbar&#45;left" >
+    <ul class="" id="navbar-left" >
       <li class="dropdown">
-        <a data&#45;toggle="dropdown" class="dropdown&#45;toggle" href="user_notifications_path(current_user)">
-          <% if @notification == true %>
-            <i class="fa fa&#45;bell margin"></i>
-            <span class="badge">2</span>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+          <% if notification_exists? == true %>
+            <i class="fa fa-bell margin"></i>
+            <span class="badge"><%= @notification_amount %></span>
           <% else %>
-            <i class="fa fa&#45;bell&#45;o"></i>
+            <i class="fa fa-bell-o"></i>
           <% end %>
         </a>
-        <ul class="dropdown&#45;menu extended tasks&#45;bar">
-          <div class="notify&#45;arrow notify&#45;arrow&#45;violet"></div>
+        <ul class="dropdown-menu extended tasks-bar">
+          <div class="notify-arrow notify-arrow-violet"></div>
           <li>
-            <p class="violet">You have 2 new notifications</p>
+            <p class="violet">You have <%= @notification_amount %> new notifications</p>
           </li>
-          <li>
-            <a href="user_notifications_path(current_user)">
+					
+					<%= render 'notifications/index' %>
+					
+          <!-- <li>
+            <a href="index.html#">
               <span class="photo"><img alt="avatar" src="#"></span>
               <span class="subject">
                 <span class="from">Zac Snider</span>
               </span>
             </a>
-          </li>
-          <li>
-            <a href="user_notifications_path(current_user)">
+          </li> -->
+          <!-- <li>
+            <a href="index.html#">
               <span class="photo"><img alt="avatar" src="#"></span>
               <span class="subject">
                 <span class="from">Zac Snider</span>
               </span>
             </a>
-          </li>
+          </li> -->
           <li class="external">
             <a href="#">See All notifications</a>
           </li>
         </ul>
       </li>
- 
-      <!-- <li class="dropdown">
-        <a data&#45;toggle="dropdown" class="dropdown&#45;toggle" href="index.html#">
+
+      <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
         <% if @notification == true %>
-          <i class="fa fa&#45;comment"></i>
+          <i class="fa fa-comment"></i>
           <span class="badge">2</span>
         <% else %>
-          <i class="fa fa&#45;comment&#45;o"></i>
+          <i class="fa fa-comment-o"></i>
         <% end %>
         </a>
-        <ul class="dropdown&#45;menu extended inbox">
-          <div class="notify&#45;arrow notify&#45;arrow&#45;green"></div>
+        <ul class="dropdown-menu extended inbox">
+          <div class="notify-arrow notify-arrow-green"></div>
           <li>
               <p class="green">You have 2 new messages</p>
           </li>
@@ -75,7 +78,7 @@
             <a href="#">See all messages</a>
           </li>
         </ul>
-      </li> -->
+      </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" id="navbar-right">
@@ -126,4 +129,5 @@
     </div>
   </div>
 </div>
+
 

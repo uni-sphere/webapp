@@ -108,16 +108,16 @@
     text-align: center; 
 
     .dropdown-toggle {
-      font-size:19px;
+      font-size:16px;
       vertical-align: middle;
       background: $notif-bg;
       color: $notif-color;
       i:hover{
-        font-size: 22px;
+        font-size: 18px;
       }
 
       &.i:active{
-        font-size: 22px;
+        font-size: 18px;
       }
     }
   }
@@ -129,7 +129,8 @@
     border: 1px solid $badge-color;
     text-shadow: none;
     right: -4px;
-    top: -10px;
+    top: -4px;
+		font-size: 10px;
   }
 }
 

@@ -63,7 +63,6 @@ class UsersController < ApplicationController
 
   def show
     @title = "perso"
-    @notification = false 
   end
   
   def destroy
