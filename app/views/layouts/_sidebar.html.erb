@@ -84,7 +84,7 @@
 
                     <li>
                     <%# <%= link_to user_group_path(current_user, group.id), class: "groups-links #{group_active? "#{group.id}"}" do %>
-                    <%= link_to user_group_path(current_user, group.id), class: "groups-links" do %>
+                    <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "groups-links" do %>
                         <%# <%= image_tag "#{group.name}.png" %>
                         <%= image_tag "group-pic.png" %>
                         <span class="name-group"> <%= group.name %></span>

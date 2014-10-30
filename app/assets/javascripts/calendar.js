@@ -65,7 +65,7 @@ $(document).ready(function () {
 		selected_div = $(this);
 		selected_event = event;
 		$(this).css('opacity', '0.7');
-		$(this).css('background-color', '#8600db');
+		$(this).css('background-color', '#8e639e');
 	};
 
   function clear_selection() {
@@ -105,7 +105,7 @@ $(document).ready(function () {
 		  right:  ''
 		},
 		weekMode: 'liquid',
-		eventColor: '$violet',
+		eventColor: '#8e639e',
 		eventBorderColor: 'white',
 		dragOpacity: {
     	agenda: 1

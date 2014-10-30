@@ -6,6 +6,9 @@ class NotificationsController < ApplicationController
   end
   
   def index
+    respond_to do |format|
+      format.html { render json: @event }
+      format.json { render json: @event }
     @activities = PublicActivity::Activity.order("created_at desc").paginate(page: 1, per_page: 7)
   end
 end
