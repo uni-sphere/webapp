@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
 
   include Gravtastic
-  gravtastic secure: true,
-    filetype: :png,
-    default: "identicon",
-    size: 40
+   gravtastic secure: true,
+     filetype: :png,
+     size: 48,
+     rating: :G
 
   include PublicActivity::Common
 	has_many :relationgroups
@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 	accepts_nested_attributes_for :documents
 
 	has_many :calendars, dependent: :delete_all
+  
+  has_one :viewparam
 
 # accessor	
 

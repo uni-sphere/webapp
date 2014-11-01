@@ -17,9 +17,10 @@
   padding:0;
   // position: fixed;
   z-index: 5;
-  .sidebar-fixed{
-    position: fixed !important;
-  }
+}
+
+.sidebar-fixed{
+  position: fixed !important;
 }
 
 #chevron{
@@ -142,65 +143,38 @@
   }
 }
 
-#active-group{
-  margin-top: 20px;
-  #heading-group{
-    .group-name{
-      float:left;
-      text-align: left;
-      width: calc(100% - 50px);
-    
-      white-space: nowrap;      //keep the text on one line
-      overflow: hidden;         //prevent the text from being shown outside the border
-      text-overflow: ellipsis;  //cut off text with an elipsis
+#avatar-deco{
+  float: left;
+  width: 100%;
+  // background: red;
+  .gravatar{
+    float: left;
+    border: solid 1px $violet;
+  }
+  .user-name{
+    // background: blue; 
+    width: calc( 100% - 50px );
+    float: left;
+  }
+  .deco-options{
+    padding-top: 5px;
+    float: left;
+    width: calc( 100% - 50px );
+    .gear{
+      margin-right: 20px;
+    }
+  }
 
-      margin-top: 15px;
-      padding-left: 15px;
-      
-      &:hover{
-        background: $panel-heading-bg; 
-      }
-    }
-    .group-pic{
-      margin: 0;
-      float: left;
-      height: 50px;
-      width: 50px;
-    }
-  }
-  #nav-group{
-    text-align: left;
-    // margin-left: 5px;
-    li a{
-      width: 99px;
-      margin:3px 0px 3px 0px;
-      padding: 0;
-      padding-left: 9px;
-      border-left: solid 2px $tab-main-bg;
-      &:hover{
-        border-left: solid 2px $violet;
-      }
-    }
-    &.active{
-      li a{
-        border-left: solid 2px $violet;
-      }
-    }
-    .fa{
-      margin-right: 4px;
-      width: 17px;
-    }
-  }
 }
 
 #list-groups-wrapper{
-  .panel-heading{
-    padding-top: 15px; 
-  }
   margin-top: 20px;
   width: 100%;
   float:left;
   clear: left;
+  .panel-heading{
+    padding-top: 15px; 
+  }
   #list-groups{
     img{
       float: left;
@@ -259,6 +233,61 @@
     }
   }
 }
+
+#active-group{
+  width: 100%;
+  clear: left;
+  margin-top: 20px;
+  float: left;
+  #heading-group{
+    .group-name{
+      float:left;
+      text-align: left;
+      width: calc(100% - 50px);
+    
+      white-space: nowrap;      //keep the text on one line
+      overflow: hidden;         //prevent the text from being shown outside the border
+      text-overflow: ellipsis;  //cut off text with an elipsis
+
+      margin-top: 15px;
+      padding-left: 15px;
+      
+      &:hover{
+        background: $panel-heading-bg; 
+      }
+    }
+    .group-pic{
+      margin: 0;
+      float: left;
+      height: 50px;
+      width: 50px;
+    }
+  }
+  #nav-group{
+    text-align: left;
+    // margin-left: 5px;
+    li a{
+      width: 99px;
+      margin:3px 0px;
+      padding: 0;
+      padding-left: 9px;
+      border-left: solid 2px $tab-main-bg;
+      &:hover{
+        border-left: solid 2px $violet;
+      }
+    }
+    &.active{
+      li a{
+        border-left: solid 2px $violet;
+      }
+    }
+    .fa{
+      margin-right: 4px;
+      width: 17px;
+    }
+  }
+}
+
 
 // ------------------
 // Tabs configuration
@@ -339,4 +368,5 @@
     overflow-x: hidden;
   }
 }
+
 

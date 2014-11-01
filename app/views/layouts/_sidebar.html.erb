@@ -37,9 +37,12 @@
 
       <div class="hidden-small" id="tabs-perso-groups">
         <div id="avatar-deco">
-          <%# <%= image_tag current_user.gravatar_url, alt: "Gravatar" %>
-            <!-- <button type="button" class="btn btn&#45;primary btn&#45;sm">Sign out</button> -->
-          <%# <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> 
+					<%= image_tag current_user.gravatar_url, alt: "Gravatar", class: "gravatar" %>
+						<span class="user-name"> <%= current_user.name %> </span>
+						<span class="deco-options">
+							<%= fa_icon("cog", class: "gear") %>
+							<%= fa_icon("power-off", class: "power-off") %>
+						</span>
         </div>
         <% if request.url =~ /groups(.*)/ %>
 				<% if current_group_exists? %>

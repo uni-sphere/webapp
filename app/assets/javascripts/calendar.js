@@ -19,7 +19,7 @@ $(document).ready(function () {
 					setTimeout(function(){
 						$('#calendar').fullCalendar('unselect');
 						$('#calendar').fullCalendar('refetchEvents');
-						}, 90);
+						}, 100);
 					$(this).dialog('close');
                }
             },

@@ -1,12 +1,9 @@
-
 Gab
 - Improve Gemfile 
 - Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
-- Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
 - Make tabs larger with margin-right: -5px
-- gravatar, use css instead of html image_tag
-- find a good identicon gem for groups pics instead of using gravatar.
-
+- Save gravatar image on amazon s3, if the user dont have a gravatar, display a letter.
+- At groups creation, generate a random image and display it
 
 Command
 - web: bundle exec rails server -p $PORT
@@ -18,4 +15,3 @@ Clem
 - Créer un helper rendant les 3 groupes les plus pertinant dans la sidebar
 - gestion absences
 - gestion notes
-

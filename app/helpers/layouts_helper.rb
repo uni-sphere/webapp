@@ -18,7 +18,7 @@ module LayoutsHelper
   
   def notification_exists?
     current_groups.each do |group|
-      @answer = true if PublicActivity::Activity.exists?(owner_id: group.id)
+      @answer = true if PublicActivity::Activity.exists?(['owner_id = ? and updated_at > ?', group.id, Time.at(current_user.viewparam.notification_view).utc])
     end
     return @answer
   end

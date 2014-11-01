@@ -2,6 +2,7 @@
   <div class="navbar-wrapper">
     <ul class="" id="navbar-left" >
       <li class="dropdown">
+				<span name="<%= current_user.id %>" class="current_user" ></span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
           <% if notification_exists? == true %>
             <i class="fa fa-bell margin"></i>
@@ -13,7 +14,9 @@
         <ul class="dropdown-menu extended tasks-bar">
           <div class="notify-arrow notify-arrow-violet"></div>
           <li>
-            <p class="violet">You have <%= @notification_amount %> new notifications</p>
+						<% if @notification_amount != 0 %>
+            	<p class="violet">You have <%= @notification_amount %> new notifications</p>
+						<% end %>
           </li>
 					
 					<%= render 'notifications/index' %>

@@ -1,4 +1,7 @@
-class SessionsController < ApplicationController
+class SessionsController < ActionController::Base
+  
+  protect_from_forgery with: :exception
+  include SessionsHelper
   
   before_filter :not_authenticate?, only: [:new]
   before_filter :authenticate?, only: [:destroy]
