@@ -3,7 +3,7 @@
     <ul class="" id="navbar-left" >
       <li class="dropdown">
 				<span name="<%= current_user.id %>" class="current_user" ></span>
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <a data-toggle="dropdown" class="dropdown-toggle" id="notifications" href="#">
           <% if notification_exists? == true %>
             <i class="fa fa-bell margin"></i>
             <span class="badge"><%= @notification_amount %></span>
