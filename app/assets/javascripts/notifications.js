@@ -1,15 +1,20 @@
 var notifications = {
 
 	init: function() {
+		$('.dropdown-toggle').data('open', false);
 		$('.dropdown').on('click', '.dropdown-toggle',  this.refresh_param);
-		$('body').on('click', ':not(.dropdown)', this.refresh_html);  
+		$('main').on('click', this.refresh_notif);  
 	},
 	
-	refresh_html: function() {
-		$('.badge').load(window.location.href);
-	},
+	refresh_notif: function() {
+    // if($('.dropdown-toggle').data('open', true)) {
+    // 	$('.dropdown-toggle').data('open', false);
+			$('#notifications').load("http://localhost:3000/users #notifications");
+    // }
+	},      
 	
 	refresh_param: function() {
+		// $('.dropdown-toggle').data('open', true);
 		var notification_view = new Date().getTime()/1000;
 		var user_id = $('.current_user').attr("name");	
 		$.ajax({

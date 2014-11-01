@@ -95,10 +95,11 @@
 #navbar-left{
 
   padding:0;
+	position: fixed;
   margin-top: 1px;
   margin-left: 60px;
   // background: yellow;
-  float:left;
+//  float:left;
 
   .dropdown{
     width:40px;
