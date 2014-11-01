@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include Gravtastic
    gravtastic secure: true,
      filetype: :png,
-     size: 48,
+     size: 22,
      rating: :G
 
   include PublicActivity::Common

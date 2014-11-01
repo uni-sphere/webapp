@@ -9,23 +9,14 @@
   <div class="column col-sm-11 row-offcanvas" id="sidebar-main-wrapper">
 
     <div id="tabs-default" class="hidden-small">
-      <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-6 tab #{url_perso?}" %>
-      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-6 tab offset-margin #{url_groups?} groups-tab-link"%>
-      <%# <% if @title == "perso" %> 
-        <!-- <a href="/" class="column col&#45;sm&#45;6 tab active">Perso</a> -->
-        <!-- <a href="/groups" class="column col&#45;sm&#45;6 tab offset&#45;margin">Group</a> -->
-      <%# <% else %>
-        <!-- <a href="/" class="column col&#45;sm&#45;6 tab">Perso</a> -->
-        <!-- <a href="/groups" class="column col&#45;sm&#45;6 tab active offset&#45;margin">Group</a> -->
-      <%# <% end %>
+      <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-7 tab #{url_perso?}" %>
+      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-7 tab offset-margin #{url_groups?} groups-tab-link"%>
     </div>
 
 
     <div id="content-wrapper">
 
       <ul class="visible-xs hidden-small container-fluid" id="tabs-small">
-        <%# <%= link_to 'Perso', user_groups_path(@user) %> 
-        <%# <%= link_to 'Groups', user_groups_path(@user) %> 
         <li class="column col-xs-6"><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
         <li class="column col-xs-6"><a href="/"><i class="fa fa-group"></i><span>Group</span></a></li>
       </ul>
@@ -41,34 +32,34 @@
 						<span class="user-name"> <%= current_user.name %> </span>
 						<span class="deco-options">
 							<%= fa_icon("cog", class: "gear") %>
-							<%= fa_icon("power-off", class: "power-off") %>
+              <%= link_to fa_icon("power-off", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }  %>
 						</span>
         </div>
         <% if request.url =~ /groups(.*)/ %>
-				<% if current_group_exists? %>
-          <div id="active-group" class="">
-            <div class="panel panel-default" id="heading-group">
-              <div class="panel-heading">
-                <%= image_tag "group-pic.png", class: "group-pic"%>
-                <!-- <span class="group&#45;pic"><img alt="group pic" src="#"></span> -->
-                <span class="group-name">Grid computing</span>
-              </div>
+          <% if current_group_exists? %>
+            <div id="active-group">
+              <div class="panel panel-default" id="heading-group">
+                <div class="panel-heading">
+                  <%= image_tag "group-pic.png", class: "group-pic"%>
+                  <!-- <span class="group&#45;pic"><img alt="group pic" src="#"></span> -->
+                  <span class="group-name">Grid computing</span>
+                </div>
 
-              <div class="panel-body" id="nav-group">
-                <ul class="nav">
-                  <!-- <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
-                  <%# <%= nav_link_to "#{fa_icon "folder-open", text: "Drive"}", root_path %>
-                  <%= nav_link_to fa_icon("folder-open", text: "Drive"), root_path %>
-                  <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
-                  <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
-                  <!-- <li><a href="#"><%= fa_icon "folder&#45;open" %>drive</a></li> -->
-                  <!-- <li><a href="#"><%= fa_icon "wechat" %>chat</a></li> -->
-                  <!-- <li><a href="#"><%= fa_icon "calendar" %>calendar</a></li> -->
-                </ul>
+                <div class="panel-body" id="nav-group">
+                  <ul class="nav">
+                    <!-- <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
+                    <%# <%= nav_link_to "#{fa_icon "folder-open", text: "Drive"}", root_path %>
+                    <%= nav_link_to fa_icon("folder-open", text: "Drive"), root_path %>
+                    <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
+                    <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
+                    <!-- <li><a href="#"><%= fa_icon "folder&#45;open" %>drive</a></li> -->
+                    <!-- <li><a href="#"><%= fa_icon "wechat" %>chat</a></li> -->
+                    <!-- <li><a href="#"><%= fa_icon "calendar" %>calendar</a></li> -->
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-					<%end%>
+          <%end%>
 
           <div id="list-groups-wrapper">
             <div class="panel panel-default">
@@ -123,6 +114,12 @@
           <!--   </div> -->
           <!-- </div> -->
         <% end %>
+
+        <!-- <div id="test"> -->
+        <!--     <a> <h3>Effect 1</h3> </a> -->
+        <!-- </div> -->
+
+
       </div>
 
       <ul class="nav visible-small" id="sidebar-small" >
