@@ -5,18 +5,22 @@
 				<span name="<%= current_user.id %>" class="current_user" ></span>
         <a data-toggle="dropdown" class="dropdown-toggle" id="notifications" href="#">
           <% if notification_exists? == true %>
-            <i class="fa fa-bell margin"></i>
+            <%= fa_icon("bell", class: "notification") %>
             <span class="badge"><%= @notification_amount %></span>
           <% else %>
-            <i class="fa fa-bell-o"></i>
+            <%= fa_icon("bell-o", class: "notification") %>
           <% end %>
         </a>
         <ul class="dropdown-menu extended tasks-bar">
           <div class="notify-arrow notify-arrow-violet"></div>
           <li>
-						<% if @notification_amount != 0 %>
-            	<p class="violet">You have <%= @notification_amount %> new notifications</p>
-						<% end %>
+            <p class="violet">
+              <% if @notification_amount != 0 %>
+                You have <%= @notification_amount %> new notifications
+              <%else %>
+                Notifications
+              <% end %>
+            </p>
           </li>
 					
 					<%= render 'notifications/index' %>

@@ -99,15 +99,17 @@
 	position: fixed;
   margin-top: 1px;
   margin-left: 60px;
-  // background: yellow;
-//  float:left;
+
+  .notification{
+    margin-right: 30px;
+  }
 
   .dropdown{
     width:40px;
-    margin-right: 40px;
+    // margin-right: 40px;
     line-height: 25px;
     display:inline-block;
-    text-align: center; 
+    // text-align: center; 
 
     .dropdown-toggle {
       font-size:16px;
