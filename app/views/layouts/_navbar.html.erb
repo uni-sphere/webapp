@@ -1,5 +1,11 @@
 <div class="top-fixed" role="navigation" id="navbar">
   <div class="navbar-wrapper">
+
+    <div id="logo">
+      <%= image_tag "logo1.png" %>
+      <!-- <span class= "brand&#45;name"> INFINITREE </span> -->
+    </div>
+
     <ul class="" id="navbar-left" >
       <li class="dropdown">
 				<span name="<%= current_user.id %>" class="current_user" ></span>
@@ -88,10 +94,19 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right" id="navbar-right">
-      <li><a class="" href="#save-todo" role="button" data-toggle="modal">Todo</a></li>
-      <li><a class="" href="#lib-search" role="button" data-toggle="modal">Library</a></li>
-    </ul>
+
+    <div id="user-deco">
+      <%= link_to current_user.name, user_path(current_user), class: "user-name" %>
+      <%# <%= link_to fa_icon("power-off", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "deco"  %>
+      <%= link_to fa_icon("sign-out", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "deco"  %>
+    </div>
+
+    <!--
+      <ul class="nav navbar-nav navbar-right" id="navbar-right">
+        <li><a class="" href="#save-todo" role="button" data-toggle="modal">Todo</a></li>
+        <li><a class="" href="#lib-search" role="button" data-toggle="modal">Library</a></li>
+      </ul>
+    -->
   </div>
 </div>
 
