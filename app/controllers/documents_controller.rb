@@ -12,6 +12,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = @target.documents.new(document_params)
+    @document.user_id = params[:user_id]
     respond_to do |format|
       if @document.save
         format.html { redirect_to user_documents_path }

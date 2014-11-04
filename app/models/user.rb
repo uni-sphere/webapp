@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
      rating: :G
 
   include PublicActivity::Common
+  
 	has_many :relationgroups
 	has_many :groups, through: :relationgroups
 

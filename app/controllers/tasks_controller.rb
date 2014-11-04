@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   
   def create
 	  @task = @group.tasks.new(task_params)
+    @task.user_id = params[:user_id]
     respond_to do |format|
       if @task.save
         format.html { redirect_to user_group_path(@user, @group) }
@@ -47,7 +48,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :date, :group_id)
+    params.require(:task).permit(:name, :date, :group_id, :user_id)
   end
 
 end

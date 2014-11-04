@@ -82,6 +82,7 @@ class GroupsController < ApplicationController
   def leave_group
 	  @relation = Relationgroup.where(group_id: params[:group_id]).count
 	    if @relation <= 1
+        PublicActivity::Activity.where(owner_id: params[:group_id]).delete_all
 		    @user.groups.find(params[:group_id]).delete
 	    else	
 		    Relationgroup.where(["user_id = :user_id and group_id = :group_id", { user_id: params[:user_id], group_id: params[:group_id] }]).destroy_all
@@ -94,6 +95,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
+    PublicActivity::Activity.where(owner_id: @group.id).destroy
     @group.destroy
     respond_to do |format|
       format.html { redirect_to allgroups_path }

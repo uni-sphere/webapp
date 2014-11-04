@@ -8,6 +8,7 @@ class CreateEvents < ActiveRecord::Migration
       t.boolean :editable
       t.boolean :adminevent
       t.integer :calendar_id
+      t.integer :user_id
 
       t.timestamps
     end

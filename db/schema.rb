@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20141031200200) do
     t.boolean  "editable"
     t.boolean  "adminevent"
     t.integer  "calendar_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(version: 20141031200200) do
     t.string   "name"
     t.time     "date"
     t.integer  "group_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

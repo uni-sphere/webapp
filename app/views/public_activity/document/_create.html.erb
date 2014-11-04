@@ -2,6 +2,10 @@
 	<%= link_to activity.trackable.file_file_name, activity.trackable.file.url %>
 	has been created in
 	<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(current_user, Group.find(activity.trackable.group_id)) %>
+	by
+	<div class="emitter">
+		<%= User.find(activity.trackable.user_id).name %></br>
+	</div>
 <% end %>
 
 
