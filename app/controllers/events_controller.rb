@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   
   def create
     @event = @calendar.events.new(event_params)
-    @event.user_id = params[:user_id]
+    @event.user_id = params[:user_id] if params[:user_id]
     respond_to do |format|
       if @event.save
         if current_user.admin?
