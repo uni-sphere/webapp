@@ -1,0 +1,48 @@
+<table class="container">
+	<%= form_for @course, url: user_group_courses_path(@user, @group, @course)  do |f| %>
+	  <div class="field">
+	    <%= f.text_area :name %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "add a course" %>
+	  </div>
+	<% end %>
+  <thead>
+    <tr>
+      <th>Courses</th>
+			<th>Evaluations</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr name="<%= course.id %>">
+        <td><%= course.name %></td>
+				<td>
+					<% course.evaluations.each do |evaluation| %>
+						<ul>
+							<li>
+								<%= best_in_place [@user, @group, course, evaluation], :name %> |
+								average <%= evaluation.average %> |
+								coeff <%= best_in_place [@user, @group, course, evaluation], :coefficient %> |
+								<%= link_to 'Go', user_group_course_evaluation_marks_path(@user, @group, course, evaluation) %> | 
+								<%= link_to 'Destroy', user_group_course_evaluation_path(@user, @group, course, evaluation), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+						</ul>
+					<% end %>
+						<%= form_for @evaluation = course.evaluations.new, url: user_group_course_evaluations_path(@user, @group, course, @evaluation)  do |f| %>
+				  		<div class="field">
+				    		<%= f.text_area :name %>
+				  		</div>
+				  		<div class="actions">
+				    		<%= f.submit "add an evaluation" %>
+				  		</div>
+						<% end %>
+				</td>
+				<td>coeff <%= best_in_place [@user, @group, course], :coefficient %></td>
+				<td class="average_course"><%= course.average %></td>
+        <td><%= link_to 'Destroy', user_group_course_path(@user, @group, course), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

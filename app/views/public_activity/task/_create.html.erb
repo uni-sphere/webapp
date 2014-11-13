@@ -1,13 +1,13 @@
 <% if current_user.groups.exists?(id: activity.owner_id) %>
 	<% if activity.trackable %>
-    <%= link_to  user_group_path(current_user, Group.find(activity.trackable.group_id)) do %>
+    <%= link_to user_group_path(current_user, Group.find(activity.trackable.group_id)) do %>
       <span class"subject">
         <%= activity.trackable.name %>
         Has been added to 
         <%= Group.find(activity.trackable.group_id).name %>
       </span>
 			<div class="timer">
-				<%= time_ago(activity.created_at) %></br>
+				<%= time_ago_in_words(activity.created_at) %>
 			</div>
 			by
 			<div class="emitter">

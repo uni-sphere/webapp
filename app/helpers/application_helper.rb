@@ -8,10 +8,13 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+  
+  # course
+  
+  
 
   # user
   def is_admin?
-	  redirect_to(root_path) unless current_user.admin?	
     return current_user.admin
   end
   

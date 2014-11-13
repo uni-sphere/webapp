@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require best_in_place
 //= require turbolinks
 //= require moment
 //= require fullcalendar

@@ -8,5 +8,6 @@ class Group < ActiveRecord::Base
 	has_many :tasks, dependent: :destroy
   has_one :calendar, dependent: :destroy
   has_many :etherpads, dependent: :delete_all
+  has_many :courses, dependent: :delete_all
   
 end

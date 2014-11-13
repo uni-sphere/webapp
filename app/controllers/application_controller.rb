@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   include SessionsHelper
   include LayoutsHelper
+  include CoursesHelper
   include ApplicationHelper
   
   before_action :set_datas, only: [:index_notification]
@@ -16,10 +17,12 @@ class ApplicationController < ActionController::Base
   
   def index_notification
     @activities = PublicActivity::Activity.order("created_at desc").paginate(page: 1, per_page: 4)
-    current_groups.each do |group|
-      @notification_amount =+ PublicActivity::Activity.where(owner_id: group.id).where("updated_at > ?", Time.at(current_user.viewparam.notification_view).utc).count
+    if current_groups
+      current_groups.each do |group|
+        @notification_amount =+ PublicActivity::Activity.where(owner_id: group.id).where("updated_at > ?", Time.at(current_user.viewparam.notification_view).utc).count
+      end
+      return @notification_amount
     end
-    return @notification_amount
   end
   
 end

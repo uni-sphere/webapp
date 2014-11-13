@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031200200) do
+ActiveRecord::Schema.define(version: 20141105183200) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20141031200200) do
     t.datetime "updated_at"
   end
 
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.decimal  "average"
+    t.decimal  "coefficient", default: 1.0
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "documents", force: true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -52,6 +61,15 @@ ActiveRecord::Schema.define(version: 20141031200200) do
   create_table "etherpads", force: true do |t|
     t.string   "name"
     t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "evaluations", force: true do |t|
+    t.string   "name"
+    t.decimal  "average"
+    t.decimal  "coefficient", default: 1.0
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,6 +89,15 @@ ActiveRecord::Schema.define(version: 20141031200200) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "marks", force: true do |t|
+    t.decimal  "score"
+    t.string   "comment"
+    t.integer  "evaluation_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

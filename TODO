@@ -15,7 +15,15 @@ Clem
 - gestion absences
 - gestion notes
 - validation en bdd
+- changer mode de creation : pas de email
+- event: attribut abscence pour user
+- ajouter is_admin? pour les notes et abs
+- utiliser best_in_place partout
+- user type : prof ?
 
+Cleaning
+- methodes comme @users = User.all : helper
+- verifier si les belongs_to et has_... sont bon
 
 Optional:
 - hide toolbar with link bottom left corner
