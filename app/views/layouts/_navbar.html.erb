@@ -1,12 +1,13 @@
 <div class="top-fixed" role="navigation" id="navbar">
   <div class="navbar-wrapper">
 
-    <div id="logo">
+    <div id="logo-wrapper">
       <%= image_tag "logo1.png" %>
       <!-- <span class= "brand&#45;name"> INFINITREE </span> -->
     </div>
 
-    <ul class="" id="navbar-left" >
+    <ul id="notification-wrapper" >
+
       <li class="dropdown">
 				<span name="<%= current_user.id %>" class="current_user" ></span>
         <a data-toggle="dropdown" class="dropdown-toggle" id="notifications" href="#">
@@ -31,22 +32,6 @@
 					
 					<%= render 'notifications/index' %>
 					
-          <!-- <li>
-            <a href="index.html#">
-              <span class="photo"><img alt="avatar" src="#"></span>
-              <span class="subject">
-                <span class="from">Zac Snider</span>
-              </span>
-            </a>
-          </li> -->
-          <!-- <li>
-            <a href="index.html#">
-              <span class="photo"><img alt="avatar" src="#"></span>
-              <span class="subject">
-                <span class="from">Zac Snider</span>
-              </span>
-            </a>
-          </li> -->
           <li class="external">
             <a href="#">See All notifications</a>
           </li>
@@ -101,55 +86,6 @@
       <%= link_to fa_icon("sign-out", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "deco"  %>
     </div>
 
-    <!--
-      <ul class="nav navbar-nav navbar-right" id="navbar-right">
-        <li><a class="" href="#save-todo" role="button" data-toggle="modal">Todo</a></li>
-        <li><a class="" href="#lib-search" role="button" data-toggle="modal">Library</a></li>
-      </ul>
-    -->
   </div>
 </div>
-
-<div id="save-todo" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        Personal Todo list 
-      </div>
-      <div class="modal-body">
-        <form class="form center-block">
-          <div class="form-group">
-            <textarea class="form-control input-lg" autofocus="" placeholder="Keep your thoughts in a safe place.."></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="lib-search" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        Personal Todo list 
-      </div>
-      <div class="modal-body">
-        <form class="form center-block">
-          <div class="form-group">
-            <textarea class="form-control input-lg" autofocus="" placeholder="Keep your thoughts in a safe place.."></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 

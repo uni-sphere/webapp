@@ -1,6 +1,5 @@
 $(document).ready(function(){
   $('[data-toggle=offcanvas]').click(function() {
-    // $(this).toggleClass('text-center ');
     $('#chevron').find('i').toggleClass('fa-chevron-left').toggleClass('fa-chevron-right');
     $('.row-offcanvas').toggleClass('active');
     $('#tabs-small').toggleClass('hidden-small').toggleClass('visible-small');
@@ -33,14 +32,4 @@ $(document).ready(function(){
     } 
 
   }).resize();
-
-  // $('#list-groups').on('click', 'li', function(event) {
-  //   $('#active-group').removeClass('hidden');
-  // });
-
-  // $('.groups-tab-link').click(function() {
-  //   console.log('ti');
-  //   $('#active-group').addClass('hidden');
-  // });
-
 });
