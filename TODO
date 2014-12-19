@@ -20,6 +20,7 @@ Clem
 - ajouter is_admin? pour les notes et abs
 - utiliser best_in_place partout
 - user type : prof ?
+- ne pas utiliser skype bfore >>> authenticity token, c'est mega important
 
 Cleaning
 - methodes comme @users = User.all : helper

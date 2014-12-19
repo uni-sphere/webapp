@@ -1,0 +1,51 @@
+<h1>Listing documents</h1>
+
+	<%= form_tag upload_user_document_path(folder: params[:folder]), multipart: true do %>
+	  <%= file_field_tag :file %>
+	  <%= submit_tag "upload" %>
+	<% end %>
+
+<table class="container">
+  <thead>
+    <tr>
+      <th>file</th>
+			<th>created at</th>
+			<th>modified at</th>
+			<th>size</th>
+			<th>type</th>
+			<th>delete</th>
+			<th>download</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr id="box_document">
+				<td class="dragAndDrop" id="<%= document['type'] %>" >
+				<% if document['type'] == 'folder' %>
+					<%= link_to document['name'], get_user_documents_path(folder: document['id']), name: document['id']%>
+				<% elsif document['type'] == 'file' %>
+					<%= link_to document['name'], show_user_file_path(id: document['id'], type: document['type'], folder: @folder), name: document['id'] %>
+				<% end %>
+        </td>
+				<td><%= time_ago_in_words document['created_at'] %></td>
+				<td><%= time_ago_in_words document['modified_at'] %></td>
+				<td><%= document['size'] %></td>
+				<td><%= document['type'] %></td>
+				<td><%= link_to 'delete', delete_user_document_path(id: document['id'], type: document['type'], folder: @folder), method: :delete %></td>
+				<td><%= link_to 'download', download_user_document_path(id: document['id'], type: document['type']) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New folder', create_user_folder_path(folder: @folder), method: :post %></br>
+<!-- <div class="box_import btn btn-success btn-sm" id="sign-in-submit-btn">Import</div> -->
+<% if !@document_url.nil? %>
+	<iframe src=<%= @document_url %> width="800" height="400" allowfullscreen="allowfullscreen"></iframe>
+<% end %>
+
+
+
+
+

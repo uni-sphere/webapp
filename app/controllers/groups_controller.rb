@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
   
   def create
     respond_to do |format|
-      if @user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar')
+      if @user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: 'root', parent_id: 0)
         format.html { redirect_to user_groups_path(@user) }
         format.json { render action: 'show', status: :created, location: @group }
       else
@@ -56,8 +56,7 @@ class GroupsController < ApplicationController
     @microposts = @group.microposts.paginate(:page => params[:page])
     @task = Task.new
     @tasks = @group.tasks.all
-    @group = Group.find(params[:id]) 
-    @documents = @group.documents.all
+    @group = Group.find(params[:id])
     @calendar = @group.calendar 
     @etherpads = @group.etherpads.all
     @etherpad = Etherpad.new

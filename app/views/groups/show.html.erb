@@ -54,21 +54,11 @@
 	<!-- classes -->
 	
 	<%= link_to 'classes', user_group_courses_path(@user, @group) %>
-	
-	<!-- docs -->
-	DOC
-  <% @documents.each do |document| %>
-  	<tr>
-			<td><%= link_to document.file_file_name, document.file.url %></td>
-			<td><%= link_to 'Browse', edit_user_group_document_path(@user, @group, document) %></td>
-			<td><%= link_to 'Destroy', user_group_document_path(@user, @group, document), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-  <% end %>
+
 		
 </div>
 
-<%= link_to 'Back', user_groups_path(@user) %> |
-<%= link_to 'New doc', new_user_group_document_path(@user, @group) %> 
+<%= link_to 'Back', user_groups_path(@user) %>
 
 
 			

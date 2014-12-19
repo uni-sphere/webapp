@@ -1,9 +1,9 @@
-class CreateDocuments < ActiveRecord::Migration
+class CreateSimpledocuments < ActiveRecord::Migration
   def change
     create_table :documents do |t|
       t.integer :user_id
-      t.integer :group_id
-      t.attachment :file
+      t.integer :box_id
+      t.string :box_name
 
       t.timestamps
     end

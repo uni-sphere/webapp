@@ -33,6 +33,10 @@ gem 'font-awesome-rails'    # Imports nice svgs
 gem 'nav_link_to'
 gem 'gravtastic'
 gem 'best_in_place'
+gem 'mime-types'
+gem 'netrc'
+gem 'rdoc'
+gem 'rest_client'
 
 group :development, :test do
   gem 'sqlite3'

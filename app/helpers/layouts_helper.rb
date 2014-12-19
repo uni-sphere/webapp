@@ -27,27 +27,4 @@ module LayoutsHelper
     return @answer
   end
   
-  # def time_difference seconds
-  #   days = (seconds / 1.day).floor
-  #   seconds -= days.days
-  #   hours = (seconds / 1.hour).floor
-  #   seconds -= hours.hours
-  #   minutes = (seconds / 1.minute).floor
-  #   seconds -= minutes.minutes
-  #   @time_difference = { days: days, hours: hours, minutes: minutes, seconds: seconds }
-  # end
-  #
-  # def time_ago(time)
-  #   time_difference(Time.now.to_i - time.to_i)
-  #   if @time_difference[:minutes] <= 1 and @time_difference[:hours] = 0 and @time_difference[:days] = 0
-  #     return @time_difference[:seconds].to_s + " sec ago"
-  #   elsif @time_difference[:hours] <= 1 and @time_difference[:minutes] > 1 and @time_difference[:days] = 0
-  #     return @time_difference[:minutes].to_s + " mn ago"
-  #   elsif @time_difference[:days] <= 1 and @time_difference[:hours] > 1
-  #     return @time_difference[:hours].to_s + " h ago"
-  #   elsif @time_difference[:days] >= 7
-  #     return "a long time ago"
-  #   end
-  # end
-  
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105183200) do
+ActiveRecord::Schema.define(version: 20141213130800) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20141105183200) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
-    t.decimal  "average"
-    t.decimal  "coefficient", default: 1.0
+    t.decimal  "average",     precision: 2, scale: 0
+    t.decimal  "coefficient",                         default: 1.0
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -49,11 +49,8 @@ ActiveRecord::Schema.define(version: 20141105183200) do
 
   create_table "documents", force: true do |t|
     t.integer  "user_id"
-    t.integer  "group_id"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
+    t.integer  "box_id"
+    t.string   "box_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,8 +64,8 @@ ActiveRecord::Schema.define(version: 20141105183200) do
 
   create_table "evaluations", force: true do |t|
     t.string   "name"
-    t.decimal  "average"
-    t.decimal  "coefficient", default: 1.0
+    t.decimal  "average",     precision: 2, scale: 0
+    t.decimal  "coefficient",                         default: 1.0
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -83,6 +80,25 @@ ActiveRecord::Schema.define(version: 20141105183200) do
     t.boolean  "adminevent"
     t.integer  "calendar_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groupdocuments", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "parent_id"
+    t.integer  "box_id"
+    t.string   "download_url"
+    t.string   "preview_url"
+    t.integer  "groupfolder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groupfolders", force: true do |t|
+    t.string   "name"
+    t.integer  "group_id"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

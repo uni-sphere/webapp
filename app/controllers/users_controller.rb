@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     respond_to do |format|
-      if @user.save and @user.create_viewparam(notification_view: '0')
+      if @user.save and @user.create_viewparam(notification_view: '0') and create_box(params[:email])
         format.html { redirect_to @user }
         format.json { render action: 'show', status: :created, location: @user }
 	      sign_in @user
@@ -66,9 +66,9 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    redirect_to users_path
+    @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end 

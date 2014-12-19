@@ -20,14 +20,12 @@ Lms::Application.routes.draw do
         end
       end 
 			resources :tasks, only: [:create, :edit, :update, :index, :destroy]
-			resources :documents, except: [:show]
 		  resources :microposts, only: [:create]
   		resources :calendars, only: [:new, :create, :destroy, :index, :show] do
   			resources :events, only: [:create, :new, :update, :edit, :destroy, :index]
   		end
       resources :etherpads, only: [:create, :destroy, :show]
 		end
-		resources :documents, except: [:show]
 	end	
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -46,5 +44,39 @@ Lms::Application.routes.draw do
   
   get '/users/:user_id/groups/:group_id/courses/:course_id/evaluations/:evaluation_id/marks/average', to: 'evaluations#get_average', as: 'get_average_evaluation'
   get '/users/:user_id/groups/:group_id/courses/:course_id/average', to: 'courses#get_average', as: 'get_average_course'
+  
+  ### box ###
+  
+  # oauth
+  
+  get '/user/send_oauth', to: 'oauths#send_oauth', as: 'send_oauth'
+  get '/user/receive_oauth', to: 'oauths#receive_oauth', as: 'receive_oauth' 
+  
+  # perso #
+  
+  get '/user/documents', to: 'simpledocuments#index', as: 'get_user_documents'
+  get '/user/document/download', to: 'simpledocuments#download', as: 'download_user_document'
+  get '/user/document/show', to: 'simpledocuments#show', as: 'show_user_file'
+  
+  post '/user/file/upload', to: 'simpledocuments#upload_file', as: 'upload_user_document'
+  post 'user/create_folder', to: 'simpledocuments#create_folder', as: 'create_user_folder'
+  
+  put '/user/document/move', to: 'simpledocuments#move', as: 'move_user_documents'
+  
+  delete '/user/document/delete', to: 'simpledocuments#destroy', as: 'delete_user_document' 
+  
+  # group #
+  
+  get '/user/group/documents', to: 'groupdocuments#read_folder', as: 'get_group_documents'
+  
+  post '/user/group/file/create', to: 'groupdocuments#create_file', as: 'create_group_file'
+  post '/user/group/folder/create', to: 'groupdocuments#create_folder', as: 'create_group_folder'
+  
+  put '/user/group/file/move', to: 'groupdocuments#move_file', as: 'move_group_file'
+  put '/user/group/folder/move', to: 'groupdocuments#move_folder', as: 'move_group_folder'
+
+  delete '/user/document/file/delete', to: 'groupdocuments#destroy_file', as: 'delete_group_file'
+  delete '/user/document/folder/delete', to: 'groupdocuments#destroy_folder', as: 'delete_group_folder'
+  
   
 end

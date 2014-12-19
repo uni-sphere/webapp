@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   include LayoutsHelper
   include CoursesHelper
   include ApplicationHelper
+  include BoxHelper
   
   before_action :set_datas, only: [:index_notification]
   before_action :index_notification

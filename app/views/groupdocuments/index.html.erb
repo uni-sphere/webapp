@@ -1,0 +1,78 @@
+<h1>Listing documents</h1>
+
+	<%= form_tag create_group_file_path(group_id: @group_id, folder_id: 0), multipart: true do %>
+	  <%= file_field_tag :file %>
+	  <%= submit_tag "upload" %>
+	<% end %>
+	
+	<table class="container">
+	  <thead>
+	    <tr>
+	      <th>files</th>
+	    </tr>
+	  </thead>	
+
+	  <tbody>
+	    <% @group_documents.each do |document| %>
+	      <tr id="box_document">
+					<td class="dragAndDrop"><%= link_to 'name', document.preview_url %></td>
+					<td><%= link_to 'delete', delete_group_file_path(file_id: document.id, group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	
+	<table class="container">
+	  <thead>
+	    <tr>
+	      <th>folders</th>
+	    </tr>
+	  </thead>	
+
+	  <tbody>
+	    <% @group_folders.each do |folder| %>
+	      <tr id="box_document">
+					<td class="dragAndDrop"><%= link_to folder.name, get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id]) %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+
+<%= link_to 'New folder', create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post %></br> 
+
+<table class="container">
+  <thead>
+    <tr>
+      <th>file</th>
+			<th>created at</th>
+			<th>modified at</th>
+			<th>size</th>
+			<th>type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr id="box_document">
+				<td class="dragAndDrop" >
+				<% if document['type'] == 'folder' %>
+					<%= link_to document['name'], get_user_documents_path(folder: document['id']), name: document['id']%>
+				<% elsif document['type'] == 'file' %>
+					<%= link_to document['name'], show_user_file_path(id: document['id'], type: document['type'], folder: @folder), name: document['id'] %>
+				<% end %>
+        </td>
+				<td><%= time_ago_in_words document['created_at'] %></td>
+				<td><%= time_ago_in_words document['modified_at'] %></td>
+				<td><%= document['size'] %></td>
+				<td><%= document['type'] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+

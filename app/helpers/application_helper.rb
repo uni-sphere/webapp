@@ -8,10 +8,6 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
-  
-  # course
-  
-  
 
   # user
   def is_admin?
