@@ -65,34 +65,8 @@ class SimpledocumentsController < ApplicationController
   end
   
   def show
-    # get file informations
-    box_content_resources[:basic]["files/#{params[:id]}/content"].get() { |response, request, result, &block|
-      check_request_success(response, "show file")
-      @response = response
-    }
-    
-    # get file informations as view api 
-    box_view_resources[:document].post({url: @response.headers[:location]}.to_json) { |response, request, result, &block|
-      check_request_success(response, "set document for view api")
-      @document = JSON.parse(response)
-      logger.info @document
-    }
-    sleep 10
-    req_params = {
-      document_id: @document["id"],
-      is_downloadable: true
-    }
-    # create a session for the file
-    box_view_resources[:session].post(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "create session for doc")
-      logger.info(response.headers)
-      logger.info @document_url = JSON.parse(response)["urls"]["view"]
-      logger.info JSON.parse(response)["urls"]["assets"]
-      logger.info JSON.parse(response)["urls"]["realtime"]
-    }
-    logger.info "********"
-    logger.info params[:folder]
-    redirect_to get_user_documents_path(folder: params[:folder], document_url: @document_url)
+    create_link(params[:box_id])
+    redirect_to @link[:preview_url]
   end
   
   def destroy

@@ -101,19 +101,12 @@ module BoxHelper
     }
       
     box_content_resources[:basic]["files/#{box_id}"].put(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "updated")
-      logger.info response
-      @links = {
+      check_request_success(response, "link")
+      @link = {
         preview_url: JSON.parse(response)['shared_link']['url'],
-        download_url: JSON.parse(response)['shared_link']['download_url']
+        # download_url: JSON.parse(response)['shared_link']['download_url']
       }
     }
-    if @folder.groupdocuments.exists?(box_id: box_id)
-      document = @folder.groupdocuments.find_by box_id: box_id
-      document.update_attributes(preview_url: @links[:preview_url], download_url: @links[:download_url])
-    else
-      @folder.groupdocuments.create(preview_url: preview_url, download_url: download_url, document_id: box_id)
-    end
   end
 
 end

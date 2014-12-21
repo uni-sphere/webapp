@@ -41,7 +41,7 @@
                   <ul class="nav">
                     <!-- <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
                     <%# <%= nav_link_to "#{fa_icon "folder-open", text: "Drive"}", root_path %>
-                    <%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], folder_id: 0) %>
+                    <%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
                     <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
                     <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
                     <!-- <li><a href="#"><%= fa_icon "folder&#45;open" %>drive</a></li> -->

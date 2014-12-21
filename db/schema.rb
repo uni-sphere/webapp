@@ -85,12 +85,9 @@ ActiveRecord::Schema.define(version: 20141213130800) do
   end
 
   create_table "groupdocuments", force: true do |t|
-    t.integer  "group_id"
-    t.integer  "parent_id"
     t.integer  "box_id"
-    t.string   "download_url"
-    t.string   "preview_url"
     t.integer  "groupfolder_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
