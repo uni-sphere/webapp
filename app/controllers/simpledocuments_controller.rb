@@ -33,12 +33,14 @@ class SimpledocumentsController < ApplicationController
     req_params = { 
       fields: "id,name,created_at,modified_at,size,type"
     }
+    
     box_content_resources[:basic]["folders/#{params[:folder]}/items"].get(params: req_params) { |response, request, result, &block|
       check_request_success(response, "index")
       @documents = []
-      JSON.parse(response)["entries"].each do |file|
+      JSON.parse(response)['entries'].each do |file|
         @documents << file
       end
+      logger.info @documents
     }
   end
 
@@ -84,9 +86,9 @@ class SimpledocumentsController < ApplicationController
 
   def move
     req_params = {
-      parent: { id: params[:dropped_folder] }
+      parent: { id: params[:dropped] }
     }
-    box_content_resources[:basic]["files/#{params[:dragged_file]}"].put(req_params.to_json) { |response, request, result, &block|
+    box_content_resources[:basic]["files/#{params[:dragged]}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "file moved")
     }
   end

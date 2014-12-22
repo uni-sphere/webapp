@@ -19,8 +19,8 @@ module BoxHelper
     {
       token: RestClient::Resource.new('https://api.box.com/oauth2/token'),
       authorize: RestClient::Resource.new('https://app.box.com/api/oauth2/authorize'),
-      basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{cookies[:access_token]}" }),
-      upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{cookies[:access_token]}" })                                                                  
+      basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{cookies.permanent[:access_token]}" }),
+      upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{cookies.permanent[:access_token]}" })                                                                  
     }
   end
   
@@ -56,8 +56,8 @@ module BoxHelper
   end
   
   def set_token(response)
-    cookies[:access_token] = response['access_token']
-    cookies[:refresh_token] = response['refresh_token']
+    cookies.permanent[:access_token] = response['access_token']
+    cookies.permanent[:refresh_token] = response['refresh_token']
     logger.info "set token"
   end
   

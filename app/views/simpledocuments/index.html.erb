@@ -21,11 +21,11 @@
   <tbody>
     <% @documents.each do |document| %>
       <tr id="box_document">
-				<td class="dragAndDrop" id="<%= document['type'] %>" >
+				<td class="dragAndDrop" id="<%= document['type'] %>" document_id="<%= document['id'] %>" >
 				<% if document['type'] == 'folder' %>
-					<%= link_to document['name'], get_user_documents_path(folder: document['id']), name: document['id']%>
+					<%= link_to document['name'], get_user_documents_path(folder: document['id']) %>
 				<% elsif document['type'] == 'file' %>
-					<%= link_to document['name'], show_user_file_path(box_id: document['id']), name: document['id'] %>
+					<%= link_to document['name'], show_user_file_path(box_id: document['id']) %>
 				<% end %>
         </td>
 				<td><%= time_ago_in_words document['created_at'] %></td>

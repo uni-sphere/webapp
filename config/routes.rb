@@ -68,6 +68,8 @@ Lms::Application.routes.draw do
   # group #
   
   get '/user/group/documents', to: 'groupdocuments#read_folder', as: 'get_group_documents'
+  get '/user/group/document/show', to: 'groupdocuments#show_file', as: 'show_group_file'
+  get '/user/group/document/read', to: 'groupdocuments#read_file', as: 'read_group_file'
   
   post '/user/group/file/create', to: 'groupdocuments#create_file', as: 'create_group_file'
   post '/user/group/folder/create', to: 'groupdocuments#create_folder', as: 'create_group_folder'

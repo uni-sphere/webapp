@@ -1,6 +1,8 @@
 
-var dragged_file,
-	dropped_folder;
+var dragged,
+	dropped,
+	item,
+	url;
 
 var dragAndDrop = {
 	
@@ -28,7 +30,8 @@ var dragAndDrop = {
 		tolerance: "intersect"
 	},
 	
-	init: function() {
+	init: function(url) {
+		
   	$('.dragAndDrop').draggable(this.dragOptions);
 		$('.dragAndDrop').droppable(this.dropOptions);
 		
@@ -37,7 +40,9 @@ var dragAndDrop = {
 		 });
 		
  		$('.dragAndDrop').on("dragstart", function( event, ui ) {
-			dragged_file = event.target;
+			dragged = event.target;
+			console.log($(dragged).attr("document_id"));
+			item = $(event.target).attr("item");
 			console.log("dragged set");
  		  $(event.target).children('a').css('font-weight',"bold");
  		 });
@@ -49,24 +54,84 @@ var dragAndDrop = {
 		$('.dragAndDrop').on('drop', function( event, ui ) {
 			console.log("dropped set");			
 			console.log(event.target);
-			
+			if (window.location.href.indexOf("group") >= 0) {
+				url = 'http://localhost:3000/user/group/' + item + '/move'
+			} else {
+				url = 'http://localhost:3000/user/document/move'
+			}
 			$.ajax({
-				url: 'http://localhost:3000/user/document/move',
+				url: url,
 				dataType:"json",
 				type:"PUT",
 				data: {
-					dragged_file: $(dragged_file).children('a').attr("name"),
-					dropped_folder: $(event.target).children('a').attr("name")
+					dragged: $(dragged).attr("document_id"),
+					dropped: $(event.target).attr("document_id"),
+					group_id: $(dragged).children('a').attr("group_id")
 				},
-				success: $(dragged_file).parent().remove()
+				success: $(dragged).parent().remove()
 			});
+		})
+	}
+};
+
+var preview = {
+	
+	init: function() {
+		$('.groupdoc').on('click', function() {
+			$.ajax({
+				url: 'http://localhost:3000/user/group/document/show',
+				dataType:"json",
+				type:"GET",
+				data: {
+					box_id: $(this).attr("box_id")
+				}
+			});
+		});
+	}
+};
+
+var readFile = {
+	
+	init: function() {
+		$('#box_document').on('click', function() {
+			console.log('readfile');
+			$.ajax({
+				url: 'http://localhost:3000/user/group/document/read',
+				dataType:"json",
+				data: {
+					box_id: $(this).children().attr("box_id")
+				},
+				complete: function( data ) {
+					var key;
+					
+					for (key in JSON.parse(data['responseText'])) {
+						if (JSON.parse(data['responseText']).hasOwnProperty(key)) {
+					  	$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
+					  }
+					}
+				}
+			});
+		});
+	}
+};	
+
+var autoSubmit = {
+	
+	init: function() {
+		$('#file_field').on('change', function() {
+			$('#upload_button').click()
 		})
 	}
 }
 
 $(document).ready(function() {
+	var url,
+		item;
 	
-	dragAndDrop.init();
+	dragAndDrop.init(url);
+	preview.init();
+	readFile.init();
+	autoSubmit.init();
 	
 });
 
