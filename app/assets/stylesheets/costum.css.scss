@@ -15,3 +15,18 @@
  /*
   * require bootstrap-tokenfield
   */
+
+
+
+
+.row-perfect {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-perfect > [class^="col-"],
+.row-perfect > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+}

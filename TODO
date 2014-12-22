@@ -1,4 +1,4 @@
-Gab
+// Gab
 - Improve Gemfile 
 - Remove outline of checkbox (sign-in) => Create a my own widget.. http://www.emblematiq.com/lab/niceforms/
 - Save gravatar image on amazon s3, if the user dont have a gravatar, display a letter.
@@ -7,7 +7,7 @@ Gab
 Command
 - web: bundle exec rails server -p $PORT
 
-Clem
+// Clem
 - synchroniser cal groupe perso
 - notifs events
 - ajouter attr calendar : intervenants
@@ -28,3 +28,9 @@ Cleaning
 
 Optional:
 - hide toolbar with link bottom left corner
+
+
+// Stuff to think about
+Est-il possible d'enregistrer des nouveaux ggdoc dans box
+Avons nous besoins d'une barre de recherche de docs dans les groupes
+

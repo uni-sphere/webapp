@@ -1,51 +1,85 @@
-<h1>Listing documents</h1>
+<div id="container-perso-drive">
+  <div class="column col-md-9" id="main-container-perso-drive">
 
-	<%= form_tag upload_user_document_path(folder: params[:folder]), multipart: true do %>
-	  <%= file_field_tag :file %>
-	  <%= submit_tag "upload" %>
-	<% end %>
+    <!-- First row -->
+    <div class="row row-perfect" id="breadcrumb-seachbar">
+      <div id="breadcrumb" class="col-md-7">
+        Perso >
+      </div>
 
-<table class="container">
-  <thead>
-    <tr>
-      <th>file</th>
-			<th>created at</th>
-			<th>modified at</th>
-			<th>size</th>
-			<th>type</th>
-			<th>delete</th>
-			<th>download</th>
-    </tr>
-  </thead>
+      <div id="perso-file-search" class="col-md-4">
+        <span class="icon"><i class="fa fa-search"></i></span>
+        <input type="search" id="search" placeholder="Search..." />
+      </div>
+    </div> 
 
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr id="box_document">
-				<td class="dragAndDrop" id="<%= document['type'] %>" document_id="<%= document['id'] %>" >
-				<% if document['type'] == 'folder' %>
-					<%= link_to document['name'], get_user_documents_path(folder: document['id']) %>
-				<% elsif document['type'] == 'file' %>
-					<%= link_to document['name'], show_user_file_path(box_id: document['id']) %>
-				<% end %>
-        </td>
-				<td><%= time_ago_in_words document['created_at'] %></td>
-				<td><%= time_ago_in_words document['modified_at'] %></td>
-				<td><%= document['size'] %></td>
-				<td><%= document['type'] %></td>
-				<td><%= link_to 'delete', delete_user_document_path(id: document['id'], type: document['type'], folder: @folder), method: :delete %></td>
-				<td><%= link_to 'download', download_user_document_path(id: document['id'], type: document['type']) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New folder', create_user_folder_path(folder: @folder), method: :post %></br>
-<!-- <div class="box_import btn btn-success btn-sm" id="sign-in-submit-btn">Import</div> -->
-<% if !@document_url.nil? %>
-	<iframe src=<%= @document_url %> width="800" height="400" allowfullscreen="allowfullscreen"></iframe>
-<% end %>
+    <!-- Second row -->
+    <div id="new-upload" class="row">
+      <button class="btn btn-default dropdown-toggle pull-left button-new" type="button" data-toggle="dropdown" aria-expanded="true">NEW</button>
+      <ul class="dropdown-menu" id="button-new-dropdown" role="menu" aria-labelledby="button-new">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> <%= link_to fa_icon("folder"), create_user_folder_path(folder: @folder), method: :post %></a></li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Firepad</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google Doc</a></li>
+      </ul>
+      
+    </div>
 
 
 
 
+    <!-- Third row -->
+    <div id="list-name">
+      <% @documents.each do |document| %>
+      <div id="box_document" class="row row-perfect">
+        <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id'] %>">
+          <% if document['type'] == 'folder' %>
+          <%= fa_icon("folder", class: "fa-icon fa-folder") %>
+          <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-file-folder"%>
+          <% elsif document['type'] == 'file' %>
+          <%= fa_icon("file", class: "fa-icon fa-file") %>
+          <%= link_to document['name'], show_user_file_path(box_id: document['id']), class: "name-file-folder" %>
+          <% end %>
+        </span>
 
+        <%= fa_icon("pencil", class: "file-rename col-md-1 visible-hover") %>
+
+        <span id="files-actions" class="col-md-2 col-md-offset-3">
+          <span id="icon-link">
+            <%= link_to fa_icon("link"), download_user_document_path(id: document['id'], type: document['type']) %> 
+          </span>
+          <span id="icon-download">
+            <%= link_to fa_icon("download"), download_user_document_path(id: document['id'], type: document['type']) %>
+          </span>
+          <span id="icon-trash">
+            <%= link_to fa_icon("trash"), delete_user_document_path(id: document['id'], type: document['type'], folder: @folder), method: :delete %>
+          </span>
+        </span>
+
+        <!-- <span class="file-checkbox col-md-1 visible-hover">
+          <input type="checkbox" class="checkbox" />
+        </span> 
+ -->
+      </div>
+      <% end %>
+    </div> 
+
+  </div>
+
+
+  <div class="column col-md-3" id="side-container-perso-drive">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <form method="get" action="/search" id="search">
+  <input name="q" type="text" placeholder="Search..." />
+</form> -->

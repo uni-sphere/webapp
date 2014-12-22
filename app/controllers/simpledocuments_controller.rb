@@ -91,6 +91,7 @@ class SimpledocumentsController < ApplicationController
     box_content_resources[:basic]["files/#{params[:dragged]}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "file moved")
     }
+    render nothing: true
   end
   
   private

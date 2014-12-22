@@ -1,0 +1,150 @@
+@import "var";
+
+#container-perso-drive{
+  // margin: 20px;
+  height: 400px;
+  // height: 60vh;
+  // background: violet;
+}
+
+#main-container-perso-drive{
+  padding: 0;
+}
+
+#breadcrumb-seachbar{
+  height: auto;
+  font-size: 18px;
+}
+#breadcrumb{
+  padding-left: 0px;
+  // background: violet;
+}
+
+#perso-file-search{
+  padding-left: 0px;
+  padding-right:0px;
+
+  // width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+
+  .icon{
+    position: absolute;
+    top: 50%;
+    margin-left: 20px;
+    margin-top: -12px;
+    z-index: 1;
+    color: #4f5b66;
+  }
+
+  #search{
+    width: 100%;
+    // height: 50px;
+    background: white;
+    border: none;
+    font-size: 14px;
+    float: left;
+    color: black;
+    padding-left: 45px;
+    border-radius: 5px;
+
+    transition: background .55s ease;
+
+    &:hover, &:focus, &:active{
+      outline:none;
+      background: #ffffff;
+    }
+  }
+}
+
+
+
+#new-upload{
+  position: relative;
+  height: auto;
+  margin: 5px 0px 5px 0px;
+  .button-new{
+    width: 100px;
+    height: 35px;
+    // background: $grey-lighter;
+    // border: solid 4px black;
+    // color: white;
+    &:hover{
+      // background: green;
+      // color: white;
+    }
+  }
+  .button-upload{
+    margin-left: 20px;
+    width: 100px;
+  }
+}
+
+#button-new-dropdown{
+  position: absolute;
+  top: 35px;
+  // background: red;
+  // color: white;
+  li > a > i{
+    margin-right: 5px;
+  }
+  &:hover{
+    // background: green;
+    // color: white;
+  }
+}
+
+#list-name{
+
+  #box_document{
+    // background: red;
+    // transition: background .55s ease;
+    a ,&{
+      color: black;
+      font-size: 28px;
+      .name-file-folder{
+        font-size: 12px;
+      }
+      // cursor: pointer;
+      &:hover{
+        text-decoration: none;
+        background: $grey-lighter;
+        .visible-hover{
+        // visibility: visible;
+        }
+      }
+    }
+
+    .icon-and-name{
+      padding-left: 0px;
+      .fa-icon{
+        margin-right: 5px;
+      }
+    }
+
+    #files-actions{
+      #icon-download{
+        margin-left: calc(50% - 35px);
+        // margin-left: 50%;
+      }
+      #icon-trash{
+        margin-left: calc(50% - 35px);
+      }
+    }
+
+    .visible-hover{
+      // visibility: hidden;
+    }
+
+
+  }
+}
+
+#side-container-perso-drive{
+  // background: blue;
+  // border-left: solid 1px black;
+  // border-radius: 20px;
+  height: 300px;
+}
+
