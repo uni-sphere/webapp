@@ -17,6 +17,7 @@ gem 'autoprefixer-rails'  # Automatically adds vendor prefixes
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+
 gem 'fullcalendar2-rails'
 gem 'will_paginate'
 gem 'jbuilder'

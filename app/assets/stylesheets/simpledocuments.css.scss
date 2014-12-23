@@ -7,10 +7,6 @@
   // background: violet;
 }
 
-#main-container-perso-drive{
-  padding: 0;
-}
-
 #breadcrumb-seachbar{
   height: auto;
   font-size: 18px;
@@ -75,7 +71,7 @@
       // color: white;
     }
   }
-  .button-upload{
+  #button-upload{
     margin-left: 20px;
     width: 100px;
   }
@@ -95,7 +91,14 @@
   }
 }
 
+#input-button-upload{
+  background: red;
+  // width:0; height:0;
+}
+
 #list-name{
+  padding: 0;
+  height: auto;
 
   #box_document{
     // background: red;
@@ -141,10 +144,33 @@
   }
 }
 
-#side-container-perso-drive{
-  // background: blue;
+#side-container{
+  color: black;
+  float: left;
+  // background: yellow;
   // border-left: solid 1px black;
   // border-radius: 20px;
   height: 300px;
+  text-align: left;
+  .panel-title{
+    display: block;
+    // background: red;
+    padding: 5px 0px;
+  }
+  .file-info{
+    // background: blue;
+    .first-col-width{
+      width: 100px;
+    }
+  }
+  .share-link{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // background: blue;
+  }
 }
+
+
 

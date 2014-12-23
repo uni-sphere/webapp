@@ -53,7 +53,7 @@ Lms::Application.routes.draw do
   get '/user/receive_oauth', to: 'oauths#receive_oauth', as: 'receive_oauth' 
   
   # perso #
-  
+
   get '/user/documents', to: 'simpledocuments#index', as: 'get_user_documents'
   get '/user/document/download', to: 'simpledocuments#download', as: 'download_user_document'
   get '/user/document/show', to: 'simpledocuments#show', as: 'show_user_file'

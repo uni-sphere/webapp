@@ -77,16 +77,8 @@ ActiveRecord::Schema.define(version: 20141213130800) do
   end
 
   create_table "groupdocuments", force: true do |t|
-<<<<<<< Updated upstream
     t.integer  "box_id"
     t.integer  "groupfolder_id"
-=======
-    t.integer  "parent_id"
-    t.integer  "box_id"
-    t.integer  "groupfolder_id"
-    t.string   "preview_url"
-    t.string   "download_url"
->>>>>>> Stashed changes
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

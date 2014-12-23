@@ -4,159 +4,251 @@
 // General sidebar configuration
 // -----------------------------
 
+#sidebar{
+  // background: red;
+  padding:0;
+  // position: fixed;
+  z-index: 5;
+
+  .sidebar-fixed{
+    position: fixed !important;
+  }
+}
+
 #sidebar-padding{
   padding:0;
-  background: $side-bg;
-  z-index: 990;
+  background: $violet-background;
+  // z-index: 990;
 }
 
 #sidebar-main-wrapper{
   padding:0;
 }
-#sidebar{
-  background: $main-bg;
-  padding:0;
-  // position: fixed;
-  z-index: 5;
-}
 
-.sidebar-fixed{
-  position: fixed !important;
-}
-
-#chevron{
-  :hover, :focus{
-    // background: $tab-main-bg;
-    // background: $violet;
-  }
-  a{
-    height: 50px;
-    padding: 12px 0 0 0;
-    outline: none; 
-    color: $tab-main-color;
-    color: white;
-    background: $violet;
-    border-right: solid 1px white;
-    :hover{
-      // color: $tab-main-hover-color;
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #sidebar-small, #tabs-small-toggle, #group-choice-small{
-    margin-top: 40px;
-    li{
-      // width: 70%;
-      // margin-right: 15%;
-    }
-    a{
-      // background: red;
-      margin:5px auto;
-      // margin-left: calc( 50% - 14px );
-      padding: 2px;
-      width: 26px;
-      // height: 34px;
-      border-radius: 5px;
-
-      &:hover, :hover{
-        background: $button-small-hover-bg;
-        .fa{
-        color: $button-small-hover-color;
-        }
-      }
-    }
-    .fa{
-      font-size: 22px;
-      color: $violet;
-    } 
-  }
-
-  #tabs-small{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    li{
-      color: $tab-main-color;
-      padding: 0;
-    }
-    a{
-      float: left;
-      width: 100%;
-      border-radius: 5px;
-      background: $tab-main-bg;
-      &:hover{
-        background: $button-small-hover-bg;
-      }
-      span:hover{
-        background: $button-small-hover-bg;
-      }
-    }
-    .fa{
-      margin-right: 5px;
-      &:hover{
-        background: $button-small-hover-bg;
-      }
-    }
-    :hover{
-      text-decoration: none;
-      color: $button-small-hover-color;
-    }
-  }
-}
-
-
-// ---------------
-// Sidebar content
-// ---------------
+// --------------------------------------------------
+// ------------------- CONTENT WRAPPER --------------
+// --------------------------------------------------
 
 #content-wrapper {
-  // margin: 0 auto;
-  // padding: 4%;
+  float: left;
+
+  width: 100%;
+  height: calc(100vh - 30px); 
+
   margin-bottom: 0;
   padding-bottom: 0;
 
-  // border-left: solid 2px $border-folder;
+  
+  // border-right: solid 1px $panel-separator-bg;
 
-  display: fixed;
-  float: left;
-  width: 100%;
-  height: calc(100vh - 30px); 
-  border-right: solid 1px $panel-separator-bg;
-  // box-shadow: 3px 0px 2px $violet;
-  color: $tab-main-color;
-  background: $tab-main-bg;
-  :hover{
-    background: $tab-main-bg;
-  }
-  a{
-    color: $tab-main-color;
-  }
+  a, & {color: $violet-writing;}
+  background: $grey-background;
+  
 
   .panel{
+    width: calc( 100% - 24px );
+
     margin-right: 12px;
     margin-left: 12px;
 
-    width: calc( 100% - 24px );
+    .panel-heading{
+      height: 50px;
+
+      padding: 0;
+
+      background: $grey-background;
+      color: $violet-writing;
+
+    }
+    .panel-body{
+
+      padding: 9px;
+
+      li a:hover{background: white;}
+    }
+
     // box-shadow: 0px 1px 2px $violet;
     // box-shadow: 3px 0px 2px $violet;
     // border: none;
     // border: solid 1px $violet; 
     // background-color: #eed;
   }
-  .panel-heading{
-    padding: 0;
+}
+
+#active-group{
+  float: left;
+  clear: left;
+
+  width: 100%;
+
+  margin-top: 20px;
+
+  .group-pic{
+    float: left;
+
     height: 50px;
-    background: $panel-heading-bg;
-    color: $violet;
-    &:hover, #active-group:hover{
-      background: $panel-heading-bg; 
+    width: 50px;
+
+    margin: 0;
+  }
+
+  .group-name{
+    float:left;
+
+    width: calc(100% - 50px);
+
+    margin-top: 15px;
+    padding-left: 15px;
+
+    text-align: left;
+    white-space: nowrap;      //keep the text on one line
+    overflow: hidden;         //prevent the text from being shown outside the border
+    text-overflow: ellipsis;  //cut off text with an elipsis
+  }
+  
+  .edit-profile{
+    background: red;
+    &:hover{ text-decoration: none;}
+    span{
+      display: block;
+      text-align: left;
+    }
+    // .full-name-user{
+    //   display: block;
+    //   text-align: left;
+    // }
+    // .label-edit{
+    //   display: block;
+    //   text-align: left;
+    // }
+  }
+  
+  #nav-group{
+    text-align: left;
+    li a{
+      margin:3px 0px;
+      padding: 0;
+      padding-left: 9px;
+
+      white-space: nowrap;      //keep the text on one line
+      overflow: hidden;         //prevent the text from being shown outside the border
+      text-overflow: ellipsis;  //cut off text with an elipsis
+
+      border-left: solid 2px white;
+      &:hover, &.active li a{
+        border-left: solid 2px $violet-writing;
+      }
+    }
+    .fa{
+      margin-right: 4px;
+      width: 17px;
     }
   }
-  .panel-body{
-    padding: 9px;
+}
+
+#list-groups-wrapper{
+  float:left;
+  clear: left;
+
+  width: 100%;
+
+  margin-top: 20px;
+  
+  
+  .panel-heading{
+    padding-top: 15px !important; 
+  }
+
+  #list-groups{
+    img{
+      float: left;
+
+      height: 30px;
+      width: 30px;
+
+      margin-right: 4px;
+    }
+    li a{
+      display: block;
+      float:left;
+      clear:left;
+
+      padding: 0;
+      padding-left: 9px;
+      margin: 3px 0px;
+
+      border-left: solid 2px white;
+      &:hover{
+        border-left: solid 2px $violet-writing;
+      }
+    }
+    .name-group{
+      float: left;
+      margin-top: 5px;
+    }
+  }
+
+  .line-separator{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 1px;
+    background: $grey-separator;
+  }
+
+  #more-groups{
+    display: block;
+    clear: left;
+    float: left;
+
+    width: 100%;
+
+    padding-left: 15px;
+
+    font-size: 12px;
+
+    .ellipsis{
+      float: left;
+
+      width: 80%;
+
+      text-align: left;
+      font-style: italic;
+      white-space: nowrap;  
+      overflow: hidden;    
+      text-overflow: ellipsis; 
+    }
+    
+    &:hover, &:focus{
+      text-decoration: none;
+    }
+    .fa{
+      float: left;
+
+      margin-right: 5px;
+    }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #avatar-deco{
   // float: left;
@@ -226,126 +318,9 @@
   }
 }
 
-#list-groups-wrapper{
-  margin-top: 20px;
-  width: 100%;
-  float:left;
-  clear: left;
-  .panel-heading{
-    padding-top: 15px; 
-  }
-  #list-groups{
-    img{
-      float: left;
-      height: 30px;
-      width: 30px;
-      margin-right: 5px;
-    }
-    li a{
-      padding: 0;
-      margin: 3px 0px 3px 0px;
-      float:left;
-      clear:left;
-      display: block;
-      padding-left: 9px;
-      border-left: solid 2px $tab-main-bg;
-      &:hover{
-        border-left: solid 2px $violet;
-      }
-    }
-    .name-group{
-      float: left;
-      margin-top: 5px;
-    }
-  }
 
-  .line-separator{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 1px;
-    background: $panel-separator-bg;
-  }
 
-  #more-groups{
-    float: left;
-    clear: left;
-    display: block;
-    width: 100%;
-    padding-left: 15px;
-    font-size: 12px;
 
-    .ellipsis{
-      float: left;
-      width: 80%;
-      text-align: left;
-      white-space: nowrap;  
-      overflow: hidden;    
-      text-overflow: ellipsis; 
-    }
-    font-style: italic;
-    &:hover, &:focus{
-      text-decoration: none;
-    }
-    .fa{
-      float: left;
-      margin-right: 5px;
-    }
-  }
-}
-
-#active-group{
-  width: 100%;
-  clear: left;
-  margin-top: 20px;
-  float: left;
-  #heading-group{
-    .group-name{
-      float:left;
-      text-align: left;
-      width: calc(100% - 50px);
-    
-      white-space: nowrap;      //keep the text on one line
-      overflow: hidden;         //prevent the text from being shown outside the border
-      text-overflow: ellipsis;  //cut off text with an elipsis
-
-      margin-top: 15px;
-      padding-left: 15px;
-      
-      &:hover{
-        background: $panel-heading-bg; 
-      }
-    }
-    .group-pic{
-      margin: 0;
-      float: left;
-      height: 50px;
-      width: 50px;
-    }
-  }
-  #nav-group{
-    text-align: left;
-    // margin-left: 5px;
-    li a{
-      width: 99px;
-      margin:3px 0px;
-      padding: 0;
-      padding-left: 9px;
-      border-left: solid 2px $tab-main-bg;
-      &:hover{
-        border-left: solid 2px $violet;
-      }
-    }
-    &.active{
-      li a{
-        border-left: solid 2px $violet;
-      }
-    }
-    .fa{
-      margin-right: 4px;
-      width: 17px;
-    }
-  }
-}
 
 
 // ------------------
@@ -442,3 +417,75 @@
 }
 
 
+@media screen and (max-width: 768px) {
+  #chevron{
+    a{
+      height: 50px;
+      padding: 12px 0 0 0;
+      outline: none; 
+      color: white;
+      background: $violet-background;
+      border-right: solid 1px white;
+    }
+  }
+
+  #sidebar-small, #tabs-small-toggle, #group-choice-small{
+    margin-top: 40px;
+    li{
+      // width: 70%;
+      // margin-right: 15%;
+    }
+    a{
+      // background: red;
+      margin:5px auto;
+      // margin-left: calc( 50% - 14px );
+      padding: 2px;
+      width: 26px;
+      // height: 34px;
+      border-radius: 5px;
+
+      &:hover, :hover{
+        background: $button-small-hover-bg;
+        .fa{
+        color: $button-small-hover-color;
+        }
+      }
+    }
+    .fa{
+      font-size: 22px;
+      color: $violet;
+    } 
+  }
+
+  #tabs-small{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li{
+      color: $tab-main-color;
+      padding: 0;
+    }
+    a{
+      float: left;
+      width: 100%;
+      border-radius: 5px;
+      background: #FCFCFC;
+      &:hover{
+        background: $button-small-hover-bg;
+      }
+      span:hover{
+        background: $button-small-hover-bg;
+      }
+    }
+    .fa{
+      margin-right: 5px;
+      &:hover{
+        background: $button-small-hover-bg;
+      }
+    }
+    :hover{
+      text-decoration: none;
+      color: $button-small-hover-color;
+    }
+  }
+}

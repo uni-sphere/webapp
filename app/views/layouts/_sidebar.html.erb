@@ -29,95 +29,68 @@
       <div class="hidden-small" id="tabs-perso-groups">
         <% if request.url =~ /groups(.*)/ %>
           <% if current_group_exists? %>
-            <div id="active-group">
-              <div class="panel panel-default" id="heading-group">
+            <div id="active-group" class="panel panel-default">
                 <div class="panel-heading">
                   <%= image_tag "group-pic.png", class: "group-pic"%>
-                  <!-- <span class="group&#45;pic"><img alt="group pic" src="#"></span> -->
                   <span class="group-name">Grid computing</span>
                 </div>
 
                 <div class="panel-body" id="nav-group">
                   <ul class="nav">
-                    <!-- <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
-                    <%# <%= nav_link_to "#{fa_icon "folder-open", text: "Drive"}", root_path %>
                     <%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
                     <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
                     <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
-                    <!-- <li><a href="#"><%= fa_icon "folder&#45;open" %>drive</a></li> -->
-                    <!-- <li><a href="#"><%= fa_icon "wechat" %>chat</a></li> -->
-                    <!-- <li><a href="#"><%= fa_icon "calendar" %>calendar</a></li> -->
                   </ul>
                 </div>
-              </div>
             </div>
           <%end%>
 
-          <div id="list-groups-wrapper">
-            <div class="panel panel-default">
+          <div id="list-groups-wrapper" class="panel panel-default">
+            
               <div class="panel-heading">
                 <span> Groups </span>
               </div>
               <div class="panel-body">
                 <ul class="nav" id="list-groups">
                   <% current_groups.each do |group| %>
-                    <!-- <li> -->
-                    <!--   <a href="<%= user_group_path(current_user, group.id) %>" class="groups&#45;links"> -->
-                    <!--     <span><img alt="pic" src="#"></span> -->
-                    <!--     <span class="name&#45;group"> <%= group.name %></span> -->
-                    <!--   </a> -->
-                    <!-- </li> -->
-
                     <li>
-                    <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "groups-links" do %>
-                      <%# <%= image_tag "#{group.name}.png" %>
-                      <%= image_tag "group-pic.png" %>
-                      <span class="name-group"> <%= group.name %></span>
-                    <% end %>
+                      <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "groups-links" do %>
+                        <%= image_tag "group-pic.png" %>
+                        <span class="name-group"> <%= group.name %></span>
+                      <% end %>
                     </li>
-
                   <% end %>
-
-                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">hpc</span></a></li> -->
-                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">java</span></a></li> -->
-                  <!-- <li><a href="#"><span><img alt="pic" src="#"></span><span class="name&#45;group">c++</span></a></li> -->
                 </ul>
                 <div class="line-separator"></div>
-                <a href="#groups-search" id="more-groups" data-toggle="modal"><span class="fa fa-plus"></span><span class="ellipsis">See all groups</span></a>
+                <a href="#groups-search" id="more-groups" data-toggle="modal">
+                  <span class="fa fa-plus"></span>
+                  <span class="ellipsis">See all groups</span>
+                </a>
               </div>
-            </div>
+           
           </div>
         <% elsif  %>
-          <!-- <div id="active&#45;group"> -->
-          <!--   <div class="panel panel&#45;default" id="heading&#45;group"> -->
-          <!--     <div class="panel&#45;heading"> -->
-          <!--       <span class="group&#45;pic"><img alt="group pic" src="#"></span> -->
-          <!--       <span class="group&#45;name">Grid computing</span> -->
-          <!--     </div> -->
-          <!--  -->
-          <!--     <div class="panel&#45;body" id="nav&#45;group"> -->
-          <!--       <ul class="nav"> -->
-          <!--         <li><a href="#"><i class="fa fa&#45;folder&#45;open"></i>drive</a></li> -->
-          <!--         <li><a href="#"><i class="fa fa&#45;wechat"></i>chat</a></li> -->
-          <!--         <li><a href="#"><i class="fa fa&#45;calendar"></i>calendar</a></li> -->
-          <!--       </ul> -->
-          <!--     </div> -->
-          <!--   </div> -->
-          <!-- </div> -->
+        <div id="active-group" class="panel panel-default">
+          <div class="panel-heading heading-perso">
+            <%= image_tag "group-pic.png", class: "group-pic"%>
+            <a href="#" class="edit-profile">
+              <span class="full-name-user"><%= current_user.name %></span>
+              <span class="label-edit">Edit</span>
+            </a>
+          </div>
+
+          <div class="panel-body" id="nav-group">
+            <ul class="nav">
+              <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
+              <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
+              <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
+            </ul>
+          </div>
+        </div>
         <% end %>
 
-        <!-- <div id="test"> -->
-        <!--     <a> <h3>Effect 1</h3> </a> -->
-        <!-- </div> -->
 
-
-        <!-- <div id="avatar&#45;deco"> -->
-				<!-- 	<%= image_tag current_user.gravatar_url, alt: "Gravatar", class: "gravatar" %> -->
-				<!-- 		<span class="user&#45;name"> <%= current_user.name %> </span> -->
-				<!-- 		<span class="deco&#45;options"> -->
-        <!--       <%= link_to fa_icon("power&#45;off", class: "power&#45;off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }  %> -->
-				<!-- 		</span> -->
-        <!-- </div> -->
+        
       </div>
 
       <ul class="nav visible-small" id="sidebar-small" >

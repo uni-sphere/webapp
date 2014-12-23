@@ -15,14 +15,17 @@ $violet: #8e639e;
 $violet-light: #9F6DB2;
 
 
+$violet-background: #996699;
+$violet-writing: #8e639e;
+$grey-background: #FCFCFC;
+$grey-separator: #DDDDDD;
 
-$background-color: #996699;
 // $background-color: #8A6E51;
 
 // $bg-dark: #1A31C6;
 // $bg-light: #3B5999;
 
-$side-bg: $background-color;
+$side-bg: $violet-background;
 $side-color: $violet-dark; 
 $side-color-hover: #5A4181;
 // $side-bg-hover: #D5DAD8;
@@ -30,7 +33,7 @@ $side-color-hover: #5A4181;
 $main-bg: white;
 $tab: #bdc2c9;
 
-$tab-main-bg: $grey-test;
+
 $tab-main-color: $violet;
 $tab-main-hover-bg: white;
 $tab-main-hover-color: $violet;
@@ -48,7 +51,7 @@ $tab-color-active: $violet;
 $badge-color: $violet; 
 $badge-bg: white; 
 
-$notif-bg: $background-color;
+$notif-bg: $violet-background;
 $notif-color: white;
 $notif-color-hover: $violet-dark;
 
@@ -60,7 +63,6 @@ $button-color: white;
 $navbar-small-color: $violet;
 
 $panel-heading-bg: #FCFCFC;
-$panel-separator-bg: #DDDDDD;
 // $panel-separator-bg: $violet-light;
 
 $button-small-hover-bg: $violet;
@@ -73,3 +75,6 @@ $notification-bg: $violet-light;
 
 
 // $border-folder: $violet;
+
+
+

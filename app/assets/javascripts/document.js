@@ -92,37 +92,69 @@ var preview = {
 
 var readFile = {
 	
-	init: function() {
-		$('#box_document').on('click', function() {
-			console.log('readfile');
-			$.ajax({
-				url: 'http://localhost:3000/user/group/document/read',
-				dataType:"json",
-				data: {
-					box_id: $(this).children().attr("box_id")
-				},
-				complete: function( data ) {
-					var key;
+	// init: function() {
+	// 	$('#box_document').on('click', function() {
+	// 		console.log('readfile');
+	// 		$.ajax({
+	// 			url: 'http://localhost:3000/user/group/document/read',
+	// 			dataType:"json",
+	// 			data: {
+	// 				box_id: $(this).children().attr("box_id")
+	// 			},
+	// 			complete: function( data ) {
+	// 				var key;
 					
-					for (key in JSON.parse(data['responseText'])) {
-						if (JSON.parse(data['responseText']).hasOwnProperty(key)) {
-					  	$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
-					  }
-					}
-				}
-			});
-		});
-	}
+	// 				for (key in JSON.parse(data['responseText'])) {
+	// 					if (JSON.parse(data['responseText']).hasOwnProperty(key)) {
+	// 				  	$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
+	// 				  }
+	// 				}
+	// 			}
+	// 		});
+	// 	});
+	// }
 };	
 
-var autoSubmit = {
+var autoSubmitUpload = {
 	
 	init: function() {
-		$('#file_field').on('change', function() {
-			$('#upload_button').click()
-		})
+		$('#button-upload').on('click', function() {
+			$('#input-button-upload').click();
+		});
+		$('#input-button-upload').on('change', function() {
+			$('#submit-button-upload').click();
+		});
 	}
-}
+};
+
+
+var autoSubmitRename = {
+	
+	init: function() {
+		var renameInput;
+		$('.file-rename').on('click', function() {
+			renameInput = $(this).parent().children('span').children('input');
+			renameInput.removeClass('hidden').focus();
+			renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
+		});
+		$('#input-rename-file').on('blur', function() {
+			$.ajax({
+				url: 'http://localhost:3000/user/file/rename',
+				dataType:"json",
+				type:"PUT",
+				data: {
+					name: renameInput.val(),
+					box_id: $(this).parent().attr('id')
+				},
+				success: function() {
+					renameInput.addClass('hidden');
+				}
+			});
+
+			
+		});
+	}
+};
 
 $(document).ready(function() {
 	var url,
@@ -130,8 +162,9 @@ $(document).ready(function() {
 	
 	dragAndDrop.init(url);
 	preview.init();
-	readFile.init();
-	autoSubmit.init();
+	// readFile.init();
+	autoSubmitUpload.init();
+	autoSubmitRename.init();
 	
 });
 
