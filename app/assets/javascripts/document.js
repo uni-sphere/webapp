@@ -57,7 +57,7 @@ var dragAndDrop = {
 			if (window.location.href.indexOf("group") >= 0) {
 				url = 'http://localhost:3000/user/group/' + item + '/move'
 			} else {
-				url = 'http://localhost:3000/user/document/move'
+				url = 'http://localhost:3000/user/' + item + '/move'
 			}
 			$.ajax({
 				url: url,

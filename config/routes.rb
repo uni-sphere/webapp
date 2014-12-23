@@ -58,10 +58,13 @@ Lms::Application.routes.draw do
   get '/user/document/download', to: 'simpledocuments#download', as: 'download_user_document'
   get '/user/document/show', to: 'simpledocuments#show', as: 'show_user_file'
   
-  post '/user/file/upload', to: 'simpledocuments#upload_file', as: 'upload_user_document'
+  post '/user/file/upload', to: 'simpledocuments#upload_file', as: 'upload_user_file'
+  post '/user/file/rename', to: 'simpledocuments#update', as: 'rename_user_file'
+  post '/user/folder/rename', to: 'simpledocuments#update', as: 'rename_user_folder'
   post 'user/create_folder', to: 'simpledocuments#create_folder', as: 'create_user_folder'
   
-  put '/user/document/move', to: 'simpledocuments#move', as: 'move_user_documents'
+  put '/user/file/move', to: 'simpledocuments#move_file', as: 'move_user_file'
+  put '/user/folder/move', to: 'simpledocuments#move_folder', as: 'move_user_folder'
   
   delete '/user/document/delete', to: 'simpledocuments#destroy', as: 'delete_user_document' 
   

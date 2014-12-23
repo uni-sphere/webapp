@@ -32,7 +32,7 @@
     <div id="list-name">
       <% @documents.each do |document| %>
       <div id="box_document" class="row row-perfect">
-        <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id'] %>">
+        <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id'] %>" item="<%= document['type'] %>">
           <% if document['type'] == 'folder' %>
           <%= fa_icon("folder", class: "fa-icon fa-folder") %>
           <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-file-folder"%>

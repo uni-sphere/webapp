@@ -21,7 +21,7 @@ class SimpledocumentsController < ApplicationController
     
     params[:type] == "folder" ? @box_object = 'folder' : @box_object = 'file'
       
-    box_content_resources[:basic]["#{@box_object}/#{params[:selected_file]}"].put(req_params.to_json) { |response, request, result, &block|
+    box_content_resources[:basic]["#{@box_object}/#{params[:box_id]}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "updated")
       logger.info response
     }
@@ -84,12 +84,22 @@ class SimpledocumentsController < ApplicationController
   end
   
 
-  def move
+  def move_file
     req_params = {
       parent: { id: params[:dropped] }
     }
     box_content_resources[:basic]["files/#{params[:dragged]}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "file moved")
+    }
+    render nothing: true
+  end
+  
+  def move_folder
+    req_params = {
+      parent: { id: params[:dropped] }
+    }
+    box_content_resources[:basic]["folders/#{params[:dragged]}"].put(req_params.to_json) { |response, request, result, &block|
+      check_request_success(response, "folder moved")
     }
     render nothing: true
   end
