@@ -144,7 +144,8 @@ var autoSubmitRename = {
 				type:"PUT",
 				data: {
 					name: renameInput.val(),
-					box_id: $(this).parent().attr('id')
+					box_id: $(this).parent().attr('document_id'),
+					type: $(this).parent().attr('id')
 				},
 				success: function() {
 					renameInput.addClass('hidden');

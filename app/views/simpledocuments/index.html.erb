@@ -29,30 +29,17 @@
     <% end %>
   </div>
 
+  <!-- Third row -->
   <div class="column col-md-9" id="list-name">
     <% @documents.each do |document| %>
     <div id="box_document" class="row row-perfect">
-      <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id'] %>">
+      <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id']%>" item="<%= document['type'] %>" >
         <% if document['type'] == 'folder' %>
           <%= fa_icon("folder", class: "fa-icon") %>
           <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-file-folder"%>
-
-          
-            <%= text_field_tag :name, document['name'], id: "input-rename-file", class: "hidden" %>
-            
-
-<<<<<<< HEAD
-    <!-- Third row -->
-    <div id="list-name">
-      <% @documents.each do |document| %>
-      <div id="box_document" class="row row-perfect">
-        <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id'] %>" item="<%= document['type'] %>">
-          <% if document['type'] == 'folder' %>
-          <%= fa_icon("folder", class: "fa-icon fa-folder") %>
-          <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-file-folder"%>
-          <% elsif document['type'] == 'file' %>
+          <%= text_field_tag :name, document['name'], id: "input-rename-file", class: "hidden" %>
+        <% elsif document['type'] == 'file' %>
           <%= fa_icon("file", class: "fa-icon") %>
-
           <%= link_to document['name'], show_user_file_path(box_id: document['id']), class: "name-file-folder" %>
         <% end %>
       </span>

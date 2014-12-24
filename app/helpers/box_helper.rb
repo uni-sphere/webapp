@@ -64,7 +64,7 @@ module BoxHelper
   def refresh_token
     refresh_token_params = {
       grant_type: 'refresh_token',
-      refresh_token: cookies.permanent.signed[:refresh_token],
+      refresh_token: cookies.permanent[:refresh_token],
       client_id: box_params[:client_id],
       client_secret: box_params[:client_secret]
     }

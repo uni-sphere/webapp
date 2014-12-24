@@ -110,8 +110,6 @@ class GroupdocumentsController < ApplicationController
   def get_folder
     if params[:parent_id]
       @folder = current_group.groupfolders.find_by parent_id: params[:parent_id]
-      logger.info @folder
-      logger.info @folder.id
       params[:folder_id] = @folder.id
     else
       @folder = current_group.groupfolders.find params[:folder_id]
