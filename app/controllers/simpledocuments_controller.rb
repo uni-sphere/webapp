@@ -19,12 +19,13 @@ class SimpledocumentsController < ApplicationController
       name: params[:name]
     }
     
-    params[:type] == "folder" ? @box_object = 'folder' : @box_object = 'file'
+    params[:type] == "folder" ? @box_object = 'folders' : @box_object = 'files'
       
     box_content_resources[:basic]["#{@box_object}/#{params[:box_id]}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "updated")
       logger.info response
     }
+    render nothing: true
   end
   
   def index

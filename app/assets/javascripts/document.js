@@ -131,28 +131,30 @@ var autoSubmitUpload = {
 var autoSubmitRename = {
 	
 	init: function() {
-		var renameInput;
+		var renameInput,
+			docName;
+		
 		$('.file-rename').on('click', function() {
+			docName = $(this).parent().children('span').children('a');
 			renameInput = $(this).parent().children('span').children('input');
 			renameInput.removeClass('hidden').focus();
 			renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
 		});
+		
 		$('#input-rename-file').on('blur', function() {
+			console.log('blur');
+			
 			$.ajax({
 				url: 'http://localhost:3000/user/file/rename',
-				dataType:"json",
 				type:"PUT",
 				data: {
 					name: renameInput.val(),
 					box_id: $(this).parent().attr('document_id'),
 					type: $(this).parent().attr('id')
-				},
-				success: function() {
-					renameInput.addClass('hidden');
 				}
 			});
-
-			
+			docName.html(renameInput.val());
+			renameInput.addClass('hidden');
 		});
 	}
 };
