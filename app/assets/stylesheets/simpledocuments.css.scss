@@ -124,6 +124,23 @@
       .fa-icon{
         margin-right: 5px;
       }
+      .name-file-folder{
+        // background: red;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    #input-rename-file{
+      position: absolute;
+      left: 28px;
+      top: 7px;
+
+      width: 200px;
+      height: 26px;
+
+      font-size: 12px;
     }
 
     #files-actions{
