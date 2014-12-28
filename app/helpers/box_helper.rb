@@ -1,11 +1,11 @@
 module BoxHelper
   
   RestClient.log =
-    Object.new.tap do |proxy|
-      def proxy.<<(message)
-        Rails.logger.info message
-      end
+  Object.new.tap do |proxy|
+    def proxy.<<(message)
+      Rails.logger.info message
     end
+  end
     
   def box_params
     {
@@ -49,7 +49,7 @@ module BoxHelper
     }
     
     box_content_resources[:token].post(access_token_params) { |response, request, result, &block|
-      check_request_success(response, "send_access_token")
+      check_request_success(response, "send access token")
       set_token(JSON.parse(response))
     }
     redirect_to get_user_documents_path(folder: params[:folder] ? params[:folder] : '0' )
@@ -62,20 +62,22 @@ module BoxHelper
   end
   
   def refresh_token
-    refresh_token_params = {
-      grant_type: 'refresh_token',
-      refresh_token: cookies.permanent[:refresh_token],
-      client_id: box_params[:client_id],
-      client_secret: box_params[:client_secret]
-    }
+    if cookies.permanent[:refresh_token]
+      refresh_token_params = {
+        grant_type: 'refresh_token',
+        refresh_token: cookies.permanent[:refresh_token],
+        client_id: box_params[:client_id],
+        client_secret: box_params[:client_secret]
+      }
   
-    box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
-      check_request_success(response, "refresh_token")
-      set_token(JSON.parse(response))
-    }
-    logger.info "refresh token"
+      box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
+        check_request_success(response, "refresh token")
+        set_token(JSON.parse(response))
+      }
+    
+      logger.info "refresh token"
+    end
   end
-  
   # perso
   
   def create_box(email)
@@ -87,21 +89,20 @@ module BoxHelper
     }
 
     box_content_resources[:token].post(box_creation_params) { |response, request, result, &block|
-      logger.info(response.args)
-      check_request_success(response, "box_creation")
+      check_request_success(response, "create box")
     }
   end
   
   def create_link(box_id)
     req_params = {
       shared_link: {access: "open",
-                    can_download: true,
-                    can_preview: true
+        can_download: true,
+        can_preview: true
       }
     }
       
     box_content_resources[:basic]["files/#{box_id}"].put(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "link")
+      check_request_success(response, "create link")
       @link = {
         preview_url: JSON.parse(response)['shared_link']['url'],
         # download_url: JSON.parse(response)['shared_link']['download_url']

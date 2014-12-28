@@ -30,47 +30,54 @@ var dragAndDrop = {
 		tolerance: "intersect"
 	},
 	
+	// functions
+	
+	fdragOver: function( event, ui ) {
+		$(event.target).children('a').css('background-color',"blue");
+	},
+
+	fdragStart: function( event, ui ) {
+		dragged = event.target;
+		console.log($(dragged).attr("document_id"));
+		item = $(event.target).attr("item");
+		console.log("dragged set");
+		$(event.target).children('a').css('font-weight',"bold");
+	},
+
+	fdragStop: function( event, ui ) {
+		$(event.target).children('a').css('font-weight',"normal");
+	},
+
+	fdrop: function( event, ui ) {
+		console.log("dropped set");
+		console.log(event.target);
+		if (window.location.href.indexOf("group") >= 0) {
+			url = 'http://localhost:3000/user/group/' + item + '/move'
+		} else {
+			url = 'http://localhost:3000/user/' + item + '/move'
+		}
+		$.ajax({
+			url: url,
+			dataType:"json",
+			type:"PUT",
+			data: {
+				dragged: $(dragged).attr("document_id"),
+				dropped: $(event.target).attr("document_id"),
+				group_id: $(dragged).children('a').attr("group_id")
+			},
+			success: $(dragged).parent().remove()
+		});
+	},
+	
 	init: function(url) {
 		
   	$('.dragAndDrop').draggable(this.dragOptions);
 		$('.dragAndDrop').droppable(this.dropOptions);
 		
-		$('.dragAndDrop').on("dragover", function( event, ui ) {
-		   $(event.target).children('a').css('background-color',"blue");
-		 });
-		
- 		$('.dragAndDrop').on("dragstart", function( event, ui ) {
-			dragged = event.target;
-			console.log($(dragged).attr("document_id"));
-			item = $(event.target).attr("item");
-			console.log("dragged set");
- 		  $(event.target).children('a').css('font-weight',"bold");
- 		 });
-		
-  	$('.dragAndDrop').on("dragstop", function( event, ui ) {
-  		$(event.target).children('a').css('font-weight',"normal");
-  	});
-		 
-		$('.dragAndDrop').on('drop', function( event, ui ) {
-			console.log("dropped set");			
-			console.log(event.target);
-			if (window.location.href.indexOf("group") >= 0) {
-				url = 'http://localhost:3000/user/group/' + item + '/move'
-			} else {
-				url = 'http://localhost:3000/user/' + item + '/move'
-			}
-			$.ajax({
-				url: url,
-				dataType:"json",
-				type:"PUT",
-				data: {
-					dragged: $(dragged).attr("document_id"),
-					dropped: $(event.target).attr("document_id"),
-					group_id: $(dragged).children('a').attr("group_id")
-				},
-				success: $(dragged).parent().remove()
-			});
-		})
+		$('.dragAndDrop').on("dragover", this.fdragOver );
+ 		$('.dragAndDrop').on("dragstart", this.fdragStart );
+  	$('.dragAndDrop').on("dragstop", this.fdragStop );
+		$('.dragAndDrop').on('drop', this.fdrop )
 	}
 };
 
@@ -127,50 +134,97 @@ var autoSubmitUpload = {
 	}
 };
 
-
-var autoSubmitRename = {
+var rename = {
+	
+	renameInput: null,
+	docName: null,
+	docType: null,
+	
+	rename: function() {
+		console.log($(this));
+		console.log('ajax');
+		$.ajax({
+			url: 'http://localhost:3000/user/' + docType + '/rename',
+			type:"PUT",
+			data: {
+				name: renameInput.val(),
+				box_id: $(this).parent().attr('document_id'),
+				type: $(this).parent().attr('id')
+			}
+		});
+			
+		docName.html(renameInput.val());
+		renameInput.addClass('hidden');
+			
+	},
+	
+	showInput: function() {
+		docName = $(this).parent().children('span').children('a');
+		docType = $(this).parent().children('span').attr('item');
+		renameInput = $(this).parent().children('span').children('input');
+		renameInput.removeClass('hidden').focus();
+		renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
+		console.log(renameInput)
+	},
 	
 	init: function() {
-		var renameInput,
-			docName;
-		
-		$('.file-rename').on('click', function() {
-			docName = $(this).parent().children('span').children('a');
-			renameInput = $(this).parent().children('span').children('input');
-			renameInput.removeClass('hidden').focus();
-			renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
-		});
-		
-		$('#input-rename-file').on('blur', function() {
-			console.log('blur');
+		$('.document-rename').on('click', this.showInput );
+		$('.input-rename-document').on('blur', this.rename );
+		$('.input-rename-document').on('keyup', function(event) {
+			if (event.keyCode == $.ui.keyCode.ENTER) {
+				console.log($(this));
+				$.ajax({
+					url: 'http://localhost:3000/user/' + docType + '/rename',
+					type:"PUT",
+					data: {
+						name: renameInput.val(),
+						box_id: $(this).parent().attr('document_id'),
+						type: $(this).parent().attr('id')
+					}
+				});
 			
-			$.ajax({
-				url: 'http://localhost:3000/user/file/rename',
-				type:"PUT",
-				data: {
-					name: renameInput.val(),
-					box_id: $(this).parent().attr('document_id'),
-					type: $(this).parent().attr('id')
-				}
-			});
-			docName.html(renameInput.val());
-			renameInput.addClass('hidden');
+				docName.html(renameInput.val());
+				renameInput.addClass('hidden');
+				;
+			};
+		})
+	}
+};
+
+var arianeWire = {
+	init: function() {
+		$.ajax({
+			url: 'http://localhost:3000/user/document/arianewire',
+			type:"GET",
+			data: {
+				box_id: $('#breadcrumb').attr('folder_id')
+			},
+			complete: function(data) {
+				console.log(data[0]);
+			}
 		});
 	}
 };
 
-$(document).ready(function() {
-	var url,
-		item;
-	
+motherFunction = function() {
 	dragAndDrop.init(url);
 	preview.init();
 	// readFile.init();
 	autoSubmitUpload.init();
-	autoSubmitRename.init();
-	
+	rename.init();
+};
+
+$(document).ready(function() {
+	motherFunction();
 });
 
+$(document).on('page:load', function() {
+	motherFunction;
+});
+
+$(document).on('page:before-change', function() {
+	arianeWire.init();
+})
 
 
 

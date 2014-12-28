@@ -106,7 +106,7 @@
     a ,&{
       color: black;
       font-size: 28px;
-      .name-file-folder{
+      .name-document{
         font-size: 12px;
       }
       // cursor: pointer;
@@ -124,7 +124,7 @@
       .fa-icon{
         margin-right: 5px;
       }
-      .name-file-folder{
+      .name-document{
         // background: red;
         white-space: nowrap;
         overflow: hidden;
@@ -132,7 +132,7 @@
       }
     }
 
-    #input-rename-file{
+    .input-rename-document{
       position: absolute;
       left: 28px;
       top: 7px;

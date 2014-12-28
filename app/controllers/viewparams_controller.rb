@@ -8,10 +8,14 @@ class ViewparamsController < ApplicationController
   before_action :set_user
 
   def update
+    @viewparam = @user.viewparam
     respond_to do |format|
-      if @user.viewparam.update(notification_view: params[:notification_view])
+      if @viewparam.update_attributes(notification_view: params[:notification_view])
         format.html {  }
         format.json { head :no_content }
+      else
+        format.html {  }
+        format.json { render json: @viewparam.errors, status: :unprocessable_entity }
       end
     end
   end

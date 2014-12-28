@@ -2,6 +2,7 @@ class SessionsController < ActionController::Base
   
   protect_from_forgery with: :exception
   include SessionsHelper
+  include BoxHelper
   
   before_filter :not_authenticate?, only: [:new]
   before_filter :authenticate?, only: [:destroy]
@@ -19,6 +20,7 @@ class SessionsController < ActionController::Base
         format.html { redirect_to user }
         format.json { head :no_content }
 	      sign_in user
+        refresh_token
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }

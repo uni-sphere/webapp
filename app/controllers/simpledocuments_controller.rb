@@ -31,6 +31,7 @@ class SimpledocumentsController < ApplicationController
   def index
     @folder = params[:folder]
     @document_url = params[:document_url] if params[:document_url]
+    
     req_params = { 
       fields: "id,name,created_at,modified_at,size,type"
     }
@@ -41,8 +42,9 @@ class SimpledocumentsController < ApplicationController
       JSON.parse(response)['entries'].each do |file|
         @documents << file
       end
-      logger.info @documents
     }
+    
+    # ariane_wire(@folder)
   end
 
   def upload_file
@@ -103,6 +105,25 @@ class SimpledocumentsController < ApplicationController
       check_request_success(response, "folder moved")
     }
     render nothing: true
+  end
+  
+  def ariane_wire
+    @ariane_wire = []
+    @parent_id = params[:box_id]
+    
+    until @parent_id == '0'
+      box_content_resources[:basic]["folders/#{@parent_id}"].get() { |response, request, result, &block|
+        check_request_success(response, "create ariane")
+        @parent_id = JSON.parse(response)['parent']['id'] if JSON.parse(response)['parent']
+        @ariane_wire << { name: JSON.parse(response)['name'], id: JSON.parse(response)['id'] }
+      }
+    end
+    @ariane_wire = @ariane_wire.reverse
+    
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @ariane_wire }
+    end
   end
   
   private

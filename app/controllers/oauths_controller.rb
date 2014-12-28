@@ -11,16 +11,16 @@ class OauthsController < ApplicationController
   end
   
   def send_oauth
-      oauth_params = {
-        response_type: 'code',
-        client_id: box_params[:client_id],
-        state: session[:_csrf_token]
-      }
+    oauth_params = {
+      response_type: 'code',
+      client_id: box_params[:client_id],
+      state: session[:_csrf_token]
+    }
 
-      box_content_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
-        check_request_success(response, "oauth")
-        redirect_to(request.url)
-      }
+    box_content_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
+      check_request_success(response, "send oauth")
+      redirect_to(request.url)
+    }
   end
   
 end

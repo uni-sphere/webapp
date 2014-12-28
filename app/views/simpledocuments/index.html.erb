@@ -3,8 +3,8 @@
 
   <!-- First row -->
   <div class="row row-perfect" id="breadcrumb-seachbar">
-    <div id="breadcrumb" class="col-md-7">
-      Perso >
+    <div id="breadcrumb" class="col-md-7" folder_id="<%= params[:folder] %>">
+      
     </div>
 
     <div id="perso-file-search" class="col-md-4">
@@ -36,17 +36,17 @@
       <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id']%>" item="<%= document['type'] %>" >
         <% if document['type'] == 'folder' %>
           <%= fa_icon("folder", class: "fa-icon") %>
-          <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-file-folder"%>
+          <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-document"%>
         <% elsif document['type'] == 'file' %>
           <%= fa_icon("file", class: "fa-icon") %>
-          <%= link_to document['name'], show_user_file_path(box_id: document['id']), class: "name-file-folder" %>
+          <%= link_to document['name'], show_user_file_path(box_id: document['id']), class: "name-document" %>
         <% end %>
-        <%= text_field_tag :name, document['name'], id: "input-rename-file", class: "hidden" %>
+        <%= text_field_tag :name, document['name'], class: "hidden input-rename-document" %>
       </span>
 
 
 
-      <%= fa_icon("pencil", class: "file-rename col-md-1 visible-hover") %>
+      <%= fa_icon("pencil", class: "document-rename col-md-1 visible-hover") %>
 
       <span id="files-actions" class="col-md-2 col-md-offset-3">
         <span id="icon-link">
