@@ -1,74 +1,80 @@
 @import "var";
 
 #container-perso-drive{
-  // margin: 20px;
-  height: 400px;
-  // height: 60vh;
-  // background: violet;
+  height: calc(100% - 30px);
+  padding-top: 20px;
+  
+}
+
+#container-perso-drive-main{
+  // border: solid 1px $violet;
 }
 
 #breadcrumb-seachbar{
   height: auto;
+
   font-size: 18px;
 }
+
 #breadcrumb{
   padding-left: 0px;
-  // background: violet;
 }
 
 #perso-file-search{
   padding-left: 0px;
   padding-right:0px;
 
-  // width: 300px;
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
 
   .icon{
     position: absolute;
+
     top: 50%;
+
     margin-left: 20px;
     margin-top: -12px;
+
     z-index: 1;
+
     color: #4f5b66;
   }
 
   #search{
-    width: 100%;
-    // height: 50px;
-    background: white;
-    border: none;
-    font-size: 14px;
     float: left;
-    color: black;
+
+    width: 100%;
+
     padding-left: 45px;
+    color: black;
+
+    background: white;
+
+    font-size: 14px;
+    border: none;
     border-radius: 5px;
 
     transition: background .55s ease;
 
     &:hover, &:focus, &:active{
       outline:none;
-      background: #ffffff;
+      background: white;
     }
   }
 }
 
-
-
 #new-upload{
   position: relative;
+
   height: auto;
+
   margin: 5px 0px 5px 0px;
   .button-new{
     width: 100px;
     height: 35px;
-    // background: $grey-lighter;
-    // border: solid 4px black;
-    // color: white;
+
     &:hover{
-      // background: green;
-      // color: white;
     }
   }
   #button-upload{
@@ -79,9 +85,11 @@
 
 #button-new-dropdown{
   position: absolute;
+
   top: 35px;
   // background: red;
   // color: white;
+
   li > a > i{
     margin-right: 5px;
   }
@@ -92,17 +100,15 @@
 }
 
 #input-button-upload{
-  background: red;
-  // width:0; height:0;
+  
 }
 
 #list-name{
-  padding: 0;
   height: auto;
 
-  .box_document{
-    // background: red;
-    // transition: background .55s ease;
+  padding: 0;
+
+  #box_document{
     a ,&{
       color: black;
       font-size: 28px;
@@ -124,8 +130,10 @@
       .fa-icon{
         margin-right: 5px;
       }
-      .name-document{
-        // background: red;
+
+      .name-file-folder{
+        width: 180px;
+        text-align: left;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -146,7 +154,6 @@
     #files-actions{
       #icon-download{
         margin-left: calc(50% - 35px);
-        // margin-left: 50%;
       }
       #icon-trash{
         margin-left: calc(50% - 35px);
@@ -161,33 +168,81 @@
   }
 }
 
-#side-container{
-  color: black;
+.panel-costum{
   float: left;
-  // background: yellow;
-  // border-left: solid 1px black;
-  // border-radius: 20px;
-  height: 300px;
-  text-align: left;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 20px;
+
+  // color: white;
+  // background: $violet-writing;
+  color: black;
+
+  // border: solid 1px $violet;
+  
+  border: solid 1px $violet-writing;
+  box-shadow: -2px 2px 2px $violet;
+  border-radius: 2px;
   .panel-title{
-    display: block;
+    clear: left;
+    float: left;
+
+    width: 100%;
     // background: red;
-    padding: 5px 0px;
+    // font-weight: bold;
+
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+    .fa{margin-right: 5px; margin-left: 3px;}
+
+    // border-bottom: solid 1px $violet-writing;
   }
+  // .panel-title-container{
+  //   text-align: left;
+  // }
   .file-info{
-    // background: blue;
+    float: left;
+    clear: left;
+
+    text-align: left;
+
     .first-col-width{
       width: 100px;
     }
   }
+  .separation-line{
+    display: block;
+
+    height: 1px;
+
+    margin: 10px 0px;
+
+    background: $violet-writing;
+  }
+  .separation-line-container{
+    float: left;
+    clear: left;
+
+    width: 100%;
+  }
+  .share-link-container{
+    float: left;
+    clear: left;
+
+    width: 100%;
+  }
   .share-link{
     display: block;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     // background: blue;
   }
 }
+
+
 
 
 

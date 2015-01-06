@@ -27,6 +27,10 @@
       </ul>
 
       <div class="hidden-small" id="tabs-perso-groups">
+        <div id="platform-choice">
+          <span class="unifolder"><i class="fa fa-folder-open"></i>Unifolder</span>
+          <a href="#"><span class="unilib"><i class="fa fa-graduation-cap"></i>Unilib</span>
+        </div>
         <% if request.url =~ /groups(.*)/ %>
           <% if current_group_exists? %>
             <div id="active-group" class="panel panel-default">
@@ -81,7 +85,12 @@
 
           <div class="panel-body" id="nav-group">
             <ul class="nav">
-              <li><a href="#"><i class="fa fa-folder-open"></i>drive</a></li>
+              <li>
+              <%= link_to (get_user_documents_path(folder: '0' )) do %>
+                <%= fa_icon("folder-open") %>
+                Folder
+              <% end %>
+              </li>
               <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
               <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
             </ul>
