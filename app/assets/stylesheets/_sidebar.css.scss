@@ -41,12 +41,13 @@
   // border-right: solid 1px $panel-separator-bg;
 
   a, & {color: $violet-writing;}
-  background: $grey-background;
+  background: $grey-test;
   
 
-  .panel{
+  .fake-panel{
     width: calc( 100% - 24px );
 
+    padding-top: 10px;
     margin-right: 12px;
     margin-left: 12px;
 
@@ -54,28 +55,30 @@
       height: 50px;
 
       padding: 0;
+      padding-left: 19px;
 
-      background: $grey-background;
-      color: $violet-writing;
+      // background: $grey-background;
+      // color: $violet-writing;
 
     }
     .panel-body{
 
+      // background: blue;
       padding: 9px;
 
       li a:hover{background: white;}
     }
 
-    border: solid 1px $violet-writing;
-    box-shadow: -3px 3px 2px $violet;
-    border-left:none;
+    // border: solid 1px $violet-writing;
+    // box-shadow: -3px 3px 2px $violet;
+    // border-left:none;
   }
 }
 
 #platform-choice{
-  // background: red;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
   a:hover{
     text-decoration: none;
   }
@@ -83,7 +86,9 @@
     padding-right: 4px;
   }
   .unifolder{
-    padding-right: 30px;
+    // padding-right: 30px;
+    float: left;
+    margin-left: 10px;
   }
   .unilib{
   }
@@ -120,25 +125,34 @@
     text-overflow: ellipsis;  //cut off text with an elipsis
   }
   
-  .edit-profile{
+  .name-and-edit{
     float: left;
+
+    height: 100%;
+    width: calc(100% - 50px);
+
     padding-left: 10px;
     padding-top: 5px;
-    width: calc(100% - 50px);
-    height: 100%;
-    &:hover{
-      .label-edit{text-decoration: underline;}
-    }
+    
     span{
-      clear: left;
       float: left;
     }
+
     .full-name-user{
-      
     }
+
     .label-edit{
+      clear: left;
+
       margin-left: 5px;
+      
       color: $grey-edit;
+    }
+  }
+
+  .edit-profile{
+    &:hover{
+      .label-edit{text-decoration: underline;}
     }
   }
   
@@ -153,9 +167,10 @@
       overflow: hidden;         //prevent the text from being shown outside the border
       text-overflow: ellipsis;  //cut off text with an elipsis
 
-      border-left: solid 2px white;
+      border-left: solid 2px $grey-test;
       &:hover, &.active li a{
         border-left: solid 2px $violet-writing;
+        background: $grey-test;
       }
     }
     .fa{
@@ -325,7 +340,6 @@
     padding: 2px 0px 0px 5px;
     height: 22px;
     font-weight: bold;
-    // background: blue; 
     // width: calc( 100% - 50px );
     float: left;
   }
@@ -348,41 +362,38 @@
 
 #tabs-default{
   height: 30px; 
-  // padding-right: -3px;
-  // margin-top: 3px;
-  background: $side-bg; 
+
   padding-top: 5px;
+
+  background: $violet-background; 
+  
   .tab{
     width: calc( 50% + 6px );
+
+    padding-top: 2px;
+
+    background: $violet-light;
+    color: white;
+
+    border-radius: 20px 20px 0 0;
+
     font-size: 13px;
-    // border: solid 1px white;
-    background: $tab-bg;
-    // background: green;
-    color: $tab-color;
     list-style: none;
     outline: none;
     text-align:center;
-    padding-top: 2px;
-    border-radius: 20px 20px 0 0;
-    // border: solid 2px $violet-light;
-    // border-bottom: solid 2px $border-folder;
+
     &.active, &.active:hover{
-      color: $tab-active-color;
-      background: $tab-active-bg;
-      // background: green;
-      cursor: default;
       z-index: 9;
-      // border: solid 2px $border-folder;
-      // border-bottom: solid 2px $tab-active-bg;
+
+      background: white;
+      color: $violet-writing;
+
+      cursor: default;
     }
     &:hover{
+      background: $tab-hover-bg;
       color: $tab-hover-color;
       text-decoration: none;
-      background: $tab-hover-bg;
-      // border-top: solid 2px white;
-      // border-left: solid 2px white;
-      // border-right: solid 2px white;
-      // border-bottom: solid 2px $tab-active-bg;
     }
   }
   .offset-margin{

@@ -74,13 +74,15 @@
            
           </div>
         <% elsif  %>
-        <div id="active-group" class="panel panel-default">
+        <div id="active-group" class="fake-panel">
           <div class="panel-heading heading-perso">
-            <%= image_tag "group-pic.png", class: "group-pic"%>
-            <a href="#" class="edit-profile">
-              <span class="full-name-user"><%= current_user.name %></span>
-              <span class="label-edit">Edit</span>
-            </a>
+            <%= link_to root_path, class: "edit-profile" do %>
+              <%= image_tag "group-pic.png", class: "group-pic"%>
+              <div class="name-and-edit">
+                <span class="full-name-user"><%= current_user.name %></span>
+                <span class="label-edit">Edit</span>
+              </div>
+            <% end %>
           </div>
 
           <div class="panel-body" id="nav-group">

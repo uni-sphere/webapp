@@ -2,22 +2,30 @@
 
 #container-perso-drive{
   height: calc(100% - 30px);
-  padding-top: 20px;
-  
+
+  // background: $grey-test;
+  color: $violet-writing;
+  font-size: 14px;
 }
 
-#container-perso-drive-main{
-  // border: solid 1px $violet;
-}
+// ---------
+// HEADER
+// ---------
 
 #breadcrumb-seachbar{
-  height: auto;
-
-  font-size: 18px;
+  // height: auto;
+  padding-left: 10px;
+  padding-top: 10px; 
+  padding-bottom: 10px;
+  
+  background: white;
+  // background: blue;
+  // font-size: 18px;
 }
 
 #breadcrumb{
   padding-left: 0px;
+  // background: blue;
 }
 
 #perso-file-search{
@@ -47,11 +55,11 @@
     width: 100%;
 
     padding-left: 45px;
-    color: black;
+    // color: black;
 
-    background: white;
+    // background: white;
 
-    font-size: 14px;
+    // font-size: 14px;
     border: none;
     border-radius: 5px;
 
@@ -59,15 +67,20 @@
 
     &:hover, &:focus, &:active{
       outline:none;
-      background: white;
+      // background: white;
     }
   }
 }
 
+
+// ------
+// BUTTON
+// ------
+
 #new-upload{
   position: relative;
 
-  height: auto;
+  // height: auto;
 
   margin: 5px 0px 5px 0px;
   .button-new{
@@ -99,14 +112,17 @@
   }
 }
 
-#input-button-upload{
-  
-}
+
+// -------
+// MAIN LINE
+// -------
 
 #list-name{
-  height: auto;
-
+  // height: auto;
   padding: 0;
+  padding-left: 10px;
+
+  // background: red;
 
   #box_document{
     a ,&{
@@ -118,7 +134,6 @@
       // cursor: pointer;
       &:hover{
         text-decoration: none;
-        background: $grey-lighter;
         .visible-hover{
         // visibility: visible;
         }
@@ -168,21 +183,27 @@
   }
 }
 
+
+// --------
+// RIGHT INFORMATION
+// --------
+
+#side-container{
+}
 .panel-costum{
   float: left;
+
   width: 100%;
+
   padding: 10px 10px 10px 10px;
   margin-bottom: 20px;
 
-  // color: white;
-  // background: $violet-writing;
   color: black;
 
-  // border: solid 1px $violet;
-  
-  border: solid 1px $violet-writing;
-  box-shadow: -2px 2px 2px $violet;
-  border-radius: 2px;
+  // border: solid 1px $violet-writing;
+  // box-shadow: -2px 2px 2px $violet;
+  // border-radius: 2px;
+
   .panel-title{
     clear: left;
     float: left;
@@ -196,7 +217,6 @@
     text-align: left;
     .fa{margin-right: 5px; margin-left: 3px;}
 
-    // border-bottom: solid 1px $violet-writing;
   }
   // .panel-title-container{
   //   text-align: left;
@@ -218,7 +238,7 @@
 
     margin: 10px 0px;
 
-    background: $violet-writing;
+    // background: $violet-writing;
   }
   .separation-line-container{
     float: left;
