@@ -14,6 +14,14 @@ class SimpledocumentsController < ApplicationController
     redirect_to get_user_documents_path(folder: params[:folder])
   end
   
+  def previous_folder
+    box_content_resources[:basic]["folders/#{params[:box_id]}"].get() { |response, request, result, &block|
+      check_request_success(response, "read file")
+      @parent = JSON.parse(response)['parent']['id']
+    }
+    redirect_to get_user_documents_path(folder: @parent)
+  end
+  
   def update
     req_params = {
       name: params[:name]
@@ -29,41 +37,40 @@ class SimpledocumentsController < ApplicationController
   end
   
   def index
-    @folder = params[:folder]
-    @document_url = params[:document_url] if params[:document_url]
-    
     req_params = { 
       fields: "id,name,created_at,modified_at,size,type"
     }
     
     box_content_resources[:basic]["folders/#{params[:folder]}/items"].get(params: req_params) { |response, request, result, &block|
       check_request_success(response, "index")
+      @folder_name = JSON.parse(response)['name']
       @documents = []
       JSON.parse(response)['entries'].each do |file|
         @documents << file
       end
     }
-    
-    # ariane_wire(@folder)
   end
 
   def upload_file
-    path = params[:file].path
-    name = params[:file].original_filename.to_s
+    # file = File.new(params[:file].path)
+#     File.rename(File.basename(params[:file].path), params[:file].original_filename)
     req_params = {
-      name: name.to_s,
-      parent_id: params[:folder],
-      file: File.new(path)
+      attributes: { name: params[:file].original_filename, 
+                    parent: {id: params[:folder] }}.to_json,
+      file: File.new(params[:file].path)
     }
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
+      logger.info '555555555555'
+      logger.info response
+      logger.info '555555555555'
       check_request_success(response, "upload file")
     }
     redirect_to get_user_documents_path(folder: params[:folder])
   end
 
   def download
-    box_content_resources[:basic]["files/#{params[:id]}/content"].get() { |response, request, result, &block|
+    box_content_resources[:basic]["files/#{params[:box_id]}/content"].get() { |response, request, result, &block|
       check_request_success(response, "download file")
       redirect_to(response.headers[:location])
     }
@@ -78,7 +85,7 @@ class SimpledocumentsController < ApplicationController
     logger.info params[:type]
     params[:type] == "folder" ? @box_object = 'folders' : @box_object = 'files'
     
-    box_content_resources[:basic]["#{@box_object}/#{params[:id]}"].delete(params: {recursive: true}) { |response, request, result, &block|
+    box_content_resources[:basic]["#{@box_object}/#{params[:box_id]}"].delete(params: {recursive: true}) { |response, request, result, &block|
       logger.info response
       check_request_success(response, "destroy")
     }
@@ -108,20 +115,21 @@ class SimpledocumentsController < ApplicationController
   end
   
   def ariane_wire
-    @ariane_wire = []
+    @ariane_wire = {}
     @parent_id = params[:box_id]
+    @i = 0
     
     until @parent_id == '0'
       box_content_resources[:basic]["folders/#{@parent_id}"].get() { |response, request, result, &block|
         check_request_success(response, "create ariane")
         @parent_id = JSON.parse(response)['parent']['id'] if JSON.parse(response)['parent']
-        @ariane_wire << { name: JSON.parse(response)['name'], id: JSON.parse(response)['id'] }
+        @ariane_wire[@i] = { name: JSON.parse(response)['name'], id: JSON.parse(response)['id'] }
+        @i+=1
       }
     end
-    @ariane_wire = @ariane_wire.reverse
     
     respond_to do |format|
-      format.html { }
+      format.html { render json: @ariane_wire }
       format.json { render json: @ariane_wire }
     end
   end

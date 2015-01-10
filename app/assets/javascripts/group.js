@@ -67,7 +67,7 @@
 		});
 	}
 
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
 	$(".best_in_place").best_in_place();
 	$(".best_in_place").bind("ajax:success", function () {
 		$(this).closest('tr').effect('highlight');

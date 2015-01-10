@@ -14,7 +14,7 @@
 
 	  <tbody>
 	    <% @group_documents.each do |document| %>
-	      <tr id="box_document">
+	      <tr class="box_document">
 					<td class="dragAndDrop groupdoc" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %><%= document.name %></td>
 					<td><%= link_to 'delete', delete_group_file_path(file_id: document[:id], group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %></td>
 	      </tr>

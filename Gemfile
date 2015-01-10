@@ -8,12 +8,12 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
-gem "lograge"
+gem 'rails_12factor'
 
 # Bootstrap sass dependences
 gem 'bootstrap-sass'  
 gem 'sass-rails'
-gem 'autoprefixer-rails'  # Automatically adds vendor prefixes
+gem 'autoprefixer-rails' 
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
@@ -29,8 +29,8 @@ gem 'iconv'
 gem 'bootstrap_tokenfield_rails'
 gem 'etherpad-lite'
 gem 'paperclip'
-gem 'unicorn-rails'  # Switches the development server from Webricks to unicorn
-gem 'font-awesome-rails'    # Imports nice svgs
+gem 'unicorn-rails'  
+gem 'font-awesome-rails'    
 gem 'nav_link_to'
 gem 'gravtastic'
 gem 'best_in_place'
@@ -38,6 +38,7 @@ gem 'mime-types'
 gem 'netrc'
 gem 'rdoc'
 gem 'rest_client'
+gem 'rails-timeago'
 
 # gem 'breadcrumbs_on_rails'
 
@@ -51,7 +52,6 @@ end
 
 group :production do
   #gem 'mysql'
-  gem 'rails_12factor'
 end
 
 # group :doc do

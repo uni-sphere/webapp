@@ -4,6 +4,67 @@ var dragged,
 	item,
 	url;
 
+var breadcrumb = {
+	
+	target: null,
+	
+	renderBreadcrumb: function() {
+		// localStorage.clear();
+		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
+		// console.log('renderBreadcrumb');
+		// console.log(localStorage.length);
+		for( var i = 0 ; i<localStorage.length ; i++ ) {
+			var element = localStorage[i + 'breadcrumb'];
+			// console.log(i);
+			if ( localStorage.key(i).search('breadcrumb') > 0 ) {
+				console.log(i);
+				element = JSON.parse(element);
+				$('#breadcrumb').append(' > <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + localStorage.key(i).charAt(0) + '>' + element.name + '</a> ')
+			}
+		}
+	},
+	
+	fillBreadcrumb: function() {
+		console.log('fillBreadcrumb');
+		localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])+1 || 1;
+		localStorage[localStorage['lastIndex'] + 'breadcrumb'] = JSON.stringify({'name': breadcrumb.target.attr('name'), 'box_id': breadcrumb.target.attr('document_id')});
+	},
+	
+	redirect: function() {
+		console.log('redirect');
+		localStorage['lastIndex'] = breadcrumb.target.attr('breadcrumb_id');
+		for( var i = breadcrumb.target.attr('breadcrumb_id') + 1; i<localStorage.length ; i++ ){
+			localStorage.removeItem(localStorage.key(i));
+		}
+	},
+	
+	init: function() {
+		breadcrumb.renderBreadcrumb();
+		$('.dragAndDrop').on('click', function() {
+			breadcrumb.target = $(this);
+			breadcrumb.fillBreadcrumb()
+		});
+		$('#breadcrumb').on('click', function() {
+			breadcrumb.target = $(this);
+			console.log('target:');
+			console.log(breadcrumb.target);
+			breadcrumb.redirect()
+		});
+	}
+	
+};
+
+var selectable = {
+	options: {
+		autoRefresh: false
+	},
+	
+	init: function() {
+		$('.dragAndDrop').selectable(this.options);
+	}
+	
+};
+
 var dragAndDrop = {
 	
 	dragOptions: {
@@ -97,30 +158,45 @@ var preview = {
 	}
 };
 
-var readFile = {
+var readGroupFile = {
 	
-	// init: function() {
-	// 	$('#box_document').on('click', function() {
-	// 		console.log('readfile');
-	// 		$.ajax({
-	// 			url: 'http://localhost:3000/user/group/document/read',
-	// 			dataType:"json",
-	// 			data: {
-	// 				box_id: $(this).children().attr("box_id")
-	// 			},
-	// 			complete: function( data ) {
-	// 				var key;
-					
-	// 				for (key in JSON.parse(data['responseText'])) {
-	// 					if (JSON.parse(data['responseText']).hasOwnProperty(key)) {
-	// 				  	$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
-	// 				  }
-	// 				}
-	// 			}
-	// 		});
-	// 	});
-	// }
-};	
+	init: function() {
+		$('.box_document').on('click', function() {
+			console.log('readfile');
+			$.ajax({
+				url: 'http://localhost:3000/user/group/document/read',
+				dataType:"json",
+				data: {
+					box_id: $(this).children().attr("box_id")
+				},
+				complete: function( data ) {
+					var key;
+					var response = JSON.parse(data['responseText']);
+					alert(JSON.stringify(response));
+					for (key in response) {
+						if (response.hasOwnProperty(key)) {
+					  	$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
+					  }
+					}
+				}
+			});
+		});
+	}
+};
+
+var readPersoFile = {
+	
+	init: function() {
+		$('.box_document').on('click', function() {
+			if ($(this).children('span').children('a').attr('item') == 'folder') {
+				var file = JSON.parse($(this).children('span').children('a').attr('file'));
+				$('#createdAt').html(jQuery.timeago(file['created_at']));
+				$('#modifiedAt').html(jQuery.timeago(file['modified_at']));
+				$('#fileSize').html(file['size'] + ' Ko');
+			}
+		})
+	}
+}
 
 var autoSubmitUpload = {
 	
@@ -139,32 +215,41 @@ var rename = {
 	renameInput: null,
 	docName: null,
 	docType: null,
+	format: null,
+	
+	showInput: function() {
+			
+		rename.docType = $(this).parent().children('span').attr('item');
+		rename.docName = $(this).parent().children('span').children('a');
+		renameInput = $(this).parent().children('span').children('input');
+		
+		if (rename.docType == 'file') {
+			var nameWithFormat = renameInput.attr("value");
+			var nameWithoutFormat = nameWithFormat.slice(0, nameWithFormat.lastIndexOf('.'));
+			rename.format = nameWithFormat.slice(nameWithFormat.lastIndexOf('.'), nameWithFormat.length);
+		}
+		
+		renameInput.attr("value", nameWithoutFormat);
+		renameInput.removeClass('hidden').focus();
+		renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
+	},
 	
 	rename: function() {
 		console.log($(this));
 		console.log('ajax');
 		$.ajax({
-			url: 'http://localhost:3000/user/' + docType + '/rename',
+			url: 'http://localhost:3000/user/' + rename.docType + '/rename',
 			type:"PUT",
 			data: {
-				name: renameInput.val(),
+				name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 				box_id: $(this).parent().attr('document_id'),
-				type: $(this).parent().attr('id')
+				type: rename.docType
 			}
 		});
-			
-		docName.html(renameInput.val());
+		
+		(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
 		renameInput.addClass('hidden');
 			
-	},
-	
-	showInput: function() {
-		docName = $(this).parent().children('span').children('a');
-		docType = $(this).parent().children('span').attr('item');
-		renameInput = $(this).parent().children('span').children('input');
-		renameInput.removeClass('hidden').focus();
-		renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
-		console.log(renameInput)
 	},
 	
 	init: function() {
@@ -174,16 +259,16 @@ var rename = {
 			if (event.keyCode == $.ui.keyCode.ENTER) {
 				console.log($(this));
 				$.ajax({
-					url: 'http://localhost:3000/user/' + docType + '/rename',
+					url: 'http://localhost:3000/user/' + rename.docType + '/rename',
 					type:"PUT",
 					data: {
-						name: renameInput.val(),
+						name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 						box_id: $(this).parent().attr('document_id'),
-						type: $(this).parent().attr('id')
+						type: rename.docType
 					}
 				});
 			
-				docName.html(renameInput.val());
+				(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
 				renameInput.addClass('hidden');
 				;
 			};
@@ -191,40 +276,24 @@ var rename = {
 	}
 };
 
-var arianeWire = {
-	init: function() {
-		$.ajax({
-			url: 'http://localhost:3000/user/document/arianewire',
-			type:"GET",
-			data: {
-				box_id: $('#breadcrumb').attr('folder_id')
-			},
-			complete: function(data) {
-				console.log(data[0]);
-			}
-		});
-	}
-};
-
-motherFunction = function() {
+main = function() {
+	breadcrumb.init();
+	
+	// selectable.init();
+	
 	dragAndDrop.init(url);
 	preview.init();
-	// readFile.init();
+	
+	// readGroupFile.init();
+	readPersoFile.init();
+	
 	autoSubmitUpload.init();
 	rename.init();
 };
 
-$(document).ready(function() {
-	motherFunction();
+$(document).on('ready page:load', function() {
+	main();
 });
-
-$(document).on('page:load', function() {
-	motherFunction;
-});
-
-$(document).on('page:before-change', function() {
-	arianeWire.init();
-})
 
 
 

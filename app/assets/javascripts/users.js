@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('ready page:load', function(){
   $('[data-toggle=offcanvas]').click(function() {
     $('#chevron').find('i').toggleClass('fa-chevron-left').toggleClass('fa-chevron-right');
     $('.row-offcanvas').toggleClass('active');

@@ -1,6 +1,6 @@
 
 
-$(document).ready(function () {
+$(document).on('ready page:load', function () {
 //
 	var selected_div = null;
   var selected_event = null;
@@ -65,7 +65,7 @@ $(document).ready(function () {
 		selected_div = $(this);
 		selected_event = event;
 		$(this).css('opacity', '0.7');
-		$(this).css('background-color', '#8e639e');
+		$(this).css('background-color', 'red');
 	};
 
   function clear_selection() {

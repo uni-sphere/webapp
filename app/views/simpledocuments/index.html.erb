@@ -3,8 +3,7 @@
 
   <!-- First row -->
   <div class="row row-perfect" id="breadcrumb-seachbar">
-    <div id="breadcrumb" class="col-md-7" folder_id="<%= params[:folder] %>">
-      
+    <div id="breadcrumb" class="col-md-7" folder_id="<%= params[:folder] %>" >
     </div>
 
     <div id="perso-file-search" class="col-md-4">
@@ -17,29 +16,32 @@
   <div id="new-upload" class="row">
     <button class="btn btn-default dropdown-toggle pull-left button-new" type="button" data-toggle="dropdown" aria-expanded="true">NEW</button>
     <ul class="dropdown-menu" id="button-new-dropdown" role="menu" aria-labelledby="button-new">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> <%= link_to fa_icon("folder"), create_user_folder_path(folder: @folder), method: :post %></a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> <%= link_to fa_icon("folder"), create_user_folder_path(folder: params[:folder]), method: :post %></a></li>
       <li role="presentation" class="divider"></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Firepad</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google Doc</a></li>
     </ul>
     <button class="btn btn-default pull-left" type="button" id="button-upload">UPLOAD</button>
     <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
-      <%= file_field_tag :file, class: "hidden", id: "input-button-upload"%>
+      <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
       <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
     <% end %>
+		<% if params[:folder] != '0' %>
+			<%= link_to 'PREVIOUS', get_user_previous_folder_path(box_id: params[:folder]) %>
+		<% end %>
   </div>
 
   <!-- Third row -->
   <div class="column col-md-9" id="list-name">
     <% @documents.each do |document| %>
-    <div id="box_document" class="row row-perfect">
-      <span class="dragAndDrop col-md-4 icon-and-name" id="<%= document['type'] %>" document_id="<%= document['id']%>" item="<%= document['type'] %>" >
+    <div class="box_document row row-perfect">
+      <span class="dragAndDrop col-md-4 icon-and-name" document_id="<%= document['id']%>" item="<%= document['type'] %>" name="<%= document['name'] %>" >
         <% if document['type'] == 'folder' %>
           <%= fa_icon("folder", class: "fa-icon") %>
-          <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-document"%>
+          <%= link_to document['name'], get_user_documents_path(folder: document['id']), class: "name-document" %>
         <% elsif document['type'] == 'file' %>
           <%= fa_icon("file", class: "fa-icon") %>
-          <%= link_to document['name'], show_user_file_path(box_id: document['id']), class: "name-document" %>
+          <%= link_to document['name'], show_user_file_path(box_id: document['id']), class: "name-document", file: document.to_json , item: 'folder' %>
         <% end %>
         <%= text_field_tag :name, document['name'], class: "hidden input-rename-document" %>
       </span>
@@ -50,13 +52,13 @@
 
       <span id="files-actions" class="col-md-2 col-md-offset-3">
         <span id="icon-link">
-          <%= link_to fa_icon("link"), download_user_document_path(id: document['id'], type: document['type']) %> 
+          <%= link_to fa_icon("link"), download_user_document_path(box_id: document['id'], type: document['type']) %> 
         </span>
         <span id="icon-download">
-          <%= link_to fa_icon("download"), download_user_document_path(id: document['id'], type: document['type']) %>
+          <%= link_to fa_icon("download"), download_user_document_path(box_id: document['id'], type: document['type']) %>
         </span>
         <span id="icon-trash">
-          <%= link_to fa_icon("trash"), delete_user_document_path(id: document['id'], type: document['type'], folder: @folder), method: :delete %>
+          <%= link_to fa_icon("trash"), delete_user_document_path(box_id: document['id'], type: document['type'], folder: params[:folder]), method: :delete %>
         </span>
       </span>
     </div>
@@ -72,25 +74,25 @@
       <tbody>
         <tr id="creation-time">
           <td class="first-col-width">Created</td>
-          <td>12 December 2014</td>
+          <td id="createdAt">-</td>
         </tr>
         <tr id="modification-time">
           <td>Modified</td>
-          <td>16 December 2014</td>
+          <td id="modifiedAt">-</td>
         </tr>
         <tr id="owner">
           <td>Size</td>
-          <td>116 Kb</td>
+          <td id="fileSize">-</td>
         </tr>
       </tbody>
     </table>
-    <span class="panel-title">Share link</span>
-    <span class="share-link">http://localhost:3000/user/documents?folder=0http://localhost:3000/user/documents?folder=0</span>
   </div>
 
 
 
 </div>
 
+<div id="file-informations">
+	</div>
 
 

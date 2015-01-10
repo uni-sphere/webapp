@@ -58,6 +58,7 @@ Lms::Application.routes.draw do
   get '/user/document/download', to: 'simpledocuments#download', as: 'download_user_document'
   get '/user/document/show', to: 'simpledocuments#show', as: 'show_user_file'
   get '/user/document/arianewire', to: 'simpledocuments#ariane_wire', as: 'get_document_ariane_wire'
+  get '/user/document/previousfolder', to: 'simpledocuments#previous_folder', as: 'get_user_previous_folder'
   
   post '/user/file/upload', to: 'simpledocuments#upload_file', as: 'upload_user_file'
   post 'user/create_folder', to: 'simpledocuments#create_folder', as: 'create_user_folder'

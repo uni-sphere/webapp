@@ -1,7 +1,5 @@
 Lms::Application.configure do
   
-  config.lograge.enabled = true
-  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

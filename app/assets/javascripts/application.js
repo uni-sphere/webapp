@@ -22,5 +22,6 @@
 //= require bootstrap-tokenfield
 //= require bootstrap-sprockets
 //= require gravtastic
+//= require rails-timeago
 //= require_tree .
 
