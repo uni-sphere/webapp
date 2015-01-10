@@ -1,28 +1,29 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="hidden"><%= notice %></p>
 
 <!-- <iframe src="https://app.box.com/embed_widget/files/0/f/0?theme=gray" width="1200" height="600" frameborder="0" allowfullscreen="allowfullscreen"></iframe> -->
+<div class="first-row"></div>
+<div class="main-page">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Show all', users_path %> |
+  <%= link_to 'Calendars', user_calendars_path(@user) %> |
+  <%= link_to 'Groups', user_groups_path(@user) %> |
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'notif', user_notifications_path(@user) %>
+  </br>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Show all', users_path %> |
-<%= link_to 'Calendars', user_calendars_path(@user) %> |
-<%= link_to 'Groups', user_groups_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'notif', user_notifications_path(@user) %>
-</br>
+  <%= link_to 'oauth', send_oauth_path %> |
+  <%= link_to 'show docs', get_user_documents_path(folder: '0' ) %>
+  <!-- <div id="box"></div> -->
+</div>
 
-<%= link_to 'oauth', send_oauth_path %> |
-<%= link_to 'show docs', get_user_documents_path(folder: '0' ) %>
-<!-- <div id="box"></div> -->
-
-<div id="huge"></div>

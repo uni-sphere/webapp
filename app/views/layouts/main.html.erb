@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <title>   <%= full_title(yield(:title)) %>    </title>
+  <%= stylesheet_link_tag "main", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "main", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <div class="wrapper row row-offcanvas row-offcanvas-left">
+    <%= render 'layouts/sidebar' %>
+    <div class="column col-md-2"></div>
+    <div class="column col-md-10 col-sm-10 col-xs-11 main-page">
+      <div class="" role="navigation" id="navbar">
+        <%= render 'layouts/navbar' %>
+      </div>
+      <main> 
+        <%= yield %>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+

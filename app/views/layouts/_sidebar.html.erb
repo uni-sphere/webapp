@@ -1,12 +1,10 @@
 <div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-  <div class="column col-sm-1 hidden-small" id="sidebar-padding">
-  </div>
 
   <ul class="nav visible-small" data-no-turbolink id="chevron">
     <li><a href="#" data-toggle="offcanvas" class="text-center visible-small"><i id="chevron-class" class="fa fa-chevron-right" ></i></a></li>
   </ul>
 
-  <div class="column col-sm-11 row-offcanvas" id="sidebar-main-wrapper">
+  <div class="row-offcanvas">
 
     <div id="tabs-default" class="hidden-small">
       <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-7 tab #{url_perso?}" %>

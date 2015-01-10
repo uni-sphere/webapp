@@ -1,28 +1,48 @@
 @import "var";
 
-// -----------------------------
-// General sidebar configuration
-// -----------------------------
 
-#sidebar{
-  // background: red;
-  padding:0;
-  // position: fixed;
-  z-index: 5;
 
-  .sidebar-fixed{
-    position: fixed !important;
+.row-offcanvas{
+  height: calc(100% - 25px);
+}
+// ------------------
+// Tabs configuration
+// ------------------
+
+#tabs-default{
+  height: 25px; 
+
+  background: white; 
+  
+  .tab{
+    padding-top: 2px !important;
+    width: calc( 50% + 6px );
+
+    background: $violet-light;
+    color: white;
+
+    border-radius: 20px 20px 0 0;
+
+    list-style: none;
+    outline: none;
+
+    &.active, &.active:hover{
+      z-index: 1;
+
+      background: $violet-background;
+      color: white;
+
+      cursor: default;
+    }
+    &:hover{
+      background: $tab-hover-bg;
+      color: $tab-hover-color;
+      text-decoration: none;
+    }
   }
-}
-
-#sidebar-padding{
-  padding:0;
-  background: $violet-background;
-  // z-index: 990;
-}
-
-#sidebar-main-wrapper{
-  padding:0;
+  .offset-margin{
+    margin-left: -12px !important;
+  }
 }
 
 // --------------------------------------------------
@@ -33,11 +53,15 @@
   float: left;
 
   width: 100%;
-  height: calc(100vh - 30px); 
+  height: 100%;
+  // height: calc(100vh - 35px); 
 
   margin-bottom: 0;
   padding-bottom: 0;
 
+  border-left: solid 2px $violet-background;
+  border-bottom: solid 2px $violet-background;
+  border-bottom-left-radius: 20px;
   // border-right: solid 1px $panel-separator-bg;
 
   a, & {color: $violet-writing;}
@@ -49,7 +73,6 @@
 
     padding-top: 10px;
     margin-right: 12px;
-    margin-left: 12px;
 
     .panel-heading{
       height: 50px;
@@ -76,9 +99,10 @@
 }
 
 #platform-choice{
-  background: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  background: $violet-background;
+  &, a{color: white;}
+  height: 25px;
+  padding-top: 2px;
   a:hover{
     text-decoration: none;
   }
@@ -145,7 +169,7 @@
       clear: left;
 
       margin-left: 5px;
-      
+
       color: $grey-edit;
     }
   }
@@ -356,50 +380,7 @@
 
 
 
-// ------------------
-// Tabs configuration
-// ------------------
 
-#tabs-default{
-  height: 30px; 
-
-  padding-top: 5px;
-
-  background: $violet-background; 
-  
-  .tab{
-    width: calc( 50% + 6px );
-
-    padding-top: 2px;
-
-    background: $violet-light;
-    color: white;
-
-    border-radius: 20px 20px 0 0;
-
-    font-size: 13px;
-    list-style: none;
-    outline: none;
-    text-align:center;
-
-    &.active, &.active:hover{
-      z-index: 9;
-
-      background: white;
-      color: $violet-writing;
-
-      cursor: default;
-    }
-    &:hover{
-      background: $tab-hover-bg;
-      color: $tab-hover-color;
-      text-decoration: none;
-    }
-  }
-  .offset-margin{
-    margin-left: -13px;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .hidden-small{

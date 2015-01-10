@@ -11,16 +11,9 @@ var breadcrumb = {
 	renderBreadcrumb: function() {
 		// localStorage.clear();
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
-		// console.log('renderBreadcrumb');
-		// console.log(localStorage.length);
-		for( var i = 0 ; i<localStorage.length ; i++ ) {
-			var element = localStorage[i + 'breadcrumb'];
-			// console.log(i);
-			if ( localStorage.key(i).search('breadcrumb') > 0 ) {
-				console.log(i);
-				element = JSON.parse(element);
-				$('#breadcrumb').append(' > <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + localStorage.key(i).charAt(0) + '>' + element.name + '</a> ')
-			}
+		for( var i = 0 ; i<localStorage.length-1 ; i++ ) {
+			var element = JSON.parse(localStorage[i + 'breadcrumb']);
+			$('#breadcrumb').append(' > <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> ')
 		}
 	},
 	
@@ -33,8 +26,8 @@ var breadcrumb = {
 	redirect: function() {
 		console.log('redirect');
 		localStorage['lastIndex'] = breadcrumb.target.attr('breadcrumb_id');
-		for( var i = breadcrumb.target.attr('breadcrumb_id') + 1; i<localStorage.length ; i++ ){
-			localStorage.removeItem(localStorage.key(i));
+		for( var i = localStorage['lastIndex'] + 1; i<localStorage.length-1 ; i++ ){
+			localStorage.removeItem(localStorage[ i + 'breadcrumb']);
 		}
 	},
 	
@@ -44,7 +37,8 @@ var breadcrumb = {
 			breadcrumb.target = $(this);
 			breadcrumb.fillBreadcrumb()
 		});
-		$('#breadcrumb').on('click', function() {
+		
+		$('#breadcrumb').children('a').on('click', function() {
 			breadcrumb.target = $(this);
 			console.log('target:');
 			console.log(breadcrumb.target);

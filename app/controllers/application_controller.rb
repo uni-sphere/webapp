@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   before_action :set_datas, only: [:index_notification]
   before_action :index_notification
   
-  layout "general", except: [:sessions]
+  layout "main"
+  
   def set_datas
     @groups = current_user.groups.all.select(:id)
   end

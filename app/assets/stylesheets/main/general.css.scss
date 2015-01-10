@@ -1,0 +1,205 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+@import "var";
+
+/* custom template */
+body {
+  // height: 100%;
+  font-family: 'Ubuntu',sans-serif;
+  font-size: 13px !important;
+  color:#555555;
+  text-align: center;
+  // background: white;
+}
+
+
+.row, .column{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wrapper{
+  position: absolute;
+  height: calc(100% - 10px);
+  left: 0px;
+  right: 0px;
+  top: 5px;
+}
+
+#sidebar{
+  position: fixed;
+  z-index: 1;
+  height: calc(100% - 10px);
+  padding-left: 10px !important;
+}
+
+.main-page {
+  // position: relative;
+  // position: absolute;
+  // right: 20px;
+
+  // background: green;
+
+  // height: 500px;
+
+  // height: 500px;
+  // height: calc( 100% - 40px );
+  // width: calc(100% -20px);
+
+  // margin: 0;
+  // padding: 0;
+  // margin-top: 30px;
+  // padding-left: 20px;
+
+  // border-right: solid 2px $violet-background;
+  // border-bottom: solid 2px $violet-background;
+  // border-top-right-radius: 20px;
+  // border-bottom-right-radius: 20px;
+}
+
+
+
+#navbar {
+  position: fixed !important;
+  // position: absolute;
+  top: 0px;
+  margin-right: 4px;
+  width: calc(5/6 * 100% - 5px);
+  // width:100%;
+
+
+  z-index: 40;
+
+  height: 30px;
+
+  background: white;
+  // background: blue;
+  color: $violet-writing;
+}
+
+main{
+  width: calc(100% - 5px);
+  height: calc(100% - 25px);
+
+  margin-top: 25px;
+
+  background: $grey-test;
+
+
+  .first-row{
+    position: fixed !important;
+    top: 30px;
+
+    width: calc(5/6 * 100% - 10px);
+    height: 30px;
+
+    background: $violet-background;
+    border-top-right-radius: 20px;
+    
+  }
+  .main-page{
+    position: fixed !important;
+    top: 0;
+
+    width: calc(5/6 * 100% - 10px);
+    height: calc(100% - 60px);
+
+    margin-top: 55px;
+
+    background: $grey-test;
+    border-right: solid 2px $violet-background;
+    border-bottom: solid 2px $violet-background;
+    border-bottom-right-radius: 20px;
+  }
+}
+// .first-row{
+//   float: left;
+//   // ici
+
+//   height: 40px;
+//   width: 100%;
+
+//   background: $violet-background;
+//   color: white;
+//   }
+
+.slide-left{
+  left: 33%;
+}
+
+
+
+
+// .wrapper:after,
+// .column:after {
+//     clear: both;
+// }
+
+
+// Override bootstrap
+.column {
+    height: 100%;
+}
+
+
+/* bootstrap overrides */
+
+// h1,h2,h3 {
+//    font-weight:800;
+// }
+
+
+// .btn-primary,.label-primary,.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus  {
+// 	background-color:#3B5999;
+//     color:#fffffe;
+// }
+
+// .btn-default {
+//     color:#666666;
+//     text-shadow:0 0 1px rgba(0,0,0,.3);
+// }
+
+
+// .panel textarea, .well textarea, textarea.form-control
+// {
+//    resize: none;
+// }
+  
+// .jumbotron {
+//   background-color:transparent;
+// }
+// .label-default {
+//   background-color:#dddddd;
+// }
+
+// .panel-default .panel-heading {
+//   background-color:#f9fafb;
+//   color:#555555;
+// }
+
+// .col-sm-9.full {
+//     width: 100%;
+// }
+
+
+// small.text-muted {
+//   font-family:courier,courier-new,monospace;
+// }
+
+// /* adjust the contents on smaller devices */
+// @media (max-width: 768px) {
+
+//   .column .padding {
+//     padding: 7px;
+//   }
+
+//   .full{
+// 	padding-top:20px;
+//   }
+
+// }
+

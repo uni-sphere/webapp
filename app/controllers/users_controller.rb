@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  layout "main", except: [:new, :create]
+
   before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving]
   before_filter :not_authenticate?, only: [:new, :create]
   before_filter :is_admin?, only: [:destroy]
@@ -10,7 +12,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    # render layout: "application"
   end
   
   def create

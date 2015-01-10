@@ -1,4 +1,4 @@
-<div class="top-fixed" role="navigation" id="navbar">
+
   <div class="navbar-wrapper">
 
     <div id="logo-wrapper">
@@ -9,7 +9,7 @@
     <ul id="notification-wrapper" >
 
       <li class="dropdown">
-				<span name="<%= current_user.id %>" class="current_user" ></span>
+				<span name="<%= current_user.id %>" class="current_user"></span>
         <a data-toggle="dropdown" class="dropdown-toggle" id="notifications" href="#">
           <% if notification_exists? == true %>
             <%= fa_icon("bell", class: "notification") %>
@@ -87,5 +87,5 @@
     </div>
 
   </div>
-</div>
+
 

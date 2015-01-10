@@ -23,5 +23,6 @@
 //= require bootstrap-sprockets
 //= require gravtastic
 //= require rails-timeago
-//= require_tree .
+//= require_tree ./main
+
 

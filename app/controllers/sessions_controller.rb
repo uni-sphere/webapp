@@ -8,10 +8,10 @@ class SessionsController < ActionController::Base
   before_filter :authenticate?, only: [:destroy]
   skip_before_filter :verify_authenticity_token, only: [:create]
 
-  # layout "sign-in"
+  layout "sessions"
   
   def new
-    # render layout: "sign-in"
+  
   end
 
   def create

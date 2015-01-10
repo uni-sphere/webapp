@@ -1,56 +1,37 @@
 @import "var";
 
-
-#navbar {
-  position: fixed !important;
-  top: 0;
-  z-index: 10;
-
-  height: 30px;
-  width: inherit !important;
-
-  background: $side-bg ;
-
-  color: #ffffff;
-}
-
-.top-fixed {
-  right: 1px;
-}
-
-.top-relative {
-  left: 33%;
-}
+// -----------------------
+// Left: notifications
+// -----------------------
 
 #notification-wrapper {
   position: fixed;
 
   padding: 0;
   margin-left: 50px;
-  margin-top: 1px;
+  margin-top: 3px !important;
+
+  line-height: 18px;
 
   .dropdown {
     display: inline-block;
 
     width: 40px;
 
-    line-height: 25px;
+    
 
     .dropdown-toggle {
       vertical-align: middle;
 
-      background: $notif-bg;
+      background: white;
 
-      color: $notif-color;
+      color: $violet-background;
       font-size: 16px;
 
-      i:hover {
+      i:hover, &.i:active{
         font-size: 18px;
       }
 
-      &.i:active {
-        font-size: 18px;
-      }
     }
   }
 
@@ -67,113 +48,6 @@
     font-size: 10px;
     text-shadow: none;
   }
-}
-
-#logo-wrapper {
-  position: fixed;
-
-  margin-left: 40%;
-
-  margin-top : 2px;
-}
-
-#user-deco {
-  position: fixed;
-  right: 50px;
-
-  padding-top: 4px;
-
-  :active, :focus {
-    outline: none;
-  }
-
-  .user-name {
-    color: white;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  // &.active:after {  //   border-color: #82d1ff transparent;
-  // }
-  .deco {
-    margin-left: 15px;
-
-    // border-color: #82d1ff transparent;
-    color: white;
-  }
-}
-
-#navbar-right {
-  display: inline-block;
-
-  // background: blue;
-  padding-top: 0;
-  margin-right: 50px;
-
-  li {
-    float: left;
-  }
-
-  a {
-    display: inline-block;
-
-    overflow: hidden;
-    padding: 1px 5px 6px 5px;
-    margin: 2px 2px 2px 7px;
-    border-style: none;
-
-    background: $button-bg;
-
-    color: $button-color;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-
-  a::after {
-    position: absolute;
-    top: 82%;
-    right: 0px;
-
-    width: 90%;
-
-    background: white;
-
-    content: '';
-  }
-
-  a:hover::after,  a:focus::after {
-    height: 3px;
-  }
-
-  :hover, :focus {
-    outline: none;
-  }
-}
-
-.modal-header, .modal-footer {
-  background-color: #f2f2f2;
-
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.modal-footer i, .well i {
-  color: #c0c0c0;
-  font-size: 20px;
-}
-
-.modal-body {
-  padding: 0px;
-}
-
-.modal-body textarea.form-control {
-  border: 0;
-
-  box-shadow: 0 0 0;
-
-  resize: none;
 }
 
 .dropdown-menu.extended {
@@ -221,6 +95,7 @@
     font-size: 11px;
   }
 }
+
 
 .dropdown-menu.extended li {
   p {
@@ -291,9 +166,65 @@
   border-color: transparent transparent #68dff0;
   border-top-color: #68dff0 !important;
 }
+// ------------------
+// Middle logo
+// ------------------
+
+#logo-wrapper {
+  position: fixed;
+  font-size: 18px;
+
+  margin-left: 40%;
+
+  // margin-top : 2px !important;
+}
 
 
-// Config for little screens
+// -------------------
+// Right: user & deco
+// --------------------
+
+
+#user-deco {
+  position: fixed;
+  right: 50px;
+
+  padding-top: 6px;
+
+  :active, :focus {
+    outline: none;
+  }
+
+  .user-name {
+    color: $violet-writing;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // &.active:after {  //   border-color: #82d1ff transparent;
+  // }
+  .deco {
+    margin-left: 15px;
+
+    // border-color: #82d1ff transparent;
+    color: $violet-background;
+  }
+}
+
+
+// -----------------------
+//   mobile stuff
+// -----------------------
+.top-fixed {
+  right: 1px;
+}
+
+.top-relative {
+  left: 33%;
+}
+
 @media screen and (max-width: 768px) {
   #navbar {
     right: 0;
@@ -340,3 +271,28 @@
 
   }
 }
+
+
+// .modal-header, .modal-footer {
+//   background-color: #f2f2f2;
+
+//   font-size: 12px;
+//   font-weight: 800;
+// }
+
+// .modal-footer i, .well i {
+//   color: #c0c0c0;
+//   font-size: 20px;
+// }
+
+// .modal-body {
+//   padding: 0px;
+// }
+
+// .modal-body textarea.form-control {
+//   border: 0;
+
+//   box-shadow: 0 0 0;
+
+//   resize: none;
+// }
