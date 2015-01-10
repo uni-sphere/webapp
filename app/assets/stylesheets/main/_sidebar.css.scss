@@ -68,35 +68,28 @@
   background: $grey-test;
   
 
-  .fake-panel{
-    width: calc( 100% - 24px );
+  // .fake-panel{
+  //   width: calc( 100% - 24px );
 
-    padding-top: 10px;
-    margin-right: 12px;
+  //   padding-top: 10px;
+  //   margin-right: 12px;
 
-    .panel-heading{
-      height: 50px;
+    
+  //   .panel-body{
 
-      padding: 0;
-      padding-left: 19px;
+  //     // background: blue;
+  //     padding: 9px;
 
-      // background: $grey-background;
-      // color: $violet-writing;
-
-    }
-    .panel-body{
-
-      // background: blue;
-      padding: 9px;
-
-      li a:hover{background: white;}
-    }
+  //     li a:hover{background: white;}
+  //   }
 
     // border: solid 1px $violet-writing;
     // box-shadow: -3px 3px 2px $violet;
     // border-left:none;
-  }
+  // }
 }
+
+
 
 #platform-choice{
   background: $violet-background;
@@ -148,59 +141,30 @@
     overflow: hidden;         //prevent the text from being shown outside the border
     text-overflow: ellipsis;  //cut off text with an elipsis
   }
-  
-  .name-and-edit{
-    float: left;
+}
 
-    height: 100%;
-    width: calc(100% - 50px);
+.lateral-nav{
+  // background: red;
 
-    padding-left: 10px;
-    padding-top: 5px;
-    
-    span{
-      float: left;
-    }
+  text-align: left;
+  li a{
+    margin:3px 0px;
+    padding: 0;
+    padding-left: 9px;
 
-    .full-name-user{
-    }
+    white-space: nowrap;      //keep the text on one line
+    overflow: hidden;         //prevent the text from being shown outside the border
+    text-overflow: ellipsis;  //cut off text with an elipsis
 
-    .label-edit{
-      clear: left;
-
-      margin-left: 5px;
-
-      color: $grey-edit;
+    border-left: solid 2px $grey-test;
+    &:hover, &.active li a{
+      border-left: solid 2px $violet-writing;
+      background: $grey-test;
     }
   }
-
-  .edit-profile{
-    &:hover{
-      .label-edit{text-decoration: underline;}
-    }
-  }
-  
-  #nav-group{
-    text-align: left;
-    li a{
-      margin:3px 0px;
-      padding: 0;
-      padding-left: 9px;
-
-      white-space: nowrap;      //keep the text on one line
-      overflow: hidden;         //prevent the text from being shown outside the border
-      text-overflow: ellipsis;  //cut off text with an elipsis
-
-      border-left: solid 2px $grey-test;
-      &:hover, &.active li a{
-        border-left: solid 2px $violet-writing;
-        background: $grey-test;
-      }
-    }
-    .fa{
-      margin-right: 4px;
-      width: 17px;
-    }
+  .fa{
+    margin-right: 4px;
+    width: 17px;
   }
 }
 

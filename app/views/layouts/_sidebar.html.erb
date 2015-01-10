@@ -72,18 +72,7 @@
            
           </div>
         <% elsif  %>
-        <div id="active-group" class="fake-panel">
-          <div class="panel-heading heading-perso">
-            <%= link_to root_path, class: "edit-profile" do %>
-              <%= image_tag "group-pic.png", class: "group-pic"%>
-              <div class="name-and-edit">
-                <span class="full-name-user"><%= current_user.name %></span>
-                <span class="label-edit">Edit</span>
-              </div>
-            <% end %>
-          </div>
-
-          <div class="panel-body" id="nav-group">
+          <div class="lateral-nav" id="nav-perso">
             <ul class="nav">
               <li>
               <%= link_to (get_user_documents_path(folder: '0' )) do %>
@@ -95,7 +84,6 @@
               <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
             </ul>
           </div>
-        </div>
         <% end %>
 
 
