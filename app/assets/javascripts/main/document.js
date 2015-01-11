@@ -1,8 +1,8 @@
 
 var dragged,
-	dropped,
-	item,
-	url;
+dropped,
+item,
+url;
 
 var breadcrumb = {
 	
@@ -26,9 +26,11 @@ var breadcrumb = {
 	redirect: function() {
 		console.log('redirect');
 		localStorage['lastIndex'] = breadcrumb.target.attr('breadcrumb_id');
-		for( var i = parseInt(localStorage['lastIndex']) + 1; i<localStorage.length ; i++ ){
+		for( var i = parseInt(localStorage['lastIndex']) + 1; i<localStorage.length+1 ; i++ ){
 			console.log(i);
-			localStorage.removeItem(i + 'breadcrumb');
+			if (typeof localStorage[i + 'breadcrumb'] != 'undefined') {
+				localStorage.removeItem(i + 'breadcrumb');
+			}
 		}
 	},
 	
@@ -45,6 +47,8 @@ var breadcrumb = {
 			console.log(breadcrumb.target);
 			breadcrumb.redirect()
 		});
+		
+		$('.power-off').on('click', function() { localStorage.clear() })
 	}
 	
 };
@@ -127,12 +131,12 @@ var dragAndDrop = {
 	
 	init: function(url) {
 		
-  	$('.dragAndDrop').draggable(this.dragOptions);
+		$('.dragAndDrop').draggable(this.dragOptions);
 		$('.dragAndDrop').droppable(this.dropOptions);
 		
 		$('.dragAndDrop').on("dragover", this.fdragOver );
- 		$('.dragAndDrop').on("dragstart", this.fdragStart );
-  	$('.dragAndDrop').on("dragstop", this.fdragStop );
+		$('.dragAndDrop').on("dragstart", this.fdragStart );
+		$('.dragAndDrop').on("dragstop", this.fdragStop );
 		$('.dragAndDrop').on('drop', this.fdrop )
 	}
 };
@@ -170,8 +174,8 @@ var readGroupFile = {
 					alert(JSON.stringify(response));
 					for (key in response) {
 						if (response.hasOwnProperty(key)) {
-					  	$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
-					  }
+							$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
+						}
 					}
 				}
 			});
@@ -220,8 +224,11 @@ var rename = {
 		
 		if (rename.docType == 'file') {
 			var nameWithFormat = renameInput.attr("value");
+			console.log('with:' + nameWithoutFormat);
 			var nameWithoutFormat = nameWithFormat.slice(0, nameWithFormat.lastIndexOf('.'));
+			console.log('without:' + nameWithoutFormat);
 			rename.format = nameWithFormat.slice(nameWithFormat.lastIndexOf('.'), nameWithFormat.length);
+			console.log('format:' + rename.format);
 		}
 		
 		renameInput.attr("value", nameWithoutFormat);
@@ -239,9 +246,11 @@ var rename = {
 				name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 				box_id: $(this).parent().attr('document_id'),
 				type: rename.docType
+			},
+			success: function() {
+				renameInput.attr("value", renameInput.val() + rename.format);
 			}
 		});
-		
 		(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
 		renameInput.addClass('hidden');
 			
@@ -260,6 +269,9 @@ var rename = {
 						name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 						box_id: $(this).parent().attr('document_id'),
 						type: rename.docType
+					},
+					success: function() {
+						renameInput.attr("value", renameInput.val() + rename.format);
 					}
 				});
 			
@@ -271,7 +283,7 @@ var rename = {
 	}
 };
 
-main = function() {
+mainDocument = function() {
 	breadcrumb.init();
 	
 	// selectable.init();
@@ -287,7 +299,7 @@ main = function() {
 };
 
 $(document).on('ready page:load', function() {
-	main();
+	mainDocument();
 });
 
 

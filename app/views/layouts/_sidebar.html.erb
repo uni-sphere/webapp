@@ -74,14 +74,14 @@
         <% elsif  %>
           <div class="lateral-nav" id="nav-perso">
             <ul class="nav">
-              <li>
+              <li id="perso-folder">
               <%= link_to (get_user_documents_path(folder: '0' )) do %>
                 <%= fa_icon("folder-open") %>
-                Folder
+          			Folder
               <% end %>
               </li>
-              <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
-              <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
+              <li><a href="#"><i class="fa fa-wechat"></i>Chat</a></li>
+              <li><a href="#"><i class="fa fa-calendar"></i>Calendar</a></li>
             </ul>
           </div>
         <% end %>
