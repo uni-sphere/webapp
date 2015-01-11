@@ -78,6 +78,7 @@ GEM
     momentjs-rails (2.8.3)
       railties (>= 3.1)
     multi_json (1.10.1)
+    mysql (2.9.1)
     nav_link_to (0.0.4)
     netrc (0.7.9)
     nokogiri (1.6.4.1)
@@ -193,6 +194,7 @@ DEPENDENCIES
   jquery-ui-rails
   mime-types
   momentjs-rails
+  mysql
   nav_link_to
   netrc
   paperclip

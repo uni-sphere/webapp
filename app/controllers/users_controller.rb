@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 
+  before_filter :prepare_for_mobile, :only => [:show]
+  
   layout "main", except: [:new, :create]
+
+  # before_filter :check_for_mobile, :only => [:new, :edit]
 
   before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving]
   before_filter :not_authenticate?, only: [:new, :create]
