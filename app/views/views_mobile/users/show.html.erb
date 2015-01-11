@@ -1,0 +1,22 @@
+<p id="notice" class="hidden"><%= notice %></p>
+
+<!-- <iframe src="https://app.box.com/embed_widget/files/0/f/0?theme=gray" width="1200" height="600" frameborder="0" allowfullscreen="allowfullscreen"></iframe> -->
+<div class="first-row"></div>
+<div class="main-page">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+
+
+  <%= link_to 'oauth', send_oauth_path %> |
+  <%= link_to 'show docs', get_user_documents_path(folder: '0' ) %>
+  <!-- <div id="box"></div> -->
+</div>
+
