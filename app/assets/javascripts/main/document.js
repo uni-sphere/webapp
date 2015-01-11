@@ -284,6 +284,7 @@ var rename = {
 };
 
 mainDocument = function() {
+	
 	breadcrumb.init();
 	
 	// selectable.init();
@@ -296,6 +297,7 @@ mainDocument = function() {
 	
 	autoSubmitUpload.init();
 	rename.init();
+	
 };
 
 $(document).on('ready page:load', function() {
