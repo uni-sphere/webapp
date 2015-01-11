@@ -1,129 +1,69 @@
-<div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-
-  <ul class="nav visible-small" data-no-turbolink id="chevron">
-    <li><a href="#" data-toggle="offcanvas" class="text-center visible-small"><i id="chevron-class" class="fa fa-chevron-right" ></i></a></li>
-  </ul>
-
-  <div class="row-offcanvas">
-
-    <div id="tabs-default" class="hidden-small">
-      <%= link_to 'Perso', user_path(current_user) , class: "column col-sm-7 tab #{url_perso?}" %>
-      <%= link_to 'Groups', user_groups_path(current_user), class: "column col-sm-7 tab offset-margin #{url_groups?} groups-tab-link"%>
-    </div>
 
 
-    <div id="content-wrapper">
-
-      <ul class="visible-xs hidden-small container-fluid" id="tabs-small">
-        <li class="column col-xs-6"><a href="/"><i class="fa fa-child"></i><span>Perso</span></a></li>
-        <li class="column col-xs-6"><a href="/"><i class="fa fa-group"></i><span>Group</span></a></li>
-      </ul>
-
-      <ul class="nav visible-xs visible-small" id="tabs-small-toggle">
-        <li><a href="/"><i class="fa fa-child"></i></a></li>
-        <li><a href="/groups"><i class="fa fa-group"></i></a></li>
-      </ul>
-
-      <div class="hidden-small" id="tabs-perso-groups">
-        <div id="platform-choice">
-          <span class="unifolder"><i class="fa fa-folder-open"></i>Unifolder</span>
-          <a href="#"><span class="unilib"><i class="fa fa-graduation-cap"></i>Unilib</span>
-        </div>
-        <% if request.url =~ /groups(.*)/ %>
-          <% if current_group_exists? %>
-            <div id="active-group" class="panel panel-default">
-                <div class="panel-heading">
-                  <%= image_tag "group-pic.png", class: "group-pic"%>
-                  <span class="group-name">Grid computing</span>
-                </div>
-
-                <div class="panel-body" id="nav-group">
-                  <ul class="nav">
-                    <%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
-                    <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
-                    <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
-                  </ul>
-                </div>
-            </div>
-          <%end%>
-
-          <div id="list-groups-wrapper" class="panel panel-default">
-            
-              <div class="panel-heading">
-                <span> Groups </span>
-              </div>
-              <div class="panel-body">
-                <ul class="nav" id="list-groups">
-                  <% current_groups.each do |group| %>
-                    <li>
-                      <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "groups-links" do %>
-                        <%= image_tag "group-pic.png" %>
-                        <span class="name-group"> <%= group.name %></span>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-                <div class="line-separator"></div>
-                <a href="#groups-search" id="more-groups" data-toggle="modal">
-                  <span class="fa fa-plus"></span>
-                  <span class="ellipsis">See all groups</span>
-                </a>
-              </div>
-           
-          </div>
-        <% elsif  %>
-          <div class="lateral-nav" id="nav-perso">
-            <ul class="nav">
-              <li>
-              <%= link_to (get_user_documents_path(folder: '0' )) do %>
-                <%= fa_icon("folder-open") %>
-                Folder
-              <% end %>
-              </li>
-              <li><a href="#"><i class="fa fa-wechat"></i>chat</a></li>
-              <li><a href="#"><i class="fa fa-calendar"></i>calendar</a></li>
-            </ul>
-          </div>
-        <% end %>
-
-
-        
-      </div>
-
-      <ul class="nav visible-small" id="sidebar-small" >
-        <li><a href="#"><i class="fa fa-folder-open"></i></a></li>
-        <li><a href="#"><i class="fa fa-wechat"></i></a></li>
-        <li><a href="#"><i class="fa fa-calendar"></i></a></li>
-      </ul>
-
-      <ul class="nav visible-small" id="group-choice-small" >
-        <li><a href="#"><i class="fa fa-sort"></i></a></li>
-      </ul>
-    </div>
-
-  </div>
+<div id="tabs-container">
+  <%= link_to 'Perso', user_path(current_user) , class: "tab #{url_perso?}", id: "tab-perso" %>
+  <%= link_to 'Groups', user_groups_path(current_user), class: "tab #{url_groups?}", id: "tab-group" %>
 </div>
 
 
-<div id="groups-search" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        Personal Todo list 
-      </div>
-      <div class="modal-body">
-        <form class="form center-block">
-          <div class="form-group">
-            <textarea class="form-control input-lg" autofocus="" placeholder="Keep your thoughts in a safe place.."></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Save</button>
-      </div>
-    </div>
+<div id="content-wrapper">
+
+  <div id="sidebar-first-row"></div>
+  <div id="platform-choice">
+    <!-- <span class="unifolder"><i class="fa fa-folder-open"></i>Unifolder</span>
+    <a href="#"><span class="unilib"><i class="fa fa-graduation-cap"></i>Unilib</span> -->
   </div>
+
+  <!-- ----------------------------- -->
+  <!-- ------ GROUP sidebar -------- -->
+  <!-- ----------------------------- -->
+
+  <% if request.url =~ /groups(.*)/ %>
+    <% if current_group_exists? %>
+      <div id="active-group-nav" class="lateral-nav">
+        <ul>
+          <%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
+          <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
+          <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
+        </ul>
+      </div>
+    <%end%>
+
+    <div id="groups-nav" class="lateral-nav">
+      <ul>
+        <% current_groups.each do |group| %>
+          <li>
+            <%= link_to user_group_calendar_path(current_user, group, group.calendar) do %>
+              <%= image_tag "group-pic.png" %>
+              <span class="name-group"> <%= group.name %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="line-separator"></div>
+      <a href="#groups-search" id="more-groups" data-toggle="modal">
+        <i class="fa fa-plus"></i>See all groups
+      </a>
+    </div>
+
+  <!-- ----------------------------- -->
+  <!-- ------ PERSO sidebar -------- -->
+  <!-- ----------------------------- -->
+
+  <% elsif  %>
+    <div class="lateral-nav" id="nav-perso">
+      <ul>
+        <li>
+        <%= link_to (get_user_documents_path(folder: '0' )) do %>
+          <%=fa_icon("folder-open")%>Folder
+        <% end %>
+        </li>
+        <li><a href="#"><i class="fa fa-wechat"></i>Chat</a></li>
+        <li><a href="#"><i class="fa fa-calendar"></i>Calendar</a></li>
+      </ul>
+    </div>
+  <% end %>
+
 </div>
 
 
