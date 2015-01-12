@@ -61,9 +61,6 @@ class SimpledocumentsController < ApplicationController
     }
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
-      logger.info '555555555555'
-      logger.info response
-      logger.info '555555555555'
       check_request_success(response, "upload file")
     }
     redirect_to get_user_documents_path(folder: params[:folder])
@@ -86,11 +83,10 @@ class SimpledocumentsController < ApplicationController
     params[:type] == "folder" ? @box_object = 'folders' : @box_object = 'files'
     
     box_content_resources[:basic]["#{@box_object}/#{params[:box_id]}"].delete(params: {recursive: true}) { |response, request, result, &block|
-      logger.info response
+      @response = response.code
       check_request_success(response, "destroy")
     }
-    
-    redirect_to get_user_documents_path(folder: params[:folder])
+    render json: @response  
   end
   
 

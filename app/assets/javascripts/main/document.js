@@ -7,20 +7,26 @@ url;
 var breadcrumb = {
 	
 	target: null,
+	timeDown: null,
 	
 	renderBreadcrumb: function() {
 		// localStorage.clear();
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
-		for( var i = 0 ; i<localStorage.length-1 ; i++ ) {
+		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
 			$('#breadcrumb').append('> <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> ')
 		}
 	},
 	
 	fillBreadcrumb: function() {
-		console.log('fillBreadcrumb');
-		localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])+1 || 1;
-		localStorage[localStorage['lastIndex'] + 'breadcrumb'] = JSON.stringify({'name': breadcrumb.target.attr('name'), 'box_id': breadcrumb.target.attr('document_id')});
+		breadcrumb.timeDown = new Date().getTime();
+		breadcrumb.target.on('mouseup', function() {
+			if (new Date().getTime()-breadcrumb.timeDown < 500) {
+				console.log('fillBreadcrumb');
+				localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])+1 || 1;
+				localStorage[localStorage['lastIndex'] + 'breadcrumb'] = JSON.stringify({'name': breadcrumb.target.attr('name'), 'box_id': breadcrumb.target.attr('document_id')});
+			}
+		})
 	},
 	
 	redirect: function() {
@@ -36,7 +42,7 @@ var breadcrumb = {
 	
 	init: function() {
 		breadcrumb.renderBreadcrumb();
-		$('.dragAndDrop').on('click', function() {
+		$('.dragAndDrop').on('mousedown', function() {
 			breadcrumb.target = $(this);
 			breadcrumb.fillBreadcrumb()
 		});
@@ -93,6 +99,7 @@ var dragAndDrop = {
 	// functions
 	
 	fdragOver: function( event, ui ) {
+		console.log($(event.target));
 		$(event.target).children('a').css('background-color',"blue");
 	},
 
@@ -283,6 +290,28 @@ var rename = {
 	}
 };
 
+var trash = {
+	init: function() {
+		$('.perso-trash').on('click', function() {
+			var doc = $(this).parent().parent().children('.dragAndDrop');
+			$.ajax({
+				url: 'http://localhost:3000/user/document/delete',
+				type:"DELETE",
+				data: {
+					folder: doc.attr('folder'),
+					box_id: doc.attr('document_id'),
+					type: doc.attr('item')
+				},
+				complete: function(data) {
+					if (data.responseJSON == 204) {
+						doc.parent('.box_document').remove()
+					}
+				}
+			});
+		})
+	}
+}
+
 mainDocument = function() {
 	
 	breadcrumb.init();
@@ -298,6 +327,7 @@ mainDocument = function() {
 	autoSubmitUpload.init();
 	rename.init();
 	
+	trash.init();
 };
 
 $(document).on('ready page:load', function() {
