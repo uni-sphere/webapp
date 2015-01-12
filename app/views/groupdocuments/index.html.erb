@@ -1,47 +1,141 @@
-<h1>Listing documents</h1>
+<div id="container-group-storage">
 
-	<%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
-	  <%= file_field_tag :file, id: 'file_field' %>
-	  <%= submit_tag "upload", id: 'upload_button', class: 'hidden' %>
-	<% end %>
-	
-	<table class="container">
-	  <thead>
-	    <tr>
-	      <th>files</th>
-	    </tr>
-	  </thead>	
+	<div class="first-row" id="breadcrumb-seachbar">
+   <!--  <div id="breadcrumb" folder_id="<%= params[:folder] %>" >
+    </div> -->
 
-	  <tbody>
-	    <% @group_documents.each do |document| %>
-	      <tr class="box_document">
-					<td class="dragAndDrop groupdoc" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %><%= document.name %></td>
-					<td><%= link_to 'delete', delete_group_file_path(file_id: document[:id], group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
-	
-	<table class="container">
-	  <thead>
-	    <tr>
-	      <th>folders</th>
-	    </tr>
-	  </thead>	
+    <!--<div id="perso-file-search" class="col-md-4">-->
+    <!--  <span class="icon"><i class="fa fa-search"></i></span>-->
+    <!--  <input type="search" id="search" placeholder="Search..." />-->
+    <!--</div>-->
 
-	  <tbody>
-	    <% @group_folders.each do |folder| %>
-	      <tr id="box_document">
-					<td class="dragAndDrop" item="folder" document_id="<%= folder.id %>" ><%= link_to folder.name, get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) %></td>
-					<td><%= link_to 'delete', delete_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id], target_folder: folder.id), method: :delete %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
 
-<%= link_to 'New folder', create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post %></br> 
+    <!-- UPLOAD & NEW button -->
 
-</table>
+    <div id="new-button">
+      <button class="button-new" type="button" data-toggle="dropdown" aria-expanded="true">NEW</button>
+      <ul class="dropdown-menu" id="button-new-dropdown" role="menu" aria-labelledby="button-new">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+            <%= link_to create_user_folder_path(folder: params[:folder]), method: :post do%>
+              <%= fa_icon("folder") %>
+              Folder
+            <% end %>
+          </a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#" id="button-upload">
+              <%= fa_icon("upload") %>
+              UPLOAD
+          </a>
+          <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
+            <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
+            <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
+          <% end %>
+        </li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Firepad</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google Doc</a></li>
+      </ul>
+    </div>
+  </div> 
 
-<div id="file-informations"></div>
 
+
+
+		
+  <div class="main-page">
+
+    
+
+    <!-- ------------- -->
+    <!-- DOCUMENT list -->
+    <!-- ------------- -->
+
+			
+
+		  
+    <div id="list-document">
+
+		  <% @group_folders.each do |folder| %>
+      <div class="box_document row row-perfect">
+        <span class="dragAndDrop col-md-4 icon-and-name" document_id="<%= folder['id']%>" item="folder" name="<%= folder['name'] %>" >
+          <%= fa_icon("folder") %>
+          <%= link_to folder['name'], get_group_documents_path(group_id: params[:group_id], folder_id: folder.id), class: "name-document" %>
+          <%= text_field_tag :name, folder['name'], class: "hidden input-rename-document" %>
+        </span>
+
+        <%= fa_icon("pencil", class: "document-rename col-md-1 visible-hover") %>
+
+        <span id="files-actions" class="col-md-2 col-md-offset-3">
+          <span id="icon-download">
+          </span>
+          <span id="icon-trash">
+            <%= link_to fa_icon("trash"), delete_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id], target_folder: folder.id), method: :delete %>
+          </span>
+        </span>
+      </div>
+      <% end %>
+
+
+		  <% @group_documents.each do |document| %>
+      <div class="box_document row row-perfect">
+        <span class="dragAndDrop col-md-4 icon-and-name" document_id="<%= document['id']%>" item="file" name="<%= document['name'] %>" >
+          <%= fa_icon("file") %>
+          <%= text_field_tag :name, document['name'], class: "hidden input-rename-document" %>
+        </span>
+
+        <%= fa_icon("pencil", class: "document-rename col-md-1 visible-hover") %>
+
+        <span id="files-actions" class="col-md-2 col-md-offset-3">
+          <span id="icon-download">
+          </span>
+          <span id="icon-trash">
+            <%= link_to fa_icon("trash"), delete_group_file_path(file_id: document[:id], group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %>
+          </span>
+        </span>
+      </div>
+      <% end %>
+    </div> 
+
+
+    <div class="column col-md-3" id="side-container">
+      
+      <div class="panel-costum">
+        <span class="panel-title"><%= fa_icon("info") %>Infos</span>
+        <table class="file-info">
+          <tbody>
+            <tr id="creation-time">
+              <td class="first-col-width">Created</td>
+              <td id="createdAt">-</td>
+            </tr>
+            <tr id="modification-time">
+              <td>Modified</td>
+              <td id="modifiedAt">-</td>
+            </tr>
+            <tr id="owner">
+              <td>Size</td>
+              <td id="fileSize">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+      <div class="panel-costum panel-share">
+        <!-- <span class="separation-line-container"><span class="separation-line"></span></span> -->
+        <span class="panel-title">
+          <%= fa_icon("link") %>
+          Share link 
+        </span>
+        <span class="share-link-container">
+          <span class="share-link">http://localhost:3000/user/documents?folder=0http://localhost:3000/user/documents?folder=0</span>
+        </span>
+      </div>
+      
+    </div>
+
+  </div>
+
+
+</div>
