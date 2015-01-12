@@ -119,15 +119,15 @@
 // MAIN LINE
 // -------
 
-#list-name{
-  padding-top: 50px !important;
-  // height: auto;
-  padding: 0;
-  padding-left: 10px;
+#list-document{
+  position: relative;
+  float: left;
 
+  width: 75%;
+  // height: 
   // background: red;
 
-  #box_document{
+  .box_document{
     a ,&{
       color: black;
       font-size: 28px;

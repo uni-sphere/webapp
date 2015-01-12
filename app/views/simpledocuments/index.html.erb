@@ -30,7 +30,7 @@
     </div>
 
     <!-- Third row -->
-    <div class="column col-md-9" id="list-name">
+    <div id="list-document">
       <% @documents.each do |document| %>
       <div class="box_document row row-perfect">
         <span class="dragAndDrop col-md-4 icon-and-name" document_id="<%= document['id']%>" item="<%= document['type'] %>" name="<%= document['name'] %>" >
