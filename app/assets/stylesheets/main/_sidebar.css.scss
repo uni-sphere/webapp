@@ -12,8 +12,6 @@
   height: 30px;
   
   padding-top: 5px;
-
-  background: white;
 }
 .tab{
   position: absolute;
@@ -23,7 +21,7 @@
 
   padding-top:2px;
 
-  background: $violet-light;
+  background: $header-bg2;
   color: white;
 
   border-radius: 20px 20px 0 0;
@@ -34,7 +32,7 @@
   &.active, &.active:hover{
     z-index: 10;
 
-    background: $violet-background;
+    background: $header-bg;
     color: white;
 
     cursor: default;
@@ -63,12 +61,12 @@
   width: 100%;
   height: calc(100% - 35px); 
 
-  border-left: solid 2px $violet-background;
-  border-bottom: solid 2px $violet-background;
+  border-left: solid 2px $header-bg;
+  border-bottom: solid 2px $header-bg;
   border-bottom-left-radius: 20px;
 
-  a, & {color: $violet-writing;}
-  background: $grey-test;
+  a, & {color: $sidebar-color;}
+  background: $inside-bg;
 }
 
 
@@ -79,8 +77,7 @@
   width: 100%;
   height: 25px;
 
-
-  background: $violet-background;
+  background: $header-bg;
 }
 
 .lateral-nav{
@@ -114,10 +111,10 @@
     overflow: hidden;         //prevent the text from being shown outside the border
     text-overflow: ellipsis;  //cut off text with an elipsis
 
-    border-left: solid 2px $grey-test;
+    border-left: solid 2px $inside-bg;
     &:hover, &.active li a{
-      border-left: solid 2px $violet-writing;
-      background: $grey-test;
+      border-left: solid 2px $sidebar-color;
+      background: $inside-bg;
 
       text-decoration: none;
     }
