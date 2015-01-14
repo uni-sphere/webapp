@@ -7,7 +7,6 @@
   height: calc(100% - 30px);
   width: 100%;
 
-  // background: $grey-test;
   color: $violet-writing;
   font-size: 14px;
 }
@@ -18,12 +17,6 @@
 
 
 #breadcrumb-seachbar{
-  // position: relative;
-  // float: left;
-  // width: inherit;
-
-
-  // padding-left: 10px;
 }
 
 #breadcrumb{
@@ -109,39 +102,48 @@
   position: relative;
   float: left;
 
-  width: 75%;
-  // height: 
-  // background: red;
+  width: 40%;
+  background: red;
+  // text-align: left;
 
-  .box_document{
-    a ,&{
-      color: black;
+  a ,&{
+    color: black;
+    // font-size: 28px;
+    .name-document{
+      font-size: 12px;
+    }
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  #box-document{
+  }
+
+  // NAME & ICON
+
+  .icon-and-name{
+    position: relative;
+    float: left;
+    clear: left;
+
+    height: 50px;
+    width: calc(100% - 50px);
+    padding-left: 0px;
+    background: green;
+    text-align: left;
+    .fa-icon{
+      padding-top: 11px;
+      margin-right: 5px;
       font-size: 28px;
-      .name-document{
-        font-size: 12px;
-      }
-      // cursor: pointer;
-      &:hover{
-        text-decoration: none;
-        .visible-hover{
-        // visibility: visible;
-        }
-      }
     }
 
-    .icon-and-name{
-      padding-left: 0px;
-      .fa-icon{
-        margin-right: 5px;
-      }
-
-      .name-file-folder{
-        width: 180px;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+    .name-document{
+      height: 50px;
+      
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .input-rename-document{
@@ -154,21 +156,20 @@
 
       font-size: 12px;
     }
+  }
 
-    #files-actions{
-      #icon-download{
-        margin-left: calc(50% - 35px);
-      }
-      #icon-trash{
-        margin-left: calc(50% - 35px);
-      }
-    }
+  // RENAME BUTTON
 
-    .visible-hover{
-      // visibility: hidden;
-    }
+  .document-rename{
+    position: relative;
+    float: right;
 
+    width: 50px;
+    height: 50px;
 
+    padding-top: 15px;
+    font-size: 20px;
+    background: blue;
   }
 }
 
