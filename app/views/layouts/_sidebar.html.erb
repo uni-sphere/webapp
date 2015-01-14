@@ -5,10 +5,11 @@
 	<%= link_to 'Groups', user_groups_path(current_user), class: "tab #{url_groups?}", id: "tab-group" %>
 </div>
 
-<div id="sidebar-first-row"></div>
-<div id="content-wrapper">
+<div id="row-and-content-wrapper">
+	<div id="sidebar-first-row"></div>
+	<div id="content-wrapper">
 
-	<div id="platform-choice">
+		<div id="platform-choice">
 		<!-- <span class="unifolder"><i class="fa fa-folder-open"></i>Unifolder</span>
 			<a href="#"><span class="unilib"><i class="fa fa-graduation-cap"></i>Unilib</span> -->
 		</div>
@@ -66,6 +67,7 @@
 		<% end %>
 
 	</div>
+</div>
 
 
 
