@@ -1,43 +1,43 @@
 <h1>Listing documents</h1>
 
-	<%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
-	  <%= file_field_tag :file, id: 'file_field' %>
-	  <%= submit_tag "upload", id: 'upload_button', class: 'hidden' %>
-	<% end %>
+<%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
+<%= file_field_tag :file, id: "input-button-upload" %>
+<%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
+<% end %>
 	
-	<table class="container">
-	  <thead>
-	    <tr>
-	      <th>files</th>
-	    </tr>
-	  </thead>	
+<table class="container">
+	<thead>
+		<tr>
+			<th>files</th>
+		</tr>
+	</thead>	
 
-	  <tbody>
-	    <% @group_documents.each do |document| %>
-	      <tr class="box_document">
-					<td class="dragAndDrop groupdoc" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %><%= document.name %></td>
-					<td><%= link_to 'delete', delete_group_file_path(file_id: document[:id], group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
+	<tbody>
+		<% @group_documents.each do |document| %>
+		<tr class="box_document">
+			<td class="dragAndDrop groupdoc" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %><%= document.name %></td>
+			<td><%= link_to 'delete', delete_group_file_path(file_id: document[:id], group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 	
-	<table class="container">
-	  <thead>
-	    <tr>
-	      <th>folders</th>
-	    </tr>
-	  </thead>	
+<table class="container">
+	<thead>
+		<tr>
+			<th>folders</th>
+		</tr>
+	</thead>	
 
-	  <tbody>
-	    <% @group_folders.each do |folder| %>
-	      <tr id="box_document">
-					<td class="dragAndDrop" item="folder" document_id="<%= folder.id %>" ><%= link_to folder.name, get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) %></td>
-					<td><%= link_to 'delete', delete_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id], target_folder: folder.id), method: :delete %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
+	<tbody>
+		<% @group_folders.each do |folder| %>
+		<tr id="box_document">
+			<td class="dragAndDrop" item="folder" document_id="<%= folder.id %>" ><%= link_to folder.name, get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) %></td>
+			<td><%= link_to 'delete', delete_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id], target_folder: folder.id), method: :delete %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 
 <%= link_to 'New folder', create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post %></br> 
 

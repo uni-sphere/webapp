@@ -40,13 +40,37 @@ var breadcrumb = {
 		}
 	},
 	
+	popFlag: 0,
+	popEvent: null,
+	
+	backButton: function() {
+		console.log('button back');
+		// console.log(breadcrumb.popEvent);
+// 		if (breadcrumb.popFlag === 2) {
+// 			console.log('back ok');
+// 			localStorage.removeItem([localStorage['lastIndex'] + 'breadcrumb']);
+// 			localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])-1
+// 		} else if (breadcrumb.popflag === 0 || 1) {
+// 			console.log('first pop');
+// 			breadcrumb.popFlag = breadcrumb.popFlag + 1;
+// 			setTimeout(function(){ breadcrumb.popFlag = 0 }, 500);
+// 		}
+	},
+	
 	init: function() {
 		breadcrumb.renderBreadcrumb();
+						 
 		$('.dragAndDrop').on('mousedown', function() {
 			breadcrumb.target = $(this);
 			breadcrumb.fillBreadcrumb()
 		});
 		
+		$(window).on('popstate', function(e) {
+			console.log('pop event');
+			breadcrumb.popEvent = e.originalEvent.state;
+			breadcrumb.backButton();
+		} );
+			
 		$('#breadcrumb').children('a').on('click', function() {
 			breadcrumb.target = $(this);
 			console.log('target:');
@@ -200,6 +224,11 @@ var readPersoFile = {
 				$('#modifiedAt').html(jQuery.timeago(file['modified_at']));
 				$('#fileSize').html(file['size'] + ' Ko');
 			}
+			else {
+				$('#createdAt').html('-');
+				$('#modifiedAt').html('-');
+				$('#fileSize').html('-');
+			}
 		})
 	}
 }
@@ -244,7 +273,6 @@ var rename = {
 	},
 	
 	rename: function() {
-		console.log($(this));
 		console.log('ajax');
 		$.ajax({
 			url: 'http://localhost:3000/user/' + rename.docType + '/rename',
@@ -255,7 +283,7 @@ var rename = {
 				type: rename.docType
 			},
 			success: function() {
-				renameInput.attr("value", renameInput.val() + rename.format);
+				renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 			}
 		});
 		(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
@@ -278,7 +306,7 @@ var rename = {
 						type: rename.docType
 					},
 					success: function() {
-						renameInput.attr("value", renameInput.val() + rename.format);
+						renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 					}
 				});
 			
@@ -313,20 +341,14 @@ var trash = {
 }
 
 mainDocument = function() {
-	
-	breadcrumb.init();
-	
+	// readGroupFile.init();
 	// selectable.init();
-	
+	breadcrumb.init();
 	dragAndDrop.init(url);
 	preview.init();
-	
-	// readGroupFile.init();
 	readPersoFile.init();
-	
 	autoSubmitUpload.init();
 	rename.init();
-	
 	trash.init();
 };
 
