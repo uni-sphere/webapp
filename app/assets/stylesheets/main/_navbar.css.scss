@@ -9,7 +9,7 @@
 
   padding: 0;
   margin-left: 50px;
-  margin-top: 3px !important;
+  margin-top: 3px;
 
   line-height: 18px;
 
@@ -18,14 +18,13 @@
 
     width: 40px;
 
-    
 
     .dropdown-toggle {
       vertical-align: middle;
 
-      background: white;
+      // background: $surrounding;
 
-      color: $violet-background;
+      color: $surrounding-color;
       font-size: 16px;
 
       i:hover, &.i:active{
@@ -196,7 +195,7 @@
   }
 
   .user-name {
-    color: $violet-writing;
+    color: $surrounding-color;
 
     &:hover {
       text-decoration: none;
@@ -209,7 +208,8 @@
     margin-left: 15px;
 
     // border-color: #82d1ff transparent;
-    color: $violet-background;
+    color: $surrounding-color;
+    // color: $violet-background;
   }
 }
 
