@@ -15,16 +15,21 @@ var breadcrumb = {
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
 			$('#breadcrumb').append('> <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> ')
+			breadcrumb.fillNumber = 0;
+			breadcrumb.popEvent = 0;
 		}
 	},
+	
+	fillNumber: 0,
 	
 	fillBreadcrumb: function() {
 		breadcrumb.timeDown = new Date().getTime();
 		breadcrumb.target.on('mouseup', function() {
-			if (new Date().getTime()-breadcrumb.timeDown < 500) {
+			if (new Date().getTime()-breadcrumb.timeDown < 500 && breadcrumb.fillNumber == 0) {
 				console.log('fillBreadcrumb');
 				localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])+1 || 1;
 				localStorage[localStorage['lastIndex'] + 'breadcrumb'] = JSON.stringify({'name': breadcrumb.target.attr('name'), 'box_id': breadcrumb.target.attr('document_id')});
+				breadcrumb.fillNumber = 1;
 			}
 		})
 	},
@@ -32,7 +37,7 @@ var breadcrumb = {
 	redirect: function() {
 		console.log('redirect');
 		localStorage['lastIndex'] = breadcrumb.target.attr('breadcrumb_id');
-		for( var i = parseInt(localStorage['lastIndex']) + 1; i<localStorage.length+1 ; i++ ){
+		for( var i = parseInt(localStorage['lastIndex']) + 1; i<3*localStorage.length ; i++ ){
 			console.log(i);
 			if (typeof localStorage[i + 'breadcrumb'] != 'undefined') {
 				localStorage.removeItem(i + 'breadcrumb');
@@ -41,20 +46,26 @@ var breadcrumb = {
 	},
 	
 	popFlag: 0,
-	popEvent: null,
+	popEvent: 0,
+	popped: ('state' in window.history && window.history.state !== null),
+	initialURL: location.href,
 	
 	backButton: function() {
-		console.log('button back');
-		// console.log(breadcrumb.popEvent);
-// 		if (breadcrumb.popFlag === 2) {
-// 			console.log('back ok');
-// 			localStorage.removeItem([localStorage['lastIndex'] + 'breadcrumb']);
-// 			localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])-1
-// 		} else if (breadcrumb.popflag === 0 || 1) {
-// 			console.log('first pop');
-// 			breadcrumb.popFlag = breadcrumb.popFlag + 1;
-// 			setTimeout(function(){ breadcrumb.popFlag = 0 }, 500);
-// 		}
+		var initialPop = !breadcrumb.popped && location.href == breadcrumb.initialURL;
+    breadcrumb.popped = true;
+    if (initialPop) return;
+		
+		console.log(breadcrumb.popFlag);
+		if (breadcrumb.popFlag >= 1 && breadcrumb.popEvent == 0) {
+			localStorage.removeItem([localStorage['lastIndex'] + 'breadcrumb']);
+			localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])-1;
+			breadcrumb.popEvent = 1;
+			console.log('BACK');
+		} else {
+			breadcrumb.popFlag = breadcrumb.popFlag + 1;
+			setTimeout(function(){ breadcrumb.popFlag = 0 }, 500);
+		}
+		
 	},
 	
 	init: function() {
@@ -66,10 +77,8 @@ var breadcrumb = {
 		});
 		
 		$(window).on('popstate', function(e) {
-			console.log('pop event');
-			breadcrumb.popEvent = e.originalEvent.state;
 			breadcrumb.backButton();
-		} );
+		});
 			
 		$('#breadcrumb').children('a').on('click', function() {
 			breadcrumb.target = $(this);
