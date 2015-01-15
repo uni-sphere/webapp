@@ -344,6 +344,15 @@ var trash = {
 	}
 }
 
+var hover = {
+	init: function() {
+		$('.box-document').mouseover(function() {
+			$('.action').css("color","grey");
+		})
+	}
+}
+
+
 mainDocument = function() {
 	// readGroupFile.init();
 	// selectable.init();
@@ -354,6 +363,7 @@ mainDocument = function() {
 	autoSubmitUpload.init();
 	rename.init();
 	trash.init();
+	hover.init();
 };
 
 $(document).on('ready page:load', function() {

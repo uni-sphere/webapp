@@ -4,7 +4,7 @@
   position: relative;
   float: left;
 
-  height: calc(100% - 30px);
+  height: 100%;
   width: 100%;
 
   color: $violet-writing;
@@ -94,84 +94,300 @@
 }
 
 
+
+
 // -------------------
 // ---DOCUMENT list ---
 // -------------------
-
 #list-document{
   position: relative;
   float: left;
 
-  width: 40%;
-  background: red;
-  // text-align: left;
+  width: 70%;
+  margin-top: 30px;
+  text-align: left;
 
-  a ,&{
-    color: black;
-    // font-size: 28px;
-    .name-document{
-      font-size: 12px;
-    }
+}
+
+// LIST TITLE
+#list-title{
+  position: relative;
+  float: left;
+
+  width: 100%;
+  height:25px;
+
+  line-height: 25px;
+  // background: red;
+  border-bottom: 2px solid $header-bg;
+
+  span{
+     position: relative;
+    float: left;
+
+    height: 100%;
+
+    color: grey;
+    font-size: 10px;
     &:hover{
-      text-decoration: none;
+      // background: $header-bg;
+      cursor: pointer;
     }
   }
-
-  #box-document{
+  .fa{
+    color: grey;
+    font-size: 9px;
+    padding-left: 3px; 
   }
 
-  // NAME & ICON
+}
 
-  .icon-and-name{
+#title-name{
+  width: calc(60% + 50px);
+}
+
+#title-modified{
+  width: calc(40% - 100px);
+}
+
+#title-size{
+  width: 50px;
+}
+
+//  ROW DOCUMENT
+.box_document{
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 50px;
+  // background: red;
+  border-bottom: 1px solid $header-bg;
+
+  &:hover{
+    background: snow;
+    .fa-pencil{color: grey;}
+  }
+
+
+}
+
+// .box_document:hover ~ #actions-doc{
+//     background: blue;
+//     .action{color: grey;}
+//   }
+
+// ICON & NAME
+.icon-and-name{
+  position: relative;
+  float: left;
+  clear: left;
+
+  width: 60%;
+  height: 50px;
+
+
+  // margin: 0px 0px;
+  padding-left: 5px;
+
+  // background: green;
+  // border-bottom: 1px solid yellow;
+
+  a{
     position: relative;
     float: left;
-    clear: left;
-
-    height: 50px;
-    width: calc(100% - 50px);
-    padding-left: 0px;
-    background: green;
-    text-align: left;
-    .fa-icon{
-      padding-top: 11px;
-      margin-right: 5px;
-      font-size: 28px;
-    }
+    width: 100%;
+    // height: 28px;
+    padding: 11px 0px;
+    // background: yellow;
 
     .name-document{
-      height: 50px;
-      
+      font-size: 10px;
+      position: absolute;
+      // top: 17px; //(50-20)/2
+      line-height: 30px;
+
+      width: calc(100% - 30px );
+
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: black;
     }
 
-    .input-rename-document{
-      position: absolute;
-      left: 28px;
-      top: 7px;
-
-      width: 200px;
-      height: 26px;
-
-      font-size: 12px;
+    .fa{
+      width: 30px;
+      // margin-right: 5px;
+      font-size: 28px;
+      color: black;
     }
-  }
-
-  // RENAME BUTTON
-
-  .document-rename{
-    position: relative;
-    float: right;
-
-    width: 50px;
-    height: 50px;
-
-    padding-top: 15px;
-    font-size: 20px;
-    background: blue;
   }
 }
+
+// INPUT RENAME DOCUMENT
+.input-rename-document{
+  position: absolute;
+  left: 38px;
+  top: 15px;
+
+  width: calc(60% - 38px);
+  height: 20px;
+
+  font-size: 12px;
+
+  color: black;
+}
+
+  // RENAME BUTTON
+.document-rename{
+  position: relative;
+  float: left;
+
+  width: 50px;
+  height: 50px;
+
+  padding-top: 15px;
+  font-size: 20px;
+
+  color: $inside-bg;
+
+  &:hover{
+    color: black !important;
+    cursor: pointer;
+  }
+
+}
+
+// MODIFIED
+.modified-doc{
+  position: relative;
+  float: left;
+  width: calc(40% - 100px);
+  height:50px;
+
+  padding-left: 5px;
+
+
+
+  .date-time{
+    color: black;
+    font-size: 10px;
+    // background: blue;
+    line-height: 50px;
+
+  }
+  .person{
+    position:relative;
+
+    padding-left: 5px;
+
+    line-height: 50px;
+    font-size: 9px; 
+    color: $header-bg;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover{
+      text-decoration: underline !important;
+      cursor: pointer;
+    }
+  }
+  
+
+  
+}
+
+// SIZE
+.size-doc{
+  position: relative;
+  float: right;
+  width: 50px;
+  height: 50px;
+
+  line-height: 50px;
+  // margin-bottom: 1px;
+
+  padding-left: 5px;
+  color: black;
+  font-size: 10px;
+}
+
+// FILE SEPARATOR
+.file-separator{
+  position: relative;
+  float: left;
+
+  left: 0px;
+  height: 1px;
+  width: 100%;
+  background: $header-bg;
+}
+
+// -------------------
+// ACTIONS ON DOCUMENT
+// -------------------
+
+#actions-doc{
+  position: relative;
+  float: left;
+
+  width: 30%;
+  height: 100%;
+
+  .fa{
+
+    width: 80px;
+    height: 80px;
+  }
+
+  .action{
+    position: absolute;
+    left: calc(50% - 40px);
+
+    color: $inside-bg;
+    color: black;
+
+    transition: all ease-in .5s;
+  }
+}
+
+#download-doc{
+  top: calc(16% - 40px);
+}
+#delete-doc{
+ top: calc(49% - 40px);
+}
+#link-doc{
+  top: calc(82% - 40px)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // --------
