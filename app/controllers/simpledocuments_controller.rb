@@ -40,7 +40,7 @@ class SimpledocumentsController < ApplicationController
     req_params = { 
       fields: "id,name,created_at,modified_at,size,type"
     }
-    
+
     box_content_resources[:basic]["folders/#{params[:folder]}/items"].get(params: req_params) { |response, request, result, &block|
       check_request_success(response, "index")
       @folder_name = JSON.parse(response)['name']
@@ -52,8 +52,6 @@ class SimpledocumentsController < ApplicationController
   end
 
   def upload_file
-    # file = File.new(params[:file].path)
-#     File.rename(File.basename(params[:file].path), params[:file].original_filename)
     req_params = {
       attributes: { name: params[:file].original_filename, 
                     parent: {id: params[:folder] }}.to_json,
