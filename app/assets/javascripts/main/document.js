@@ -269,7 +269,7 @@ var rename = {
 		
 		if (rename.docType == 'file') {
 			var nameWithFormat = renameInput.attr("value");
-			console.log('with:' + nameWithoutFormat);
+			console.log('with:' + nameWithFormat);
 			var nameWithoutFormat = nameWithFormat.slice(0, nameWithFormat.lastIndexOf('.'));
 			console.log('without:' + nameWithoutFormat);
 			rename.format = nameWithFormat.slice(nameWithFormat.lastIndexOf('.'), nameWithFormat.length);
@@ -278,7 +278,7 @@ var rename = {
 		
 		renameInput.attr("value", nameWithoutFormat);
 		renameInput.removeClass('hidden').focus();
-		renameInput[0].setSelectionRange(renameInput.val().length * 2, renameInput.val().length * 2);
+		renameInput[0].setSelectionRange(renameInput.val().length * 4, renameInput.val().length * 2);
 	},
 	
 	rename: function() {
@@ -290,12 +290,10 @@ var rename = {
 				name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 				box_id: $(this).parent().attr('document_id'),
 				type: rename.docType
-			},
-			success: function() {
-				renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 			}
 		});
 		(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
+		renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 		renameInput.addClass('hidden');
 			
 	},
@@ -313,13 +311,10 @@ var rename = {
 						name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 						box_id: $(this).parent().attr('document_id'),
 						type: rename.docType
-					},
-					success: function() {
-						renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 					}
 				});
-			
 				(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
+				renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 				renameInput.addClass('hidden');
 				;
 			};
