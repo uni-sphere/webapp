@@ -20,6 +20,33 @@
 }
 
 #breadcrumb{
+  position: relative;
+  float: left;
+
+  padding-left: 5px;
+  a, .breadcrumb-separator{
+    position: relative;
+    float: left;
+
+    height:19px;
+    line-height: 19px;
+
+    margin: 3px 0px;
+  }
+  a{
+    padding: 0px 2px;
+
+    color: black;
+    font-size: 10px;
+    &:hover{
+      text-decoration: underline!important;
+    }
+  }
+  .breadcrumb-separator{
+    padding: 0px 4px;
+
+    font-size: 10px;
+  }
 }
 
 // #perso-file-search{

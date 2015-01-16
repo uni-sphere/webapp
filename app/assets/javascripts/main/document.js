@@ -15,7 +15,7 @@ var breadcrumb = {
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
-			$('#breadcrumb').append('> <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> ')
+			$('#breadcrumb').append('<a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> <span class="breadcrumb-separator">><span>')
 			breadcrumb.fillNumber = 0;
 			breadcrumb.popEvent = 0;
 		}
@@ -399,7 +399,7 @@ var hover = {
 	init: function() {
 		$('.box_document').mouseover(function() {
 			if ($(this).attr("document-selected") == "false"){
-				$(this).css("background","snow");
+				$(this).css("background","ghost");
 			}
 			$('.action').css("color","black");
 		})
@@ -422,7 +422,7 @@ var selection = {
 			    selection.target.parent().attr("document-selected", "false");
 			};
 		    selection.target = $(this).children('.dragAndDrop');
-	    	$(this).css("background","blue");
+	    	$(this).css("background","#8e639e");
 		    $(this).attr("document-selected", "true");
 				$('.action').css("color","grey");
 				setTimeout(function(){ $('.action').css("color","black") }, 500);
