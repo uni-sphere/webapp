@@ -75,7 +75,7 @@ var breadcrumb = {
 		$('.dragAndDrop').children('a').on('mousedown', function() {
 			breadcrumb.target = $(this).parent('.dragAndDrop');
 			console.log(breadcrumb.target);
-			breadcrumb.fillBreadcrumb()
+			if (breadcrumb.target.attr('item') == 'folder') {breadcrumb.fillBreadcrumb()}
 		});
 		
 		$(window).on('popstate', function(e) {
@@ -297,13 +297,13 @@ var trash = {
 				url: 'http://localhost:3000/user/document/delete',
 				type:"DELETE",
 				data: {
-					folder: selection.target.attr('folder'),
-					box_id: selection.target.attr('document_id'),
-					type: selection.target.attr('item')
+					folder: docSelection.target.attr('folder'),
+					box_id: docSelection.target.attr('document_id'),
+					type: docSelection.target.attr('item')
 				},
 				complete: function(data) {
 					if (data.responseJSON == 204) {
-						selection.target.parent('.box_document').remove();
+						docSelection.target.parent('.box_document').remove();
 					}
 				}
 			});
@@ -320,7 +320,7 @@ var download = {
 				type:"GET",
 				dataType: 'JSON',
 				data: {
-					box_id: selection.target.attr('document_id'),
+					box_id: docSelection.target.attr('document_id'),
 				},
 				complete: function(data) {
 					window.location = data.responseJSON.url
@@ -332,10 +332,12 @@ var download = {
 
 var shareLink = {
 	fnDeSelect: function() {
-		if (document.selection)
+		if (document.selection) {
 			document.selection.empty();
-		else if (window.getSelection)
+		}
+		else if (window.getSelection) {
 			window.getSelection().removeAllRanges();
+		}
 	},
 	
 	fnSelect: function(objId) {
@@ -357,17 +359,15 @@ var shareLink = {
 	init: function() {
 		$('#link-doc').on('click', function() {
 			console.log('share ajax');
-			if (selection.target.attr('item') == 'file') {
+			if (docSelection.target.attr('item') == 'file') {
 				$.ajax({
 					url: 'http://localhost:3000/user/file/create_shared_link',
 					type:"POST",
 					data: {
-						box_id: selection.target.attr('document_id'),
+						box_id: docSelection.target.attr('document_id'),
 					},
 					complete: function(data) {
-						console.log(data);
 						if (data.status == 200) {
-							selection.target.parent('.box_document').remove();
 							console.log(data.responseText);
 							$('#link-display').html(data.responseText);
 							shareLink.fnSelect('link-display');
@@ -399,7 +399,7 @@ var hover = {
 	init: function() {
 		$('.box_document').mouseover(function() {
 			if ($(this).attr("document-selected") == "false"){
-				$(this).css("background","snow");
+				$(this).css("background","#FFDDB7");
 			}
 			$('.action').css("color","black");
 		})
@@ -407,22 +407,22 @@ var hover = {
 			if ($(this).attr("document-selected") == "false"){
 				$(this).css("background","whitesmoke");
 			}
-			if (selection.target == null) { $('.action').css("color","grey"); }
+			if (docSelection.target == null) { $('.action').css("color","grey"); }
 		})
 	}
 };
 
-var selection = {
+var docSelection = {
 	target: null,
 	
 	init: function() {
 		$('.box_document').on('click', function() {
-			if (selection.target != null) {
-			    selection.target.parent().css("background","whitesmoke");
-			    selection.target.parent().attr("document-selected", "false");
+			if (docSelection.target != null) {
+			    docSelection.target.parent().css("background","whitesmoke");
+			    docSelection.target.parent().attr("document-selected", "false");
 			};
-		    selection.target = $(this).children('.dragAndDrop');
-	    	$(this).css("background","blue");
+		    docSelection.target = $(this).children('.dragAndDrop');
+	    	$(this).css("background","#FF9F32");
 		    $(this).attr("document-selected", "true");
 				$('.action').css("color","grey");
 				setTimeout(function(){ $('.action').css("color","black") }, 500);
@@ -433,7 +433,7 @@ var selection = {
 mainDocument = function() {
 	breadcrumb.init();
 	dragAndDrop.init(url);
-	selection.init();
+	docSelection.init();
 	preview.init();
 	autoSubmitUpload.init();
 	rename.init();
