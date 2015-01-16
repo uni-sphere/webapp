@@ -77,7 +77,7 @@ class SimpledocumentsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to(@dl_url) }
-      format.json { render js: "window.location = '#{@dl_url}'" }
+      format.json { render json: {url: @dl_url}.to_json }
     end
     
   end

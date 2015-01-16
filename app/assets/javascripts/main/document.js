@@ -72,8 +72,9 @@ var breadcrumb = {
 	init: function() {
 		breadcrumb.renderBreadcrumb();
 						 
-		$('.dragAndDrop').on('mousedown', function() {
-			breadcrumb.target = $(this);
+		$('.dragAndDrop').children('a').on('mousedown', function() {
+			breadcrumb.target = $(this).parent('.dragAndDrop');
+			console.log(breadcrumb.target);
 			breadcrumb.fillBreadcrumb()
 		});
 		
@@ -317,8 +318,12 @@ var download = {
 			$.ajax({
 				url: 'http://localhost:3000/user/file/download',
 				type:"GET",
+				dataType: 'JSON',
 				data: {
 					box_id: selection.target.attr('document_id'),
+				},
+				complete: function(data) {
+					window.location = data.responseJSON.url
 				}
 			});
 		})
@@ -326,6 +331,29 @@ var download = {
 }
 
 var shareLink = {
+	fnDeSelect: function() {
+		if (document.selection)
+			document.selection.empty();
+		else if (window.getSelection)
+			window.getSelection().removeAllRanges();
+	},
+	
+	fnSelect: function(objId) {
+		shareLink.fnDeSelect();
+		if (document.selection)
+		{
+			var range = document.body.createTextRange();
+			range.moveToElementText(document.getElementById(objId));
+			range.select();
+		}
+		else if (window.getSelection)
+		{
+			var range = document.createRange();
+			range.selectNode(document.getElementById(objId));
+			window.getSelection().addRange(range);
+		}
+	},
+	
 	init: function() {
 		$('#link-doc').on('click', function() {
 			console.log('share ajax');
@@ -342,6 +370,7 @@ var shareLink = {
 							selection.target.parent('.box_document').remove();
 							console.log(data.responseText);
 							$('#link-display').html(data.responseText);
+							shareLink.fnSelect('link-display');
 						}
 					}
 				});
@@ -378,7 +407,7 @@ var hover = {
 			if ($(this).attr("document-selected") == "false"){
 				$(this).css("background","whitesmoke");
 			}
-			$('.action').css("color","grey");
+			if (selection.target == null) { $('.action').css("color","grey"); }
 		})
 	}
 };
@@ -395,6 +424,8 @@ var selection = {
 		    selection.target = $(this).children('.dragAndDrop');
 	    	$(this).css("background","blue");
 		    $(this).attr("document-selected", "true");
+				$('.action').css("color","grey");
+				setTimeout(function(){ $('.action').css("color","black") }, 500);
 		})
 	}
 };
