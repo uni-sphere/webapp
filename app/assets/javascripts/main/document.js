@@ -346,8 +346,11 @@ var trash = {
 
 var hover = {
 	init: function() {
-		$('.box-document').mouseover(function() {
+		$('.box_document').mouseover(function() {
 			$('.action').css("color","grey");
+		})
+		$('.box_document').mouseout(function() {
+			$('.action').css("color","whitesmoke");
 		})
 	}
 }

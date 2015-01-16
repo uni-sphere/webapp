@@ -167,14 +167,8 @@
     background: snow;
     .fa-pencil{color: grey;}
   }
-
-
 }
 
-// .box_document:hover ~ #actions-doc{
-//     background: blue;
-//     .action{color: grey;}
-//   }
 
 // ICON & NAME
 .icon-and-name{
@@ -190,33 +184,34 @@
   padding-left: 5px;
 
   // background: green;
-  // border-bottom: 1px solid yellow;
 
   a{
     position: relative;
     float: left;
-    width: 100%;
-    // height: 28px;
-    padding: 11px 0px;
+
+    margin: 11px 0px;
     // background: yellow;
 
     .name-document{
-      font-size: 10px;
-      position: absolute;
-      // top: 17px; //(50-20)/2
-      line-height: 30px;
+      position: relative;
+      float: left;
 
-      width: calc(100% - 30px );
+      font-size: 10px;
+      line-height: 30px;
 
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
       color: black;
     }
 
     .fa{
+      position: relative;
+      float: left;
+
       width: 30px;
-      // margin-right: 5px;
+
       font-size: 28px;
       color: black;
     }
@@ -292,9 +287,6 @@
       cursor: pointer;
     }
   }
-  
-
-  
 }
 
 // SIZE
@@ -335,7 +327,6 @@
   height: 100%;
 
   .fa{
-
     width: 80px;
     height: 80px;
   }
@@ -345,9 +336,9 @@
     left: calc(50% - 40px);
 
     color: $inside-bg;
-    color: black;
+    // color: black;
 
-    transition: all ease-in .5s;
+    transition: all ease-in .2s;
   }
 }
 
