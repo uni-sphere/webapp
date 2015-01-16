@@ -53,8 +53,8 @@ var breadcrumb = {
 	
 	backButton: function() {
 		var initialPop = !breadcrumb.popped && location.href == breadcrumb.initialURL;
-    breadcrumb.popped = true;
-    if (initialPop) return;
+		breadcrumb.popped = true;
+		if (initialPop) return;
 		
 		console.log(breadcrumb.popFlag);
 		if (breadcrumb.popFlag >= 1 && breadcrumb.popEvent == 0) {
@@ -303,7 +303,6 @@ var trash = {
 				complete: function(data) {
 					if (data.responseJSON == 204) {
 						selection.target.parent('.box_document').remove();
-						selection.target = null
 					}
 				}
 			});
@@ -311,9 +310,43 @@ var trash = {
 	}
 };
 
+var download = {
+	init: function() {
+		$('#download-doc').on('click', function() {
+			console.log('download');
+			$.ajax({
+				url: 'http://localhost:3000/user/file/download',
+				type:"GET",
+				data: {
+					box_id: selection.target.attr('document_id'),
+				}
+			});
+		})
+	}
+}
+
 var shareLink = {
 	init: function() {
-		
+		$('#link-doc').on('click', function() {
+			console.log('share ajax');
+			if (selection.target.attr('item') == 'file') {
+				$.ajax({
+					url: 'http://localhost:3000/user/file/create_shared_link',
+					type:"POST",
+					data: {
+						box_id: selection.target.attr('document_id'),
+					},
+					complete: function(data) {
+						console.log(data);
+						if (data.status == 200) {
+							selection.target.parent('.box_document').remove();
+							console.log(data.responseText);
+							$('#link-display').html(data.responseText);
+						}
+					}
+				});
+			}
+		})
 	}
 }
 
@@ -375,6 +408,7 @@ mainDocument = function() {
 	rename.init();
 	trash.init();
 	shareLink.init();
+	download.init();
 	hover.init();
 };
 

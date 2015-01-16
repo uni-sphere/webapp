@@ -55,13 +55,14 @@ Lms::Application.routes.draw do
   # perso #
 
   get '/user/documents', to: 'simpledocuments#index', as: 'get_user_documents'
-  get '/user/document/download', to: 'simpledocuments#download', as: 'download_user_document'
+  get '/user/file/download', to: 'simpledocuments#download', as: 'download_user_file'
   get '/user/document/show', to: 'simpledocuments#show', as: 'show_user_file'
   get '/user/document/arianewire', to: 'simpledocuments#ariane_wire', as: 'get_document_ariane_wire'
   get '/user/document/previousfolder', to: 'simpledocuments#previous_folder', as: 'get_user_previous_folder'
   
   post '/user/file/upload', to: 'simpledocuments#upload_file', as: 'upload_user_file'
   post 'user/create_folder', to: 'simpledocuments#create_folder', as: 'create_user_folder'
+  post 'user/file/create_shared_link', to: 'simpledocuments#create_shared_link', as: 'create_shared_link'
   
   put '/user/file/rename', to: 'simpledocuments#update', as: 'rename_user_file'
   put '/user/folder/rename', to: 'simpledocuments#update', as: 'rename_user_folder'

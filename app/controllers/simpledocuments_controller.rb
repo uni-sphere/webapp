@@ -14,6 +14,11 @@ class SimpledocumentsController < ApplicationController
     redirect_to get_user_documents_path(folder: params[:folder])
   end
   
+  def create_shared_link
+    create_link(params[:box_id])
+    render json: @link[:preview_url]
+  end
+  
   def previous_folder
     box_content_resources[:basic]["folders/#{params[:box_id]}"].get() { |response, request, result, &block|
       check_request_success(response, "read file")
@@ -67,8 +72,14 @@ class SimpledocumentsController < ApplicationController
   def download
     box_content_resources[:basic]["files/#{params[:box_id]}/content"].get() { |response, request, result, &block|
       check_request_success(response, "download file")
-      redirect_to(response.headers[:location])
+      @dl_url = response.headers[:location]
     }
+    
+    respond_to do |format|
+      format.html { redirect_to(@dl_url) }
+      format.json { render js: "window.location = '#{@dl_url}'" }
+    end
+    
   end
   
   def show
