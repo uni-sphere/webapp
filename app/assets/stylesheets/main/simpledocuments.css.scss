@@ -164,7 +164,7 @@
   border-bottom: 1px solid $header-bg;
 
   &:hover{
-    background: snow;
+    // background: snow;
     .fa-pencil{color: grey;}
   }
 }
@@ -326,19 +326,42 @@
   width: 30%;
   height: 100%;
 
-  .fa{
-    width: 80px;
-    height: 80px;
-  }
-
   .action{
     position: absolute;
     left: calc(50% - 40px);
+    width: 100px;
+    height: 100px;
 
-    color: $inside-bg;
+    color: grey;
+    // background: blue;
     // color: black;
 
     transition: all ease-in .2s;
+
+
+    .fa{
+      position: relative;
+      float: left;
+      margin-top:20px;
+      margin-left:10px;
+      width: 80px;
+      height: 80px;
+      // background: red;
+    }
+
+    .reveal{
+      display: none;
+      // visibility: none;
+    }
+    &:hover{
+      .fa{
+        margin-top: 0px;
+      }
+      .reveal{
+          display: block;
+          // background: red;
+        }
+    }
   }
 }
 

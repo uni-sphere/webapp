@@ -2,7 +2,8 @@
 var dragged,
 dropped,
 item,
-url;
+url,
+selected;
 
 var breadcrumb = {
 	
@@ -181,22 +182,6 @@ var dragAndDrop = {
 	}
 };
 
-var preview = {
-	
-	init: function() {
-		$('.groupdoc').on('click', function() {
-			$.ajax({
-				url: 'http://localhost:3000/user/group/document/show',
-				dataType:"json",
-				type:"GET",
-				data: {
-					box_id: $(this).attr("box_id")
-				}
-			});
-		});
-	}
-};
-
 var readGroupFile = {
 	
 	init: function() {
@@ -222,25 +207,6 @@ var readGroupFile = {
 		});
 	}
 };
-
-var readPersoFile = {
-	
-	init: function() {
-		$('.box_document').on('click', function() {
-			if ($(this).children('span').children('a').attr('item') == 'folder') {
-				var file = JSON.parse($(this).children('span').children('a').attr('file'));
-				$('#createdAt').html(jQuery.timeago(file['created_at']));
-				$('#modifiedAt').html(jQuery.timeago(file['modified_at']));
-				$('#fileSize').html(file['size'] + ' Ko');
-			}
-			else {
-				$('#createdAt').html('-');
-				$('#modifiedAt').html('-');
-				$('#fileSize').html('-');
-			}
-		})
-	}
-}
 
 var autoSubmitUpload = {
 	
@@ -324,48 +290,91 @@ var rename = {
 
 var trash = {
 	init: function() {
-		$('.perso-trash').on('click', function() {
-			var doc = $(this).parent().parent().children('.dragAndDrop');
+		$('#delete-doc').on('click', function() {
+			console.log('trash ajax');
 			$.ajax({
 				url: 'http://localhost:3000/user/document/delete',
 				type:"DELETE",
 				data: {
-					folder: doc.attr('folder'),
-					box_id: doc.attr('document_id'),
-					type: doc.attr('item')
+					folder: selection.target.attr('folder'),
+					box_id: selection.target.attr('document_id'),
+					type: selection.target.attr('item')
 				},
 				complete: function(data) {
 					if (data.responseJSON == 204) {
-						doc.parent('.box_document').remove()
+						selection.target.parent('.box_document').remove();
+						selection.target = null
 					}
 				}
 			});
 		})
 	}
+};
+
+var shareLink = {
+	init: function() {
+		
+	}
 }
+
+var preview = {
+	
+	init: function() {
+		$('.groupdoc').on('click', function() {
+			$.ajax({
+				url: 'http://localhost:3000/user/group/document/show',
+				dataType:"json",
+				type:"GET",
+				data: {
+					box_id: $(this).attr("box_id")
+				}
+			});
+		});
+	}
+};
 
 var hover = {
 	init: function() {
 		$('.box_document').mouseover(function() {
-			$('.action').css("color","grey");
+			if ($(this).attr("document-selected") == "false"){
+				$(this).css("background","snow");
+			}
+			$('.action').css("color","black");
 		})
 		$('.box_document').mouseout(function() {
-			$('.action').css("color","whitesmoke");
+			if ($(this).attr("document-selected") == "false"){
+				$(this).css("background","whitesmoke");
+			}
+			$('.action').css("color","grey");
 		})
 	}
-}
+};
 
+var selection = {
+	target: null,
+	
+	init: function() {
+		$('.box_document').on('click', function() {
+			if (selection.target != null) {
+			    selection.target.parent().css("background","whitesmoke");
+			    selection.target.parent().attr("document-selected", "false");
+			};
+		    selection.target = $(this).children('.dragAndDrop');
+	    	$(this).css("background","blue");
+		    $(this).attr("document-selected", "true");
+		})
+	}
+};
 
 mainDocument = function() {
-	// readGroupFile.init();
-	// selectable.init();
 	breadcrumb.init();
 	dragAndDrop.init(url);
+	selection.init();
 	preview.init();
-	readPersoFile.init();
 	autoSubmitUpload.init();
 	rename.init();
 	trash.init();
+	shareLink.init();
 	hover.init();
 };
 
