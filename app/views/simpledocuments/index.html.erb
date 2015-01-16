@@ -13,32 +13,7 @@
 			<!--  <input type="search" id="search" placeholder="Search..." />-->
 			<!--</div>-->
 
-			<div id="new-button">
-				<button class="button-new" type="button" data-toggle="dropdown" aria-expanded="true">NEW</button>
-				<ul class="dropdown-menu" id="button-new-dropdown" role="menu" aria-labelledby="button-new">
-					<li role="presentation">
-						<a role="menuitem" tabindex="-1" href="#">
-							<%= link_to create_user_folder_path(folder: params[:folder]), method: :post do%>
-							<%= fa_icon("folder") %>
-							Folder
-							<% end %>
-						</a>
-					</li>
-					<li role="presentation">
-						<a role="menuitem" tabindex="-1" href="#" id="button-upload">
-							<%= fa_icon("upload") %>
-							UPLOAD
-						</a>
-						<%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
-						<%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
-						<%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
-						<% end %>
-					</li>
-					<li role="presentation" class="divider"></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Firepad</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google Doc</a></li>
-				</ul>
-			</div>
+			
 
 
     
@@ -98,14 +73,42 @@
     </div> 
 
     <div id="actions-doc">
+
+    <div id="new-button">
+        <button class="button-new" type="button" data-toggle="dropdown" aria-expanded="true">NEW</button>
+        <ul class="dropdown-menu" id="button-new-dropdown" role="menu" aria-labelledby="button-new">
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">
+              <%= link_to create_user_folder_path(folder: params[:folder]), method: :post do%>
+              <%= fa_icon("folder") %>
+              Folder
+              <% end %>
+            </a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#" id="button-upload">
+              <%= fa_icon("upload") %>
+              UPLOAD
+            </a>
+            <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
+            <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
+            <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
+            <% end %>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Firepad</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google Doc</a></li>
+        </ul>
+      </div>
+      
       <div id="download-doc" class="action">
-        <%= fa_icon("5x download") %>
+        <%= fa_icon("4x download") %>
       </div>
       <div id="delete-doc" class="action">
-        <%= fa_icon("5x trash") %>
+        <%= fa_icon("4x trash") %>
       </div>
       <div id="link-doc" class="action">
-        <%= fa_icon("5x link") %>
+        <%= fa_icon("4x link") %>
         <div id="link-display" class="reveal">https://drive.</div>
       </div>
     </div>
