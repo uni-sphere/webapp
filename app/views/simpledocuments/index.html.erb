@@ -22,9 +22,7 @@
 		<div class="main-page">
 			<div class="main-page-separator"></div>
 
-			<!-- ------------------- -->
-			<!-- UPLOAD & NEW button -->
-			<!-- ------------------- -->
+			
 
 
     
@@ -72,44 +70,45 @@
       
     </div> 
 
-    <div id="actions-doc">
+    <!-- ------------------- -->
+    <!-- ACTIONS             -->
+    <!-- ------------------- -->
 
-    <div id="new-button">
-        <button class="button-new" type="button" data-toggle="dropdown" aria-expanded="true">NEW</button>
-        <ul class="dropdown-menu" id="button-new-dropdown" role="menu" aria-labelledby="button-new">
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#">
-              <%= link_to create_user_folder_path(folder: params[:folder]), method: :post do%>
-              <%= fa_icon("folder") %>
-              Folder
-              <% end %>
-            </a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#" id="button-upload">
-              <%= fa_icon("upload") %>
-              UPLOAD
-            </a>
-            <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
+    <div id="right-actions">
+
+      <div id="new-doc" class="">
+        <%= fa_icon("3x plus")%>
+        <div id="new-actions">
+          <div class="new-action">
+            <%= link_to create_user_folder_path(folder: params[:folder]), method: :post, id:"new-folder" do%>
+              <%= fa_icon "folder" %>Folder
+            <% end %>
+          </div>
+
+          <div class="new-action"><a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a></div>
+          <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
             <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
             <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
-            <% end %>
-          </li>
-          <li role="presentation" class="divider"></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Firepad</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Google Doc</a></li>
-        </ul>
+          <% end %>
+          <div id="create-doc" class="new-action">
+            <span id="create-doc-title"><i class="fa fa-file"></i>New</span>
+            <a class="create-list"><i class="fa fa-trash"></i>Firepad</a>
+            <a class="create-list"><i class="fa fa-trash"></i>Gg doc</a>
+          </div>
+        </div>
       </div>
       
-      <div id="download-doc" class="action">
-        <%= fa_icon("4x download") %>
-      </div>
-      <div id="delete-doc" class="action">
-        <%= fa_icon("4x trash") %>
-      </div>
-      <div id="link-doc" class="action">
-        <%= fa_icon("4x link") %>
-        <div id="link-display" class="reveal">https://drive.</div>
+      <div id="actions-doc">
+        <div id="download-doc" class="action">
+          <%= fa_icon("3x download") %>
+        </div>
+        <div id="delete-doc" class="action">
+          <%= fa_icon("3x trash") %>
+        </div>
+        <div id="link-doc" class="action">
+          <%= fa_icon("3x link") %>
+        </div>
+        <div id="link-display">http://localhost:30p://localhost:3000/user/documen000/user/documen0</div>
       </div>
     </div>
   </div>

@@ -40,8 +40,6 @@ gem 'rdoc'
 gem 'rest_client'
 gem 'rails-timeago'
 
-# gem 'breadcrumbs_on_rails'
-
 group :development, :test do
   gem 'sqlite3'
   # gem 'spring-commands-rspec'

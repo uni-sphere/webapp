@@ -98,27 +98,7 @@
 // --------------------------------
 
 
-#new-button{
-  .button-new{
-    width: 100px;
-    height: 21px;
 
-    &:hover{
-    }
-  }
-  #button-upload{
-  }
-}
-
-#button-new-dropdown{
-  position: absolute;
-  top: 35px;
-  li > a > i{
-    margin-right: 5px;
-  }
-  &:hover{
-  }
-}
 
 
 
@@ -187,15 +167,25 @@
   float: left;
   width: 100%;
   height: 50px;
-  // background: red;
   border-bottom: 1px solid $header-bg;
+  background: whitesmoke;
 
   &:hover{
     // background: snow;
     .fa-pencil{color: grey;}
   }
+
+
 }
 
+// -----------------------------
+.document-hovered{
+  background: snow;
+}
+.document-selected{
+  background: blue;
+}
+// ----------------------------
 
 // ICON & NAME
 .icon-and-name{
@@ -272,10 +262,10 @@
 
   color: $inside-bg;
 
-  &:hover{
-    color: black !important;
-    cursor: pointer;
-  }
+  // &:hover{
+  //   color: black !important;
+  //   cursor: pointer;
+  // }
 
 }
 
@@ -327,8 +317,11 @@
   // margin-bottom: 1px;
 
   padding-left: 5px;
+
   color: black;
   font-size: 10px;
+
+  text-align: right;
 }
 
 // FILE SEPARATOR
@@ -346,60 +339,166 @@
 // ACTIONS ON DOCUMENT
 // -------------------
 
+#right-actions{
+  position: relative;
+  float: left;
+
+  width: 22%;
+  height: 100%;
+
+  margin-left: 5%;
+}
+
+
+//----------NEW
+
+#new-doc{
+  position: relative;
+  float: left;
+
+  width: 100%;
+  height: 150px;
+
+  padding-top: 20px;
+  margin-top: 25px;
+  // overflow: hidden;
+  transition: all ease-in .5s;
+
+  &:hover {
+    padding-top: 0px;
+  }
+
+  // left: 100px;
+  // background: blue;
+  &, a{
+    color: black;
+  }
+}
+.fa-plus{
+  position: relative;
+  float: middle;
+
+  height: 50px;
+  // background: red;
+}
+#new-actions{
+  position: relative;
+  float: left;
+  display: none;
+
+  width: 100%;
+  height: 60px;
+
+  margin-top: 20px;
+
+  font-size: 12px;
+  .fa{
+    font-size: 14px;
+    margin-right: 3px;
+  }
+  // background: green;
+}
+.new-action{
+  position: relative;
+  float: left;
+
+  width: calc(1/3 * 100%);
+  // height: 100%;
+
+  text-align: left;
+  padding-left: 5px;
+  // background: orange;
+}
+#upload-doc{
+   &:hover{
+    cursor: pointer;
+  }
+}
+#create-doc-title{
+  position: relative;
+  float: left;
+}
+.create-list{
+  position: relative;
+  float: left;
+  clear: left;
+
+  padding-left: 5px;
+}
+
+
+
+//----------ACTIONS
+
 #actions-doc{
   position: relative;
   float: left;
 
-  width: 30%;
-  height: 100%;
+  width: 100%;
+  height: 150px;
 
-  .action{
-    position: absolute;
-    top: 30%;
-    // left: calc(50% - 40px);
-    width: 100px;
-    height: 100px;
+  margin-top: 10px;
 
-    color: grey;
-    // background: blue;
+}
+// ----------------------
+.selected-action{
+  .action{color: black;}
+}
+// -----------------------
+.action{
+  position: relative;
+  float: left;
 
-    transition: all ease-in .2s;
+  height: 90px;
+  width: calc(4/15 * 100%);
 
-    .fa{
-      position: relative;
-      float: left;
-      margin-top:20px;
-      margin-left:10px;
-      width: 60px;
-      height: 80px;
-      // background: red;
-    }
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: calc(1/30 * 100%);
+  margin-right: calc(1/30 * 100%);
+  transition: all ease-in .1s;
+  color: grey;
 
-    .reveal{
-      display: none;
-      // visibility: none;
-    }
-    &:hover{
-      .fa{
-        margin-top: 0px;
-      }
-      .reveal{
-          display: block;
-          // background: red;
-        }
-    }
+  .fa{
+    height: 50px;
   }
+ 
+
+  // background: red;
+
+  
 }
 
-#download-doc{
-  left: 10px;
+.action-hovered{
+  padding-top: 0px;
+  cursor: pointer;
+  transition: all .5s;
 }
-#delete-doc{
-  left: 100px;
-}
+
+
+
 #link-doc{
-  left: 200px;
+  // overflow: hidden;
 }
+#link-display{
+  position: relative;
+  float: left;
+  display: none;
+
+  height: 60px;
+  width: calc(28/30 *100%);
+
+  margin-left: calc(1/30 * 100%);
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  // background: green;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 
 

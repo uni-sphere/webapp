@@ -1,7 +1,7 @@
 
 
     <div id="logo-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo1.png" %>
       <!-- <span class= "brand&#45;name"> INFINITREE </span> -->
     </div>
 
@@ -80,8 +80,11 @@
 
 
     <div id="user-deco">
-      <%= link_to current_user.name, user_path(current_user), class: "user-name" %>
-      <%# <%= link_to fa_icon("power-off", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "deco"  %>
+      <a id="user-profile" >
+        <%= image_tag "profile-pic.png", id: "profile-pic" %>
+        <span class="user-name"><%= current_user.name %></span>
+      </a>
+     
       <%= link_to fa_icon("sign-out", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "deco"  %>
     </div>
 

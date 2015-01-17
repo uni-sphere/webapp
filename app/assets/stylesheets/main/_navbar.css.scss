@@ -185,33 +185,79 @@
 
 
 #user-deco {
-  position: fixed;
-  right: 50px;
+  position: relative;
+  float: right;
+  margin-right: 50px;
 
-  padding-top: 6px;
+  width: 200px;
+  height: 100%;
 
-  :active, :focus {
-    outline: none;
-  }
+  &, a{color: $surrounding-color;}
+  // background: green;
 
-  .user-name {
-    color: $surrounding-color;
+  // ------------
+  // user profile
+  // ------------
+  #user-profile{
+    position: absolute;
 
-    &:hover {
-      text-decoration: none;
+    right: 41px;
+    top: 1px;
+
+    height: 26px;
+    // line-height: 30px;
+    border: 1px solid $surrounding-bg;
+
+    padding: 1px;
+    padding-right: 5px;
+
+    &:hover{
+      cursor: pointer;
+      border: 1px solid $header-bg;
     }
   }
+  #profile-pic{
+    position: relative;
+    float: left;
 
-  // &.active:after {  //   border-color: #82d1ff transparent;
-  // }
+    width: 22px;
+    height: 22px;
+
+    margin-right: 3px;
+  }
+  .user-name {
+    position: relative;
+    float: left;
+
+    line-height: 22px;
+  }
+
+  // -----------
+  // deco button
+  // -----------
   .deco {
-    margin-left: 15px;
+    position: absolute;
+    
+    right: 0px;
+    top: 1px;
 
-    // border-color: #82d1ff transparent;
-    color: $surrounding-color;
-    // color: $violet-background;
+    height: 26px;
+    line-height: 26px;
+    width: 22px;
+
+    border: 1px solid $surrounding-bg;
+
+    padding: 1px;
+
+    &:hover{
+      border: 1px solid $header-bg;
+    }
   }
 }
+
+
+
+
 
 
 // -----------------------
