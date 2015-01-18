@@ -15,7 +15,7 @@ var breadcrumb = {
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
-			$('#breadcrumb').append('<a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> <span class="breadcrumb-separator">><span>')
+			$('#breadcrumb').append('> <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> ')
 			breadcrumb.fillNumber = 0;
 			breadcrumb.popEvent = 0;
 		}
@@ -259,7 +259,7 @@ var rename = {
 				type: rename.docType
 			}
 		});
-		(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
+		(rename.format == null) ? rename.docName.children('.name-document').html(renameInput.val()) : rename.docName.children('.name-document').html(renameInput.val() + rename.format);
 		renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 		renameInput.addClass('hidden');
 			
@@ -280,7 +280,7 @@ var rename = {
 						type: rename.docType
 					}
 				});
-				(rename.format == null) ? rename.docName.html(renameInput.val()) : rename.docName.html(renameInput.val() + rename.format);
+				(rename.format == null) ? rename.docName.children('.name-document').html(renameInput.val()) : rename.docName.children('.name-document').html(renameInput.val() + rename.format);
 				renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 				renameInput.addClass('hidden');
 				;
@@ -328,9 +328,43 @@ var download = {
 			});
 		})
 	}
-}
+};
+
+var docSelection = {
+	target: null,
+	
+	init: function() {
+		$('.box_document').on('click', function() {
+			if (docSelection.target != null) {
+			    docSelection.target.parent().removeClass("document-selected")
+			    docSelection.target.parent().attr("document-selected", "false");
+					$('#link-display').html('');
+			};
+		    docSelection.target = $(this).children('.dragAndDrop');
+	    	// $(this).css("background","#FF9F32");
+	    	// $('.action').css("color","black");
+		    $(this).attr("document-selected", "true");
+		    $(this).addClass("document-selected");
+
+
+				// $('.action').css("color","grey");
+				
+				// $('.action').addClass('.black');
+				// setTimeout(function(){ $('.action').css("color","black") }, 500);
+		})
+	}
+};
 
 var shareLink = {
+	
+	init: function() {
+		$('#link-doc').on('click', function() {
+			shareLink.positionBottomLink();
+			shareLink.createLink();
+			shareLink.positionTopLink();
+		});
+	},
+	
 	fnDeSelect: function() {
 		if (document.selection) {
 			document.selection.empty();
@@ -356,26 +390,52 @@ var shareLink = {
 		}
 	},
 	
-	init: function() {
-		$('#link-doc').on('click', function() {
-			console.log('share ajax');
-			if (docSelection.target.attr('item') == 'file') {
-				$.ajax({
-					url: 'http://localhost:3000/user/file/create_shared_link',
-					type:"POST",
-					data: {
-						box_id: docSelection.target.attr('document_id'),
-					},
-					complete: function(data) {
-						if (data.status == 200) {
-							console.log(data.responseText);
-							$('#link-display').html(data.responseText);
-							shareLink.fnSelect('link-display');
-						}
+	createLink: function() {
+		console.log('share ajax');
+		if (docSelection.target.attr('item') == 'file') {
+			$.ajax({
+				url: 'http://localhost:3000/user/file/create_shared_link',
+				type:"POST",
+				data: {
+					box_id: docSelection.target.attr('document_id'),
+				},
+				complete: function(data) {
+					if (data.status == 200) {
+						console.log(data.responseText);
+						$('#link-display').html(data.responseText);
+						shareLink.fnSelect('link-display');
 					}
-				});
-			}
-		})
+				}
+			});
+		}
+	},
+	
+	positionBottomLink: function() {
+		$('#link-display')
+		.animate(
+			{
+				paddingTop: '20px',
+				opacity: 0
+			},
+			'fast',
+			'linear'
+		);
+		$(this).hide();
+	},
+	
+	positionTopLink: function() {
+		$('#link-display')
+		.show()
+		.css('opacity', 0)
+		.delay(200)
+		.animate(
+			{
+				paddingTop: '0px',
+				opacity: 1
+			},
+			'fast',
+			'linear'
+		);
 	}
 }
 
@@ -458,39 +518,6 @@ var hover = {
 			// }	
 		})
 
-
-		$('#link-doc').click(
-		function(e) {
-			$('#link-display')
-				.show()
-				.css('opacity', 0)
-				.delay(200)
-				.animate(
-					{
-						paddingTop: '0px',
-						opacity: 1
-					},
-					'fast',
-					'linear'
-				);
-		},
-		function(e) {
-			var obj = $(this);
-			$('#link-display')
-				.animate(
-					{
-						paddingTop: '20px',
-						opacity: 0
-					},
-					'fast',
-					'linear',
-					function() {
-						$(this).hide();
-					}
-				);
-			}
-		);
-
 		// $('#new-doc > .fa-plus').mouseover(function() {
 		// 	$('#new-actions').removeClass("hidden");
 		// 	$(this).css("margin-top","25px");
@@ -499,30 +526,6 @@ var hover = {
 		// 	$('#new-actions').addClass("hidden");
 		// 	$(this).css("margin-top","45px");
 		// })
-	}
-};
-
-var docSelection = {
-	target: null,
-	
-	init: function() {
-		$('.box_document').on('click', function() {
-			if (docSelection.target != null) {
-			    docSelection.target.parent().removeClass("document-selected")
-			    docSelection.target.parent().attr("document-selected", "false");
-			};
-		    docSelection.target = $(this).children('.dragAndDrop');
-	    	// $(this).css("background","#FF9F32");
-	    	// $('.action').css("color","black");
-		    $(this).attr("document-selected", "true");
-		    $(this).addClass("document-selected");
-
-
-				// $('.action').css("color","grey");
-				
-				// $('.action').addClass('.black');
-				// setTimeout(function(){ $('.action').css("color","black") }, 500);
-		})
 	}
 };
 
