@@ -15,7 +15,7 @@ var breadcrumb = {
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
-			$('#breadcrumb').append('> <a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> ')
+			$('#breadcrumb').append('<a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> <span class="breadcrumb-separator">></span>')
 			breadcrumb.fillNumber = 0;
 			breadcrumb.popEvent = 0;
 		}
@@ -359,9 +359,9 @@ var shareLink = {
 	
 	init: function() {
 		$('#link-doc').on('click', function() {
-			shareLink.positionBottomLink();
+			// shareLink.positionBottomLink();
 			shareLink.createLink();
-			shareLink.positionTopLink();
+			// shareLink.positionTopLink();
 		});
 	},
 	

@@ -33,11 +33,6 @@ class ApplicationController < ActionController::Base
   layout "main", except: [:users]
 
 
-  # if ENV["PROD_MODE"] || FALSE
-  #   @is_production? = true
-  # else
-  #   @is_production? = false
-  # end
   
   def set_datas
     @groups = current_user.groups.all.select(:id)
