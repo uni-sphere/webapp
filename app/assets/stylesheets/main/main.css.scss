@@ -7,11 +7,9 @@
 @import "var";
 
 body {
-  font-family: 'Ubuntu',sans-serif;
-  font-size: 13px !important;
-  color:#555555;
+  font-family: 'Ubuntu',sans-serif !important;
+  font-size: 13px;
   text-align: center;
-  background: white;
 
   *:focus {
     outline: none !important;
@@ -32,6 +30,8 @@ body {
 
   padding-left: 10px;
   background: $surrounding-bg;
+
+  font-size: 12px;
 }
 
 #central-area{

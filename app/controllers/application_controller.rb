@@ -31,6 +31,13 @@ class ApplicationController < ActionController::Base
   helper_method :mobile_device?
 
   layout "main", except: [:users]
+
+
+  # if ENV["PROD_MODE"] || FALSE
+  #   @is_production? = true
+  # else
+  #   @is_production? = false
+  # end
   
   def set_datas
     @groups = current_user.groups.all.select(:id)
