@@ -12,10 +12,6 @@
 			<!--  <span class="icon"><i class="fa fa-search"></i></span>-->
 			<!--  <input type="search" id="search" placeholder="Search..." />-->
 			<!--</div>-->
-
-			
-
-
     
 		</div> 
 
@@ -63,7 +59,7 @@
             <span class="date-time"><%= time_ago_in_words(document['created_at']) %></span>
             <span class="person"><%= current_user.name %></span>
           </div>
-          <div class="size-doc"><%= document['size'] %> kB</div>
+          <div class="size-doc"><%= document['size'] %> kb</div>
           <!-- <div class="file-separator"></div> -->
         </div>
       <% end %>
@@ -108,7 +104,7 @@
         <div id="link-doc" class="action">
           <%= fa_icon("3x link") %>
         </div>
-        <div id="link-display">http://localhost:30p://localhost:3000/user/documen000/user/documen0</div>
+        <div id="link-display"></div>
       </div>
     </div>
   </div>
