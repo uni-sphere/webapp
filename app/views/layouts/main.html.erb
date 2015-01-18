@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<head lang="en">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-    <title>   <%= full_title(yield(:title)) %>    </title>
-    <%= stylesheet_link_tag "main", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "main", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>
-  </head>
+	<title>   <%= full_title(yield(:title)) %>    </title>
+	<%= stylesheet_link_tag "main", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "main", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+	<%= render 'layouts/shim' %>
+</head>
 
 
-  <body>
-      <div id="sidebar"> <%= render 'layouts/sidebar' %> </div>
-      <div id="central-area">
-        <div role="navigation" id="navbar"> <%= render 'layouts/navbar' %> </div>
-        <main id="central-page"> 
-          <%= yield %>
-        </main>
-      </div>
-  </body>
+<body>
+	<div id="sidebar"> <%= render 'layouts/sidebar' %> </div>
+	<div id="central-area">
+		<div role="navigation" id="navbar"> <%= render 'layouts/navbar' %> </div>
+		<main id="central-page"> 
+			<%= if @@ready_for_production == false %>
+				<%= render 'layouts/construction' %>
+			<% else %>
+				<%= yield %>
+			<% end %>
+		</main>
+	</div>
+</body>
 </html>
 

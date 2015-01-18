@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
   before_action :set_datas, only: [:index_notification]
   before_action :index_notification
   
+  
+  def is_production?
+    ENV["PROD_MODE"] || FALSE ? @@ready_for_production = true : false 
+  end
+  
+  def set_ready_for_production
+    @@ready_for_production = true
+  end
+  
   def check_for_mobile
     session[:mobile_override] = params[:mobile] if params[:mobile]
     prepare_for_mobile if mobile_device?

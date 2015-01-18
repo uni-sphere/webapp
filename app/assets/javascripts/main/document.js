@@ -262,7 +262,7 @@ var rename = {
 		(rename.format == null) ? rename.docName.children('.name-document').html(renameInput.val()) : rename.docName.children('.name-document').html(renameInput.val() + rename.format);
 		renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 		renameInput.addClass('hidden');
-			
+		rename.format = null;
 	},
 	
 	init: function() {
@@ -283,7 +283,7 @@ var rename = {
 				(rename.format == null) ? rename.docName.children('.name-document').html(renameInput.val()) : rename.docName.children('.name-document').html(renameInput.val() + rename.format);
 				renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 				renameInput.addClass('hidden');
-				;
+				rename.format = null;
 			};
 		})
 	}
@@ -336,9 +336,9 @@ var docSelection = {
 	init: function() {
 		$('.box_document').on('click', function() {
 			if (docSelection.target != null) {
-			    docSelection.target.parent().removeClass("document-selected")
-			    docSelection.target.parent().attr("document-selected", "false");
-					$('#link-display').html('');
+				docSelection.target.parent().removeClass("document-selected");
+			  docSelection.target.parent().attr("document-selected", "false");
+				$('#link-display').html('');
 			};
 		    docSelection.target = $(this).children('.dragAndDrop');
 	    	// $(this).css("background","#FF9F32");
@@ -507,15 +507,15 @@ var hover = {
 		);
 
 		$('.action').mouseover(function() {
-			// if (true){
+			if (docSelection.target != null){
 				$(this).addClass('action-hovered')
-			// }
+			}
 		})
 
 		$('.action').mouseout(function() {
-			// if (true){
+			if (docSelection.target != null){
 				$(this).removeClass('action-hovered')
-			// }	
+			}
 		})
 
 		// $('#new-doc > .fa-plus').mouseover(function() {

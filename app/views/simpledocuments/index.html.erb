@@ -41,7 +41,7 @@
         <div class="box_document" document-selected="false">
           <span class="dragAndDrop icon-and-name" document_id="<%= document['id'] %>" item="<%= document['type'] %>" name="<%= document['name'] %>" >
             <% if document['type'] == 'folder' %>
-              <%= link_to get_user_documents_path(folder: document['id']) do %>
+              <%= link_to get_user_documents_path(folder: document['id']), onclick: "docSelection.target = null" do %>
                 <%= fa_icon("folder") %>
                 <span class="name-document"> <%= document['name'] %> </span>
               <% end %>
