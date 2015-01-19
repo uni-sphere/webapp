@@ -69,21 +69,19 @@
       <div id="new-doc" class="">
         <%= fa_icon("3x plus")%>
         <div id="new-actions">
-          <div class="new-action">
-            <%= link_to create_user_folder_path(folder: params[:folder]), method: :post, id:"new-folder" do%>
-              <%= fa_icon "folder" %>Folder
-            <% end %>
-          </div>
+          <%= link_to create_user_folder_path(folder: params[:folder]), method: :post, id:"new-folder" do%>
+            <%= fa_icon "folder" %>Folder
+          <% end %>
 
-          <div class="new-action"><a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a></div>
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
           <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
             <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
             <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
           <% end %>
-          <div id="create-doc" class="new-action">
+          <div id="create-doc">
             <span id="create-doc-title"><i class="fa fa-file"></i>New</span>
-            <a class="create-list"><i class="fa fa-trash"></i>Firepad</a>
-            <a class="create-list"><i class="fa fa-trash"></i>Gg doc</a>
+            <a class="create-list"><i class=""></i>Firepad</a>
+            <a class="create-list"><i class=""></i>Google doc</a>
           </div>
         </div>
       </div>

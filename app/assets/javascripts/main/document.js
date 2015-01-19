@@ -350,7 +350,7 @@ var docSelection = {
 			// $(this).css("background","#FF9F32");
 			// $('.action').css("color","black");
 			// $(this).attr("document-selected", "true");
-			$(this).addClass("document-selected");
+			$(this).addClass("document-selected").removeClass("document-hovered");
 
 			// $('.action').css("color","grey");
 
