@@ -23,32 +23,32 @@
 		<div id="sidebar-separator"></div>
 
 		<% if request.url =~ /groups(.*)/ %>
-		<% if current_group_exists? %>
-		<div id="active-group-nav" class="lateral-nav">
-			<ul>
-				<%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
-				<%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
-				<%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
-			</ul>
-		</div>
-		<%end%>
+			<% if current_group_exists? %>
+			<div id="active-group-nav" class="lateral-nav">
+				<ul>
+					<%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
+					<%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
+					<%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
+				</ul>
+			</div>
+			<%end%>
 
-		<div id="groups-nav" class="lateral-nav">
-			<ul>
-				<% current_groups.each do |group| %>
-				<li>
-					<%= link_to user_group_calendar_path(current_user, group, group.calendar) do %>
-					<%= image_tag "group-pic.png" %>
-					<span class="name-group"> <%= group.name %></span>
+			<div id="groups-nav" class="lateral-nav">
+				<ul>
+					<% current_groups.each do |group| %>
+					<li>
+						<%= link_to user_group_calendar_path(current_user, group, group.calendar) do %>
+						<%= image_tag "group-pic.png" %>
+						<span class="name-group"> <%= group.name %></span>
+						<% end %>
+					</li>
 					<% end %>
-				</li>
-				<% end %>
-			</ul>
-			<div class="line-separator"></div>
-			<a href="#groups-search" id="more-groups" data-toggle="modal">
-				<i class="fa fa-plus"></i>See all groups
-			</a>
-		</div>
+				</ul>
+				<div class="line-separator"></div>
+				<a href="#groups-search" id="more-groups" data-toggle="modal">
+					<i class="fa fa-plus"></i>See all groups
+				</a>
+			</div>
 
 		<!-- ----------------------------- -->
 		<!-- ------ PERSO sidebar -------- -->

@@ -40,6 +40,8 @@ class ApplicationController < ActionController::Base
   helper_method :mobile_device?
 
   layout "main", except: [:users]
+
+
   
   def set_datas
     @groups = current_user.groups.all.select(:id)

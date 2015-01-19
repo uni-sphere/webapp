@@ -1,180 +1,20 @@
 @import "var";
 
-// -----------------------
-// Left: notifications
-// -----------------------
-
-#notification-wrapper {
-  position: fixed;
-
-  padding: 0;
-  margin-left: 50px;
-  margin-top: 3px;
-
-  line-height: 18px;
-
-  .dropdown {
-    display: inline-block;
-
-    width: 40px;
-
-
-    .dropdown-toggle {
-      vertical-align: middle;
-
-      // background: $surrounding;
-
-      color: $surrounding-color;
-      font-size: 16px;
-
-      i:hover, &.i:active{
-        font-size: 18px;
-      }
-
-    }
-  }
-
-  .badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-
-    border: 1px solid $badge-color;
-
-    background: $badge-bg;
-
-    color: $badge-color;
-    font-size: 10px;
-    text-shadow: none;
-  }
-}
-
-.dropdown-menu.extended {
-  top: 42px;
-
-  width: 235px !important;
-  padding: 0;
-  border: none !important;
-  border-radius: 4px;
-
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.176) !important;
-}
-
-.dropdown-menu li a {
-  .photo img {
-    float: left;
-
-    height: 40px;
-    width: 40px;
-    margin-right: 4px;
-    border-radius: 2px;
-  }
-
-  .subject {
-    display: block;
-
-    .from {
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .time {
-      position: absolute;
-      right: 5px;
-
-      font-size: 11px;
-      font-style: italic;
-      font-weight: bold;
-    }
-  }
-
-  .message {
-    display: block !important;
-
-    font-size: 11px;
-  }
-}
-
-
-.dropdown-menu.extended li {
-  p {
-    padding: 10px;
-    margin: 0;
-    border-radius: 4px 4px 0px 0px;
-
-    background-color: #F1F2F7;
-
-    color: #666666;
-
-    &.violet {
-      background-color: $notification-bg;
-
-      color: #fff;
-    }
-
-    &.green {
-      background-color: #68dff0;
-
-      color: #fff;
-    }
-  }
-
-  a {
-    display: inline-block;
-
-    width: 100%;
-    padding: 15px 10px !important;
-    border-bottom: 1px solid #EBEBEB !important;
-
-    font-size: 12px;
-
-    list-style: none;
-
-    &:hover {
-      background-color: #F7F8F9 !important;
-
-      color: #2E2E2E;
-    }
-  }
-}
-
-.notify-arrow {
-  position: absolute;
-  top: -18px;
-  left: 7px;
-  z-index: 10;
-
-  height: 0;
-  width: 0;
-  opacity: 1;
-  margin-top: 10px;
-  border-style: solid;
-  border-width: 0 9px 9px;
-
-  transition: all 0.25s ease 0s;
-}
-
-.notify-arrow-violet {
-  border-bottom-color: $notification-bg !important;
-  border-color: transparent transparent $notification-bg;
-  border-top-color: $notification-bg !important;
-}
-
-.notify-arrow-green {
-  border-bottom-color: #68dff0 !important;
-  border-color: transparent transparent #68dff0;
-  border-top-color: #68dff0 !important;
-}
 // ------------------
 // Middle logo
 // ------------------
 
 #logo-wrapper {
-  position: fixed;
-  font-size: 18px;
+  position: absolute;
+  top: 2px;
+  left: calc(50% - 12px);
+  // float: middle;
+  width: 25px;
 
-  margin-left: 40%;
+  // font-size: 18px;
+  img{line-height: 30px;}
 
+  // background: red;
   // margin-top : 2px !important;
 }
 
@@ -242,10 +82,11 @@
     top: 1px;
 
     height: 26px;
-    line-height: 26px;
+    line-height: 22px;
     width: 22px;
 
     border: 1px solid $surrounding-bg;
+    font-size: 14px;
 
     padding: 1px;
 
@@ -256,89 +97,3 @@
 }
 
 
-
-
-
-
-// -----------------------
-//   mobile stuff
-// -----------------------
-.top-fixed {
-  right: 1px;
-}
-
-.top-relative {
-  left: 33%;
-}
-
-@media screen and (max-width: 768px) {
-  #navbar {
-    right: 0;
-
-    height: 50px;
-  }
-
-  #navbar-left {
-    margin-left: 20px;
-
-    .dropdown {
-      margin-right: 20px;
-
-      .dropdown-toggle {
-        i:hover {
-          font-size: 22px;
-        }
-      }
-    }
-  }
-
-  #navbar-right {
-    float: right;
-
-    padding-top: 0;
-    margin-right: 20px;
-
-    a:hover::after,    a:focus::after {
-      height: 0px;
-    }
-
-    a {
-      margin-top: 0 ;
-      // background:red;
-      border-radius: 5px;
-
-      &:hover {
-        background: $violet-darker;
-      }
-    }
-  }
-
-  #main-page {
-
-  }
-}
-
-
-// .modal-header, .modal-footer {
-//   background-color: #f2f2f2;
-
-//   font-size: 12px;
-//   font-weight: 800;
-// }
-
-// .modal-footer i, .well i {
-//   color: #c0c0c0;
-//   font-size: 20px;
-// }
-
-// .modal-body {
-//   padding: 0px;
-// }
-
-// .modal-body textarea.form-control {
-//   border: 0;
-
-//   box-shadow: 0 0 0;
-
-//   resize: none;
-// }
