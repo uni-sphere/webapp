@@ -534,7 +534,17 @@ var hover = {
 	}
 };
 
+var progressBar = {
+	init: function() {
+		if(document.URL.indexOf("document") <= -1) {
+			console.log('contains not document');
+			Pace.stop();
+		}
+	}
+}
+
 mainDocument = function() {
+	progressBar.init();
 	breadcrumb.init();
 	dragAndDrop.init(url);
 	docSelection.init();
@@ -550,7 +560,14 @@ mainDocument = function() {
 $(document).on('ready page:load', function() {
 	mainDocument();
 });
-
+window.paceOptions = {
+	ajax: false, // disabled
+	document: false, // disabled
+	eventLag: false, // disabled
+  restartOnRequestAfter: false,
+  restartOnPushState: false,
+	target: '#list-document'
+}
 
 
 
