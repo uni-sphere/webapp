@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
   
   
   def is_production?
-    ENV["PROD_MODE"] || FALSE ? @@ready_for_production = true : false 
+    ENV["PROD_MODE"] || FALSE ? $ready_for_production = true : false 
   end
   
   def set_ready_for_production
-    @@ready_for_production = true
+    $ready_for_production = true
   end
   
   def check_for_mobile

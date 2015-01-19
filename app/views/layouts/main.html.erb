@@ -17,7 +17,7 @@
 	<div id="central-area">
 		<div role="navigation" id="navbar"> <%= render 'layouts/navbar' %> </div>
 		<main id="central-page"> 
-			<%= if @@ready_for_production == false %>
+			<% if $ready_for_production == false %>
 				<%= render 'layouts/construction' %>
 			<% else %>
 				<%= yield %>

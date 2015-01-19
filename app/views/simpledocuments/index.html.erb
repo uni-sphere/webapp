@@ -41,9 +41,9 @@
         <div class="box_document" document-selected="false">
           <span class="dragAndDrop icon-and-name" document_id="<%= document['id'] %>" item="<%= document['type'] %>" name="<%= document['name'] %>" >
             <% if document['type'] == 'folder' %>
-              <%= link_to get_user_documents_path(folder: document['id']), onclick: "docSelection.target = null" do %>
+              <%= link_to get_user_documents_path(folder: document['id']) do %>
                 <%= fa_icon("folder") %>
-                <span class="name-document"> <%= document['name'] %> </span>
+                <span class="name-document go-folder"> <%= document['name'] %> </span>
               <% end %>
             <% elsif document['type'] == 'file' %>
               <%= link_to show_user_file_path(box_id: document['id']), file: document.to_json , item: 'folder' do %>
@@ -51,7 +51,7 @@
                <span class="name-document"> <%= document['name'] %> </span>
               <% end %>
             <% end %>
-            <%= text_field_tag :name, document['name'], class: " hidden input-rename-document" %>
+            <%= text_field_tag :name, document['name'], class: "hidden input-rename-document" %>
           </span>
 
           <%= fa_icon("pencil", class: "document-rename") %>
