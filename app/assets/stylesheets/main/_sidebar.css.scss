@@ -10,7 +10,7 @@
   z-index: 1;
 
   width: 100%;
-  height: 30px;
+  height: 25px;
   
   padding-top: 5px;
 }
@@ -18,7 +18,7 @@
   position: absolute;
   z-index: 1;
 
-  height: 25px;
+  height: 23px;
   width: 52%;
 
   padding-top:2px;
@@ -86,7 +86,7 @@
 
     bottom: 0px;
 
-    box-shadow: 1px -1px 2px -2px rgba(0, 0, 0, 0.7);
+    box-shadow: 1px -1px 2px -1px rgba(0, 0, 0, 0.7);
 
   }
 }
@@ -102,7 +102,7 @@
     right: 0px;
     bottom: -1px;
 
-    box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 1px -1px 2px 0px rgba(0, 0, 0, 0.7);
   }
   &:after{
     width: 100%;
@@ -145,13 +145,55 @@
     // box-shadow: -1px 1px 2px 0px black;
   }
 }
+
+// ---------
+// FIRST ROW
+// ---------
+
+#sidebar-first-row{
+  position: relative;
+  float: left;
+  z-index: 2;
+
+  width: 100%;
+  height: 25px;
+
+  // background: $header-bg;
+  background: $gradient;
+
+ 
+}
+
+#uni-name{
+  display: relative;
+  float: left;
+
+  width: calc(100% - 40px);
+  height: 100%;
+
+  padding-left: 40px;
+  text-align: left;
+
+  line-height: 25px;
+  color: black;
+
+  white-space: nowrap;      //keep the text on one line
+  overflow: hidden;         //prevent the text from being shown outside the border
+  text-overflow: ellipsis;  //cut off text with an elipsis
+}
+
+// ---------------
+// CONTENT WRAPPER
+// ---------------
+
 #content-wrapper {
   position: relative;
   float: left;
   z-index: 0;
 
-  width: 100%;
-  height: calc(100% - 25px); 
+  width: calc(100% - 2px);
+  height: calc(100% - 28px);
+  // padding-bottom: 5px; 
 
   border-left: solid 3px $header-bg;
   border-bottom: solid 3px $header-bg;
@@ -164,34 +206,9 @@
 }
 
 
-#sidebar-first-row{
-  position: relative;
-  float: left;
-  z-index: 2;
 
-  width: 100%;
-  height: 25px;
 
-  // background: $header-bg;
-  background: $gradient;
-}
 
-#uni-name{
-  display: relative;
-  float: left;
-
-  width: 100%;
-  height: 100%;
-
-  padding-left: 40px;
-  text-align: left;
-
-  line-height: 25px;
-  color: black;
-  font-size: 12px;
-
-  // background: red;
-}
 
 #sidebar-separator{
   position: relative;
@@ -206,7 +223,7 @@
 .lateral-nav{
   position: absolute;
 
-  width: 100%;
+  width: calc(100% - 5px);
 
   padding-left: 5px;
 
@@ -226,6 +243,8 @@
 
     width: 100%;
     height: 22px;
+
+    line-height: 22px;
     
     margin: 2px 0px;
     padding-left: 5px;
@@ -245,7 +264,8 @@
   .fa{
     padding-left: 5px;
     // margin-right: 5px;
-    width: 22px;
+    width: 25px;
+    font-size: 14px;
   }
 }
 

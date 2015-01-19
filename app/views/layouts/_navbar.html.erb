@@ -5,78 +5,7 @@
       <!-- <span class= "brand&#45;name"> INFINITREE </span> -->
     </div>
 
-    <ul id="notification-wrapper" >
-
-      <li class="dropdown">
-				<span name="<%= current_user.id %>" class="current_user"></span>
-        <a data-toggle="dropdown" class="dropdown-toggle" id="notifications" href="#">
-          <% if notification_exists? == true %>
-            <%= fa_icon("bell", class: "notification") %>
-            <span class="badge"><%= @notification_amount %></span>
-          <% else %>
-            <%= fa_icon("bell-o", class: "notification") %>
-          <% end %>
-        </a>
-        <ul class="dropdown-menu extended tasks-bar">
-          <div class="notify-arrow notify-arrow-violet"></div>
-          <li>
-            <p class="violet">
-              <% if @notification_amount != 0 %>
-                You have <%= @notification_amount %> new notifications
-              <%else %>
-                Notifications
-              <% end %>
-            </p>
-          </li>
-					
-					<%= render 'notifications/index' %>
-					
-          <li class="external">
-            <a href="#">See All notifications</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-        <% if @notification == true %>
-          <i class="fa fa-comment"></i>
-          <span class="badge">2</span>
-        <% else %>
-          <i class="fa fa-comment-o"></i>
-        <% end %>
-        </a>
-        <ul class="dropdown-menu extended inbox">
-          <div class="notify-arrow notify-arrow-green"></div>
-          <li>
-              <p class="green">You have 2 new messages</p>
-          </li>
-          <li>
-            <a href="index.html#">
-              <span class="photo"><img alt="avatar" src="#"></span>
-              <span class="subject">
-                <span class="from">Zac Snider</span>
-                <span class="time">Just now</span>
-              </span>
-              <span class="message"> Hi mate, how is everything?</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="photo"><img alt="avatar" src="#"></span>
-              <span class="subject">
-                <span class="from">Divya Manian</span>
-                <span class="time">40 mins.</span>
-              </span>
-              <span class="message"> Hi, I need your help with this.</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">See all messages</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    
 
 
     <div id="user-deco">
