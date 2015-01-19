@@ -12,12 +12,13 @@ var breadcrumb = {
 	
 	renderBreadcrumb: function() {
 		// localStorage.clear();
-		localStorage['0breadcrumb'] = JSON.stringify({'name': 'root', 'box_id': '0'});
+		localStorage['0breadcrumb'] = JSON.stringify({'name': 'Perso', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
 			$('#breadcrumb').append('<a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> <span class="breadcrumb-separator">></span>')
 			breadcrumb.fillNumber = 0;
 			breadcrumb.popEvent = 0;
+			if (docSelection.target != null) { docSelection.remove() };
 		}
 	},
 	
@@ -293,7 +294,7 @@ var trash = {
 	init: function() {
 		$('#delete-doc').on('click', function() {
 			console.log('trash ajax');
-			$.ajax({
+			Pace.track(function(){$.ajax({
 				url: 'http://localhost:3000/user/document/delete',
 				type:"DELETE",
 				data: {
@@ -306,7 +307,7 @@ var trash = {
 						docSelection.target.parent('.box_document').remove();
 					}
 				}
-			});
+			});});
 		})
 	}
 };
@@ -333,25 +334,29 @@ var download = {
 var docSelection = {
 	target: null,
 	
+	remove: function() {
+		docSelection.target.parent().removeClass("document-selected");
+		docSelection.target = null;
+	},
+
 	init: function() {
+
 		$('.box_document').on('click', function() {
 			if (docSelection.target != null) {
-				docSelection.target.parent().removeClass("document-selected");
-			  docSelection.target.parent().attr("document-selected", "false");
+				docSelection.remove();
 				$('#link-display').html('');
 			};
-		    docSelection.target = $(this).children('.dragAndDrop');
-	    	// $(this).css("background","#FF9F32");
-	    	// $('.action').css("color","black");
-		    $(this).attr("document-selected", "true");
-		    $(this).addClass("document-selected");
+			docSelection.target = $(this).children('.dragAndDrop');
+			// $(this).css("background","#FF9F32");
+			// $('.action').css("color","black");
+			// $(this).attr("document-selected", "true");
+			$(this).addClass("document-selected");
 
+			// $('.action').css("color","grey");
 
-				// $('.action').css("color","grey");
-				
-				// $('.action').addClass('.black');
-				// setTimeout(function(){ $('.action').css("color","black") }, 500);
-		})
+			// $('.action').addClass('.black');
+			// setTimeout(function(){ $('.action').css("color","black") }, 500);
+		});
 	}
 };
 
@@ -459,14 +464,14 @@ var hover = {
 	init: function() {
 
 		$('.box_document').mouseover(function() {
-			if ($(this).attr("document-selected") == "false"){
+			if (!$(this).hasClass("document-selected")){
 				$(this).addClass('document-hovered')
 			}
 			$('#actions-doc').addClass('selected-action')
 		})
 
 		$('.box_document').mouseout(function() {
-			if ($(this).attr("document-selected") == "false"){
+			if (!$(this).hasClass("document-selected")){
 				$(this).removeClass('document-hovered')
 			}
 			if (docSelection.target == null) { $('#actions-doc').removeClass('selected-action') }

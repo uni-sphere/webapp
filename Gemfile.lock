@@ -172,7 +172,6 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   best_in_place
-  coffee-rails
   font-awesome-rails
   fullcalendar2-rails
   gravtastic
