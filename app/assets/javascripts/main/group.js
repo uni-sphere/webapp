@@ -77,12 +77,12 @@ $(document).on('ready page:load', function() {
 	tasks.init();
 	$('#pad').pad({'padId':'infinitree'});
 	users.initialize();
-	$('.typeahead').tokenfield({
-	  typeahead: (null, {
-			name: 'users',
-	  	displayKey: 'email',
-	  	source: users.ttAdapter()})
-	});
+	// $('.typeahead').tokenfield({
+// 	  typeahead: (null, {
+// 			name: 'users',
+// 	  	displayKey: 'email',
+// 	  	source: users.ttAdapter()})
+// 	});
 
 });
 

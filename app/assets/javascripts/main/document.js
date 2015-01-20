@@ -28,7 +28,6 @@ var breadcrumb = {
 		breadcrumb.timeDown = new Date().getTime();
 		breadcrumb.target.on('mouseup', function() {
 			if (new Date().getTime()-breadcrumb.timeDown < 500 && breadcrumb.fillNumber == 0) {
-				console.log('fillBreadcrumb');
 				localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])+1 || 1;
 				localStorage[localStorage['lastIndex'] + 'breadcrumb'] = JSON.stringify({'name': breadcrumb.target.attr('name'), 'box_id': breadcrumb.target.attr('document_id')});
 				breadcrumb.fillNumber = 1;
@@ -56,13 +55,10 @@ var breadcrumb = {
 		var initialPop = !breadcrumb.popped && location.href == breadcrumb.initialURL;
 		breadcrumb.popped = true;
 		if (initialPop) return;
-		
-		console.log(breadcrumb.popFlag);
 		if (breadcrumb.popFlag >= 1 && breadcrumb.popEvent == 0) {
 			localStorage.removeItem([localStorage['lastIndex'] + 'breadcrumb']);
 			localStorage['lastIndex'] = parseInt(localStorage['lastIndex'])-1;
 			breadcrumb.popEvent = 1;
-			console.log('BACK');
 		} else {
 			breadcrumb.popFlag = breadcrumb.popFlag + 1;
 			setTimeout(function(){ breadcrumb.popFlag = 0 }, 500);
@@ -75,7 +71,6 @@ var breadcrumb = {
 						 
 		$('.dragAndDrop').children('a').on('mousedown', function() {
 			breadcrumb.target = $(this).parent('.dragAndDrop');
-			console.log(breadcrumb.target);
 			if (breadcrumb.target.attr('item') == 'folder') {breadcrumb.fillBreadcrumb()}
 		});
 		
@@ -85,8 +80,6 @@ var breadcrumb = {
 			
 		$('#breadcrumb').children('a').on('click', function() {
 			breadcrumb.target = $(this);
-			console.log('target:');
-			console.log(breadcrumb.target);
 			breadcrumb.redirect()
 		});
 		
@@ -293,6 +286,7 @@ var rename = {
 var trash = {
 	init: function() {
 		$('#delete-doc').on('click', function() {
+			$( "#progressbar" ).progressbar();
 			console.log('trash ajax');
 			Pace.track(function(){$.ajax({
 				url: 'http://localhost:3000/user/document/delete',
@@ -305,6 +299,7 @@ var trash = {
 				complete: function(data) {
 					if (data.responseJSON == 204) {
 						docSelection.target.parent('.box_document').remove();
+						$( "#progressbar" ).progressbar('destroy');
 					}
 				}
 			});});
@@ -315,6 +310,7 @@ var trash = {
 var download = {
 	init: function() {
 		$('#download-doc').on('click', function() {
+			$( "#progressbar" ).progressbar();
 			console.log('download');
 			$.ajax({
 				url: 'http://localhost:3000/user/file/download',
@@ -324,7 +320,8 @@ var download = {
 					box_id: docSelection.target.attr('document_id'),
 				},
 				complete: function(data) {
-					window.location = data.responseJSON.url
+					window.location = data.responseJSON.url;
+					$( "#progressbar" ).progressbar("destroy");
 				}
 			});
 		})
@@ -340,22 +337,13 @@ var docSelection = {
 	},
 
 	init: function() {
-
 		$('.box_document').on('click', function() {
 			if (docSelection.target != null) {
 				docSelection.remove();
 				$('#link-display').html('');
 			};
 			docSelection.target = $(this).children('.dragAndDrop');
-			// $(this).css("background","#FF9F32");
-			// $('.action').css("color","black");
-			// $(this).attr("document-selected", "true");
 			$(this).addClass("document-selected");
-
-			// $('.action').css("color","grey");
-
-			// $('.action').addClass('.black');
-			// setTimeout(function(){ $('.action').css("color","black") }, 500);
 		});
 	}
 };
@@ -398,6 +386,7 @@ var shareLink = {
 	createLink: function() {
 		console.log('share ajax');
 		if (docSelection.target.attr('item') == 'file') {
+			$( "#progressbar" ).progressbar();
 			$.ajax({
 				url: 'http://localhost:3000/user/file/create_shared_link',
 				type:"POST",
@@ -409,6 +398,7 @@ var shareLink = {
 						console.log(data.responseText);
 						$('#link-display').html(data.responseText);
 						shareLink.fnSelect('link-display');
+						$( "#progressbar" ).progressbar("destroy");
 					}
 				}
 			});
@@ -534,17 +524,34 @@ var hover = {
 	}
 };
 
+var folderRedirection = {
+	init: function() {
+		$('.go-folder').on('click', function(e) {
+			// if (docSelection.target != null) { docSelection.remove() };
+			$( "#progressbar" ).progressbar();
+		})
+	}
+};
+
 var progressBar = {
 	init: function() {
-		if(document.URL.indexOf("document") <= -1) {
+		// window.paceOptions = {
+		// 	// ajax: false, // disabled
+		// 	// document: false, // disabled
+		// 	// eventLag: false, // disabled
+		// 	startOnPageLoad: false,
+		// //   restartOnPushState: false,
+		// 	target: '#breadcrumb'
+		// }
+		if(document.URL.indexOf("document") > -1) {
 			console.log('contains not document');
-			Pace.stop();
 		}
 	}
 }
 
 mainDocument = function() {
-	progressBar.init();
+	// progressBar.init();
+	folderRedirection.init();
 	breadcrumb.init();
 	dragAndDrop.init(url);
 	docSelection.init();
@@ -560,14 +567,10 @@ mainDocument = function() {
 $(document).on('ready page:load', function() {
 	mainDocument();
 });
-window.paceOptions = {
-	ajax: false, // disabled
-	document: false, // disabled
-	eventLag: false, // disabled
-  restartOnRequestAfter: false,
-  restartOnPushState: false,
-	target: '#list-document'
-}
+
+$(document).on('befor-unload', function() {
+	$( "#progressbar" ).progressbar("destroy");
+});
 
 
 
