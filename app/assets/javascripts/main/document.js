@@ -111,7 +111,7 @@ var dragAndDrop = {
 	dragOptions: {
 		appendTo: "tbody",
 		// containment: "tbody",
-		cursor: "crosshair",
+		cursor: "pointer",
 		distance: 10,
 		// helper: "clone",
 		iframeFix: true,

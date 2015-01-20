@@ -8,14 +8,11 @@
   position: absolute;
   top: 2px;
   left: calc(50% - 12px);
-  // float: middle;
   width: 25px;
 
-  // font-size: 18px;
   img{line-height: 30px;}
 
   // background: red;
-  // margin-top : 2px !important;
 }
 
 
@@ -32,12 +29,10 @@
   width: 200px;
   height: 100%;
 
-  &, a{color: $surrounding-color;}
   // background: green;
 
-  // ------------
   // user profile
-  // ------------
+
   #user-profile{
     position: absolute;
 
@@ -68,6 +63,8 @@
     position: relative;
     float: left;
 
+    color: $username;
+
     line-height: 22px;
   }
 
@@ -80,14 +77,15 @@
     right: 0px;
     top: 1px;
 
-    height: 2px;
+    padding: 1px;
+
     line-height: 22px;
     width: 22px;
+    height: 22px;
 
     border: 1px solid $surrounding-bg;
     font-size: 14px;
-
-    padding: 1px;
+    color: $deco-fa;
 
     &:hover{
       border: 1px solid $header-bg;

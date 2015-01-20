@@ -24,7 +24,7 @@
 
   padding-top:2px;
 
-  background: $header-bg2;
+  background: $unselected-tab-bg;
   color: black;
 
   border-radius: 20px 20px 0 0;
@@ -47,15 +47,14 @@
     z-index: 3;
 
     background: $gradient-top;
-    // background: $header-bg;
-    color: black;
+    color: $tab-color;
 
     cursor: default;
 
   }
   &:hover{
-    background: $violet-dark;
-    color: white;
+    background: $unselected-tab-hover;
+    color: $unselected-tab-hover-color;
     text-decoration: none;
   }
 }
@@ -159,10 +158,7 @@
   width: 100%;
   height: 25px;
 
-  // background: $header-bg;
   background: $gradient;
-
- 
 }
 
 #uni-name{
@@ -176,7 +172,7 @@
   text-align: left;
 
   line-height: 25px;
-  color: black;
+  color: $school;
 
   white-space: nowrap;      //keep the text on one line
   overflow: hidden;         //prevent the text from being shown outside the border
@@ -194,22 +190,13 @@
 
   width: calc(100% - 2px);
   height: calc(100% - 28px);
-  // padding-bottom: 5px; 
 
   border-left: solid 3px $header-bg;
   border-bottom: solid 3px $header-bg;
   border-bottom-left-radius: 20px;
 
-  a, & {color: black;}
   background: $inside-bg;
-
-  
 }
-
-
-
-
-
 
 #sidebar-separator{
   position: relative;
@@ -218,7 +205,7 @@
   width:100%;
   height:1px;
 
-  background: #808080 ;
+  background: $folder-separator ;
 }
 
 .lateral-nav{
@@ -250,13 +237,14 @@
     margin: 2px 0px;
     padding-left: 5px;
 
+    color: $nav;
     white-space: nowrap;      //keep the text on one line
     overflow: hidden;         //prevent the text from being shown outside the border
     text-overflow: ellipsis;  //cut off text with an elipsis
 
     border-left: solid 2px $inside-bg;
     &:hover, &.active li a{
-      border-left: solid 2px black;
+      border-left: solid 2px $hover-border;
       background: $inside-bg;
 
       text-decoration: none;
@@ -264,138 +252,12 @@
   }
   .fa{
     padding-left: 5px;
-    // margin-right: 5px;
     width: 25px;
     font-size: 14px;
+    color: $nav-fa;
   }
 }
 
 #nav-perso{
   top: 31px;
-}
-
-#active-group-nav{
-  top: 35px;
-}
-
-#groups-nav{
-  top: 130px;
-
-
-  img{
-    float: left;
-
-    height: 22px;
-    width: 22px;
-
-    margin-right: 5px;
-  }
-
-  .line-separator{
-    margin-top: calc( 78px + 4px );
-    top: 5px;
-
-    height: 1px;
-    width: calc(100% - 5px);
-    background: $violet-writing;
-  }
-
-  #more-groups{
-    // background: red;
-    display: block;
-    // clear: left;
-    // float: left;
-
-    width: 100%;
-
-    padding-left: 5px;
-    padding-top: 5px;
-
-    font-style: italic;
-  }
-}
-
-
-
-#list-groups-wrapper{
-  float:left;
-  clear: left;
-
-  width: 100%;
-
-  margin-top: 20px;
-  
-  
-  .panel-heading{
-    padding-top: 15px !important; 
-  }
-
-  #list-groups{
-    img{
-      float: left;
-
-      height: 30px;
-      width: 30px;
-
-      margin-right: 4px;
-    }
-    li a{
-      display: block;
-      float:left;
-      clear:left;
-
-      padding: 0;
-      padding-left: 9px;
-      margin: 3px 0px;
-
-      border-left: solid 2px white;
-      &:hover{
-        border-left: solid 2px $violet-writing;
-      }
-    }
-    .name-group{
-      float: left;
-      margin-top: 5px;
-    }
-  }
-
-  .line-separator{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 1px;
-    background: $grey-separator;
-  }
-
-  #more-groups{
-    display: block;
-    clear: left;
-    float: left;
-
-    width: 100%;
-
-    padding-left: 15px;
-
-    font-size: 12px;
-
-    .ellipsis{
-      float: left;
-
-      width: 80%;
-
-      text-align: left;
-      font-style: italic;
-      white-space: nowrap;  
-      overflow: hidden;    
-      text-overflow: ellipsis; 
-    }
-    
-    &:hover, &:focus{
-      text-decoration: none;
-    }
-    .fa{
-      float: left;
-
-      margin-right: 5px;
-    }
-  }
 }
