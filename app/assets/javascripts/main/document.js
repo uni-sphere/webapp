@@ -15,7 +15,7 @@ var breadcrumb = {
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'Perso', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
-			$('#breadcrumb').append('<a class="name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> <span class="breadcrumb-separator">></span>')
+			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document" href="/user/documents?folder=' + element.box_id + '" breadcrumb_id=' + i + '>' + element.name + '</a> <span class="breadcrumb-separator">></span>')
 			breadcrumb.fillNumber = 0;
 			breadcrumb.popEvent = 0;
 			if (docSelection.target != null) { docSelection.remove() };
@@ -83,6 +83,10 @@ var breadcrumb = {
 			breadcrumb.redirect()
 		});
 		
+		$('.breadcrumb-redirection').on('click', function() {
+			$( '#loader' ).removeClass("hidden");
+		});
+		
 		$('.power-off').on('click', function() { localStorage.clear() })
 	}
 	
@@ -104,7 +108,7 @@ var dragAndDrop = {
 	dragOptions: {
 		appendTo: "tbody",
 		// containment: "tbody",
-		cursor: "crosshair",
+		cursor: "pointer",
 		distance: 10,
 		// helper: "clone",
 		iframeFix: true,
@@ -208,6 +212,8 @@ var autoSubmitUpload = {
 	init: function() {
 		$('#upload-doc').on('click', function() {
 			$('#input-button-upload').click();
+			console.log($( '#loader' ));
+			$( '#loader' ).removeClass("hidden");
 		});
 		$('#input-button-upload').on('change', function() {
 			$('#submit-button-upload').click();
@@ -286,9 +292,9 @@ var rename = {
 var trash = {
 	init: function() {
 		$('#delete-doc').on('click', function() {
-			$( "#progressbar" ).progressbar();
+			$( '#loader' ).removeClass("hidden");
 			console.log('trash ajax');
-			Pace.track(function(){$.ajax({
+			$.ajax({
 				url: 'http://localhost:3000/user/document/delete',
 				type:"DELETE",
 				data: {
@@ -299,10 +305,10 @@ var trash = {
 				complete: function(data) {
 					if (data.responseJSON == 204) {
 						docSelection.target.parent('.box_document').remove();
-						$( "#progressbar" ).progressbar('destroy');
+						$( '#loader' ).addClass("hidden");
 					}
 				}
-			});});
+			});
 		})
 	}
 };
@@ -310,7 +316,7 @@ var trash = {
 var download = {
 	init: function() {
 		$('#download-doc').on('click', function() {
-			$( "#progressbar" ).progressbar();
+			$( '#loader' ).removeClass("hidden");
 			console.log('download');
 			$.ajax({
 				url: 'http://localhost:3000/user/file/download',
@@ -321,7 +327,7 @@ var download = {
 				},
 				complete: function(data) {
 					window.location = data.responseJSON.url;
-					$( "#progressbar" ).progressbar("destroy");
+					$( '#loader' ).addClass("hidden");
 				}
 			});
 		})
@@ -343,8 +349,13 @@ var docSelection = {
 				$('#link-display').html('');
 			};
 			docSelection.target = $(this).children('.dragAndDrop');
-			$(this).addClass("document-selected");
+
+			$(this).addClass("document-selected").removeClass("document-hovered");
 		});
+		
+		$('.go-file').on('click', function() {
+			$( '#loader' ).removeClass("hidden");
+		})
 	}
 };
 
@@ -386,7 +397,7 @@ var shareLink = {
 	createLink: function() {
 		console.log('share ajax');
 		if (docSelection.target.attr('item') == 'file') {
-			$( "#progressbar" ).progressbar();
+			$( '#loader' ).removeClass("hidden");
 			$.ajax({
 				url: 'http://localhost:3000/user/file/create_shared_link',
 				type:"POST",
@@ -398,7 +409,7 @@ var shareLink = {
 						console.log(data.responseText);
 						$('#link-display').html(data.responseText);
 						shareLink.fnSelect('link-display');
-						$( "#progressbar" ).progressbar("destroy");
+						$( '#loader' ).addClass("hidden");
 					}
 				}
 			});
@@ -528,29 +539,14 @@ var folderRedirection = {
 	init: function() {
 		$('.go-folder').on('click', function(e) {
 			// if (docSelection.target != null) { docSelection.remove() };
-			$( "#progressbar" ).progressbar();
+			console.log($( '#loader' ));
+			$( '#loader' ).removeClass("hidden");
+			console.log($( '#loader' ));
 		})
 	}
 };
 
-var progressBar = {
-	init: function() {
-		// window.paceOptions = {
-		// 	// ajax: false, // disabled
-		// 	// document: false, // disabled
-		// 	// eventLag: false, // disabled
-		// 	startOnPageLoad: false,
-		// //   restartOnPushState: false,
-		// 	target: '#breadcrumb'
-		// }
-		if(document.URL.indexOf("document") > -1) {
-			console.log('contains not document');
-		}
-	}
-}
-
 mainDocument = function() {
-	// progressBar.init();
 	folderRedirection.init();
 	breadcrumb.init();
 	dragAndDrop.init(url);
@@ -562,14 +558,18 @@ mainDocument = function() {
 	shareLink.init();
 	download.init();
 	hover.init();
+	
+	$(window).on('popstate', function() {
+		// setTimeout(function() { $( '#loader' ).addClass("hidden"); }, 10);
+	})
 };
 
 $(document).on('ready page:load', function() {
 	mainDocument();
 });
 
-$(document).on('befor-unload', function() {
-	$( "#progressbar" ).progressbar("destroy");
+$(document).on('before-unload', function() {
+	$( '#loader' ).addClass("hidden");
 });
 
 

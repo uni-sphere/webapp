@@ -1,15 +1,63 @@
-// $header-bg: rgba(142,134,204,1);
-// $header-bg2: #5E4FBD;
-// $inside-bg: papayawhip;
-// $inside-bg: bisque;
-// $surrounding-bg: #F2F1F0;
+//GREY
+$header-bg: rgba(192,192,192,1);
+$gradient-top:  linear-gradient(to bottom, rgba(220,220,220,1) 0%,rgba(211,211,211,1) 100%);
+$gradient: linear-gradient(to bottom, rgba(211,211,211,1) 0%,rgba(192,192,192,1) 100%);
 
-// $surrounding-bg: #F5F5F5;
+// GENERAL
 $surrounding-bg: whitesmoke;
-
-
 $inside-bg: whitesmoke;
-$inside-bg2: blue;
+
+// TABS
+$tab-color: black;
+
+$unselected-tab-bg: rgba(220,220,220,1);
+$unselected-tab-hover: #9E9E9E;
+$unselected-tab-hover-color: black;
+
+// SIDEABAR
+$school: black;
+$nav-fa: black;
+$nav: black;
+$hover-border: black;
+
+$sidebar-color: #B22222;
+
+$folder-separator: #808080;
+
+
+// NAVBAR
+$username: black;
+$deco-fa: black;
+
+// CLOUD
+$breadcrumb: black;
+$list-fa: black;
+$list: black;
+$list-separator: $header-bg;
+$list-title: grey;
+$list-title-fa: grey;
+$list-title-separator: $header-bg;
+$name: $header-bg;
+
+$selected-action: black;
+$unselected-action: grey;
+
+$document-selected: papayawhip;
+$document-hovered: snow;
+
+$pencil-active: grey;
+$rename: black;
+
+$action: black;
+$action-fa: black;
+
+
+
+
+
+
+
+
 
 
 //BLUE
@@ -34,108 +82,3 @@ $inside-bg2: blue;
 // $surrounding-bg: cornsilk;
 // blanchalmond
 // $surrounding-bg: mintcream;
-
-//GREY
-$header-bg2: rgba(220,220,220,1);
-$header-bg: rgba(192,192,192,1);
-$gradient-top:  linear-gradient(to bottom, rgba(220,220,220,1) 0%,rgba(211,211,211,1) 100%);
-$gradient: linear-gradient(to bottom, rgba(211,211,211,1) 0%,rgba(192,192,192,1) 100%);
-
-
-
-
-$surrounding-color: black;
-$sidebar-color: #B22222;
-$item-list-selected: red;
-
-
-
-// $background: #8e639e;
-// $inside-background: #9F6DB2;
-// $background-2: green;
-// $surrounding: white;
-// $color-surrounding: #785486;
-// $sidebar-writing: #785486;
-
-
-
-
-
-$violet-dark: #785486;
-$violet-darker: #654670; 
-
-$grey: #E7ECEA;
-$grey-light: #DADADA;
-$grey-lighter: #FCFCFC;
-$grey-test:#f8f8f8;
-
-// $violet: #CCCCCC;
-// $violet: #6E6770;
-$violet: #8e639e;
-
-$violet-light: #9F6DB2;
-$violet-dark: #785486;
-$violet-background: #996699;
-$violet-writing: #8e639e;
-$grey-background: #FCFCFC;
-$grey-separator: #DDDDDD;
-$grey-edit: #808080;
-
-// $background-color: #8A6E51;
-
-// $bg-dark: #1A31C6;
-// $bg-light: #3B5999;
-
-$side-bg: $violet-background;
-$side-color: $violet-dark; 
-$side-color-hover: #5A4181;
-// $side-bg-hover: #D5DAD8;
-// $side-bg-light: #F8FAF9;
-$main-bg: white;
-$tab: #bdc2c9;
-
-
-$tab-main-color: $violet;
-$tab-main-hover-bg: white;
-$tab-main-hover-color: $violet;
-
-$tab-active-bg: $grey-test;
-$tab-active-color: $violet;
-$tab-color: white;
-$tab-hover-bg: $violet-dark;
-$tab-hover-color: white;
-$tab-bg: $grey;
-
-$tab-color: white;
-$tab-color-active: $violet;  
-
-$badge-color: $violet; 
-$badge-bg: white; 
-
-$notif-bg: $violet-background;
-$notif-color: white;
-$notif-color-hover: $violet-dark;
-
-$button-bg: $violet;
-$button-bg-hover: $violet-dark;
-$button-color: white;
-
-
-$navbar-small-color: $violet;
-
-$panel-heading-bg: #FCFCFC;
-// $panel-separator-bg: $violet-light;
-
-$button-small-hover-bg: $violet;
-$button-small-hover-color: white;
-
-$notification-bg: $violet-light;
-
-// $border-folder: #6E5677;
-
-
-
-// $border-folder: $violet;
-
-
-

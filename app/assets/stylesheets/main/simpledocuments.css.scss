@@ -6,15 +6,11 @@
 
   height: 100%;
   width: 100%;
-
-  color: $violet-writing;
-  font-size: 14px;
 }
 
 // --------
 // HEADER -
 // --------
-
 
 #breadcrumb-seachbar{
 }
@@ -24,6 +20,7 @@
   float: left;
 
   padding-left: 5px;
+
   a, .breadcrumb-separator{
     position: relative;
     float: left;
@@ -36,7 +33,7 @@
   a{
     padding: 0px 2px;
 
-    color: black;
+    color: $breadcrumb;
     font-size: 10px;
     &:hover{
       text-decoration: underline!important;
@@ -44,8 +41,6 @@
   }
   .breadcrumb-separator{
     padding: 0px 4px;
-
-    font-size: 10px;
   }
 }
 
@@ -58,9 +53,19 @@
   float: left;
 
   width: 70%;
-  margin-top: 30px;
   text-align: left;
+}
 
+.notification-row{
+  position: relative;
+  float: left;
+
+  height: 10px;
+  width: 100%;
+
+  margin-bottom:15px;
+
+//  background: red;
 }
 
 // LIST TITLE
@@ -73,7 +78,7 @@
 
   line-height: 25px;
   // background: blue;
-  border-bottom: 2px solid $header-bg;
+  border-bottom: 2px solid $list-title-separator;
 
   span{
     position: relative;
@@ -81,15 +86,14 @@
 
     height: 100%;
 
-    color: grey;
+    color: $list-title;
     font-size: 10px;
     &:hover{
-      // background: $header-bg;
       cursor: pointer;
     }
   }
   .fa{
-    color: grey;
+    color: $list-title-fa;
     font-size: 9px;
     padding-left: 3px; 
   }
@@ -114,23 +118,18 @@
   float: left;
   width: 100%;
   height: 49px;
-  border-bottom: 1px solid $header-bg;
-  background: whitesmoke;
-
-  &:hover{
-    // background: snow;
-    .fa-pencil{color: grey;}
-  }
-
-
+  border-bottom: 1px solid $list-separator;
+  background: $inside-bg;
 }
 
 // -----------------------------
 .document-hovered{
-  background: snow;
+  background: $document-hovered;
+  .fa-pencil{color: $pencil-active;}
 }
 .document-selected{
-  background: blue;
+  background: $document-selected;
+  .fa-pencil{color: $pencil-active;}
 }
 // ----------------------------
 
@@ -143,9 +142,7 @@
   width: calc(60% - 5px);
   height: 50px;
 
-
   padding-left: 5px;
-
 
   a{
     position: relative;
@@ -164,7 +161,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
 
-      color: black;
+      color: $list;
     }
 
     .fa{
@@ -173,8 +170,8 @@
 
       width: 30px;
 
-      font-size: 28px;
-      color: black;
+      font-size: 26px;
+      color: $list-fa;
     }
   }
 }
@@ -182,15 +179,16 @@
 // INPUT RENAME DOCUMENT
 .input-rename-document{
   position: absolute;
-  left: 38px;
-  top: 15px;
+  left: 33px;
+  top: 13px;
 
-  width: calc(60% - 38px);
+  width: calc(100% - 35px);
   height: 20px;
 
-  font-size: 12px;
+  font-size: 10px;
 
-  color: black;
+  color: $rename;
+  font-family: 'Ubuntu';
 }
 
   // RENAME BUTTON
@@ -198,14 +196,17 @@
   position: relative;
   float: left;
 
-  width: 50px;
+  width: 20px;
   height: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   line-height: 50px;
 
   font-size: 20px;
 
   color: $inside-bg;
+  &:hover{cursor: pointer;}
 }
 
 // MODIFIED
@@ -220,7 +221,7 @@
   // background: blue;
 
   .date-time{
-    color: black;
+    color: $list;
     font-size: 10px;
 
     // background: blue;
@@ -234,7 +235,7 @@
 
     line-height: 50px;
     font-size: 9px; 
-    color: $header-bg;
+    color: $name;
 
     white-space: nowrap;
     overflow: hidden;
@@ -257,7 +258,7 @@
 
   padding-left: 5px;
 
-  color: black;
+  color: $list;
   font-size: 10px;
 
   text-align: right;
@@ -265,15 +266,15 @@
 }
 
 // FILE SEPARATOR
-.file-separator{
-  position: relative;
-  float: left;
+// .file-separator{
+//   position: relative;
+//   float: left;
 
-  left: 0px;
-  height: 1px;
-  width: 100%;
-  background: $header-bg;
-}
+//   left: 0px;
+//   height: 1px;
+//   width: 100%;
+//   background: $list-separator;
+// }
 
 // -------------------
 // ACTIONS ON DOCUMENT
@@ -283,10 +284,8 @@
   position: relative;
   float: left;
 
-  width: 22%;
+  width: 30%;
   height: 100%;
-
-  margin-left: 5%;
 }
 
 
@@ -300,31 +299,18 @@
   height: 130px;
 
   padding-top: 25px;
-  // margin-top: 25px;
-  // overflow: hidden;
-  transition: all ease-in .5s;
 
-  &:hover {
+  transition: all ease-in .5s;
+  &:hover{
     padding-top: 5px;
   }
-  // left: 100px;
-  // background: blue;
-  &, a{
-    color: black;
-  }
 }
 
-.fa-plus{
-  position: relative;
-  float: middle;
 
-  height: 50px;
-  // background: red;
-}
 #new-actions{
-  position: absolute;
+  position: relative;
   float: left;
-  // display: none;
+  display: none;
 
   width: 100%;
   height: 40px;
@@ -332,34 +318,46 @@
   margin-top: 20px;
 
   font-size: 12px;
+  a{color: $action;}
   .fa{
     font-size: 14px;
     margin-right: 3px;
+    color: $action-fa;
   }
-  // background: green;
 }
 
+// NEW FOLDER
+#new-folder{
+  position: absolute;
 
-.new-action{
-  position: relative;
-  float: left;
-
-  width: calc(1/3 * 100% - 3px);
-  // height: 100%;
-
-  text-align: left;
-  // padding-left: 5px;
-  // background: orange;
+  left: calc(16% - 25px);
 }
+
+// UPLOAD DOC
 #upload-doc{
+  position: absolute;
+
+  left: calc(50% - 28px);
+
    &:hover{
     cursor: pointer;
   }
 }
+
+// CREATE DOC
+#create-doc{
+  position: absolute;
+
+  right: 30px;
+}
+
 #create-doc-title{
   position: relative;
   float: left;
+
+  margin-bottom: 3px;
 }
+
 .create-list{
   position: relative;
   float: left;
@@ -369,29 +367,28 @@
 }
 
 
-
 //----------ACTIONS
 
 #actions-doc{
   position: absolute;
 
-  top: 150px;
+  top: 175px;
 
   width: 100%;
   height: 150px;
 
-
+  // background: green;
 }
 // ----------------------
 .selected-action{
-  .action{color: black;}
+  .action{color: $selected-action;}
 }
 // -----------------------
 .action{
   position: relative;
   float: left;
 
-  height: 90px;
+  height: 50px;
   width: calc(4/15 * 100%);
 
   padding-top: 20px;
@@ -399,16 +396,11 @@
   margin-left: calc(1/30 * 100%);
   margin-right: calc(1/30 * 100%);
   transition: all ease-in .1s;
-  color: grey;
+  color: $unselected-action;
 
   .fa{
     height: 50px;
   }
- 
-
-  // background: red;
-
-  
 }
 
 .action-hovered{
@@ -417,24 +409,19 @@
   transition: all .5s;
 }
 
-
-
-#link-doc{
-  // overflow: hidden;
-}
 #link-display{
   position: relative;
   float: left;
-  // display: none;
 
-  height: 60px;
+  height: 20px;
   width: calc(28/30 *100%);
 
   margin-left: calc(1/30 * 100%);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 10px;
 
-  // background: green;
+  font-size: 10px;
+  color: black;
+
 
   white-space: nowrap;
   overflow: hidden;
@@ -464,90 +451,6 @@
 
 
 
-
-
-
-
-
-
-
-// --------
-// RIGHT INFORMATION
-// --------
-
-#side-container{
-}
-.panel-costum{
-  float: left;
-
-  width: 100%;
-
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 20px;
-
-  color: black;
-
-  // border: solid 1px $violet-writing;
-  // box-shadow: -2px 2px 2px $violet;
-  // border-radius: 2px;
-
-  .panel-title{
-    clear: left;
-    float: left;
-
-    width: 100%;
-    // background: red;
-    // font-weight: bold;
-
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-    text-align: left;
-    .fa{margin-right: 5px; margin-left: 3px;}
-
-  }
-  // .panel-title-container{
-  //   text-align: left;
-  // }
-  .file-info{
-    float: left;
-    clear: left;
-
-    text-align: left;
-
-    .first-col-width{
-      width: 100px;
-    }
-  }
-  .separation-line{
-    display: block;
-
-    height: 1px;
-
-    margin: 10px 0px;
-
-    // background: $violet-writing;
-  }
-  .separation-line-container{
-    float: left;
-    clear: left;
-
-    width: 100%;
-  }
-  .share-link-container{
-    float: left;
-    clear: left;
-
-    width: 100%;
-  }
-  .share-link{
-    display: block;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    // background: blue;
-  }
-}
 
 
 

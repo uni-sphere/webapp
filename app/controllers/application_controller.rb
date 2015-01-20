@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   
   def is_production?
-    ENV["PROD_MODE"] || FALSE ? $ready_for_production = true : false 
+    ENV["PROD_MODE"] || FALSE ? $ready_for_production = false : true 
   end
   
   def set_ready_for_production

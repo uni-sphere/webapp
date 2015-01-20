@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> -->
 <div id="container-perso-storage">
 
 	<!-- ------ -->
@@ -8,13 +8,7 @@
 	<div class="first-row" id="breadcrumb-seachbar">
 		<div id="breadcrumb" folder_id="<%= params[:folder] %>" >
 		</div>
-		<div id="progressbar">
-			<div class="ui-progressbar-value">
-				<div class="ui-progressbar-overlay">
-			
-				</div>
-			</div>
-		</div>
+		
 
 		<!--<div id="perso-file-search" class="col-md-4">-->
 			<!--  <span class="icon"><i class="fa fa-search"></i></span>-->
@@ -25,20 +19,14 @@
 
 		<div class="main-page">
 			<div class="main-page-separator"></div>
-
 			
-
-
-    
-
-
-
 			<!-- ------------- -->
 			<!-- DOCUMENT list -->
 			<!-- ------------- -->
 
     <div id="list-document">
-
+      <div class="notification-row">
+      </div>
       <div id="list-title">
         <span id="title-name">Name<%=fa_icon("arrow-up")%></span>
         <span id="title-modified">Last modified<%=fa_icon("arrow-up")%></span>
@@ -56,7 +44,7 @@
             <% elsif document['type'] == 'file' %>
               <%= link_to show_user_file_path(box_id: document['id']), file: document.to_json , item: 'folder' do %>
                 <%= fa_icon("file") %>
-               <span class="name-document"> <%= document['name'] %> </span>
+               <span class="name-document go-file"> <%= document['name'] %> </span>
               <% end %>
             <% end %>
             <%= text_field_tag :name, document['name'], class: "hidden input-rename-document" %>
@@ -83,21 +71,19 @@
       <div id="new-doc" class="">
         <%= fa_icon("3x plus")%>
         <div id="new-actions">
-          <div class="new-action">
-            <%= link_to create_user_folder_path(folder: params[:folder]), method: :post, id:"new-folder" do%>
-              <%= fa_icon "folder" %>Folder
-            <% end %>
-          </div>
+          <%= link_to create_user_folder_path(folder: params[:folder]), method: :post, id:"new-folder" do%>
+            <%= fa_icon "folder" %>Folder
+          <% end %>
 
-          <div class="new-action"><a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a></div>
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
           <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
             <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
             <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
           <% end %>
-          <div id="create-doc" class="new-action">
+          <div id="create-doc">
             <span id="create-doc-title"><i class="fa fa-file"></i>New</span>
-            <a class="create-list"><i class="fa fa-trash"></i>Firepad</a>
-            <a class="create-list"><i class="fa fa-trash"></i>Gg doc</a>
+            <a class="create-list"><i class=""></i>Firepad</a>
+            <a class="create-list"><i class=""></i>Google doc</a>
           </div>
         </div>
       </div>
@@ -115,7 +101,7 @@
         <div id="link-display"></div>
       </div>
     </div>
-  </div>
+  </div><div id="loader" class="hidden">Loading...</div>
 </div>
 
 
