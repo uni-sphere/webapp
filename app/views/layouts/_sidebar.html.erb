@@ -7,7 +7,7 @@
 
 <div id="row-and-content-wrapper">
 	<div id="sidebar-first-row">
-		<span id="uni-name">IFMA - engineering school</span>
+		<span id="uni-name">IFMA - engineering scholo</span>
 	</div>
 	<div id="content-wrapper">
 
@@ -16,30 +16,20 @@
 			<a href="#"><span class="unilib"><i class="fa fa-graduation-cap"></i>Unilib</span> -->
 		</div>
 
-		<!-- ----------------------------- -->
-		<!-- ------ GROUP sidebar -------- -->
-		<!-- ----------------------------- -->
-
+		
 		<div id="sidebar-separator"></div>
 
 		<% if request.url =~ /groups(.*)/ %>
 			<% if current_group_exists? %>
-			<div id="active-group-nav" class="lateral-nav">
-				<ul>
-					<%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
-					<%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
-					<%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
-				</ul>
-			</div>
+				<!-- //plop -->
 			<%end%>
 
-			<div id="groups-nav" class="lateral-nav">
+			<div class="lateral-nav" id="groups-nav" >
 				<ul>
 					<% current_groups.each do |group| %>
 					<li>
 						<%= link_to user_group_calendar_path(current_user, group, group.calendar) do %>
-						<%= image_tag "group-pic.png" %>
-						<span class="name-group"> <%= group.name %></span>
+							<%= image_tag "group-pic.png" %><%= group.name %>
 						<% end %>
 					</li>
 					<% end %>
@@ -50,22 +40,18 @@
 				</a>
 			</div>
 
-		<!-- ----------------------------- -->
-		<!-- ------ PERSO sidebar -------- -->
-		<!-- ----------------------------- -->
-
 		<% elsif  %>
-		<div class="lateral-nav" id="nav-perso">
-			<ul>
-				<li>
-					<%= link_to (get_user_documents_path(folder: '0' )) do %>
-					<%=fa_icon("folder-open")%>Folder
-					<% end %>
-				</li>
-				<li><a href="#"><i class="fa fa-wechat"></i>Chat</a></li>
-				<li><a href="#"><i class="fa fa-calendar"></i>Calendar</a></li>
-			</ul>
-		</div>
+			<div class="lateral-nav" id="nav-perso">
+				<ul>
+					<li>
+						<%= link_to (get_user_documents_path(folder: '0' )) do %>
+							<%=fa_icon("folder-open")%>Folder
+						<% end %>
+					</li>
+					<li><a href="#"><i class="fa fa-wechat"></i>Chat</a></li>
+					<li><a href="#"><i class="fa fa-calendar"></i>Calendar</a></li>
+				</ul>
+			</div>
 		<% end %>
 
 	</div>

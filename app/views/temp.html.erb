@@ -1,5 +1,7 @@
-<% if @@ready_for_production == false %>
-        <%= render 'layouts/construction' %>
-      <% else %>
-        <%= yield %>
-      <% end %>
+<div id="active-group-nav" class="lateral-nav">
+        <ul>
+          <%= nav_link_to fa_icon("folder-open", text: "Drive"), get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>
+          <%= nav_link_to fa_icon("wechat", text: "Chat"), root_path %>
+          <%= nav_link_to fa_icon("calendar", text: "Calendar"), user_group_calendar_path(current_user, current_group, group_calendar) %>
+        </ul>
+      </div>
