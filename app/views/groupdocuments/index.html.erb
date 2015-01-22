@@ -1,29 +1,29 @@
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> -->
 <div id="container-perso-storage">
 
-	<!-- ------ -->
-	<!-- HEADER -->
-	<!-- ------ -->
+  <!-- ------ -->
+  <!-- HEADER -->
+  <!-- ------ -->
 
-	<div class="first-row" id="breadcrumb-seachbar">
-		<div id="breadcrumb" folder_id="<%= params[:folder] %>" >
-		</div>
-		
-
-		<!--<div id="perso-file-search" class="col-md-4">-->
-			<!--  <span class="icon"><i class="fa fa-search"></i></span>-->
-			<!--  <input type="search" id="search" placeholder="Search..." />-->
-			<!--</div>-->
+  <div class="first-row" id="breadcrumb-seachbar">
+    <div id="breadcrumb" folder_id="<%= params[:folder] %>" >
+    </div>
     
-		</div> 
 
-		<div class="main-page">
-			<div class="main-page-separator"></div>
+    <!--<div id="perso-file-search" class="col-md-4">-->
+      <!--  <span class="icon"><i class="fa fa-search"></i></span>-->
+      <!--  <input type="search" id="search" placeholder="Search..." />-->
+      <!--</div>-->
+    
+    </div> 
+
+    <div class="main-page">
+      <div class="main-page-separator"></div>
       
-			
-			<!-- ------------- -->
-			<!-- DOCUMENT list -->
-			<!-- ------------- -->
+      
+      <!-- ------------- -->
+      <!-- DOCUMENT list -->
+      <!-- ------------- -->
 
     <div id="list-document">
       <div class="notification-row"></div>
@@ -35,8 +35,8 @@
       </div>
 
         <% @group_folders.each do |folder| %>
-    	    <div class="box_document" document-selected="false">
-            <span class="dragAndDrop icon-and-name" item="folder" document_id="<%= folder.id %>" >
+          <div class="box_document" document-selected="false">
+            <span class="dragAndDrop icon-and-name" document_id="<%= folder.id %>" item="folder" name="<%= folder.name %>" >
               <%= link_to get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) do %>
                 <%= fa_icon("folder") %>
                 <span class="name-document go-folder"><%= folder.name %></span>
@@ -46,34 +46,35 @@
             
             <%= fa_icon("pencil", class: "document-rename") %>
             <div class="modified-doc">
-              <span class="date-time">one hour ago</span>
-              <span class="person">clement</span>
+              <span class="date-time"><%= time_ago_in_words Time.at(folder.created_at.to_i) %></span>
+              <span class="person"><%= %></span>
             </div>
-            <div class="size-doc">45 kb</div>
+            <div class="size-doc"><%= %> kb</div>
           </div>
         <% end %>
-		
+    
         <% @group_documents.each do |document| %>
-    	    <div class="box_document" document-selected="false">
-      			<span class="dragAndDrop groupdoc icon-and-name" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %>
-      			  <a>
+          <div class="box_document" document-selected="false">
+
+            <span class="dragAndDrop icon-and-name" document_id="<%= document.box_id %>" item="file" name="<%= document.name %>" %>
+              <%= link_to read_group_file_path(box_id: document.box_id) do %>
                 <%= fa_icon("file") %>
-      			    <span class="name-document"> <%= document.name %> </span>
-              </a>
-      			  <%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
-      			</span>
+               <span class="name-document"> <%= document.name %> </span>
+        <% end %>
+              <%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
+            </span>
             
             <%= fa_icon("pencil", class: "document-rename") %>
             <div class="modified-doc">
-              <span class="date-time">one week ago</span>
-              <span class="person">clement</span>
+              <span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
+              <span class="person"><%= document.owner %></span>
             </div>
-            <div class="size-doc">399 kb</div>
+            <div class="size-doc"><%= document.size %> kb</div>
           </div>
         <% end %>
             
 
-    		  
+          
       
     </div> 
 
@@ -94,7 +95,7 @@
           <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
           <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
             <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
-            <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
+            <%= submit_tag "upload-doc", class: "hidden", id: "submit-button-upload" %>
           <% end %>
           
           <div id="create-doc">

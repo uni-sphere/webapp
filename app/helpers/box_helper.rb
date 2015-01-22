@@ -103,6 +103,7 @@ module BoxHelper
       
     box_content_resources[:basic]["files/#{box_id}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "create link")
+      # logger.info response
       @link = {
         preview_url: JSON.parse(response)['shared_link']['url'],
         # download_url: JSON.parse(response)['shared_link']['download_url']

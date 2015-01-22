@@ -7,7 +7,7 @@
 
 <div id="row-and-content-wrapper">
 	<div id="sidebar-first-row">
-		<span id="uni-name">IFMA - engineering scholo</span>
+		<span id="uni-name">IFMA - engineering school</span>
 	</div>
 	<div id="content-wrapper">
 
@@ -57,8 +57,8 @@
 		<% elsif  %>
 			<div class="lateral-nav" id="nav-perso">
 				<ul>
-					<li>
-						<%= link_to (get_user_documents_path(folder: '0' )) do %>
+					<li id="perso-folder">
+						<%= link_to (get_user_documents_path(folder: '0')) do %>
 							<%=fa_icon("folder-open")%>Folder
 						<% end %>
 					</li>

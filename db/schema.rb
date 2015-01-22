@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20141213130800) do
     t.integer  "box_id"
     t.integer  "groupfolder_id"
     t.string   "name"
+    t.string   "owner"
+    t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
