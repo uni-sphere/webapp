@@ -12,23 +12,8 @@ class GroupdocumentsController < ApplicationController
   end
   
   def read_file
-    box_content_resources[:basic]["files/#{params[:box_id]}"].get() { |response, request, result, &block|
-      check_request_success(response, "read file")
-      @response = JSON.parse(response)
-    }
-    
-    respond_to do |format|
-      format.html { }
-      format.json { render json: {
-        created_at: (@response['created_at']),
-        modified_at: (@response['modified_at']),
-        owner: @response['created_by']['name'],
-        size: @response['size'],
-        shared_link: @response['shared_link']['url'],
-        file_name: @response['name']
-        }
-      }
-    end
+    create_link(params[:box_id])
+    redirect_to @link[:preview_url]
   end
   
   def create_file
@@ -40,13 +25,17 @@ class GroupdocumentsController < ApplicationController
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
       check_request_success(response, "upload file")
+      @response = JSON.parse(response)
+      logger.info '-------------'
+      logger.info @response['entries'].first['created_by']
       @doc_params = {
-        box_id: JSON.parse(response)["entries"].first['id'],
+        box_id: @response['entries'].first['id'],
         name: params[:file].original_filename,
-        size: JSON.parse(response)['size'],
-        created_at: JSON.parse(response)['created_at']
+        size: @response['entries'].first['id'],
+        owner: @response['entries'].first['created_by']['name']
       }
     }
+    logger.info @doc_params
     @folder.groupdocuments.create(@doc_params)
 
     redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id])

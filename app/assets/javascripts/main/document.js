@@ -11,7 +11,7 @@ var breadcrumb = {
 	timeDown: null,
 	
 	renderBreadcrumb: function() {
-		// localStorage.clear();
+		localStorage.clear();
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'Perso', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
@@ -88,17 +88,6 @@ var breadcrumb = {
 		});
 		
 		$('.power-off').on('click', function() { localStorage.clear() })
-	}
-	
-};
-
-var selectable = {
-	options: {
-		autoRefresh: false
-	},
-	
-	init: function() {
-		$('.dragAndDrop').selectable(this.options);
 	}
 	
 };
@@ -186,7 +175,6 @@ var autoSubmitUpload = {
 	init: function() {
 		$('#upload-doc').on('click', function() {
 			$('#input-button-upload').click();
-			console.log($( '#loader' ));
 			$( '#loader' ).removeClass("hidden");
 		});
 		$('#input-button-upload').on('change', function() {
@@ -323,7 +311,7 @@ var docSelection = {
 				$('#link-display').html('');
 			};
 			docSelection.target = $(this).children('.dragAndDrop');
-
+			console.log(docSelection.target);
 			$(this).addClass("document-selected").removeClass("document-hovered");
 		});
 		
@@ -331,7 +319,7 @@ var docSelection = {
 			$( '#loader' ).removeClass("hidden");
 		})
 	}
-};
+}; // OK
 
 var shareLink = {
 	
@@ -419,22 +407,6 @@ var shareLink = {
 	}
 }
 
-var preview = {
-	
-	init: function() {
-		$('.groupdoc').on('click', function() {
-			$.ajax({
-				url: 'http://localhost:3000/user/group/document/show',
-				dataType:"json",
-				type:"GET",
-				data: {
-					box_id: $(this).attr("box_id")
-				}
-			});
-		});
-	}
-};
-
 var hover = {
 	init: function() {
 
@@ -520,12 +492,11 @@ var folderRedirection = {
 	}
 };
 
-mainDocument = function() {
+mainSimpleDocument = function() {
 	folderRedirection.init();
 	breadcrumb.init();
 	dragAndDrop.init(url);
 	docSelection.init();
-	preview.init();
 	autoSubmitUpload.init();
 	rename.init();
 	trash.init();
@@ -539,7 +510,7 @@ mainDocument = function() {
 };
 
 $(document).on('ready page:load', function() {
-	mainDocument();
+	mainSimpleDocument();
 });
 
 $(document).on('before-unload', function() {

@@ -36,7 +36,7 @@
 
         <% @group_folders.each do |folder| %>
     	    <div class="box_document" document-selected="false">
-            <span class="dragAndDrop icon-and-name" item="folder" document_id="<%= folder.id %>" >
+            <span class="dragAndDrop icon-and-name" document_id="<%= folder.id %>" item="folder" name="<%= document.name %>" >
               <%= link_to get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) do %>
                 <%= fa_icon("folder") %>
                 <span class="name-document go-folder"><%= folder.name %></span>
@@ -46,7 +46,7 @@
             
             <%= fa_icon("pencil", class: "document-rename") %>
             <div class="modified-doc">
-              <span class="date-time"><%= time_ago_in_words document.created_at %></span>
+              <span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
               <span class="person"><%= document.owner %></span>
             </div>
             <div class="size-doc"><%= document.size %> kb</div>
@@ -55,15 +55,17 @@
 		
         <% @group_documents.each do |document| %>
     	    <div class="box_document" document-selected="false">
-      			<span class="dragAndDrop groupdoc icon-and-name" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %>
-      			  <%= fa_icon("file") %>
+      			<span class="dragAndDrop icon-and-name" document_id="<%= document.box_id %>" item="file" name="<%= document.name %>" %>
+      			  <%= link_to read_group_file_path(box_id: document.box_id) do %>
+								<%= fa_icon("file") %>
       			   <span class="name-document"> <%= document.name %> </span>
+							<% end %>
       			  <%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
       			</span>
             
             <%= fa_icon("pencil", class: "document-rename") %>
             <div class="modified-doc">
-              <span class="date-time"><%= time_ago_in_words document.created_at %></span>
+              <span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
               <span class="person"><%= document.owner %></span>
             </div>
             <div class="size-doc"><%= document.size %> kb</div>
@@ -91,7 +93,7 @@
           <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
           <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
             <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
-            <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
+            <%= submit_tag "upload-doc", class: "hidden", id: "submit-button-upload" %>
           <% end %>
           <div id="create-doc">
             <span id="create-doc-title"><i class="fa fa-file"></i>New</span>
