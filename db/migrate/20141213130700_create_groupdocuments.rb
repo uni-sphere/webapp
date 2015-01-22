@@ -4,6 +4,9 @@ class CreateGroupdocuments < ActiveRecord::Migration
       t.integer :box_id
       t.integer :groupfolder_id
       t.string :name
+      t.string :owner
+      t.integer :size
+      
       
       t.timestamps
     end

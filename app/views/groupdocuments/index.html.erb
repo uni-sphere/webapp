@@ -1,46 +1,118 @@
-<h1>Listing documents</h1>
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> -->
+<div id="container-perso-storage">
 
-<%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
-<%= file_field_tag :file, id: "input-button-upload" %>
-<%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
-<% end %>
-	
-<table class="container">
-	<thead>
-		<tr>
-			<th>files</th>
-		</tr>
-	</thead>	
+	<!-- ------ -->
+	<!-- HEADER -->
+	<!-- ------ -->
 
-	<tbody>
-		<% @group_documents.each do |document| %>
-		<tr class="box_document">
-			<td class="dragAndDrop groupdoc" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %><%= document.name %></td>
-			<td><%= link_to 'delete', delete_group_file_path(file_id: document[:id], group_id: params[:group_id], folder_id: params[:folder_id]), method: :delete %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-	
-<table class="container">
-	<thead>
-		<tr>
-			<th>folders</th>
-		</tr>
-	</thead>	
+	<div class="first-row" id="breadcrumb-seachbar">
+		<div id="breadcrumb" folder_id="<%= params[:folder] %>" >
+		</div>
+		
 
-	<tbody>
-		<% @group_folders.each do |folder| %>
-		<tr id="box_document">
-			<td class="dragAndDrop" item="folder" document_id="<%= folder.id %>" ><%= link_to folder.name, get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) %></td>
-			<td><%= link_to 'delete', delete_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id], target_folder: folder.id), method: :delete %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+		<!--<div id="perso-file-search" class="col-md-4">-->
+			<!--  <span class="icon"><i class="fa fa-search"></i></span>-->
+			<!--  <input type="search" id="search" placeholder="Search..." />-->
+			<!--</div>-->
+    
+		</div> 
 
-<%= link_to 'New folder', create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post %></br> 
+		<div class="main-page">
+			<div class="main-page-separator"></div>
+      
+			
+			<!-- ------------- -->
+			<!-- DOCUMENT list -->
+			<!-- ------------- -->
 
-</table>
+    <div id="list-document">
+      <div class="notification-row"></div>
+      <div id="loader" class="hidden">Loading...</div>
+      <div id="list-title">
+        <span id="title-name">Name<%=fa_icon("arrow-up")%></span>
+        <span id="title-modified">Last modified<%=fa_icon("arrow-up")%></span>
+        <span id="title-size">File size<%=fa_icon("arrow-up")%></span>
+      </div>
 
-<div id="file-informations"></div>
+        <% @group_folders.each do |folder| %>
+    	    <div class="box_document" document-selected="false">
+            <span class="dragAndDrop icon-and-name" item="folder" document_id="<%= folder.id %>" >
+              <%= link_to get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) do %>
+                <%= fa_icon("folder") %>
+                <span class="name-document go-folder"><%= folder.name %></span>
+              <% end %>
+              <%= text_field_tag :name, folder.name, class: "hidden input-rename-document" %>
+            </span>
+            
+            <%= fa_icon("pencil", class: "document-rename") %>
+            <div class="modified-doc">
+              <span class="date-time"><%= time_ago_in_words document.created_at %></span>
+              <span class="person"><%= document.owner %></span>
+            </div>
+            <div class="size-doc"><%= document.size %> kb</div>
+          </div>
+        <% end %>
+		
+        <% @group_documents.each do |document| %>
+    	    <div class="box_document" document-selected="false">
+      			<span class="dragAndDrop groupdoc icon-and-name" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %>
+      			  <%= fa_icon("file") %>
+      			   <span class="name-document"> <%= document.name %> </span>
+      			  <%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
+      			</span>
+            
+            <%= fa_icon("pencil", class: "document-rename") %>
+            <div class="modified-doc">
+              <span class="date-time"><%= time_ago_in_words document.created_at %></span>
+              <span class="person"><%= document.owner %></span>
+            </div>
+            <div class="size-doc"><%= document.size %> kb</div>
+          </div>
+        <% end %>
+            
+
+    		  
+      
+    </div> 
+
+    <!-- ------------------- -->
+    <!-- ACTIONS             -->
+    <!-- ------------------- -->
+
+    <div id="right-actions">
+
+      <div id="new-doc" class="">
+        <%= fa_icon("3x plus")%>
+        <div id="new-actions">
+          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post do%>
+            <%= fa_icon "folder" %>Folder
+          <% end %>
+
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
+          <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
+            <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
+            <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
+          <% end %>
+          <div id="create-doc">
+            <span id="create-doc-title"><i class="fa fa-file"></i>New</span>
+            <a class="create-list"><i class=""></i>Firepad</a>
+            <a class="create-list"><i class=""></i>Google doc</a>
+          </div>
+        </div>
+      </div>
+      
+      <div id="actions-doc">
+        <div id="download-doc" class="action">
+          <%= fa_icon("3x download") %>
+        </div>
+        <div id="delete-doc" class="action">
+          <%= fa_icon("3x trash") %>
+        </div>
+        <div id="link-doc" class="action">
+          <%= fa_icon("3x link") %>
+        </div>
+        <div id="link-display"></div>
+      </div>
+    </div>
+  </div>
+</div>

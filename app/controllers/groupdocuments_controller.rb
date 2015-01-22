@@ -40,10 +40,14 @@ class GroupdocumentsController < ApplicationController
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
       check_request_success(response, "upload file")
-      @file_id = JSON.parse(response)["entries"].first['id']
+      @doc_params = {
+        box_id: JSON.parse(response)["entries"].first['id'],
+        name: params[:file].original_filename,
+        size: JSON.parse(response)['size'],
+        created_at: JSON.parse(response)['created_at']
+      }
     }
-    
-    @folder.groupdocuments.create(box_id: @file_id, name: @name)
+    @folder.groupdocuments.create(@doc_params)
 
     redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id])
 

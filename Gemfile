@@ -13,8 +13,7 @@ gem 'jquery-ui-rails'
 
 # Bootstrap sass dependences
 # gem 'bootstrap-sass'  
-gem 'autoprefixer-rails' 
-
+gem 'autoprefixer-rails'
 
 
 # Asset pipeline
@@ -22,7 +21,6 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'  #configures the asset pi
 gem 'sass-rails'      #scss minifier
 # gem 'coffee-rails'
 gem 'uglifier'        #js minifiers
-
 
 
 gem 'fullcalendar2-rails'
@@ -46,19 +44,17 @@ gem 'rest_client'
 gem 'rails-timeago'
 
 group :development, :test do
-  gem 'sqlite3'
-  # gem 'spring-commands-rspec'
-  # gem 'rspec-rails'
-  # gem 'guard-rspec'
-  # gem 'capybara'
+ gem 'sqlite3'
+ # gem 'spring-commands-rspec'
+ # gem 'rspec-rails'
+ # gem 'guard-rspec'
+ # gem 'capybara'
 end
 
 group :production do
-  gem 'mysql'
+ # gem 'mysql'
 end
 
 # group :doc do
 #   gem 'sdoc', require: false
 # end
-
-

@@ -92,17 +92,6 @@ var breadcrumb = {
 	
 };
 
-var selectable = {
-	options: {
-		autoRefresh: false
-	},
-	
-	init: function() {
-		$('.dragAndDrop').selectable(this.options);
-	}
-	
-};
-
 var dragAndDrop = {
 	
 	dragOptions: {
@@ -178,6 +167,32 @@ var dragAndDrop = {
 		$('.dragAndDrop').on("dragstart", this.fdragStart );
 		$('.dragAndDrop').on("dragstop", this.fdragStop );
 		$('.dragAndDrop').on('drop', this.fdrop )
+	}
+};
+
+var readGroupFile = {
+	
+	init: function() {
+		$('.box_document').on('click', function() {
+			console.log('readfile');
+			$.ajax({
+				url: 'http://localhost:3000/user/group/document/read',
+				dataType:"json",
+				data: {
+					box_id: $(this).children().attr("box_id")
+				},
+				complete: function( data ) {
+					var key;
+					var response = JSON.parse(data['responseText']);
+					alert(JSON.stringify(response));
+					for (key in response) {
+						if (response.hasOwnProperty(key)) {
+							$('#file-informations').append(JSON.parse(data['responseText'])[key] + "</br>");
+						}
+					}
+				}
+			});
+		});
 	}
 };
 
@@ -323,8 +338,8 @@ var docSelection = {
 				$('#link-display').html('');
 			};
 			docSelection.target = $(this).children('.dragAndDrop');
-
 			$(this).addClass("document-selected").removeClass("document-hovered");
+			console.log(docSelection.target);
 		});
 		
 		$('.go-file').on('click', function() {
