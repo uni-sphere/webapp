@@ -480,7 +480,6 @@ var hover = {
 
 		$('#new-doc').hover(
 		function(e) {
-			// $(this).css('overflow', 'visible');
 			$(this).find('#new-actions')
 				.show()
 				.css('opacity', 0)

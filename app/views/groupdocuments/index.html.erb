@@ -56,8 +56,10 @@
         <% @group_documents.each do |document| %>
     	    <div class="box_document" document-selected="false">
       			<span class="dragAndDrop groupdoc icon-and-name" item="file" document_id="<%= document.id %>" box_id="<%= document.box_id %>" %>
-      			  <%= fa_icon("file") %>
-      			   <span class="name-document"> <%= document.name %> </span>
+      			  <a>
+                <%= fa_icon("file") %>
+      			    <span class="name-document"> <%= document.name %> </span>
+              </a>
       			  <%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
       			</span>
             
@@ -84,7 +86,8 @@
       <div id="new-doc" class="">
         <%= fa_icon("3x plus")%>
         <div id="new-actions">
-          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post do%>
+
+          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post, id: "new-folder" do%>
             <%= fa_icon "folder" %>Folder
           <% end %>
 
@@ -93,6 +96,7 @@
             <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
             <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
           <% end %>
+          
           <div id="create-doc">
             <span id="create-doc-title"><i class="fa fa-file"></i>New</span>
             <a class="create-list"><i class=""></i>Firepad</a>
