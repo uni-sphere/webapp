@@ -21,7 +21,21 @@
 
 		<% if request.url =~ /groups(.*)/ %>
 			<% if current_group_exists? %>
-				<!-- //plop -->
+				<div class="lateral-nav" id="active-group-nav">
+	        <ul>
+	        	<li>
+	        		<%= link_to get_group_documents_path(group_id: params[:group_id], parent_id: 100) do %>
+								<%=fa_icon("folder-open")%>Folder
+							<% end %>
+						</li>
+						<li><a href="#"><i class="fa fa-wechat"></i>Chat</a></li>
+						<li>
+							<%= link_to user_group_calendar_path(current_user, current_group, group_calendar) do %>
+								<%=fa_icon("calendar")%>Calendar
+							<% end %>
+						</li>
+	        </ul>
+	      </div>
 			<%end%>
 
 			<div class="lateral-nav" id="groups-nav" >
@@ -35,7 +49,7 @@
 					<% end %>
 				</ul>
 				<div class="line-separator"></div>
-				<a href="#groups-search" id="more-groups" data-toggle="modal">
+				<div id="more-groups">
 					<i class="fa fa-plus"></i>See all groups
 				</a>
 			</div>
@@ -58,8 +72,20 @@
 </div>
 
 
+<script>
+$( "button" ).click(function() {
+  $( "div" ).show( "fold", 1000 );
+});
+</script>
 
-
-
-
+<!-- <div id="slide-more-groups" class="slide">
+	<div class="slide-container">
+		<div class="slide-header">
+			
+		</div>
+		<div class="slide-body">
+			
+		</div>
+	</div>
+</div> -->
 

@@ -216,6 +216,7 @@
   padding-left: 5px;
 
   text-align: left;
+  // background: red;
   ul{
     list-style: none;
 
@@ -273,6 +274,59 @@
   top: 31px;
 }
 
-#groups-nav{
+// -------------
+// ACTIVE GROUPS
+// -------------
+
+#active-group-nav{
   top: 31px;
 }
+// ----------
+// GROUPS NAV
+// ----------
+
+#groups-nav{
+  top: 140px;
+}
+
+.line-separator{
+  position: relative;
+  float: left;
+
+  height: 1px;
+  width: calc( 70% + 7px);
+
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  background: $folder-separator;
+
+}
+#more-groups{
+  position: relative;
+  float: left;
+
+  height: 22px;
+  line-height: 22px;
+
+  margin-left: 14px; // 7 + ?
+  padding-right: 10px;
+
+  font-style: italic;
+  // font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // background: green;
+  .fa{
+    font-size: 12px;
+    margin-top: 5px;
+    padding-right: 2px;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+
