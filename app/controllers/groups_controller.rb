@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
   
   def create
     respond_to do |format|
-      if @user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: 'root', parent_id: 100)
+      if @user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: params[:name], parent_id: 100)
         format.html { redirect_to user_groups_path(@user) }
         format.json { render action: 'show', status: :created, location: @group }
       else

@@ -16,6 +16,28 @@ class GroupdocumentsController < ApplicationController
     redirect_to @link[:preview_url]
   end
   
+  def download_file
+    create_link(params[:box_id])
+    render json: {url: @link[:download_url]}.to_json 
+  end
+  
+  def rename_file
+    @file = Groupdocument.find params[:item_id]
+    @file.update(name: params[:name])
+    render :nothing => true
+  end
+  
+  def rename_folder
+    @folder = Groupfolder.find params[:item_id]
+    @folder.update(name: params[:name])
+    render :nothing => true
+  end
+  
+  def create_shared_link
+    create_link(params[:box_id])
+    render json: @link[:preview_url]
+  end
+  
   def create_file
     req_params = {
       attributes: { name: params[:file].original_filename, 
@@ -26,12 +48,10 @@ class GroupdocumentsController < ApplicationController
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
       check_request_success(response, "upload file")
       @response = JSON.parse(response)
-      logger.info '-------------'
-      logger.info @response['entries'].first['created_by']
       @doc_params = {
         box_id: @response['entries'].first['id'],
         name: params[:file].original_filename,
-        size: @response['entries'].first['id'],
+        size: @response['entries'].first['size'],
         owner: @response['entries'].first['created_by']['name']
       }
     }
@@ -42,14 +62,9 @@ class GroupdocumentsController < ApplicationController
 
   end
   
-  def show_file
-    create_link(params[:box_id])
-    redirect_to @link[:preview_url]
-  end
-  
   def create_folder
     respond_to do |format|
-      if current_group.groupfolders.create(name: 'new folder', parent_id: params[:folder_id])
+      if current_group.groupfolders.create(name: 'New Folder', parent_id: params[:folder_id])
      	  format.html { redirect_to get_group_documents_path( groupdocuments_params ) }
      		format.json {  }
       end
@@ -57,21 +72,16 @@ class GroupdocumentsController < ApplicationController
   end
   
   def destroy_file
-    respond_to do |format|
-      if @file.destroy
-     	  format.html { redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id]) }
-     		format.json {  }
-      end
-   	end
+    @file.update(deleted: true)
+    render :nothing => true
   end
   
   def destroy_folder
-    respond_to do |format|
-      if Groupfolder.find(params[:target_folder]).destroy
-     	  format.html { redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id])  }
-     		format.json {  }
-      end
-   	end
+    @folder = Groupfolder.find params[:folder_id]
+    @folder.groupdocuments.each { |file| file.update(deleted: true)}
+    Groupfolder.where(parent_id: @folder.id).each { |folder| folder.destroy}
+    @folder.destroy
+    render :nothing => true
   end
   
   def move_file
