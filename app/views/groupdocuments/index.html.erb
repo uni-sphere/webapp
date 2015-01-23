@@ -6,7 +6,12 @@
 	<!-- ------ -->
 
 	<div class="first-row" id="breadcrumb-seachbar">
-		<div id="breadcrumb" folder_id="<%= params[:folder] %>" >
+		<div id="breadcrumb" folder_id="<%= params[:folder] %>" group_id="<%= params[:group_id] %>" >
+			
+			<% @breadcrumbs.each do |document| %>
+				<%= link_to document[:name], get_group_documents_path(folder_id: document[:id], group_id: params[:group_id]), class: "breadcrumb-redirection name-document" %>
+				<span class="breadcrumb-separator"> > </span>
+			<% end %>
 		</div>
 		
 
@@ -54,7 +59,7 @@
         <% end %>
 		
 				<% @group_documents.each do |document| %>
-				<% if document.deleted == false %>
+				<% if document.deleted == false && document.name %>
 				<div class="box_document" document-selected="false">
 					<span class="dragAndDrop icon-and-name" document_id="<%= document.box_id %>" item="file" name="<%= document.name %>" item_id="<%= document.id %>"%>
 						<%= link_to read_group_file_path(box_id: document.box_id) do %>

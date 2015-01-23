@@ -4,7 +4,7 @@ var breadcrumb = {
 	timeDown: null,
 	
 	renderBreadcrumb: function() {
-		localStorage.clear();
+		// localStorage.clear();
 		localStorage['0breadcrumb'] = JSON.stringify({'name': 'Perso', 'box_id': '0'});
 		for( var i = 0 ; i<=localStorage['lastIndex'] ; i++ ) {
 			var element = JSON.parse(localStorage[i + 'breadcrumb']);
@@ -17,7 +17,7 @@ var breadcrumb = {
 	
 	fillNumber: 0,
 	
-	fillBreadcrumb: function() {
+	fillBreadcrumbPerso: function() {
 		breadcrumb.timeDown = new Date().getTime();
 		breadcrumb.target.on('mouseup', function() {
 			if (new Date().getTime()-breadcrumb.timeDown < 500 && breadcrumb.fillNumber == 0) {
@@ -27,7 +27,7 @@ var breadcrumb = {
 			}
 		})
 	},
-	
+
 	redirect: function() {
 		console.log('redirect');
 		localStorage['lastIndex'] = breadcrumb.target.attr('breadcrumb_id');
@@ -59,12 +59,12 @@ var breadcrumb = {
 		
 	},
 	
-	init: function() {
+	perso: function() {
 		breadcrumb.renderBreadcrumb();
 						 
 		$('.dragAndDrop').children('a').on('mousedown', function() {
 			breadcrumb.target = $(this).parent('.dragAndDrop');
-			if (breadcrumb.target.attr('item') == 'folder') {breadcrumb.fillBreadcrumb()}
+			if (breadcrumb.target.attr('item') == 'folder') {breadcrumb.fillBreadcrumbPerso()}
 		});
 		
 		$(window).on('popstate', function(e) {
@@ -81,8 +81,28 @@ var breadcrumb = {
 		});
 		
 		$('.power-off').on('click', function() { localStorage.clear() })
-	}
+	},
 	
+	group: function() {
+		$('.go-folder').on('mousedown', function() {
+			console.log($(this).parent().parent('.dragAndDrop').length);
+			if ($(this).parent().parent('.dragAndDrop').attr('item') == 'folder') {
+				console.log('hello');
+				localStorage['groupBreadcrumb'] = JSON.stringify({'name': $(this).parent().parent('.dragAndDrop').attr('name'), 'id': $(this).parent().parent('.dragAndDrop').attr('item_id')})
+			}
+		});
+		console.log($('#breadcrumb').length);
+		if ($('#breadcrumb').children("a").length > 0) {
+			var element = JSON.parse(localStorage['groupBreadcrumb']);
+			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document" href="/user/group/documents?folder_id=' + element.id + '&group_id=' + $('#breadcrumb').attr('group_id') + '">'+element.name+'</a>' )
+		} else {
+			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document">Group</a>' )
+		}
+	},
+
+	init: function() {
+		setLocation(breadcrumb);
+	}
 };
 
 var dragAndDrop = {
@@ -526,7 +546,6 @@ var folderRedirection = {
 }; // OK
 
 setLocation = function(target) {
-	console.log(typeof target)
 	if (window.location.href.indexOf("group") >= 0) {
 		target.group();
 	} else {
