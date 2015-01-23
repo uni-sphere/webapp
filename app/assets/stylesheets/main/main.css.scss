@@ -1,9 +1,3 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-
 @import "var";
 
 html, body{
@@ -23,6 +17,7 @@ body {
   font-family: 'Ubuntu',sans-serif;
   font-size: 12px;
   text-align: center;
+  opacity: 2;
 
   *:focus {
     outline: none !important;
@@ -140,44 +135,5 @@ body {
   }
 }
 
-.slide{
-  position: fixed;
-  z-index: 30;
-  // opacity: 1;
 
-  top: 20%;
-  left: 37%;
-
-  width: 26%;
-  height: 60%;
-}
-.slide-container{
-  position: absolute;
-  // float: left;
-  // position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 32;
-
-  background: red;
-
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px 0px black;
-  &:before{
-    position: absolute;
-
-    content: "";
-
-    z-index: 30;
-    right: 0px;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    // right: 0px;
-    // border: 2px solid green;
-    border-radius: 5px;
-
-    box-shadow: -2px -2px 5px 0px black;
-  }
-}
 
