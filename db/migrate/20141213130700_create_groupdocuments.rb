@@ -6,6 +6,7 @@ class CreateGroupdocuments < ActiveRecord::Migration
       t.string :name
       t.string :owner
       t.integer :size
+      t.boolean :deleted, default: false
       
       
       t.timestamps

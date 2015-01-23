@@ -48,12 +48,12 @@ module ApplicationHelper
   end
 
   def url_groups? 
-    return 'active' if request.path =~ /groups(.*)/
+    return 'active' if request.path =~ /group(.*)/
     ''
   end
 
   def url_perso? 
-    return 'active' if !(request.path =~ /groups(.*)/)
+    return 'active' if !(request.path =~ /group(.*)/)
     ''
   end
   

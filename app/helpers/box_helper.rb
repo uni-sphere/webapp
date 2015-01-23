@@ -106,7 +106,7 @@ module BoxHelper
       # logger.info response
       @link = {
         preview_url: JSON.parse(response)['shared_link']['url'],
-        # download_url: JSON.parse(response)['shared_link']['download_url']
+        download_url: JSON.parse(response)['shared_link']['download_url']
       }
     }
   end

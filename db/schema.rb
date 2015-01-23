@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20141213130800) do
     t.string   "name"
     t.string   "owner"
     t.integer  "size"
+    t.boolean  "deleted",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

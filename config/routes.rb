@@ -75,17 +75,20 @@ Lms::Application.routes.draw do
   # group #
   
   get '/user/group/documents', to: 'groupdocuments#read_folder', as: 'get_group_documents'
-  get '/user/group/document/show', to: 'groupdocuments#show_file', as: 'show_group_file'
+  get '/user/group/document/download', to: 'groupdocuments#download_file', as: 'download_group_file'
   get '/user/group/document/read', to: 'groupdocuments#read_file', as: 'read_group_file'
   
   post '/user/group/file/create', to: 'groupdocuments#create_file', as: 'create_group_file'
   post '/user/group/folder/create', to: 'groupdocuments#create_folder', as: 'create_group_folder'
+  post '/user/group/file/create_shared_link', to: 'groupdocuments#create_shared_link', as: 'create_group_shared_link'
   
   put '/user/group/file/move', to: 'groupdocuments#move_file', as: 'move_group_file'
   put '/user/group/folder/move', to: 'groupdocuments#move_folder', as: 'move_group_folder'
+  put '/user/group/file/rename', to: 'groupdocuments#rename_file', as: 'rename_group_file'
+  put '/user/group/folder/rename', to: 'groupdocuments#rename_folder', as: 'rename_group_folder'
 
-  delete '/user/document/file/delete', to: 'groupdocuments#destroy_file', as: 'delete_group_file'
-  delete '/user/document/folder/delete', to: 'groupdocuments#destroy_folder', as: 'delete_group_folder'
+  delete '/user/group/document/file/delete', to: 'groupdocuments#destroy_file', as: 'delete_group_file'
+  delete '/user/group/document/folder/delete', to: 'groupdocuments#destroy_folder', as: 'delete_group_folder'
   
   
 end
