@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213130800) do
+ActiveRecord::Schema.define(version: 20150124131332) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20141213130800) do
     t.boolean  "adminevent"
     t.integer  "calendar_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groupchats", force: true do |t|
+    t.string   "name"
+    t.integer  "channel_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
