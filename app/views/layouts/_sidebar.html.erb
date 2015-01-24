@@ -43,7 +43,7 @@
 					<% current_groups.each do |group| %>
 					<li>
 						<%= link_to user_group_calendar_path(current_user, group, group.calendar) do %>
-							<%= image_tag "group-pic.png" %><%= group.name %>
+							<%= image_tag "group-pic.png" %><span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
 						<% end %>
 					</li>
 					<% end %>

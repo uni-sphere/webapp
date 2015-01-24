@@ -7,8 +7,29 @@ var folder = {
 	}
 }
 
+var groupRedirection = {
+	target: null,
+	
+	storeGroup: function() {
+		// localStorage['lastGroupViewed'] = '/user/group/documents?group_id='+groupRedirection.target.attr("group_id")+'&parent_id=100'
+	},
+	
+	redirect: function() {
+		window.location = localStorage['lastGroupViewed']
+	},
+	
+	init: function() {
+		$('#tab-group').on('click', groupRedirection.redirect())
+		$('.group-name-sidebar').on('click', function() {
+			groupRedirection.target = $(this);
+			groupRedirection.storeGroup
+		})
+	}
+}
+
 mainSidebar = function() {
 	folder.init();
+	groupRedirection.init();
 };
 
 $(document).on('ready page:load', function() {

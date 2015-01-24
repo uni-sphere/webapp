@@ -91,7 +91,6 @@ var breadcrumb = {
 				localStorage['groupBreadcrumb'] = JSON.stringify({'name': $(this).parent().parent('.dragAndDrop').attr('name'), 'id': $(this).parent().parent('.dragAndDrop').attr('item_id')})
 			}
 		});
-		console.log($('#breadcrumb').length);
 		if ($('#breadcrumb').children("a").length > 0) {
 			var element = JSON.parse(localStorage['groupBreadcrumb']);
 			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document" href="/user/group/documents?folder_id=' + element.id + '&group_id=' + $('#breadcrumb').attr('group_id') + '">'+element.name+'</a>' )
@@ -288,7 +287,7 @@ var trash = {
 			params = { file_id: docSelection.target.attr('item_id') }
 		} else if (docSelection.target.attr('item') == 'folder') {
 			url = '/user/group/document/folder/delete';
-			params = { folder_id:docSelection.target.attr('document_id') }
+			params = { folder_id: docSelection.target.attr('item_id') }
 		};
 		trash.trash(url, params );
 	},

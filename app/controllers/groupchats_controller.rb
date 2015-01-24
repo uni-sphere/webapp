@@ -1,0 +1,4 @@
+class GroupchatsController < ApplicationController
+  
+  
+end
