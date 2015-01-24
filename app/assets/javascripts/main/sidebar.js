@@ -21,15 +21,16 @@ var groupRedirection = {
 	init: function() {
 		$('#tab-group').on('click', groupRedirection.redirect())
 		$('.group-name-sidebar').on('click', function() {
+			console.log('hello group');
 			groupRedirection.target = $(this);
-			groupRedirection.storeGroup
+			groupRedirection.storeGroup()
 		})
 	}
 }
 
 mainSidebar = function() {
 	folder.init();
-	groupRedirection.init();
+	// groupRedirection.init();
 };
 
 $(document).on('ready page:load', function() {
