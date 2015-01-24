@@ -507,7 +507,7 @@ var hover = {
 				$(this).find('#new-actions')
 				.animate(
 					{
-						paddingTop: '20px',
+						paddingTop: '12px',
 						opacity: 0
 					},
 					'fast',

@@ -1,0 +1,30 @@
+// -----------------
+// GENERAL PLACEMENT
+// -----------------
+
+// MAIN PANEL
+.chat-main-panel{
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+
+  width: 75%;
+  height: 100%;
+
+  background: red;
+}
+
+// RIGHT PANEL
+.chat-right-panel{
+  position: absolute;
+
+  top: 0px;
+  left: 75px;
+
+  width: 25px;
+  height: 100%;
+
+  background: blue;
+}
+
