@@ -90,5 +90,8 @@ Lms::Application.routes.draw do
   delete '/user/group/document/file/delete', to: 'groupdocuments#destroy_file', as: 'delete_group_file'
   delete '/user/group/document/folder/delete', to: 'groupdocuments#destroy_folder', as: 'delete_group_folder'
   
+  ### chat ###
+  
+  get '/user/group/chats', to: 'groupchats#index', as: 'get_group_chats'
   
 end
