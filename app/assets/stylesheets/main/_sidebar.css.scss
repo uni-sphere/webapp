@@ -198,15 +198,7 @@
   background: $inside-bg;
 }
 
-#sidebar-separator{
-  position: relative;
-  float: left;
 
-  width:100%;
-  height:1px;
-
-  background: $folder-separator ;
-}
 
 .lateral-nav{
   position: absolute;
@@ -300,7 +292,7 @@
   margin-top: 5px;
   margin-bottom: 5px;
 
-  background: $folder-separator;
+  background: $separator;
 
 }
 #more-groups{

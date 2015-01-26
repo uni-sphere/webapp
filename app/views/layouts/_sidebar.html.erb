@@ -17,7 +17,7 @@
 		</div>
 
 		
-		<div id="sidebar-separator"></div>
+		<div class="separator"></div>
 
 		<% if request.url =~ /groups(.*)/ %>
 			<% if current_group_exists? %>
@@ -30,7 +30,7 @@
 						</li>
 						<li>
 							<%= link_to get_group_chats_path do %>
-								<%=fa_icon("wechat")%>Calendar
+								<%=fa_icon("wechat")%>Chat
 							<% end %>
 						<li>
 							<%= link_to user_group_calendar_path(current_user, current_group, group_calendar) do %>
