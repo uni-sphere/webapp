@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery-ui
 //= require jquery_ujs
-//= require best_in_place
 //= require turbolinks
+//= require best_in_place
 //= require moment
 //= require fullcalendar
 //= require gcal

@@ -41,8 +41,8 @@ mainChat = function() {
 $(document).on('ready page:load', function() {
   mainChat();
   var heightDisplay = $('.chat-main-panel').height();
-  var height = $(this).height();
-  $('.chat-display').css('height', heightDisplay - height - 33)();
+  var height = $('.chat-input-text').height();
+  $('.chat-display').css('height', heightDisplay - height - 33);
 });
 
 
