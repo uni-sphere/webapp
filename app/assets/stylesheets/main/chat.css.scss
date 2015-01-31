@@ -46,10 +46,10 @@
   top: 0px;
 
   width: 100%;
-  // height: calc(100% - 46px);
-  // padding-bottom: 1px;
 
-  background: green;
+  overflow-y: scroll;
+
+  // background: green;
 }
 
 // ----------
@@ -62,8 +62,8 @@
   bottom: 10px;
   left: 1px;
 
-  width: calc(100% - 3px);
-  min-height: 25px;
+  width: calc(100% - 5px);
+  min-height: 35px;
 
   border-radius: 5px;  
   border: 1px solid $upload-bg;
@@ -75,17 +75,16 @@
   float: left;
 
   width: 40px;
-  min-height: 26px;
-  line-height: 26px;
+  min-height: 35px;
+  line-height: 35px;
 
- 
   border-right: 1px solid $upload-bg;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background: #E8E8E8;
   color: $upload-bg;
 
-  font-size: 14px;
+  font-size: 20px;
   &:hover{
     cursor: pointer;
 
@@ -100,9 +99,10 @@
   position: absolute;
 
   bottom: 0;
-  left: 41px;
+  left: 45px;
 
-  width: calc(100% - 46px);
+  width: calc(100% - 84px);
+  min-height: 35px;
 }
 
 .expanding-wrapper{
@@ -110,18 +110,20 @@
   float: left;
 
   width: 100%;
-  max-height: 200px;
+  max-height: 120px;
  
-  padding-left: 5px;
+  // padding-left: 15px;
 }
 .chat-input-text{
-  padding-bottom: 6px;
+  line-height: 20px;
+  padding-top: 8px;
 
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   
   font-family: ubuntu;
-  font-size: 12px;
+  font-size: 15px;
+
 
   background: $inside-bg;
   border: none;
@@ -132,9 +134,9 @@
   position: absolute;
 
   right: 10px;
-  top: 3px;
+  top: 5px;
 
-  font-size: 18px;
+  font-size: 24px;
   color: $upload-bg;
 
   &:hover{
