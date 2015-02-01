@@ -13,7 +13,7 @@
 
     <div id="user-deco">
       <a id="user-profile" >
-        <%= image_tag "purple_default_profil_22_border.png", id: "profile-pic" %>
+       <object type="image/svg+xml" data="<%= asset_path 'default-28.svg' %>" id="profile-pic"></object>
         <span class="user-name"><%= current_user.name %></span>
       </a>
      

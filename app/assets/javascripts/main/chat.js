@@ -31,18 +31,45 @@ mainChat = function() {
       var heightDisplay = $('.chat-main-panel').height();
       console.log(height);
       $('#chat-input-upload').css('height', height + 10);
-      $('.chat-display').css('height', heightDisplay - height - 33);
+      $('.chat-display').css('height', heightDisplay - height - 33 - 30);
       
       // $(this).css('padding-bottom', 2);
     }
   });
 };
 
+resize = function() {
+  $( window ).resize(function() {
+    console.log("plop");
+    var heightDisplay = $('.chat-main-panel').height();
+    var height = $('.chat-input-text').height();
+    var width = $('.chat-main-panel').width()
+    $('.chat-display').css('height', heightDisplay - height - 33 - 30);
+    $('.chat-display').css('width', width);
+  });
+};
+
+// hover = function() {
+//   $('.channel-element').mouseover(function() {
+//       $(this).addClass('channel-highligthen')
+//     })
+
+//     $('.box_document').mouseout(function() {
+//       if (!$(this).hasClass("document-selected")){
+//         $(this).removeClass('document-hovered')
+//       }
+//       if (docSelection.target == null) { $('#actions-doc').removeClass('selected-action') }
+//     })
+// }
+
 $(document).on('ready page:load', function() {
   mainChat();
+  resize();
   var heightDisplay = $('.chat-main-panel').height();
   var height = $('.chat-input-text').height();
-  $('.chat-display').css('height', heightDisplay - height - 33);
+  var width = $('.chat-main-panel').width()
+  $('.chat-display').css('height', heightDisplay - height - 33 - 30);
+  $('.chat-display').css('width', width);
 });
 
 
