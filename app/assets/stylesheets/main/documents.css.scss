@@ -312,7 +312,11 @@
   height: 130px;
 
   padding-top: 30px;
-  .fa-plus{font-size: 50px;}
+  .fa-plus{
+    position: relative;
+    float: center;
+    font-size: 50px;
+  }
   transition: all ease-in .5s;
   &:hover{
     padding-top: 18px;

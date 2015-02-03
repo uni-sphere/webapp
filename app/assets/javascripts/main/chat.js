@@ -40,7 +40,6 @@ mainChat = function() {
 
 resize = function() {
   $( window ).resize(function() {
-    console.log("plop");
     var heightDisplay = $('.chat-main-panel').height();
     var height = $('.chat-input-text').height();
     var width = $('.chat-main-panel').width()
@@ -49,22 +48,70 @@ resize = function() {
   });
 };
 
-// hover = function() {
-//   $('.channel-element').mouseover(function() {
-//       $(this).addClass('channel-highligthen')
-//     })
+var activeChannel = {
+  init: function() {
+    $('.channel-element').hover(
+      function(){
+        var topPos = $(this).offset().top - 100;
 
-//     $('.box_document').mouseout(function() {
-//       if (!$(this).hasClass("document-selected")){
-//         $(this).removeClass('document-hovered')
+        var hover_caret = $('<div class="active-caret fa fa-caret-right special-active-caret"></div>')
+          .css('top', topPos)
+          .attr('id', 'special-active-caret-' + $(this).data('channel') );
+        $('.active-caret').after(hover_caret);
+      },
+      function() {
+        $('.special-active-caret').remove();
+      }
+    );
+
+    $('.channel-element').on('click', function() {
+      var topPos = $(this).offset().top - 100;
+
+      $('.active-caret').stop(false, false).animate(
+        {
+          top: topPos
+        },
+        1000,
+        'easeInOutQuart'
+      );
+    });
+  }
+}
+
+
+
+
+// var activeChannel = {
+//   init: function() {
+//     $('.channel-element').hover(
+//       function(){
+//         var caret = $('<i class="fa fa-caret-right" id="hover-caret"></i>')
+//         if(!$(this).hasClass('active')){
+//           $(this).prepend(caret);
+//         }
+//       },
+//       function() {
+//         $('#hover-caret').remove();
 //       }
-//       if (docSelection.target == null) { $('#actions-doc').removeClass('selected-action') }
-//     })
+//     );
+
+
+//     $('.channel-element').on('click', function() {
+//       $('.channel-element').removeClass('active');
+//       $(this).addClass('active');
+//       $('.fa-caret-right').remove();
+//       var caret = $('<i class="fa fa-caret-right"></i>')
+//       $(this).prepend(caret);
+//     });
+//   }
 // }
+
+
 
 $(document).on('ready page:load', function() {
   mainChat();
   resize();
+  activeChannel.init();
   var heightDisplay = $('.chat-main-panel').height();
   var height = $('.chat-input-text').height();
   var width = $('.chat-main-panel').width()

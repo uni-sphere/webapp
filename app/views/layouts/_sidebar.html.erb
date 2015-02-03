@@ -22,36 +22,31 @@
 		<% if request.url =~ /groups(.*)/ %>
 			<% if current_group_exists? %>
 				<div class="lateral-nav" id="active-group-nav">
-	        <ul>
-	        	<li>
-	        		<%= link_to get_group_documents_path(group_id: params[:group_id], parent_id: 100) do %>
-								<%=fa_icon("folder-open")%>Folder
-							<% end %>
-						</li>
-						<li>
-							<%= link_to get_group_chats_path do %>
-								<%=fa_icon("wechat")%>Chat
-							<% end %>
-						<li>
-							<%= link_to user_group_calendar_path(current_user, current_group, group_calendar) do %>
-								<%=fa_icon("calendar")%>Calendar
-							<% end %>
-						</li>
-	        </ul>
+					<div class="groups-title">SPACE</div>
+					<div class="active-menu"></div>
+					<a href="<%= get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>" data-space="1" class="lateral-nav-element <%= 'active' if current_page?(get_group_documents_path(group_id: params[:group_id], parent_id: 100)) %> <%= 'previous' if url_for(:back) == get_group_documents_url(group_id: params[:group_id], parent_id: 100) %>">
+						<i class="fa fa-folder-open"></i>Folder
+					</a>
+
+					<a href="<%= get_group_chats_path %>" data-space="2" class="lateral-nav-element <%= 'active' if current_page?(get_group_chats_path) %> <%= 'previous' if url_for(:back) == get_group_chats_url %>">
+						<i class="fa fa-wechat"></i>Chat
+					</a>
+
+					<a href="<%= user_group_calendar_path(current_user, current_group, group_calendar) %>" data-space="3" class="lateral-nav-element  <%= 'active' if current_page?(user_group_calendar_path(current_user, current_group, group_calendar)) %> <%= 'previous' if url_for(:back) == user_group_calendar_url(current_user, current_group, group_calendar) %>">
+						<i class="fa fa-calendar"></i>Calendar
+					</a>
 	      </div>
 			<%end%>
 
+
 			<div class="lateral-nav" id="groups-nav" >
-				<ul>
-					<% current_groups.each do |group| %>
-					<li>
-						<%= link_to user_group_calendar_path(current_user, group, group.calendar) do %>
-							<%= image_tag "group-pic.png" %><span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
-						<% end %>
-					</li>
+				<div class="groups-title">GROUPS</div>
+				<% current_groups.each do |group| %>
+					<%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
+						<%= image_tag "group-pic.png" %><span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
 					<% end %>
-				</ul>
-				<div class="line-separator"></div>
+				<% end %>
+				<!-- <div class="line-separator"></div> -->
 				<div id="more-groups">
 					<i class="fa fa-plus"></i>See all groups
 				</div>
@@ -59,15 +54,21 @@
 
 		<% elsif  %>
 			<div class="lateral-nav" id="nav-perso">
-				<ul>
-					<li id="perso-folder">
-						<%= link_to (get_user_documents_path(folder: '0')) do %>
-							<%=fa_icon("folder-open")%>Folder
-						<% end %>
-					</li>
-					<li><a href="#"><i class="fa fa-wechat"></i>Chat</a></li>
-					<li><a href="#"><i class="fa fa-calendar"></i>Calendar</a></li>
-				</ul>
+				<div class="groups-title">SPACE</div>
+				<div class="active-menu"></div>
+
+				<a href="<%= get_user_documents_path(folder: '0') %>" data-space="1" class="lateral-nav-element <%= 'active' if current_page?(get_user_documents_path(folder: '0')) %> <%= 'previous' if url_for(:back) == get_user_documents_url(folder: '0') %>">
+					<i class="fa fa-folder-open"></i>Folder
+				</a>
+				
+
+				<a href="<%= user_path(current_user) %>" data-space="2" class="lateral-nav-element <%= 'active' if current_page?(user_path(current_user)) %> <%= 'previous' if url_for(:back) == user_url(current_user) %>">
+					<i class="fa fa-wechat"></i>Chat
+				</a>
+
+			
+				
+				<a data-space="3" href="#" class="lateral-nav-element"><i class="fa fa-calendar"></i>Calendar</a>
 			</div>
 		<% end %>
 

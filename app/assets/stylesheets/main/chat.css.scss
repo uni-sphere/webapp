@@ -213,7 +213,7 @@
 // -------------------------------------------------
 
 // CHANNEL LIST ------------------------------------
-.topic-list{
+.channel-list{
   position: relative;
   float: left;
 
@@ -239,12 +239,13 @@
 
   text-align: left;
 
-  padding-left: 20px;
+  padding-left: 24px;
 
   font-weight: bold;
   &:hover{cursor: default}
   // background: green;
 }
+
 
 // CHANNEL ELEMENT --------------
 .channel-element{
@@ -252,28 +253,68 @@
   float: left;
   clear: left;
 
-  padding-left: 24px;
+  padding-left: 28px;
   height: 28px;
   line-height: 28px;
   font-size: 16px;
   min-width: 200px;
   text-align: left;
-  .fa-caret-right{margin-right: 5px;}
+
+  // background: green;
   &:hover{
     cursor: pointer;
-    .fa-caret-right{
-      padding-left: 4px;
-    }
   }
+  // transition: all .5 linear;
+
+
+
+  // .fa-caret-right{margin-right: 5px;}
+  // &:hover{
+  //   cursor: pointer;
+  //   .fa-caret-right{
+  //     padding-left: 4px;
+  //   }
+  // }
   // background: green;
 }
-.channel-selected{
-  .fa-caret-right{
-    color: violet;
-    padding-left: 4px;
-  }
+// .channel-selected{
+//   .fa-caret-right{
+//     color: violet;
+//     padding-left: 4px;
+//   }
+// }
+
+.active-caret{
+  position: absolute;
+
+  z-index: 5;
+  top: 0px;
+  left:0px;
 }
 
+#special-active-caret-1{
+  color: #4e4e4e;
+}
+
+#special-active-caret-2 {
+  color: #1abc9c;
+}
+
+#special-active-caret-3 {
+  color: #e74c3c;
+}
+
+.special-active-caret{
+  z-index: 10;
+}
+
+// .fa-caret-right{
+//   width: 2px;
+// }
+
+// #hover-caret{
+//   color: grey;
+// }
 
 // MEMBER LIST ------------------------------------
 .member-list{
@@ -312,6 +353,7 @@
     cursor: pointer;
     border: 1px solid $header-bg;
   }
+  // object:hover{cursor: pointer !important}
 }
 
 .side-to-side{

@@ -30,13 +30,21 @@
     </div>
   </div>
   <div class="chat-right-panel">
-    <div class="topic-list">
+
+    <div class="channel-list">
       <div class="section-title">CHANNEL</div>
-      <div class="channel-element"><span class="fa fa-caret-right"></span>rapport</div>
-      <div class="channel-element channel-selected"><span class="fa fa-caret-right"></span>recherche</div>
-      <div class="channel-element"><span class="fa fa-caret-right"></span>general</div>
+      <div data-channel="1" class="channel-element">rapport</div>
+      <div data-channel="2" class="channel-element">recherche</div>
+      <div data-channel="3" class="channel-element">general</div>
+      <div class="active-caret fa fa-caret-right"></div>
+      
     </div>
-    <div class="member-list side-to-side">
+
+    <!-- ----------- -->
+    <!-- MEMBER LIST -->
+    <!-- ----------- -->
+
+    <div class="member-list">
       <div class="section-title" id="member-title">MEMBERS</div>
       <div class="member">
         <object type="image/svg+xml" data="<%= asset_path 'default-80.svg' %>" class="member-pic"></object>

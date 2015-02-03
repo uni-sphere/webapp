@@ -212,62 +212,56 @@
   padding-left: 5px;
 
   text-align: left;
-  // background: red;
-  ul{
-    list-style: none;
+}
 
-    margin: 0;
-    padding: 0;
-  }
-  li{
-    width: 70%;
-  }
-  li a{
-    position: relative;
-    float: left;
+.lateral-nav-element{
+  position: relative;
+  float: left;
+  clear: left;
 
-    width: 100%;
-    height: 22px;
+  width: 110px;
+  height: 26px;
+  line-height: 26px;
 
-    line-height: 22px;
-    
-    margin: 2px 0px;
-    padding-left: 5px;
+  padding-right: 20px;
+  padding-left: 5px;
 
-    color: $nav;
-    font-size: 15px;
-    white-space: nowrap;      //keep the text on one line
-    overflow: hidden;         //prevent the text from being shown outside the border
-    text-overflow: ellipsis;  //cut off text with an elipsis
+  margin: 2px 0px;
+  padding-left: 5px;
 
-    border-left: solid 2px $inside-bg;
-    // background: green;
-    &:hover, &.active li a{
-      border-left: solid 2px $hover-border;
-      background: $inside-bg;
+  color: $nav;
+ 
+  font-size: 17px;
+  white-space: nowrap;      //keep the text on one line
+  overflow: hidden;         //prevent the text from being shown outside the border
+  text-overflow: ellipsis;  //cut off text with an elipsis
 
-      text-decoration: none;
-    }
+  // border-left: solid 2px $inside-bg;
+  &:hover{
+    // border-left: solid 2px $hover-border;
+    // background: $inside-bg;
   }
   .fa, img{
-    position: relative;
-    float: left;
+  position: relative;
+  float: left;
 
-    width: 20px;
-    height: 16px;
+  width: 22px;
+  height: 26px;
+  line-height: 26px;
 
-    // background: red;
+  padding-left: 5px;
+  padding-right: 9px;
 
-    padding-left: 5px;
-    padding-right: 9px;
-    margin-top: 3px;
-
-    font-size: 18px;
-    color: $nav-fa;
-
-    // background: red;
-  }
+  font-size: 20px;
+  color: $nav-fa;
 }
+}
+
+
+// .nav-element-active{
+//   border-left: solid 2px $hover-border;
+//   &:hover{cursor: auto;}
+// }
 
 #nav-perso{
   top: 31px;
@@ -285,7 +279,54 @@
 // ----------
 
 #groups-nav{
-  top: 140px;
+  top: 170px;
+}
+
+.groups-title{
+  display: block;
+
+  height: 25px;
+  line-height: 25px;
+  font-size: 15px;
+
+  text-align: left;
+
+  padding-left: 10px;
+  margin-bottom: 5px;
+
+  font-weight: bold;
+
+
+  &:hover{cursor: default}
+  // background: green;
+}
+
+.active-menu{
+  position: absolute;
+  z-index: 9;
+  left: 5px;
+  // top: 0px;
+  width: 4px;
+  height: 26px;
+  background-color: #4e4e4e;
+  // transition: all .5 linear;
+
+  // content: '.';
+}
+
+#special-active-menu-1{
+  background-color: #4e4e4e;
+}
+
+#special-active-menu-2 {
+  background-color: #1abc9c;
+}
+
+#special-active-menu-3 {
+  background-color: #e74c3c;
+}
+.special-active-menu {
+  z-index: 100;
 }
 
 .line-separator{
@@ -310,22 +351,22 @@
   line-height: 22px;
 
   margin-left: 14px; // 7 + ?
-  padding-right: 10px;
+  margin-top: 3px;
 
   font-style: italic;
-  // font-size: 11px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  // background: green;
   .fa{
-    font-size: 12px;
-    margin-top: 5px;
-    padding-right: 2px;
+    width: 8px;
+    font-size: 14px;
+    line-height: 22px;
   }
   &:hover{
     cursor: pointer;
   }
 }
+
 
 
