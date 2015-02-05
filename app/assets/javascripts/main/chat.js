@@ -1,28 +1,4 @@
-// var opts = {
-//     context: $('li')
-//     , cloneClass: 'faketextarea'
-// };
-// $('textarea').on('keydown', function(event) {
-//     if (event.keyCode == 13)
-//         if (!event.shiftKey) $('#testForm').submit();
-// });
 
-// $('#testForm').on('submit', function() {
-//     document.write("Test Form submitted!");
-// });
-
-
-
-// var popupShow = {
-//   init: function() {
-//     $('#more-groups').on('click', function() {
-//       console.log('hello');
-//        $("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
-//       // $('#slide-more-groups').show( "slide", 200 );
-//       $('#slide-more-groups').slideDown(400);
-//     });
-//   }
-// }
 
 mainChat = function() {
   $('.chat-input-text').expanding({
@@ -52,7 +28,7 @@ var activeChannel = {
   init: function() {
     $('.channel-element').hover(
       function(){
-        var topPos = $(this).offset().top - 100;
+        var topPos = $(this).offset().top - 92;
 
         var hover_caret = $('<div class="active-caret fa fa-caret-right special-active-caret"></div>')
           .css('top', topPos)
@@ -65,7 +41,7 @@ var activeChannel = {
     );
 
     $('.channel-element').on('click', function() {
-      var topPos = $(this).offset().top - 100;
+      var topPos = $(this).offset().top - 92;
 
       $('.active-caret').stop(false, false).animate(
         {

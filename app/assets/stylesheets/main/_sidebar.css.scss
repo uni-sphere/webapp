@@ -25,7 +25,7 @@
   padding-top:2px;
 
   background: $unselected-tab-bg;
-  color: black;
+  color: $unselected-tab-color;
 
   border-radius: 20px 20px 0 0;
   font-size: 15px;
@@ -359,7 +359,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   .fa{
-    width: 8px;
+    width: 14px;
     font-size: 14px;
     line-height: 22px;
   }

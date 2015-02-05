@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="80"
-   height="80"
+   width="36"
+   height="36"
    id="svg2987"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="default-36-2.svg">
+   sodipodi:docname="default-32.svg">
   <defs
      id="defs2989">
     <linearGradient
@@ -135,20 +135,29 @@
        inkscape:collect="always"
        xlink:href="#linearGradient3939"
        id="linearGradient3931"
-       x1="-18.741177"
-       y1="31.304964"
-       x2="-21.340818"
-       y2="42.794289"
+       x1="5.368813"
+       y1="3.9314663"
+       x2="29.010431"
+       y2="32.470951"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3939"
-       id="linearGradient3032"
+       id="linearGradient3021"
        gradientUnits="userSpaceOnUse"
-       x1="-18.741177"
-       y1="31.304964"
-       x2="-21.340818"
-       y2="42.794289" />
+       x1="5.368813"
+       y1="3.9314663"
+       x2="29.010431"
+       y2="32.470951" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3939"
+       id="linearGradient3023"
+       gradientUnits="userSpaceOnUse"
+       x1="5.368813"
+       y1="3.9314663"
+       x2="29.010431"
+       y2="32.470951" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -157,9 +166,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.3084355"
-     inkscape:cx="55.642871"
-     inkscape:cy="6.1053824"
+     inkscape:zoom="21.233742"
+     inkscape:cx="20.021355"
+     inkscape:cy="18.837597"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
@@ -185,28 +194,35 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     transform="translate(0,48)" />
+     transform="translate(0,4)" />
   <g
      id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     transform="translate(0,48)">
+     transform="translate(0,4)">
+    <path
+       clip-path="url(#clipPath3085)"
+       inkscape:connector-curvature="0"
+       id="path3093"
+       d="m 32.000001,16 c 0,8.836556 -7.163445,16 -16,16 C 7.163444,32 0,24.836556 0,16 0,7.163446 7.163444,7.4999999e-7 16.000001,7.4999999e-7 c 8.836555,0 16,7.16344525000001 16,15.99999925000001 z"
+       style="fill:#c1a3fe;fill-opacity:0.53424659;stroke-width:0.1;stroke-miterlimit:4;stroke-dashoffset:0"
+       transform="translate(-35.321141,-1.3657508)" />
     <g
        id="g3921"
-       style="fill:#c1a3fe;fill-opacity:0"
-       transform="matrix(2.5,0,0,2.5,-4.6005444e-7,-48.000002)">
+       style="fill:url(#linearGradient3931);fill-opacity:1"
+       transform="matrix(1.1363636,0,0,1.1363636,-0.6818182,-4.3636364)">
       <path
          transform="translate(1.1295029e-7,-0.51804344)"
          clip-path="url(#clipPath3089)"
          inkscape:connector-curvature="0"
          id="path3016"
          d="m 20.623241,9.0470954 c 0,2.7614236 -2.238576,4.9999996 -5,4.9999996 -2.761424,0 -5,-2.238576 -5,-4.9999996 0,-2.7614239 2.238576,-5.0000002 5,-5.0000002 2.761424,0 5,2.2385763 5,5.0000002 z"
-         style="fill:url(#linearGradient3032);fill-opacity:1" />
+         style="fill:url(#linearGradient3021);fill-opacity:1" />
       <path
          id="path3879"
          d="M 16,0 C 7.163443,0 0,7.163446 0,16 0,24.836556 7.163443,32 16,32 24.836555,32 32,24.836556 32,16 32,7.163446 24.836555,0 16,0 z m -0.875,4.0625 c 0.168085,-0.01707 0.327411,0 0.5,0 2.761424,0 5,2.2385761 5,5 0,2.761424 -2.238576,5 -5,5 -2.761424,0 -5,-2.238576 -5,-5 0,-2.5888349 1.978719,-4.74395 4.5,-5 z"
          clip-path="url(#clipPath3106)"
-         style="fill:url(#linearGradient3931);fill-opacity:1;stroke-width:0.1;stroke-miterlimit:4;stroke-dashoffset:0"
+         style="fill:url(#linearGradient3023);fill-opacity:1;stroke-width:0.1;stroke-miterlimit:4;stroke-dashoffset:0"
          inkscape:connector-curvature="0" />
     </g>
   </g>

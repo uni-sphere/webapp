@@ -1,23 +1,144 @@
-$separator: #808080;
+$grey-dark: #808080;
+$grey: #C0C0C0;
 
+$separator: #808080;
 //GREY
-$header-bg: rgba(192,192,192,1);
-$gradient-top:  linear-gradient(to bottom, rgba(220,220,220,1) 0%,rgba(211,211,211,1) 100%);
-$gradient: linear-gradient(to bottom, rgba(211,211,211,1) 0%,rgba(192,192,192,1) 100%);
+// $header-bg: rgba(192,192,192,1);
+// $gradient-top:  linear-gradient(to bottom, rgba(220,220,220,1) 0%,rgba(211,211,211,1) 100%);
+// $gradient: linear-gradient(to bottom, rgba(211,211,211,1) 0%,rgba(192,192,192,1) 100%);
+
+
+
+
+// $normal: #A780F5;
+// $light: #AC88F5;
+// $very-light: #B291F5;
+// $super-light: #C1A7F5;
+
+
+$dark: #866292;
+$normal: #976FA5;
+$light: #9E74AE;
+$very-light: #A378B2;
+$super-light: #B284C3;
+$ultra-light: #B89BC3;
+
+$surrounding-bg: whitesmoke;
+$tab-color: black;
+$nav-color:  black;
+
+
+
+
+// FOLDER
+
+$gradient-top:  linear-gradient(to bottom, $normal 0%,$light 100%);
+$gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
+
+// $gradient-top: $normal;
+// $gradient: $normal;
+
+
+// LIGHT GREEN
+
+// $dark: #4EB94E;
+// $normal: #65C465;
+// $light: #68C468;
+// $very-light: #6AC46A;
+// $super-light: #7AD57A;
+
+// $tab-color: black;
+// $nav-color: black;
+// $surrounding-bg: whitesmoke;
+
+
+//DARK GREEN
+// $dark: #048104;
+// $normal: #039203;
+// $light: #039803;
+// $very-light: #039B03;
+// $super-light: #04B304;
+
+// $tab-color: black;
+// $nav-color: black;
+// $surrounding-bg: whitesmoke;
+
+
+//FRAMBOISE
+// $normal: #E94162;
+// $light: #E94667;
+// $very-light: #E94C6F;
+// $super-light: #E9738B;
+
+
+///CORAIL
+// $normal: #F9635E;
+// $light: #F96D68;
+// $very-light: #F8726F;
+// $super-light: #F98E8A;
+
+//ORANGE - black
+// $dark: #EE7700;
+// $normal: #FC7E00;
+// $light: #FD7F00;
+// $very-light: #FF8103;
+// $super-light: #FF9529;
+
+// $surrounding-bg: #555555;
+// $tab-color: white;
+// $nav-color:  white;
+
+// ORANGE - white
+// $dark: #EE7700;
+// $normal: #FC7E00;
+// $light: #FD7F00;
+// $very-light: #FF8103;
+// $super-light: #FF9529;
+
+// $surrounding-bg: whitesmoke;
+// $tab-color: black;
+// $nav-color:  black;
+
+// VIOLET DARK
+// $dark: #866292;
+// $normal: #976FA5;
+// $light: #9E74AE;
+// $very-light: #A378B2;
+// $super-light: #B284C3;;
+
+// $surrounding-bg: whitesmoke;
+// $tab-color: black;
+// $nav-color:  black;
+
+
+//VIOLET
+// $normal: #A780F5;
+// $light: #AC88F5;
+// $very-light: #B291F5;
+// $super-light: #C1A7F5;
+
+
 
 // GENERAL
-$surrounding-bg: whitesmoke;
 $inside-bg: whitesmoke;
+// $surrounding-bg: whitesmoke;
+// $surrounding-bg: url("/assets/wallpaper.png") fixed;
+
+
+
+
+
 
 // TABS
-$tab-color: black;
 
-$unselected-tab-bg: rgba(220,220,220,1);
-$unselected-tab-hover: #9E9E9E;
-$unselected-tab-hover-color: black;
+$header-bg: $very-light;
+$unselected-tab-bg: $super-light;
+$unselected-tab-hover: $dark;
+$unselected-tab-hover-color: $tab-color;
+$unselected-tab-color: $tab-color;
 
 // SIDEABAR
-$school: black;
+$school: $tab-color;
 $nav-fa: black;
 $nav: black;
 $hover-border: black;
@@ -28,26 +149,28 @@ $sidebar-color: #B22222;
 
 
 // NAVBAR
-$username: black;
-$deco-fa: black;
+$username: $nav-color;
+$deco-fa: $nav-color;
 
 // CLOUD
 $breadcrumb: black;
 $list-fa: black;
 $list: black;
-$list-separator: $header-bg;
+$list-separator: $grey;
 $list-title: grey;
 $list-title-fa: grey;
-$list-title-separator: $header-bg;
-$name: $header-bg;
+$list-title-separator: $grey;
+$name: $grey;
+$name-selected: $grey-dark;
 
 $selected-action: black;
 $unselected-action: grey;
 
-$document-selected: papayawhip;
+$document-selected: $ultra-light;
 $document-hovered: snow;
 
 $pencil-active: grey;
+$pencil-selected-active: $grey-dark;
 $rename: black;
 
 $action: black;
@@ -65,7 +188,9 @@ $popup-header-color: black;
 
 // CHAT
 $upload-bg: $header-bg;
-
+$color-funky-1: #4e4e4e;
+$color-funky-2: #1abc9c;
+$color-funky-3: #e74c3c;
 
 $nice-grey: rgba(188,195,199,1);
 
@@ -82,11 +207,7 @@ $nice-grey: rgba(188,195,199,1);
 // $gradient-top: linear-gradient(to bottom, rgba(46,139,87,1) 0%,rgba(60,179,113,1) 100%);
 // $gradient: linear-gradient(to bottom, rgba(60,179,113,1) 0%,rgba(78,178,121,1) 100%);
 
-// //VIOLET
-// $header-bg: rgba(170,112,224,1);
-// $header-bg2: rgba(75,0,130,1);
-// $gradient-top:  linear-gradient(to bottom, rgba(75,0,130,1) 0%,rgba(126,22,224,1) 100%);
-// $gradient:  linear-gradient(to bottom, rgba(126,22,224,1) 0%,rgba(170,112,224,1) 100%) ;
+
 
 // $surrounding-bg: mintcream;
 // $surrounding-bg: cornsilk;

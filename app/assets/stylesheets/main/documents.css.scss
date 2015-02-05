@@ -106,11 +106,12 @@
 }
 
 #title-modified{
-  width: calc(40% - 100px);
+  width: calc(40% - 150px);
 }
 
 #title-size{
-  width: 50px;
+  width: 100px;
+  text-align: right;
 }
 
 //  ROW DOCUMENT
@@ -120,21 +121,12 @@
   width: 100%;
   height: 65px;
   border-bottom: 1px solid $list-separator;
-  margin-bottom: 1px;
+  // margin-bottom: 1px;
   background: $inside-bg;
   // background: green;
 }
 
-// -----------------------------
-.document-hovered{
-  background: $document-hovered;
-  .fa-pencil{color: $pencil-active;}
-}
-.document-selected{
-  background: $document-selected;
-  .fa-pencil{color: $pencil-active;}
-}
-// ----------------------------
+
 
 // ICON & NAME
 .icon-and-name{
@@ -227,7 +219,7 @@
   position: relative;
   float: left;
 
-  width: calc(40% - 105px);
+  width: calc(40% - 160px);
   height:50px;
 
   padding-left: 5px;
@@ -264,7 +256,7 @@
 .size-doc{
   position: relative;
   float: right;
-  width: 45px;
+  width: 100px;
   height: 65px;
 
   line-height: 65px;
@@ -275,19 +267,23 @@
   font-size: 13px;
 
   text-align: right;
+  &:hover{cursor: default;}
   // background: green;
 }
 
-// FILE SEPARATOR
-// .file-separator{
-//   position: relative;
-//   float: left;
+// -----------------------------
+.document-hovered{
+  background: $document-hovered;
+  .fa-pencil{color: $pencil-active;}
+}
+.document-selected{
+  background: $document-selected;
+  .fa-pencil{color: $pencil-selected-active;}
+  .person{color: $name-selected;}
 
-//   left: 0px;
-//   height: 1px;
-//   width: 100%;
-//   background: $list-separator;
-// }
+}
+// ----------------------------
+
 
 // -------------------
 // ACTIONS ON DOCUMENT
@@ -335,7 +331,12 @@
   margin-top: 20px;
 
   font-size: 17px;
-  a{color: $action;}
+  a{
+    color: $action;
+    &:hover{
+      cursor: pointer;
+    }
+  }
   .fa{
     font-size: 20px;
     margin-right: 5px;
@@ -356,9 +357,7 @@
 
   left: calc(50% - 28px);
 
-   &:hover{
-    cursor: pointer;
-  }
+  
 }
 
 // CREATE DOC
@@ -368,19 +367,19 @@
   right: 30px;
 }
 
-#create-doc-title{
-  position: relative;
-  float: left;
+// #create-doc-title{
+//   position: relative;
+//   float: left;
 
-  margin-bottom: 3px;
-}
+//   margin-bottom: 3px;
+// }
 
 .create-list{
   position: relative;
   float: left;
   clear: left;
 
-  padding-left: 5px;
+  margin-bottom: 5px;
 }
 
 
