@@ -85,9 +85,7 @@ var breadcrumb = {
 	
 	group: function() {
 		$('.go-folder').on('mousedown', function() {
-			console.log($(this).parent().parent('.dragAndDrop').length);
 			if ($(this).parent().parent('.dragAndDrop').attr('item') == 'folder') {
-				console.log('hello');
 				localStorage['groupBreadcrumb'] = JSON.stringify({'name': $(this).parent().parent('.dragAndDrop').attr('name'), 'id': $(this).parent().parent('.dragAndDrop').attr('item_id')})
 			}
 		});
@@ -97,6 +95,7 @@ var breadcrumb = {
 		} else {
 			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document">Group</a>' )
 		}
+		if (docSelection.target != null) { docSelection.remove() };
 	},
 
 	init: function() {
@@ -226,6 +225,7 @@ var rename = {
 		renameInput.attr("value", nameWithoutFormat);
 		renameInput.removeClass('hidden').focus();
 		renameInput[0].setSelectionRange(renameInput.val().length * 4, renameInput.val().length * 2);
+		
 	},
 	
 	ajaxSuccess: function() {
@@ -236,6 +236,7 @@ var rename = {
 	},
 	
 	perso: function(url, data) {
+		console.log(rename.format);
 		url = 'http://localhost:3000/user/' + rename.docType + '/rename';
 		data = {
 			name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
@@ -255,6 +256,7 @@ var rename = {
 	},
 	
 	rename: function(renameUrl, renameData) {
+		console.log(renameData);
 		console.log('ajax');
 		$.ajax({
 			url: renameUrl,
@@ -264,16 +266,21 @@ var rename = {
 		rename.ajaxSuccess();
 	},
 	
+	enterFlag: true,
+	
 	init: function() {
 		$('.document-rename').on('click', this.showInput );
 		$('.input-rename-document').on('blur', function() {
 			rename.target = $(this);
-			setLocation(rename);
+			if (rename.enterFlag == false) { setLocation(rename) };
+			rename.enterFlag = false;
 		});
 		$('.input-rename-document').on('keyup', function(event) {
 			if (event.keyCode == $.ui.keyCode.ENTER) {
-				rename.target = $(this);;
+				rename.target = $(this);
+				$(this).blur();
 				setLocation(rename);
+				rename.enterFlag = true
 			};
 		})
 	}
@@ -536,10 +543,8 @@ var hover = {
 var folderRedirection = {
 	init: function() {
 		$('.go-folder').on('click', function(e) {
-			// if (docSelection.target != null) { docSelection.remove() };
-			console.log($( '#loader' ));
+			if (docSelection.target != null) { docSelection.remove() };
 			$( '#loader' ).removeClass("hidden");
-			console.log($( '#loader' ));
 		})
 	}
 }; // OK

@@ -2,7 +2,7 @@
 
 <div id="tabs-container">
 	<%= link_to 'Perso', user_path(current_user) , class: "tab #{url_perso?}", id: "tab-perso" %>
-	<%= link_to 'Groups', user_groups_path(current_user), class: "tab #{url_groups?}", id: "tab-group" %>
+	<%= link_to 'Groups', get_group_documents_path(group_id: current_user.groups.last, parent_id: 100), class: "tab #{url_groups?}", id: "tab-group" %>
 </div>
 
 <div id="row-and-content-wrapper">
@@ -19,16 +19,16 @@
 		
 		<div class="separator"></div>
 
-		<% if request.url =~ /groups(.*)/ %>
+		<% if request.url.include? 'group' %>
 			<% if current_group_exists? %>
 				<div class="lateral-nav" id="active-group-nav">
-					<div class="groups-title">SPACE</div>
+					<div class="groups-title">TOOLS</div>
 					<div class="active-menu"></div>
 					<a href="<%= get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>" data-space="1" class="lateral-nav-element <%= 'active' if current_page?(get_group_documents_path(group_id: params[:group_id], parent_id: 100)) %> <%= 'previous' if url_for(:back) == get_group_documents_url(group_id: params[:group_id], parent_id: 100) %>">
 						<i class="fa fa-folder-open"></i>Folder
 					</a>
 
-					<a href="<%= get_group_chats_path %>" data-space="2" class="lateral-nav-element <%= 'active' if current_page?(get_group_chats_path) %> <%= 'previous' if url_for(:back) == get_group_chats_url %>">
+					<a href="<%= get_group_chats_path(group_id: params[:group_id]) %>" data-space="2" class="lateral-nav-element <%= 'active' if current_page?(get_group_chats_path) %> <%= 'previous' if url_for(:back) == get_group_chats_url %>">
 						<i class="fa fa-wechat"></i>Chat
 					</a>
 
@@ -54,7 +54,7 @@
 
 		<% elsif  %>
 			<div class="lateral-nav" id="nav-perso">
-				<div class="groups-title">SPACE</div>
+				<div class="groups-title">TOOLS</div>
 				<div class="active-menu"></div>
 
 				<a href="<%= get_user_documents_path(folder: '0') %>" data-space="1" class="lateral-nav-element <%= 'active' if current_page?(get_user_documents_path(folder: '0')) %> <%= 'previous' if url_for(:back) == get_user_documents_url(folder: '0') %>">

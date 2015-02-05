@@ -56,7 +56,7 @@
             <span class="date-time"><%= time_ago_in_words(document['created_at']) %></span>
             <span class="person"><%= current_user.name %></span>
           </div>
-          <div class="size-doc"><%= document['size'] %> kb</div>
+          <div class="size-doc"><%= document['size']/1000 %> kb</div>
           <!-- <div class="file-separator"></div> -->
         </div>
       <% end %>
