@@ -22,7 +22,7 @@
 		</div> 
 
 		<div class="main-page">
-			<div class="main-page-separator"></div>
+			<div class="separator"></div>
       
 			
 			<!-- ------------- -->
@@ -73,7 +73,7 @@
 						<span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
 						<span class="person"><%= document.owner %></span>
 					</div>
-					<div class="size-doc"><%= document.size %> kb</div>
+					<div class="size-doc"><%= document.size/1000 %> kb</div>
 				</div>
 				<% end %>
 				<% end %>

@@ -23,6 +23,7 @@ gem 'sass-rails'      #scss minifier
 gem 'uglifier'        #js minifiers
 
 
+gem 'jquery-turbolinks' 
 gem 'fullcalendar2-rails'
 gem 'will_paginate'
 gem 'jbuilder'

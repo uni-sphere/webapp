@@ -25,7 +25,7 @@ var groupRedirection = {
 	},
 	
 	storeGroup: function() {
-		localStorage['lastGroupViewed'] = '/user/group/documents?group_id='+groupRedirection.target.attr("group_id")+'&parent_id=100'
+		localStorage['lastGroupViewed'] = '/user/group/documents?group_id=' + groupRedirection.target.attr("group_id") + '&parent_id=100'
 	}
 }
 

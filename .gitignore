@@ -1,6 +1,5 @@
-/db/*.sqlite3
 temp
-/db/*.sqlite3-journal
+/db/*
 /log/*.log
 /tmp
 *~

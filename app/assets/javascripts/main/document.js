@@ -483,7 +483,7 @@ var hover = {
 			if (!$(this).hasClass("document-selected")){
 				$(this).addClass('document-hovered')
 			}
-			$('#actions-doc').addClass('selected-action')
+			$('#actions-doc').addClass('selected-action');
 		})
 
 		$('.box_document').mouseout(function() {
@@ -513,7 +513,7 @@ var hover = {
 				$(this).find('#new-actions')
 				.animate(
 					{
-						paddingTop: '20px',
+						paddingTop: '12px',
 						opacity: 0
 					},
 					'fast',

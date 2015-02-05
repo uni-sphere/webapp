@@ -1,3 +1,5 @@
+$separator: #808080;
+
 //GREY
 $header-bg: rgba(192,192,192,1);
 $gradient-top:  linear-gradient(to bottom, rgba(220,220,220,1) 0%,rgba(211,211,211,1) 100%);
@@ -22,7 +24,7 @@ $hover-border: black;
 
 $sidebar-color: #B22222;
 
-$folder-separator: #808080;
+
 
 
 // NAVBAR
@@ -61,7 +63,8 @@ $popup-footer-bg: #EEEEEE;
 $popup-color: black;
 $popup-header-color: black;
 
-
+// CHAT
+$upload-bg: $header-bg;
 
 
 $nice-grey: rgba(188,195,199,1);
