@@ -43,7 +43,8 @@
 				<div class="groups-title">GROUPS</div>
 				<% current_groups.each do |group| %>
 					<%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
-						<%= image_tag "group-pic.png" %><span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
+						<object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object>
+						<span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
 					<% end %>
 				<% end %>
 				<!-- <div class="line-separator"></div> -->

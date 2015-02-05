@@ -240,16 +240,16 @@
     // border-left: solid 2px $hover-border;
     // background: $inside-bg;
   }
-  .fa, img{
+  .fa, img, object{
   position: relative;
   float: left;
 
-  width: 22px;
+  width: 26px;
   height: 26px;
   line-height: 26px;
 
   padding-left: 5px;
-  padding-right: 9px;
+  padding-right: 5px;
 
   font-size: 20px;
   color: $nav-fa;
