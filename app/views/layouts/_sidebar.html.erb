@@ -66,9 +66,7 @@
 					<i class="fa fa-wechat"></i>Chat
 				</a>
 
-			
-				
-				<a data-space="3" href="#" class="lateral-nav-element"><i class="fa fa-calendar"></i>Calendar</a>
+				<a data-space="3" href="<%= user_calendars_path(current_user) %>" class="lateral-nav-element <%= 'active' if current_page?(user_calendars_path(current_user)) %> <%= 'previous' if url_for(:back) == user_calendars_url(current_user) %>"><i class="fa fa-calendar"></i>Calendar</a>
 			</div>
 		<% end %>
 
