@@ -93,7 +93,7 @@ var breadcrumb = {
 			var element = JSON.parse(localStorage['groupBreadcrumb']);
 			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document" href="/user/group/documents?folder_id=' + element.id + '&group_id=' + $('#breadcrumb').attr('group_id') + '">'+element.name+'</a>' )
 		} else {
-			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document">Group</a>' )
+			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document">' + $('#breadcrumb').attr('group_name') + '</a>' )
 		}
 		if (docSelection.target != null) { docSelection.remove() };
 	},

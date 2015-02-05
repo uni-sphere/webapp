@@ -8,6 +8,7 @@ class GroupdocumentsController < ApplicationController
     @group_folders = current_group.groupfolders.where(parent_id: params[:folder_id])
     @new_folder = @folder.groupdocuments.new()
     @group_documents = @folder.groupdocuments
+    @current_group = current_group
     
     @breadcrumbs = []
     @root = true
@@ -24,6 +25,7 @@ class GroupdocumentsController < ApplicationController
         @parent = if @parent.parent_id != 100 then Groupfolder.find @parent.parent_id else @root = true end
       end
     end
+    
     @breadcrumbs = @breadcrumbs.reverse
     render "index"
   end

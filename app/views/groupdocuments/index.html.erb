@@ -5,7 +5,7 @@
 	<!-- ------ -->
 
 	<div class="first-row" id="breadcrumb-seachbar">
-		<div id="breadcrumb" folder_id="<%= params[:folder] %>" group_id="<%= params[:group_id] %>" >
+		<div id="breadcrumb" folder_id="<%= params[:folder] %>" group_id="<%= params[:group_id] %>" group_name="<%= @current_group.name %>" >
 			
 			<% @breadcrumbs.each do |document| %>
 				<%= link_to document[:name], get_group_documents_path(folder_id: document[:id], group_id: params[:group_id]), class: "breadcrumb-redirection name-document" %>
