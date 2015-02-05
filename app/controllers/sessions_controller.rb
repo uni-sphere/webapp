@@ -19,7 +19,7 @@ class SessionsController < ActionController::Base
                              params[:session][:password])
     respond_to do |format|
       if !user.nil?
-        format.html { redirect_to user }
+        format.html { redirect_to get_user_documents_path(folder: '0') }
         format.json { head :no_content }
 	      sign_in user
         refresh_token
