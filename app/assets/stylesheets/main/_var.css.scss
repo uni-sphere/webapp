@@ -1,9 +1,11 @@
 $font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue';
+$font-family: 'Ubuntu',sans-serif;
 
 
 $grey-dark: #808080;
 $grey: #C0C0C0;
-$black: #3F3F3F;
+// $black: #3F3F3F;
+$black: black;
 
 $separator: #808080;
 //GREY
@@ -28,7 +30,7 @@ $super-light: #B284C3;
 $ultra-light: #B89BC3;
 
 $surrounding-bg: whitesmoke;
-$tab-color: black;
+$tab-color: $black;
 $nav-color:  $black;
 
 
