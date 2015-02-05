@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="32px"
-   height="32px"
+   width="60"
+   height="80"
    id="svg2987"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="work-default.svg">
+   sodipodi:docname="pic-default-80.svg">
   <defs
      id="defs2989">
     <linearGradient
@@ -165,9 +165,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.616871"
-     inkscape:cx="14.28107"
-     inkscape:cy="6.9204884"
+     inkscape:zoom="5.3084355"
+     inkscape:cx="40.498328"
+     inkscape:cy="60.221247"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
@@ -192,18 +192,20 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2" />
+     inkscape:label="Layer 2"
+     transform="translate(0,48)" />
   <g
      id="layer1"
      inkscape:label="Layer 1"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     transform="translate(0,48)">
     <path
        style="fill:#c1a3fe;fill-opacity:1;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 12.403509,12.842105 c -2.5980925,0.368 -4.5964919,2.595374 -4.5964919,5.298246 l 0,5.719298 c 0,2.961918 2.3714159,5.333333 5.3333339,5.333333 l 6.175438,0 c 2.961918,0 5.333334,-2.371415 5.333334,-5.333333 l 0,-5.719298 c 0,-2.702872 -1.998399,-4.930246 -4.596491,-5.298246 -1.004712,0.94524 -2.336236,1.54386 -3.824562,1.54386 -1.488325,0 -2.81985,-0.59862 -3.824561,-1.54386 z"
+       d="M 21.009231,-15.894737 C 14.514,-14.974738 9.518,-9.4063021 9.518,-2.6491222 l 0,14.2982442 c 0,7.404795 5.92854,13.333333 13.333335,13.333333 l 15.438595,0 c 7.404796,0 13.333336,-5.928538 13.333336,-13.333333 l 0,-14.2982442 c 0,-6.7571799 -4.995998,-12.3256158 -11.491229,-13.2456148 -2.51178,2.363099 -5.840589,3.859651 -9.561404,3.859651 -3.720814,0 -7.049625,-1.496552 -9.561402,-3.859651 z"
        id="rect3027"
        inkscape:connector-curvature="0" />
     <path
-       transform="matrix(0.98094808,0,0,1.5579776,2.0685034,-4.1109662)"
+       transform="matrix(2.4523702,0,0,3.8949439,-4.8282835,-58.277415)"
        sodipodi:open="true"
        sodipodi:end="8.916703"
        sodipodi:start="2.63512"

@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="32px"
-   height="32px"
+   width="36"
+   height="36"
    id="svg2987"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="work-default.svg">
+   sodipodi:docname="pic-default-32.svg">
   <defs
      id="defs2989">
     <linearGradient
@@ -185,25 +185,27 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2" />
+     inkscape:label="Layer 2"
+     transform="translate(0,4)" />
   <g
      id="layer1"
      inkscape:label="Layer 1"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     transform="translate(0,4)">
     <path
        style="fill:#c1a3fe;fill-opacity:1;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 12.403509,12.842105 c -2.5980925,0.368 -4.5964919,2.595374 -4.5964919,5.298246 l 0,5.719298 c 0,2.961918 2.3714159,5.333333 5.3333339,5.333333 l 6.175438,0 c 2.961918,0 5.333334,-2.371415 5.333334,-5.333333 l 0,-5.719298 c 0,-2.702872 -1.998399,-4.930246 -4.596491,-5.298246 -1.004712,0.94524 -2.336236,1.54386 -3.824562,1.54386 -1.488325,0 -2.81985,-0.59862 -3.824561,-1.54386 z"
+       d="m 13.953948,10.447368 c -2.922854,0.414 -5.1710537,2.919796 -5.1710537,5.960527 l 0,6.43421 c 0,3.332158 2.6678427,6 6.0000007,6 l 6.947368,0 c 3.332158,0 6.000001,-2.667842 6.000001,-6 l 0,-6.43421 c 0,-3.040731 -2.248199,-5.546527 -5.171053,-5.960527 -1.130301,1.063395 -2.628265,1.736843 -4.302632,1.736843 -1.674366,0 -3.172331,-0.673448 -4.302631,-1.736843 z"
        id="rect3027"
        inkscape:connector-curvature="0" />
     <path
-       transform="matrix(0.98094808,0,0,1.5579776,2.0685034,-4.1109662)"
+       transform="matrix(1.1035666,0,0,1.7527248,2.3270664,-8.6248373)"
        sodipodi:open="true"
        sodipodi:end="8.916703"
        sodipodi:start="2.63512"
