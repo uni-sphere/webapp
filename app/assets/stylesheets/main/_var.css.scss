@@ -1,5 +1,9 @@
+$font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue';
+
+
 $grey-dark: #808080;
 $grey: #C0C0C0;
+$black: #3F3F3F;
 
 $separator: #808080;
 //GREY
@@ -25,7 +29,7 @@ $ultra-light: #B89BC3;
 
 $surrounding-bg: whitesmoke;
 $tab-color: black;
-$nav-color:  black;
+$nav-color:  $black;
 
 
 
@@ -47,8 +51,8 @@ $gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 // $very-light: #6AC46A;
 // $super-light: #7AD57A;
 
-// $tab-color: black;
-// $nav-color: black;
+// $tab-color: $black;
+// $nav-color: $black;
 // $surrounding-bg: whitesmoke;
 
 
@@ -59,8 +63,8 @@ $gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 // $very-light: #039B03;
 // $super-light: #04B304;
 
-// $tab-color: black;
-// $nav-color: black;
+// $tab-color: $black;
+// $nav-color: $black;
 // $surrounding-bg: whitesmoke;
 
 
@@ -77,7 +81,7 @@ $gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 // $very-light: #F8726F;
 // $super-light: #F98E8A;
 
-//ORANGE - black
+//ORANGE - $black
 // $dark: #EE7700;
 // $normal: #FC7E00;
 // $light: #FD7F00;
@@ -96,8 +100,8 @@ $gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 // $super-light: #FF9529;
 
 // $surrounding-bg: whitesmoke;
-// $tab-color: black;
-// $nav-color:  black;
+// $tab-color: $black;
+// $nav-color:  $black;
 
 // VIOLET DARK
 // $dark: #866292;
@@ -107,8 +111,8 @@ $gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 // $super-light: #B284C3;;
 
 // $surrounding-bg: whitesmoke;
-// $tab-color: black;
-// $nav-color:  black;
+// $tab-color: $black;
+// $nav-color:  $black;
 
 
 //VIOLET
@@ -139,9 +143,9 @@ $unselected-tab-color: $tab-color;
 
 // SIDEABAR
 $school: $tab-color;
-$nav-fa: black;
-$nav: black;
-$hover-border: black;
+$nav-fa: $black;
+$nav: $black;
+$hover-border: $black;
 
 $sidebar-color: #B22222;
 
@@ -153,9 +157,9 @@ $username: $nav-color;
 $deco-fa: $nav-color;
 
 // CLOUD
-$breadcrumb: black;
-$list-fa: black;
-$list: black;
+$breadcrumb: $black;
+$list-fa: $black;
+$list: $black;
 $list-separator: $grey;
 $list-title: grey;
 $list-title-fa: grey;
@@ -163,7 +167,7 @@ $list-title-separator: $grey;
 $name: $grey;
 $name-selected: $grey-dark;
 
-$selected-action: black;
+$selected-action: $black;
 $unselected-action: $grey;
 
 $document-selected: $ultra-light;
@@ -171,10 +175,10 @@ $document-hovered: snow;
 
 $pencil-active: grey;
 $pencil-selected-active: $grey-dark;
-$rename: black;
+$rename: $black;
 
-$action: black;
-$action-fa: black;
+$action: $black;
+$action-fa: $black;
 
 
 
@@ -183,14 +187,16 @@ $popup-bg: white;
 $popup-header-bg: white;
 // $popup-footer-bg: rgba(192,192,192,1);
 $popup-footer-bg: #EEEEEE;
-$popup-color: black;
-$popup-header-color: black;
+$popup-color: $black;
+$popup-header-color: $black;
 
 // CHAT
 $upload-bg: $header-bg;
 $color-funky-1: #4e4e4e;
 $color-funky-2: #1abc9c;
 $color-funky-3: #e74c3c;
+
+$time-chat: rgb(186,187,191);
 
 $nice-grey: rgba(188,195,199,1);
 
