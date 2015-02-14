@@ -89,9 +89,10 @@ var breadcrumb = {
 				localStorage['groupBreadcrumb'] = JSON.stringify({'name': $(this).parent().parent('.dragAndDrop').attr('name'), 'id': $(this).parent().parent('.dragAndDrop').attr('item_id')})
 			}
 		});
+		
 		if ($('#breadcrumb').children("a").length > 0) {
 			var element = JSON.parse(localStorage['groupBreadcrumb']);
-			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document" href="/user/group/documents?folder_id=' + element.id + '&group_id=' + $('#breadcrumb').attr('group_id') + '">'+element.name+'</a>' )
+			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document" href="/user/group/documents?folder_id=' + element.id + '&group_id=' + $('#breadcrumb').attr('group_id') + '">' + element.name + '</a>' )
 		} else {
 			$('#breadcrumb').append('<a class="breadcrumb-redirection name-document">' + $('#breadcrumb').attr('group_name') + '</a>' )
 		}
@@ -266,7 +267,7 @@ var rename = {
 		rename.ajaxSuccess();
 	},
 	
-	enterFlag: true,
+	enterFlag: false,
 	
 	init: function() {
 		$('.document-rename').on('click', this.showInput );
@@ -274,6 +275,7 @@ var rename = {
 			rename.target = $(this);
 			if (rename.enterFlag == false) { setLocation(rename) };
 			rename.enterFlag = false;
+			console.log('bla');
 		});
 		$('.input-rename-document').on('keyup', function(event) {
 			if (event.keyCode == $.ui.keyCode.ENTER) {

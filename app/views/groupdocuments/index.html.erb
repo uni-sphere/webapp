@@ -42,7 +42,7 @@
     	    <div class="box_document" document-selected="false">
             <span class="dragAndDrop icon-and-name" item_id="<%= folder.id %>" item="folder" name="<%= folder.name %>" >
               <%= link_to get_group_documents_path(group_id: params[:group_id], folder_id: folder.id) do %>
-                <%= fa_icon("folder") %>
+                <%= fa_icon("folder-o") %>
                 <span class="name-document go-folder"><%= folder.name %></span>
               <% end %>
               <%= text_field_tag :name, folder.name, class: "hidden input-rename-document" %>
@@ -62,7 +62,7 @@
 				<div class="box_document" document-selected="false">
 					<span class="dragAndDrop icon-and-name" document_id="<%= document.box_id %>" item="file" name="<%= document.name %>" item_id="<%= document.id %>"%>
 						<%= link_to read_group_file_path(box_id: document.box_id) do %>
-						<%= fa_icon("file") %>
+						<%= fa_icon("file-o") %>
 						<span class="name-document"> <%= document.name %> </span>
 						<% end %>
 						<%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
@@ -90,37 +90,37 @@
     <div id="right-actions">
 
       <div id="new-doc" class="">
-        <%= fa_icon("3x plus")%>
+        <%= fa_icon("4x plus-square-o")%>
         <div id="new-actions">
           <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post, id: "new-folder" do%>
-            <%= fa_icon "folder" %>Folder
+            <%= fa_icon "folder-o" %>Folder
           <% end %>
 
-          <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-cloud-upload"></i>Upload</a>
           <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
             <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
             <%= submit_tag "upload-doc", class: "hidden", id: "submit-button-upload" %>
           <% end %>
           <div id="create-doc">
             <!-- <span id="create-doc-title>"<i class="fa fa-file"></i>New</span> -->
-            <a class="create-list"><i class="fa fa-file"></i>Firepad</a>
-            <a class="create-list"><i class="fa fa-file"></i>Google doc</a>
+            <a class="create-list"><i class="fa fa-file-o"></i>Firepad</a>
+            <a class="create-list"><i class="fa fa-file-o"></i>Google doc</a>
           </div>
         </div>
       </div>
       
-      <div id="actions-doc">
-        <div id="download-doc" class="action">
-          <%= fa_icon("3x download") %>
-        </div>
-        <div id="delete-doc" class="action">
-          <%= fa_icon("3x trash") %>
-        </div>
-        <div id="link-doc" class="action">
-          <%= fa_icon("3x link") %>
-        </div>
-        <div id="link-display"></div>
-      </div>
+     <div id="actions-doc">
+       <div id="download-doc" class="action">
+         <%= fa_icon("1x arrow-circle-o-down") %>
+       </div>
+       <div id="delete-doc" class="action">
+         <%= fa_icon("1x trash-o") %>
+       </div>
+       <div id="link-doc" class="action">
+         <%= fa_icon("1x link") %>
+       </div>
+       <div id="link-display"></div>
+     </div>
     </div>
   </div>
 </div>

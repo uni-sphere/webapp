@@ -39,12 +39,12 @@
           <span class="dragAndDrop icon-and-name" document_id="<%= document['id'] %>" item="<%= document['type'] %>" name="<%= document['name'] %>" >
             <% if document['type'] == 'folder' %>
               <%= link_to get_user_documents_path(folder: document['id']) do %>
-                <%= fa_icon("folder") %>
+                <%= fa_icon("folder-o") %>
                 <span class="name-document go-folder"> <%= document['name'] %> </span>
               <% end %>
             <% elsif document['type'] == 'file' %>
               <%= link_to show_user_file_path(box_id: document['id']), file: document.to_json , item: 'folder' do %>
-                <%= fa_icon("file") %>
+                <%= fa_icon("file-o") %>
                <span class="name-document go-file"> <%= document['name'] %> </span>
               <% end %>
             <% end %>
@@ -70,33 +70,33 @@
     <div id="right-actions">
 
       <div id="new-doc" class="">
-        <%= fa_icon("3x plus")%>
+        <%= fa_icon("4x plus-square-o")%>
         <div id="new-actions">
           <%= link_to create_user_folder_path(folder: params[:folder]), method: :post, id:"new-folder" do%>
-            <%= fa_icon "folder" %>Folder
+            <%= fa_icon "folder-o" %>Folder
           <% end %>
 
-          <a id="upload-doc" rel="nofollow"><i class="fa fa-upload"></i>Upload</a>
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-cloud-upload"></i>Upload</a>
           <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
             <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
             <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>
           <% end %>
           <div id="create-doc">
-            <a class="create-list"><i class="fa fa-file"></i>Firepad</a>
-            <a class="create-list"><i class="fa fa-file"></i>Google doc</a>
+            <a class="create-list"><i class="fa fa-file-o"></i>Firepad</a>
+            <a class="create-list"><i class="fa fa-file-o"></i>Google doc</a>
           </div>
         </div>
       </div>
       
       <div id="actions-doc">
         <div id="download-doc" class="action">
-          <%= fa_icon("3x download") %>
+          <%= fa_icon("2x arrow-circle-o-down") %>
         </div>
         <div id="delete-doc" class="action">
-          <%= fa_icon("3x trash") %>
+          <%= fa_icon("2x trash-o") %>
         </div>
         <div id="link-doc" class="action">
-          <%= fa_icon("3x link") %>
+          <%= fa_icon("2x link") %>
         </div>
         <div id="link-display"></div>
       </div>

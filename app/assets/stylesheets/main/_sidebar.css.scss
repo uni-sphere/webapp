@@ -5,6 +5,7 @@
 // ------------------
 
 #tabs-container{
+	letter-spacing: 1px;
   position: relative;
   float: left;
   z-index: 1;
@@ -128,6 +129,7 @@
 // ------------------- CONTENT WRAPPER --------------
 // --------------------------------------------------
 #row-and-content-wrapper{
+	letter-spacing: 1px;
   position: relative;
   float: left;
   z-index: 2;
@@ -169,13 +171,13 @@
   width: calc(100% - 40px);
   height: 100%;
 
-  padding-left: 40px;
+  padding-left: 30px;
   text-align: left;
 
   line-height: 30px;
   color: $school;
 
-  font-size: 15px;
+  font-size: 12px;
   white-space: nowrap;      //keep the text on one line
   overflow: hidden;         //prevent the text from being shown outside the border
   text-overflow: ellipsis;  //cut off text with an elipsis
@@ -230,7 +232,7 @@
 
   color: $nav;
  
-  font-size: 17px;
+  font-size: 12px;
   white-space: nowrap;      //keep the text on one line
   overflow: hidden;         //prevent the text from being shown outside the border
   text-overflow: ellipsis;  //cut off text with an elipsis
@@ -283,7 +285,6 @@
 
 .groups-title{
   display: block;
-
   height: 25px;
   line-height: 25px;
   font-size: 15px;
@@ -293,7 +294,7 @@
   padding-left: 10px;
   margin-bottom: 5px;
 
-  font-weight: bold;
+//  font-weight: bold;
 
 
   &:hover{cursor: default}

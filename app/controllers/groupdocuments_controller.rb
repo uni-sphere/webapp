@@ -21,12 +21,14 @@ class GroupdocumentsController < ApplicationController
     
     if @parent
       while @root != true do
-        @breadcrumbs = @breadcrumbs << { name: @parent.name, id: @parent.id }
+        logger.info @parent.name
+        @breadcrumbs << { name: @parent.name, id: @parent.id } if @parent.name != nil
         @parent = if @parent.parent_id != 100 then Groupfolder.find @parent.parent_id else @root = true end
       end
     end
     
     @breadcrumbs = @breadcrumbs.reverse
+    logger.info @breadcrumbs
     render "index"
   end
   

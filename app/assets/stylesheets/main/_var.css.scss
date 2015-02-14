@@ -4,8 +4,8 @@ $font-family: 'Ubuntu',sans-serif;
 
 $grey-dark: #808080;
 $grey: #C0C0C0;
-// $black: #3F3F3F;
-$black: black;
+$black: #3F3F3F;
+//$black: black;
 
 $separator: #808080;
 //GREY
@@ -27,10 +27,10 @@ $normal: #976FA5;
 $light: #9E74AE;
 $very-light: #A378B2;
 $super-light: #B284C3;
-$ultra-light: #B89BC3;
+$ultra-light: #FFFF00;
 
-$surrounding-bg: whitesmoke;
-$tab-color: $black;
+$surrounding-bg: white;
+$tab-color: white;
 $nav-color:  $black;
 
 
@@ -38,8 +38,11 @@ $nav-color:  $black;
 
 // FOLDER
 
-$gradient-top:  linear-gradient(to bottom, $normal 0%,$light 100%);
-$gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
+//$gradient-top:  linear-gradient(to bottom, $normal 0%,$light 100%);
+//$gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
+
+$gradient-top:  #3C3C3C;
+$gradient:  #3C3C3C;
 
 // $gradient-top: $normal;
 // $gradient: $normal;
@@ -126,7 +129,7 @@ $gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 
 
 // GENERAL
-$inside-bg: whitesmoke;
+$inside-bg: white;
 // $surrounding-bg: whitesmoke;
 // $surrounding-bg: url("/assets/wallpaper.png") fixed;
 
@@ -137,15 +140,15 @@ $inside-bg: whitesmoke;
 
 // TABS
 
-$header-bg: $very-light;
-$unselected-tab-bg: $super-light;
-$unselected-tab-hover: $dark;
-$unselected-tab-hover-color: $tab-color;
-$unselected-tab-color: $tab-color;
+$header-bg: #3C3C3C;
+$unselected-tab-bg: #3C3C3C;
+$unselected-tab-hover: white;
+$unselected-tab-hover-color: #3C3C3C;
+$unselected-tab-color: white;
 
 // SIDEABAR
 $school: $tab-color;
-$nav-fa: $black;
+$nav-fa: #CB95FF;
 $nav: $black;
 $hover-border: $black;
 
@@ -159,13 +162,13 @@ $username: $nav-color;
 $deco-fa: $nav-color;
 
 // CLOUD
-$breadcrumb: $black;
+$breadcrumb: white;
 $list-fa: $black;
 $list: $black;
 $list-separator: $grey;
 $list-title: grey;
 $list-title-fa: grey;
-$list-title-separator: $grey;
+$list-title-separator: #318BFF;
 $name: $grey;
 $name-selected: $grey-dark;
 

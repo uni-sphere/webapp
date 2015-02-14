@@ -45,7 +45,9 @@ Lms::Application.routes.draw do
   get '/users/:user_id/groups/:group_id/courses/:course_id/evaluations/:evaluation_id/marks/average', to: 'evaluations#get_average', as: 'get_average_evaluation'
   get '/users/:user_id/groups/:group_id/courses/:course_id/average', to: 'courses#get_average', as: 'get_average_course'
   
+  ###########
   ### box ###
+  ###########
   
   # oauth
   
@@ -90,8 +92,12 @@ Lms::Application.routes.draw do
   delete '/user/group/document/file/delete', to: 'groupdocuments#destroy_file', as: 'delete_group_file'
   delete '/user/group/document/folder/delete', to: 'groupdocuments#destroy_folder', as: 'delete_group_folder'
   
+  ############
   ### chat ###
+  ############
   
   get '/user/group/chats', to: 'groupchats#index', as: 'get_group_chats'
+  post '/user/group/chat/message/create', to: 'messages#create', as: 'create_message'
+  post '/user/group/chat/chat/create', to: 'groupchats#create', as: 'create_chat'
   
 end

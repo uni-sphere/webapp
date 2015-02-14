@@ -1,86 +1,96 @@
 <div class="first-row" id="breadcrumb-seachbar"></div>
 <div class="main-page">
-  <div class="separator"></div>
-  <div class="chat-main-panel">
-    <div class="chat-notification"></div>
-    <div class="chat-display">
-      <div class="message">
-         <object type="image/svg+xml" data="<%= asset_path 'pic-default-36.svg' %>" class="message-pic"></object>
-        <div class="message-info">
-          <span class="message-sender">Gabriel</span>
-          <span class="message-time">12h12</span>
-        </div>
-        <div class="message-content">Salut comment ça va?</div>
-      </div>
-      <div class="message">
-       <object type="image/svg+xml" data="<%= asset_path 'pic-default-36.svg' %>" class="message-pic"></object>
-        <div class="message-info">
-          <span class="message-sender">Clement</span>
-          <span class="message-time">12h16</span>
-        </div>
-        <div class="message-content">Ca va super!</div>
-      </div>
-    </div>
-    <div class="chat-input">
-      <span class="fa fa-cloud-upload" id="chat-input-upload"></span>
-      <span class="container-chat-input-text">
-        <textarea class="chat-input-text" rows="1"></textarea>
-      </span>
-      <span class="fa fa-smile-o"></span>
-    </div>
-  </div>
-  <div class="chat-right-panel">
+	<div class="separator"></div>
+	<div class="chat-main-panel">
+		<div class="chat-notification"></div>
+		
 
-    <div class="channel-list">
-      <div class="section-title">CHANNEL</div>
-      <div data-channel="1" class="channel-element">rapport</div>
-      <div data-channel="2" class="channel-element">recherche</div>
-      <div data-channel="3" class="channel-element">general</div>
-      <div class="active-caret fa fa-caret-right"></div>
+		<div class="chat-display" chat_id="<%= @groupchat.id %>">
+			
+			<!-- message display -->
+			<div class="messages">
+			<% @messages.each do |message| %>
+				<div class="message">
+					<object type="image/svg+xml" data="<%= asset_path 'pic-default-36.svg' %>" class="message-pic"></object>
+					<div class="message-info">
+						<span class="message-sender"><%= User.find(message.owner_id).name %></span>
+						<span class="message-time"><%= time_ago_in_words(message.created_at) %></span>
+					</div>
+					<div class="message-content"><%= message.content %></div>
+				</div>
+				<% if message.created_at < 1.days.ago %>
+					<div> Change le background color et ça passe </div>
+				<% end %>
+			<% end %>
+			</div>
+			
+			<!-- new message -->
+			<div class="new-message"></div>
+			
+			<!-- message input -->
+			<div class="chat-input">
+				<span class="fa fa-cloud-upload" id="chat-input-upload"></span>
+				<span class="container-chat-input-text">
+					<textarea class="chat-input-text" rows="1"></textarea>
+				</span>
+				<span class="fa fa-smile-o"></span>
+			</div>
+		</div>
+		
+	</div>
+	<div class="chat-right-panel">
+
+		<div class="channel-list">
+			<div class="section-title">CHANNEL</div>
+			<% @groupchats.each do |chat| %>
+			<div data-channel="1" class="channel-element" channel="<%= chat.channel %>" chat="<%= chat.id %>"><%= chat.name %></div>
+			<% end %>
+			<%= text_field_tag :name, 'new channel', class: "channel_creation" %>
+			<div class="active-caret fa fa-caret-right"></div>
       
-    </div>
+		</div>
 
-    <!-- ----------- -->
-    <!-- MEMBER LIST -->
-    <!-- ----------- -->
+		<!-- ----------- -->
+		<!-- MEMBER LIST -->
+		<!-- ----------- -->
 
-    <div class="member-list">
-      <div class="section-title" id="member-title">MEMBERS</div>
-      <div class="member">
-        <object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
-        <div class="member-infos">
-          <div class="member-name">Gabrieldfgfdgfdfdg</div>
-          <div class="member-presence"><span class="fa fa-circle"></span>online</div>
-        </div>
-      </div>
-      <div class="member side-to-side">
-       <object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
-        <div class="member-infos">
-          <div class="member-name">Clement</div>
-          <div class="member-presence"><span class="fa fa-circle"></span>online</div>
-        </div>
-      </div>
-      <div class="member alone">
-        <object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
-        <div class="member-infos">
-          <div class="member-name">Claire</div>
-          <div class="member-presence"><span class="fa fa-circle"></span>offline</div>
-        </div>
-      </div>
-      <div class="member side-to-side">
-        <object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
-        <div class="member-infos">
-          <div class="member-name">Clement</div>
-          <div class="member-presence"><span class="fa fa-circle"></span>online</div>
-        </div>
-      </div>
-      <div class="member side-to-side">
-        <object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
-        <div class="member-infos">
-          <div class="member-name">Clement</div>
-          <div class="member-presence"><span class="fa fa-circle"></span>online</div>
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="member-list">
+			<div class="section-title" id="member-title">MEMBERS</div>
+			<div class="member">
+				<object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
+				<div class="member-infos">
+					<div class="member-name">Gabrieldfgfdgfdfdg</div>
+					<div class="member-presence"><span class="fa fa-circle"></span>online</div>
+				</div>
+			</div>
+			<div class="member side-to-side">
+				<object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
+				<div class="member-infos">
+					<div class="member-name">Clement</div>
+					<div class="member-presence"><span class="fa fa-circle"></span>online</div>
+				</div>
+			</div>
+			<div class="member alone">
+				<object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
+				<div class="member-infos">
+					<div class="member-name">Claire</div>
+					<div class="member-presence"><span class="fa fa-circle"></span>offline</div>
+				</div>
+			</div>
+			<div class="member side-to-side">
+				<object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
+				<div class="member-infos">
+					<div class="member-name">Clement</div>
+					<div class="member-presence"><span class="fa fa-circle"></span>online</div>
+				</div>
+			</div>
+			<div class="member side-to-side">
+				<object type="image/svg+xml" data="<%= asset_path 'pic-default-80.svg' %>" class="member-pic"></object>
+				<div class="member-infos">
+					<div class="member-name">Clement</div>
+					<div class="member-presence"><span class="fa fa-circle"></span>online</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
