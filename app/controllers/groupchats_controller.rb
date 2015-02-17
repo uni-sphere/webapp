@@ -4,7 +4,7 @@ class GroupchatsController < ApplicationController
     if (params[:channel])
       @groupchat = current_group.groupchats.where(channel: params[:channel]).first
     else
-      @groupchat = current_group.groupchats.where(name: 'random').first
+      @groupchat = current_group.groupchats.where(name: 'general').first
     end
     @groupchats = current_group.groupchats.all
     @messages = @groupchat.messages.all
