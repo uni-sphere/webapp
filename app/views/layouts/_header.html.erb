@@ -1,0 +1,41 @@
+<header class="navbar" data-activeslide="1" role="navigation">
+  <div class="logo">
+    <%= link_to root_path do %>
+      <%= image_tag 'logo1.png', id: "logo"%>
+    <% end %>
+  </div>
+
+  <% if @title == "home" %> 
+		<div class="nav-middle">
+			<a data-slide="1" class="item-nav" id="menu-link-1" href="#slide-1" >
+        <span class="fa fa-home"></span> 
+        <span class="text-nav">HOME</span>
+      </a>
+      <a data-slide="2" class="item-nav" id="menu-link-2" href="#slide-2" >
+        <span class="fa fa-eye"></span> 
+        <span class="text-nav">OVERVIEW</span>
+      </a>
+      <a data-slide="3" class="item-nav" id="menu-link-3" href="#slide-3" >
+        <span class="fa fa-gears"></span> 
+        <span class="text-nav">FEATURES</span>
+      </a>
+      <a data-slide="4" class="item-nav" id="menu-link-4" href="#slide-4" >
+        <span class="fa fa-envelope"></span> 
+        <span class="text-nav">CONTACT</span>
+      </a>
+			
+			<div class="active-menu"></div>
+    </div>
+  <% end %>
+
+  <div class="nav-right">
+    <a href="#" class="right-nav-item">
+      <span class="fa fa-bus"></span>
+      <span class="text">ROADMAP</span>
+    </a>
+    <a href="#" class="right-nav-item clients-path">
+      <span class="fa fa-heart"></span>
+      <span class="text">CLIENTS</span>
+    </a>
+  </div>
+</header>

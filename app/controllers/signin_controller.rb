@@ -1,4 +1,4 @@
-class SessionsController < ActionController::Base
+class SigninController < ActionController::Base
   
   protect_from_forgery with: :exception
   include SessionsHelper
@@ -8,15 +8,20 @@ class SessionsController < ActionController::Base
   before_filter :authenticate?, only: [:destroy]
   skip_before_filter :verify_authenticity_token, only: [:create]
 
-  layout "sessions"
+  layout "signin"
   
   def new
-  
+    @title = "home";
+  end
+  def clients 
+    @title = "clients";
+  end
+  def roadmap
+    @title = "roadmap";
   end
 
   def create
-    user = User.authenticate(params[:session][:email],
-                             params[:session][:password])
+    user = User.authenticate(params[:session][:email],params[:session][:password])
     respond_to do |format|
       if !user.nil?
         format.html { redirect_to get_user_documents_path(folder: '0') }
