@@ -1,3 +1,5 @@
+@import "var";
+
 // #loader {
 //   position: absolute;
 //   top: calc(50% - 4em);
@@ -32,7 +34,7 @@
 #loader,
 #loader:before,
 #loader:after {
-  background: #FFF;
+  background: $grey-dark;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
@@ -70,11 +72,13 @@
   0%,
   80%,
   100% {
-    box-shadow: 0 0 #FFF;
+    box-shadow: 0 0 $grey-dark;
     height: 4em;
   }
   40% {
-    box-shadow: 0 -2em #ffffff;
+    box-shadow: 0 -2em $grey-dark;
+    // box-shadow: 0 -2em #ffffff;
+
     height: 5em;
   }
 }

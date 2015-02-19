@@ -1,13 +1,23 @@
 var popupShow = {
 	init: function() {
 		$('#more-groups').on('click', function() {
-			console.log('hello');
 			$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
 			// $('#slide-more-groups').show( "slide", 200 );
 			$('#slide-more-groups').slideDown(400);
 		});
 	}
 }
+
+var popupHide = {
+	init: function() {
+		$('#close-popup').on('click', function() {
+			$("#background-grey").css({"opacity" : "0.7"}).fadeOut(400);
+			// $('#slide-more-groups').show( "slide", 200 );
+			$('#slide-more-groups').slideUp(200);
+		});
+	}
+}
+
 
 var activeMenu = {
 	
@@ -100,6 +110,7 @@ var activeMenu = {
 
 	mainLayout = function() {
 		popupShow.init();
+		popupHide.init();
 		activeMenu.init();
 	};
 

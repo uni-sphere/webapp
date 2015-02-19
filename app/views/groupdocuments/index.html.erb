@@ -33,9 +33,18 @@
       <div class="notification-row"></div>
       <div id="loader" class="hidden">Loading...</div>
       <div id="list-title">
-        <span id="title-name">Name<%=fa_icon("arrow-up")%></span>
-        <span id="title-modified">Last modified<%=fa_icon("arrow-up")%></span>
-        <span id="title-size">File size<%=fa_icon("arrow-up")%></span>
+        <div id="title-name" class="cloud-title">
+          <span class="title-text">Name</span>
+          <span class="fa fa-sort-up"></span>
+        </div>
+        <div id="title-modified" class="cloud-title">
+          <span class="title-text">Last modified</span>
+          <span class="fa fa-sort-up"></span>
+        </div>
+        <div id="title-size" class="cloud-title">
+          <span class="title-text">Last modified</span>
+          <span class="fa fa-sort-up"></span>
+        </div>
       </div>
 
         <% @group_folders.each do |folder| %>
@@ -96,7 +105,7 @@
             <%= fa_icon "folder-o" %>Folder
           <% end %>
 
-          <a id="upload-doc" rel="nofollow"><i class="fa fa-cloud-upload"></i>Upload</a>
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-arrow-circle-o-up"></i>Upload</a>
           <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
             <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
             <%= submit_tag "upload-doc", class: "hidden", id: "submit-button-upload" %>
@@ -111,13 +120,13 @@
       
      <div id="actions-doc">
        <div id="download-doc" class="action">
-         <%= fa_icon("1x arrow-circle-o-down") %>
+         <%= fa_icon("arrow-circle-o-down") %>
        </div>
        <div id="delete-doc" class="action">
-         <%= fa_icon("1x trash-o") %>
+         <%= fa_icon("trash-o") %>
        </div>
        <div id="link-doc" class="action">
-         <%= fa_icon("1x link") %>
+         <%= fa_icon("link") %>
        </div>
        <div id="link-display"></div>
      </div>

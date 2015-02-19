@@ -29,9 +29,18 @@
       <div class="notification-row"></div>
       <div id="loader" class="hidden"></div>
       <div id="list-title">
-        <span id="title-name">Name<%=fa_icon("arrow-up")%></span>
-        <span id="title-modified">Last modified<%=fa_icon("arrow-up")%></span>
-        <span id="title-size">File size<%=fa_icon("arrow-up")%></span>
+        <div id="title-name" class="cloud-title">
+          <span class="title-text">Name</span>
+          <span class="fa fa-sort-up"></span>
+        </div>
+        <div id="title-modified" class="cloud-title">
+          <span class="title-text">Last modified</span>
+          <span class="fa fa-sort-up"></span>
+        </div>
+        <div id="title-size" class="cloud-title">
+          <span class="title-text">Last modified</span>
+          <span class="fa fa-sort-up"></span>
+        </div>
       </div>
 
       <% @documents.each do |document| %>
@@ -76,7 +85,7 @@
             <%= fa_icon "folder-o" %>Folder
           <% end %>
 
-          <a id="upload-doc" rel="nofollow"><i class="fa fa-cloud-upload"></i>Upload</a>
+          <a id="upload-doc" rel="nofollow"><i class="fa fa-arrow-circle-o-up"></i>Upload</a>
           <%= form_tag upload_user_file_path(folder: params[:folder]), multipart: true do %>
             <%= file_field_tag :file, class: "hidden", id: "input-button-upload" %>
             <%= submit_tag "upload", class: "hidden", id: "submit-button-upload" %>

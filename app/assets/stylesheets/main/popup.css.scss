@@ -19,9 +19,9 @@
   // opacity: 1;
 
   top: 20%;
-  left: 37%;
+  left: 27%;
 
-  width: 26%;
+  width: 36%;
   height: 60%;
 
   display: none;
@@ -31,9 +31,6 @@
   position: absolute;
   // z-index: 120;
     z-index: 120;
-
-
-
 
   width: 100%;
   height: 100%;
@@ -77,6 +74,9 @@
   border-bottom: 1px solid grey;
 
   background: $popup-header-bg;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
 }
 
 .header-title{
@@ -86,12 +86,14 @@
   font-weight: bold;
 }
 
-.fa-close{
+#close-popup{
   position: relative;
   float: right;
-  margin-right: 5px;
+  margin-right: 8px;
+  color: $popup-exit;
   &:hover{
     cursor: pointer;
+    color: $popup-exit-focus;
   }
 }
 
@@ -105,6 +107,161 @@
   width: 100%;
   height: calc(100% - 100px);
 }
+
+.slide-notif{
+  position: relative;
+  float: left;
+
+  width: 100%;
+  height: 20px;
+  // background: green;
+}
+
+// --------------
+// LEFT CONTAINER -----------------------------
+// --------------
+.left-container{
+  position: relative;
+  float: left;
+
+  height: calc(100% - 20px);
+  width: 50%;
+}
+
+// --------------
+// NEW GROUP NAME
+// --------------
+
+.new-name-group{
+  position: relative;
+  float: left;
+  // background: red;
+  font-size: 14px;
+
+  padding-left: 20px;
+
+  .actual-name-title{
+    position: relative;
+    float: left;
+
+    color: $grey-dark;
+    font-weight: bold;
+    &:hover{pointer: auto;}
+  }
+
+  .actual-name{
+    position: relative;
+    float: left;
+
+    color: $grey-dark;
+    padding-left: 15px;
+  }
+}
+
+// -----------------
+// LIST OF MEMBER ADDED
+// -----------------
+
+.added-member-list{
+  position: absolute;
+
+  bottom: 50px;
+  left: 35px;
+  // background: red;
+}
+.member-added{
+  position: relative;
+  float: left;
+  clear: left;
+  height: 20px;
+  width: 200px;
+  margin-top: 2px;
+  text-align: left;
+  // background: red;
+
+  &:hover{
+    .delete-added-user{color: $grey-dark;}
+    .fa-user{color: $black;}
+    .user-name{color: $black;}
+  }
+  .fa-user{
+    line-height: 20px;
+    font-size: 18px;
+    width: 20px;
+    color: $grey-dark;
+  }
+  .user-name{
+    font-size: 14px;
+    color: $grey-dark;
+  }
+  .delete-added-user{
+    position: relative;
+    float: right;
+    line-height: 20px;
+    font-size: 20px;
+    // background: green;
+    text-align: center;
+    height: 100%;
+    width: 30px;
+    color: $popup-bg;
+    &:hover{
+      cursor: pointer;
+      color: $popup-exit-focus;
+    }
+  }
+}
+
+
+// ----------------
+// NEW MEMBER INPUT
+// ----------------
+
+.new-member{
+  position: absolute;
+
+  height: 24px;
+  bottom: 20px;
+  left: 35px;
+  // background: red;
+  border: 1px solid $grey-dark;
+  border-radius: 5px;
+
+  .fa-user{
+    position: relative;
+    float: left;
+    padding-left: 5px;
+    text-align: left;
+    line-height: 24px;
+    font-size: 18px;
+    width: 20px;
+    color: black;
+    background: grey;
+  }
+
+  .user-name-add{
+    position: relative;
+    float: left;
+    padding-left: 5px;
+    height: 18px;
+    font-size: 14px;
+    border: none;
+    line-height: 18px;
+    background: $popup-bg;
+    // background: red;
+  }
+}
+
+#display-all-groups{
+  position: relative;
+  float: left;
+
+  height: calc(100% - 20px);
+  width: 50%;
+
+  // background: red;
+}
+
+
 // FOOTER
 .slide-footer{
   position: relative;
@@ -118,4 +275,5 @@
 
   background: $popup-footer-bg;
   border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }

@@ -5,10 +5,9 @@ mainChat = function() {
     update: function() {
       var height = $(this).height();
       var heightDisplay = $('.chat-main-panel').height();
+      console.log(height);
       $('#chat-input-upload').css('height', height + 10);
       $('.chat-display').css('height', heightDisplay - height - 33 - 30);
-      
-      // $(this).css('padding-bottom', 2);
     }
   });
 };

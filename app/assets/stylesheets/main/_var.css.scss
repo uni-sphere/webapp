@@ -5,9 +5,11 @@ $font-family: 'Ubuntu',sans-serif;
 $grey-dark: #808080;
 $grey: #C0C0C0;
 $black: #3F3F3F;
+$ultra-light-grey: #EFEFEF;
 //$black: black;
 
 $separator: #808080;
+
 //GREY
 // $header-bg: rgba(192,192,192,1);
 // $gradient-top:  linear-gradient(to bottom, rgba(220,220,220,1) 0%,rgba(211,211,211,1) 100%);
@@ -15,34 +17,49 @@ $separator: #808080;
 
 
 
+// VIOLET
 
-// $normal: #A780F5;
-// $light: #AC88F5;
-// $very-light: #B291F5;
-// $super-light: #C1A7F5;
+// $dark: #866292;
+// $normal: #976FA5;
+// $light: #9E74AE;
+// $very-light: #A378B2;
+// $super-light: #B284C3;
+// $ultra-light: #B89BC3;
+
+// $surrounding-bg: whitesmoke;
+// $tab-color: black;
+// $nav-color:  $black;
+
+// $inside-bg: whitesmoke;
 
 
-$dark: #866292;
-$normal: #976FA5;
-$light: #9E74AE;
-$very-light: #A378B2;
-$super-light: #B284C3;
-$ultra-light: #FFFF00;
+
+// DARK GREY
+
+$dark: #2C2C2C;
+$normal: #3C3C3C;
+$light: #3D3D3D;
+$very-light: #404040;
+$super-light: #555555;
+$ultra-light: #D4D4D4;
 
 $surrounding-bg: white;
 $tab-color: white;
 $nav-color:  $black;
+
+$inside-bg: white;
+
 
 
 
 
 // FOLDER
 
-//$gradient-top:  linear-gradient(to bottom, $normal 0%,$light 100%);
-//$gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
+$gradient-top:  linear-gradient(to bottom, $normal 0%,$light 100%);
+$gradient:  linear-gradient(to bottom, $light 0%,$very-light 100%);
 
-$gradient-top:  #3C3C3C;
-$gradient:  #3C3C3C;
+// $gradient-top:  $normal;
+// $gradient:  $normal;
 
 // $gradient-top: $normal;
 // $gradient: $normal;
@@ -129,26 +146,23 @@ $gradient:  #3C3C3C;
 
 
 // GENERAL
-$inside-bg: white;
 // $surrounding-bg: whitesmoke;
 // $surrounding-bg: url("/assets/wallpaper.png") fixed;
 
 
 
 
-
-
 // TABS
 
-$header-bg: #3C3C3C;
-$unselected-tab-bg: #3C3C3C;
-$unselected-tab-hover: white;
-$unselected-tab-hover-color: #3C3C3C;
-$unselected-tab-color: white;
+$header-bg: $very-light;
+$unselected-tab-bg: $super-light;
+$unselected-tab-hover: $dark;
+$unselected-tab-hover-color: $tab-color;
+$unselected-tab-color: $tab-color;
 
 // SIDEABAR
 $school: $tab-color;
-$nav-fa: #CB95FF;
+$nav-fa: #3C3C3C;
 $nav: $black;
 $hover-border: $black;
 
@@ -166,9 +180,9 @@ $breadcrumb: white;
 $list-fa: $black;
 $list: $black;
 $list-separator: $grey;
-$list-title: grey;
-$list-title-fa: grey;
-$list-title-separator: #318BFF;
+$list-title: #9C9C9C;
+$list-title-fa: #B2B2B2;
+$list-title-separator: $grey;
 $name: $grey;
 $name-selected: $grey-dark;
 
@@ -176,7 +190,7 @@ $selected-action: $black;
 $unselected-action: $grey;
 
 $document-selected: $ultra-light;
-$document-hovered: snow;
+$document-hovered: $ultra-light-grey;
 
 $pencil-active: grey;
 $pencil-selected-active: $grey-dark;
@@ -194,6 +208,9 @@ $popup-header-bg: white;
 $popup-footer-bg: #EEEEEE;
 $popup-color: $black;
 $popup-header-color: $black;
+
+$popup-exit:$grey-dark;
+$popup-exit-focus: $black;
 
 // CHAT
 $upload-bg: $header-bg;

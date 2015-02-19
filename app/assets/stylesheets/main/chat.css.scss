@@ -235,15 +235,45 @@
 
   height: 25px;
   line-height: 25px;
-  font-size: 15px;
 
   text-align: left;
 
   padding-left: 24px;
 
   font-weight: bold;
-  &:hover{cursor: default}
-  // background: green;
+  font-size: 15px;
+
+  &:hover{
+    cursor: default;
+    .fa-gears{
+      // display: inline-block;
+      color: $black
+    }
+  }
+
+  .channel-title{
+    position: relative;
+    float: left;
+
+    
+
+  }
+ 
+
+  .current-channel{
+    position: relative;
+    float: left;
+
+    padding-left: 40px;
+  }
+
+  .fa-gears{
+    &:hover{cursor: pointer;}
+    padding-left: 5px;
+    color: $grey-dark;
+    // display: none;
+    // background : green;
+  }
 }
 
 
@@ -290,7 +320,52 @@
   color: $color-funky-3;
 }
 
+// NEW CHANNEL --------------
 
+#new-channel{
+  position: relative;
+  float: left;
+  clear: left;
+
+  height: 25px;
+  line-height: 25px;
+
+  text-align: left;
+
+  padding-left: 13px;
+
+  // font-weight: bold;
+  font-size: 15px;
+  color: $grey-dark;
+  // background: blue;
+
+
+  &:hover{
+    color: $black;
+    cursor: pointer;
+    .fa-plus-square-o{color: red;}
+  }
+  .fa-plus-square-o{
+    position: relative;
+    float: left;
+    // height: 25px;
+    padding-top: 1px;
+    padding-right: 4px;
+    line-height: 25px;
+    // background: red;
+  }
+  .new-channel-text{
+
+  }
+  .channel_creation{
+    position: absolute;
+    top: 2px;
+    left: 30px;
+    border-radius: 5px;
+    padding-left: 2px;
+    display: none
+  }
+}
 // MEMBER LIST ------------------------------------
 .member-list{
   position: relative;

@@ -41,11 +41,21 @@
 	<div class="chat-right-panel">
 
 		<div class="channel-list">
-			<div class="section-title">CHANNEL</div>
+			<div class="section-title">
+				<span class="channel-title">CHANNEL :</span>
+
+				<span class="current-channel">plop</span>
+				<span class="fa fa-gears"></span>
+			</div>
 			<% @groupchats.each do |chat| %>
-			<div data-channel="1" class="channel-element" channel="<%= chat.channel %>" chat="<%= chat.id %>"><%= chat.name %></div>
+			<div data-channel="1" class="channel-element" hcannel="<%= chat.channel %>" chat="<%= chat.id %>"><%= chat.name %></div>
 			<% end %>
-			<%= text_field_tag :name, 'new channel', class: "channel_creation" %>
+
+			<div id="new-channel">
+				<span class="fa fa-plus-square-o"></span>
+				<span class="new-channel-text">New channel</span>
+				<%= text_field_tag :name, '', class: "channel_creation" %>
+			</div>
 			<div class="active-caret fa fa-caret-right"></div>
       
 		</div>
