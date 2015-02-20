@@ -1,0 +1,70 @@
+@import "var";
+
+
+#slide-3 {
+  background-color: #2f2f2f;
+  color: #ffffff;
+}
+
+.page-title-contact{
+  position: absolute;
+  top: 0;
+
+  left: calc(50% - 150px);
+
+  white-space:nowrap;
+  font-size: 45px;
+  font-family: "Lato", sans-serif;
+  letter-spacing: 2px;
+  color: white;
+
+  &:hover{cursor: default;}
+}
+
+.line-contact{
+  position: absolute;
+
+  bottom: 0%;
+  left: 33%;
+  background: white;
+  
+  height: 4px;
+  width: 33%;
+}
+
+
+// INCONS
+.contact-icons{
+  position: absolute;
+  left: 1/12 * 100%; 
+  top: 50%;
+  width: calc(11/12 * 100%);
+  color: white;
+}
+.icon-hover{
+  position: relative;
+  float: left;
+
+  height: 175px;
+  width: 1/6 * 100%;
+  overflow: hidden;
+  padding-top: 20px;
+  transition: all ease-in .5s;
+
+  .hover-text {
+    display: none;
+    font-size: 20px;
+  }
+
+  .fa{
+    color: white;
+    font-size: 70px;
+  }
+
+  &:hover {
+    height: 175px;
+    padding-top: 0;
+  }
+}
+
+

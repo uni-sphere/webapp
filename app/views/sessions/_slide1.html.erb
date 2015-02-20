@@ -1,0 +1,32 @@
+<div class="slide story" id="slide-1" data-slide="1">
+
+  <div class="welcome-wrapper">
+    <div class="sign-in-toggle">Sign in</div>
+    <div class="sign-in-selected">
+      <div class="sign-in-notification">Wrong password</div>
+      <%= form_for :session, :url => sessions_path do |f| %>
+        <%= f.text_field :email, class: "sign-in-input email", placeholder: "Email" %>
+        <%= f.password_field :password, class: "sign-in-input psswd", placeholder: "Password" %>
+        <%= f.submit "sign in", class: "sign-in-button"%>
+      <% end %>
+    </div>
+    <div class="welcome-title">
+      <span class="main-title">Collaborative workspace for students</span>
+      <span class="subtitle">Share, communicate and plan</span>
+    </div>
+  </div>
+  <div class="sign-up-wrapper">
+    <div class="sign-up">
+      <input type="text"class="sign-up-input" placeholder="Email Address" /> 
+      <div class="sign-up-button">Sign up for Free</div>
+    </div>
+  </div>
+  <div class="try-it-wrapper">
+    <div class="try-it">
+      <span class="try-it-text">Try it now!</span>
+      <span class="fa fa-arrow-circle-o-right"></span>
+    </div>
+  </div>
+</div>
+
+

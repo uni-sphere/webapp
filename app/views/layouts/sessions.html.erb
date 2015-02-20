@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   
+  <%= favicon_link_tag 'favicon.ico' %>
   <title>   <%= full_title(yield(:title)) %>    </title>
   <%= stylesheet_link_tag "sessions", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "sessions", "data-turbolinks-track" => true %>
@@ -11,6 +12,7 @@
   <%= render 'layouts/shim' %>
 </head>
   <body>
+    <%= render 'layouts/header' %>
     <%= yield %>
   </body>
 </html>

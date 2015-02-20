@@ -11,7 +11,7 @@ class SessionsController < ActionController::Base
   layout "sessions"
   
   def new
-  
+    @title = "home";
   end
 
   def create
@@ -24,9 +24,8 @@ class SessionsController < ActionController::Base
 	      sign_in user
         refresh_token
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to root_path }
         format.json { render json: @user.errors, status: :unprocessable_entity }
-        return
       end
     end
   end

@@ -1,0 +1,339 @@
+@import "var";
+
+
+input::-webkit-input-placeholder {color: $place-holder;}
+input::-moz-placeholder {color: $place-holder;}
+input:-moz-placeholder {color: $place-holder;}
+input:-ms-input-placeholder {color: $place-holder;}
+
+input:-webkit-autofill {
+-webkit-box-shadow: 0 0 0px 1000px $input-bg inset;
+}
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0px 0 1px 2px #2980b9, inset 0 1px 2px 1000px white;
+}
+
+// -------
+// SIGN in -------------------------
+// -------
+
+.sign-in-toggle{
+  position: absolute;
+  top: 100px;
+  right: 140px;
+
+  padding: 10px 20px;
+
+  border-radius: 5px;
+  border: 2px solid white;
+  // box-shadow: 1px 1px 1px #666666;
+
+  font-family: Arial;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+
+  &:hover, &.active{
+    background: white;
+    // background: rgba( 0, 0, 0, .5 );
+    color: #5A606D;
+    // color: white;
+    border: 2px solid #5A606D;
+    cursor: pointer;
+  }
+}
+
+.sign-in-selected{
+  position: absolute;
+  display: none;
+
+  top: 170px;
+  right: 60px;
+
+  width: 270px;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  background: rgba( 0, 0, 0, .5 );
+  border-radius: 5px;
+
+  font-family: Arial;
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.sign-in-notification{
+  position: relative;
+  float: left;
+  display: none;
+
+  width: 250px;
+
+  padding: 4px 0px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  // background: #DC3435;
+  background: linear-gradient(to bottom, $light-red, $red);
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #666666;
+
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+
+
+// SIGN IN INPUTS --------------------
+.sign-in-input{
+  position: relative;
+  float: left;
+
+  width: 230px;
+
+  padding: 13px 10px;
+  // margin-bottom: 10px;
+  margin-left: 10px;
+
+ 
+
+  border-radius: 3px;
+  border: none;
+  box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );
+
+  font-size: 15px;
+  font-weight: bold;
+
+  color: black;
+  
+  &:focus {
+    box-shadow: 0px 0 1px 2px #2980b9;
+    outline: none;
+  }
+}
+
+.email{
+  margin-bottom: 10px;
+}
+
+// SIGN IN BUTTON ------------------
+.sign-in-button{
+  position: relative;
+  float: left;
+
+  margin-left: 80px;
+  margin-top: 20px;
+
+  padding: 10px 20px;
+
+  background: linear-gradient(to bottom, $light-green, $green);
+
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 1px $input-shadow;
+
+  font-family: Arial;
+  color: white;
+  font-size: 20px;
+
+  &:hover {
+    background: linear-gradient(to bottom, $hyper-light-green, $super-light-green);
+    cursor: pointer;
+  }
+}
+
+
+// -------------
+// WELCOME TITLE
+// -------------
+
+.welcome-wrapper{
+  position: relative;
+  float: left;
+
+  height: 90%;
+  width: 100%;
+
+  background-image: url('/assets/bg1.jpg');
+  background-size: cover;
+
+  color: white;
+}
+
+.welcome-title{
+  position: absolute;
+  top: 40%;
+
+  left: calc(50% - 360px);
+
+  width: 720px;
+  height: 200px;
+
+  // background: blue;
+
+  .main-title{
+    position: relative;
+    float: left;
+
+    font-family: "Lato", sans-serif;
+    font-size: 42px;
+    &:hover{cursor: default;}
+  }
+
+  .subtitle{
+    position: relative;
+    float: left;
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 28px;
+    margin-top: 20px;
+    font-family: "um Web", sans-serif;
+    font-weight: 500; 
+    &:hover{cursor: default;}
+  }
+}
+
+
+
+// -------
+// SIGN UP -----------------------------------
+// -------
+
+.sign-up-wrapper{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 10%;
+  height: 10%;
+
+  background: rgba( 0, 0, 0, .5 );
+}
+
+.sign-up{
+  position: absolute;
+  width: 514px;
+  height: 45px;
+
+  // background: red;
+  left: calc(50% - 257px);
+  // top: 10%;
+  top: calc(50% - 22px);
+}
+
+
+
+.sign-up-input {
+  position: relative;
+  float: left;
+
+  width: 270px;
+
+  padding: 13px 10px;
+  margin-bottom: 20px;
+
+  background: $input-bg;
+  border-radius: 3px;
+  border: none;
+  box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );
+
+  font-size: 15px;
+  font-weight: bold;
+
+  color: black;
+  
+  &:focus {
+    background: white;
+    // outline-color: #54B4AD;
+    // box-shadow: 0 0 0 3px #54B4AD, inset 0 2px 3px rgba( 0, 0, 0, 0.2 ), 0px 5px 5px rgba( 0, 0, 0, 0.15 );
+    box-shadow: 0px 0 1px 2px #2980b9;
+    
+    outline: none;
+  }
+}
+
+
+.sign-up-button {
+  position: relative;
+  float: left;
+
+  margin-left: 40px;
+  padding: 10px 20px 10px 20px;
+
+  background: linear-gradient(to bottom, $light-blue, $blue);
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #666666;
+
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+
+  &:hover {
+    background: linear-gradient(to bottom, $hyper-light-blue, $super-light-blue);
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+// ------
+// TRY IT --------------------------------------------
+// ------
+.try-it-wrapper{
+  position: absolute;
+
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  height: 10%;
+
+  background: $try-it-bg;
+  &:hover{
+    cursor: pointer;
+    background: $try-it-bg-hovered;
+  }
+}
+
+
+.try-it{
+  position: absolute;
+
+  left: calc(50% - 132px);
+  top: calc(50% - 30px);
+
+  width: 264px;
+  height: 60px;
+
+  .try-it-text{
+    position: relative;
+    float: left;
+
+    margin-top: 8px;
+
+    font-family: ubuntu, "Lato", sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .fa-arrow-circle-o-right{
+    position: relative;
+    float: left;
+
+    margin-left: 18px;
+    margin-top: 6px;
+
+    font-size: 50px;
+  }
+}
+
+
+

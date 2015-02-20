@@ -1,0 +1,59 @@
+$bg: #8E639E;
+$bg2: #7B5589;
+$bg3: #330033;
+$test: #0000FF;
+$grey: #E0E0E0;
+$extreme-light-grey: #F9F9F9;
+$light-grey: #CECECE;
+$gr: #5f5f5f;
+$dark-green: #2CA078;
+$dark-blue: #2CA0B7;
+$dark-red: #D44D68; 
+$dark-grey: #989898;
+$dark: #4B4B4B;
+
+$feature-1: $dark-green;
+$feature-2: $dark-grey;
+$feature-3: $dark-blue;
+$feature-4: $dark-red;
+
+
+
+$input-shadow: #666666;
+$hyper-light-blue: #3cb0fd;
+$super-light-blue: #3498db;
+$light-blue: #3498db;
+$blue: #2980b9;
+
+$light-red: #DC3435;
+$red: #D43434;
+
+$green: #2CA078;
+$light-green: #27A57B;
+$super-light-green: #20BF8A;
+$hyper-light-green: #21C68F;
+
+$input-bg: $extreme-light-grey;
+
+$place-holder: $light-grey;
+$dark-grey: #4e4e4e;
+$try-it-bg: $dark-green;
+$try-it-bg-hovered: #2CA0B7;
+
+$font-family: "Titillium Web", sans-serif;
+
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 900;
+  src: local("Lato Black"), local("Lato-Black"), url("https://fonts.gstatic.com/s/lato/v10/BVtM30trf7q_jfqYeHfjtA.woff") format("woff");
+}
+
+
+@font-face {
+  font-family: "um Web";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Titillium WebThin"), local("TitilliumWeb-Thin"), url("http://fonts.gstatic.com/s/titilliumweb/v4/anMUvcNT0H1YN4FII8wpr-JQgxo1bqIW_GZqCarw8nE.woff") format("woff");
+}
