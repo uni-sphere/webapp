@@ -30,11 +30,11 @@ Lms::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  root to: 'signin#new'
+  root to: 'sessions#new'
 
   get '/signup',  to: 'users#new'
-  get '/signin',  to: 'signin#new'
-  delete '/signout', to: 'signin#destroy'
+  get '/signin',  to: 'sessions#new'
+  delete '/signout', to: 'sessions#destroy'
 
   get '/users/:user_id/allgroups', to: 'groups#show_all', as: 'allgroups'
   post '/user/:user_id/group/:group_id', to: 'groups#join_group', as: 'joingroup'

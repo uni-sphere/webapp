@@ -4,13 +4,13 @@
     <div class="sign-in-toggle">Sign in</div>
     <div class="sign-in-selected">
       <div class="sign-in-notification">Wrong password</div>
-        <form accept-charset="UTF-8" action="/signin" class="login" method="post">
-          <%= form_for(:session, :url => signin_path) do |f| %>
+        <!-- <form accept-charset="UTF-8" action="/signin" class="login" method="post"> -->
+          <%= form_for(:session, url: sessions_path) do |f| %>
             <%= f.text_field :email, class: "sign-in-input email", type:"text", placeholder: "Email Address" %>
             <%= f.password_field :password, type: "password", class:"sign-in-input psswd", placeholder: "Password" %>
             <%= f.submit "sign in", class: "sign-in-button"%>
           <% end %>
-        </form>
+        <!-- </form> -->
     </div>
     <div class="welcome-title">
       <span class="main-title">Collaborative workspace for students</span>
