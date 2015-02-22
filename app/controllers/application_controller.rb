@@ -12,34 +12,11 @@ class ApplicationController < ActionController::Base
   
   before_action :set_datas, only: [:index_notification]
   before_action :index_notification
-  before_action :check_for_mobile
+  # before_action :check_for_mobile
+  before_action :prepare_for_mobile
   
   
-  def is_production?
-    ENV["PROD_MODE"] || FALSE ? $ready_for_production = false : true 
-  end
-  
-  def set_ready_for_production
-    $ready_for_production = true
-  end
-  
-  def check_for_mobile
-    session[:mobile_override] = params[:mobile] if params[:mobile]
-    prepare_for_mobile if mobile_device?
-  end
-
-  def prepare_for_mobile
-    prepend_view_path Rails.root + 'app' + 'views_mobile'
-  end
-
-  def mobile_device?
-    if session[:mobile_override]
-      session[:mobile_override] == "1"
-    else
-       (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
-    end
-  end
-  helper_method :mobile_device?
+ 
 
   layout "main", except: [:users]
 

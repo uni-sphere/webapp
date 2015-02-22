@@ -1,5 +1,33 @@
 module ApplicationHelper
   
+
+  def is_production?
+    ENV["PROD_MODE"] || FALSE ? $ready_for_production = false : true 
+  end
+  
+  def set_ready_for_production
+    $ready_for_production = true
+  end
+  
+  def check_for_mobile
+    session[:mobile_override] = params[:mobile] if params[:mobile]
+    prepare_for_mobile if mobile_device?
+  end
+
+  def prepare_for_mobile
+    prepend_view_path Rails.root + 'app' + 'views_mobile'
+    logger.info 'MOBILE'
+  end
+
+  def mobile_device?
+    if session[:mobile_override]
+      session[:mobile_override] == "1"
+    else
+       (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
+    end
+  end
+  # helper_method :mobile_device?
+
   def full_title(page_title)
     base_title = "Unisphere"
     if page_title.empty?
