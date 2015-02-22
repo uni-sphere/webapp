@@ -1,6 +1,13 @@
 module ApplicationHelper
   
-
+  def force_under_construction
+    @under_construction = true if Rails.env.production?
+  end
+  
+  def super_force_under_construction
+    @under_construction = true
+  end
+  
   def is_production?
     ENV["PROD_MODE"] || FALSE ? $ready_for_production = false : true 
   end

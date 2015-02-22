@@ -1,13 +1,13 @@
 class CalendarsController < ApplicationController
   
-  
+  before_action :force_under_construction
   before_action :authenticate?
   before_action :calendar_params, only: [:create]
   before_action :set_target
   before_action :set_user
   before_action :correct_user?
   before_action :set_calendar, only: [:show, :destroy]
- 
+
 	def new
 		@calendar = @target.calendars.new
 	end
