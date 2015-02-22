@@ -1,0 +1,41 @@
+<h1>Listing users</h1>
+
+
+
+<table class="container">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Create a calendar', new_user_calendar_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  Download:
+  <%= link_to "Export as an excel file", users_path(format: "xls") %> |
+	<%= link_to "Export as an CSV file", users_path(format: "csv") %> |
+</br>Import:
+	<%= form_tag import_for_creating_users_path, multipart: true do %>
+	  <%= file_field_tag :file %>
+	  <%= submit_tag "Import file to update" %>
+	<% end %>
+</p>
+
+<%= link_to 'sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<br>
+

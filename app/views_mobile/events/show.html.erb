@@ -1,0 +1,9 @@
+<h1>My Calendars</h1>
+	<h3>
+	  <%= @calendar.name %>
+	</h3>
+
+	<div id="calendar">
+	</div>
+
+<%= link_to 'Sign out', signout_path, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,6 @@
+<% if activity.trackable and or current_user.groups.exists?(id: activity.owner_id) %>
+	<%= activity.trackable.name %>
+	has been updated in
+	<%= link_to Group.find(activity.trackable.group_id).name, user_group_path(current_user, Group.find(activity.trackable.group_id)) %>
+<% end %>
+

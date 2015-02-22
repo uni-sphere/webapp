@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <%= favicon_link_tag 'favicon.ico' %>
+  <title>   <%= full_title(yield(:title)) %>    </title>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+  <body>
+    <%= render 'layouts/header' %>
+    <h1>HALLO</h1>
+  </body>
+</html>
+
+

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   
   before_action :set_datas, only: [:index_notification]
   before_action :index_notification
+  before_action :check_for_mobile
   
   
   def is_production?

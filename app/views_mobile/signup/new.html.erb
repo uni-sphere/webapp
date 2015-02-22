@@ -1,0 +1,37 @@
+
+<div class="signup-title-wrapper">
+  <div class="signup-title">Configure your account</div>
+  <div class="fa fa-lock"></div>
+</div>
+<div id="password-strength" class="short">
+  <span class="strength-fixed-text">Password strength:</span>
+  <span class="strength-text">Too short</span>
+
+  <!-- <div class="visual">
+    <span class="block block-1"></span>
+    <span class="block block-2"></span>
+    <span class="block block-3"></span>
+  </div> -->
+    
+  <div class="visual-indicator-container">
+    <div class="visual-indicator">
+    </div>
+  </div>
+</div>
+
+<div class="form-container">
+  <input type="password"class="signup-input" placeholder="Create a password" id="password" />
+  <div class="password-tip">Tip: use at least 7 characters</div>
+  <input type="password" class="signup-input" id="password-check" placeholder="Retype your password" />
+  
+  <div class="fa fa-check password-notif"></div>
+  <div class="fa fa-check password-check-notif-ok"></div>
+  <div class="fa fa-times password-check-notif-bad"></div>
+  <%= link_to 'Sign up', "#", class: "signup-button" %>
+</div>
+
+
+
+
+
+

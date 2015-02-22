@@ -1,0 +1,64 @@
+<div class="container" >
+<!-- etherpad -->
+	Pad
+  <% @etherpads.each do |pad| %>
+  	<tr>
+			<td><%= link_to pad.name, user_group_etherpad_path(@user, @group, pad) %></td>
+			<td><%= link_to 'Destroy', user_group_etherpad_path(@user, @group, pad), method: :delete %>
+		</tr>
+  <% end %>
+	<%= form_for @etherpad, url: user_group_etherpads_path(@user, @group, @etherpad)  do |f| %>
+	  <div class="field">
+	    <%= f.text_area :name %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "New pad" %>
+	  </div>
+	<% end %>
+	
+	<!-- user invitation -->
+	
+	<%= form_for @group, url: { action: "send_invitation" } do |f| %>
+		<div id="user_search">
+ 			<input class="typeahead" type="text" placeholder="Invite a user" name="user[email]">
+			<input type="submit" value="Submit">
+		</div>
+	<% end %>
+	<%= form_tag import_for_involving_users_path, multipart: true do %>
+	  <%= file_field_tag :file %>
+	  <%= submit_tag "Import" %>
+	<% end %>
+	
+	<!-- tasks -->
+	Task
+  <table class="tasks">
+  <% @tasks.each do |task| %>
+  	<tr>
+			<td name="<%= task.id %>"><%= task.name %></td>
+			<td><%= link_to 'Delete', user_group_task_path(@user, @group, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+  <% end %>
+  </table>
+  
+	<%= render 'tasks/task_form' %>
+  
+	<!-- chat -->
+	
+  <table class="microposts" summary="Discussion">
+  	<%= render @microposts %>
+	</table>
+	<h3>Answer...</h3>
+	
+	<%= render 'microposts/micropost_form' %>
+	
+	<!-- classes -->
+	
+	<%= link_to 'classes', user_group_courses_path(@user, @group) %>
+
+		
+</div>
+
+<%= link_to 'Back', user_groups_path(@user) %>
+
+
+			
