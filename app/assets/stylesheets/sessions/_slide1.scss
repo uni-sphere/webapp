@@ -161,7 +161,14 @@ input:-webkit-autofill:focus {
   height: 90%;
   width: 100%;
 
-  background-image: url('/assets/bg1.jpg');
+  // background-image: url('bg1.jpg');
+  // background-image: url(image-path('bg1.jpg'));
+  // background-image: image-url("bg1.jpg");
+  background-image: url(image-path('bg1.jpg'));
+  // background-image: asset_path("bg1.jpg");
+  // background-image: image-url("logo.png")
+
+  // background-image: url('/assets/bg1.jpg');
   background-size: cover;
 
   color: white;

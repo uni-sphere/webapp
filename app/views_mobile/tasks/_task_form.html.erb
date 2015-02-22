@@ -1,9 +1,0 @@
-<h2>Todo</h2>
-<%= form_for @task, url: user_group_tasks_path(@user, @group, @task)  do |f| %>
-  <div class="field">
-    <%= f.text_area :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Send" %>
-  </div>
-<% end %>

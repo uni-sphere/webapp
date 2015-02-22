@@ -7,7 +7,7 @@ class SessionsController < ActionController::Base
   
   before_filter :not_authenticate?, only: [:new]
   before_filter :authenticate?, only: [:destroy]
-  before_action :prepare_for_mobile
+  before_action :check_for_mobile
 
   skip_before_filter :verify_authenticity_token, only: [:create]
 

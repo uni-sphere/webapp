@@ -23,7 +23,6 @@ module ApplicationHelper
 
   def prepare_for_mobile
     prepend_view_path Rails.root + 'app' + 'views_mobile'
-    logger.info 'MOBILE'
   end
 
   def mobile_device?

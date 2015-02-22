@@ -1,6 +1,0 @@
-<% if activity.recipient_id == current_user.id and !current_user.groups.exists?(id: activity.owner_id)%>
-	You have been invited in
-	<%= Group.find(activity.owner_id).name %>.
-	<%= link_to 'Accept', joingroup_path(current_user, Group.find(activity.owner_id)), method: :post %>
-<% end %>
-
