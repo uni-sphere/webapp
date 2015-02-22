@@ -159,7 +159,7 @@ var dragAndDrop = {
 	},
 	
 	perso: function() {
-		url = 'http://localhost:3000/user/' + dragAndDrop.item + '/move';
+		url = '/user/' + dragAndDrop.item + '/move';
 		data = {
 			dragged: dragAndDrop.drag.attr("document_id"),
 			dropped: dragAndDrop.drop.attr("document_id")
@@ -167,7 +167,7 @@ var dragAndDrop = {
 	},
 	
 	group: function() {
-		url = 'http://localhost:3000/user/group/' + dragAndDrop.item + '/move';
+		url = '/user/group/' + dragAndDrop.item + '/move';
 		data = {
 			dragged: dragAndDrop.drag.attr("item_id"),
 			dropped: dragAndDrop.drop.attr("item_id"),
@@ -238,7 +238,7 @@ var rename = {
 	
 	perso: function(url, data) {
 		console.log(rename.format);
-		url = 'http://localhost:3000/user/' + rename.docType + '/rename';
+		url = '/user/' + rename.docType + '/rename';
 		data = {
 			name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 			box_id: rename.target.parent().attr('document_id'),
@@ -334,7 +334,7 @@ var download = {
 	},	
 	
 	perso: function() {
-		download.download('http://localhost:3000/user/file/download')
+		download.download('/user/file/download')
 	},	
 	
 	download: function(dlUrl) {
@@ -420,12 +420,12 @@ var shareLink = {
 	},
 	
 	perso: function() {
-		shareLink.createLink('http://localhost:3000/user/file/create_shared_link')
+		shareLink.createLink('/user/file/create_shared_link')
 	},
 	
 	group: function() {
 		if (docSelection.target.attr('item') == 'file') {
-			shareLink.createLink('http://localhost:3000/user/group/file/create_shared_link')
+			shareLink.createLink('/user/group/file/create_shared_link')
 		}
 	},
 	
