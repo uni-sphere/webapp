@@ -1,0 +1,282 @@
+@import "../var";
+
+input::-webkit-input-placeholder {color: $place-holder;}
+input::-moz-placeholder {color: $place-holder;}
+input:-moz-placeholder {color: $place-holder;}
+input:-ms-input-placeholder {color: $place-holder;}
+
+input:-webkit-autofill {
+-webkit-box-shadow: 0 0 0px 1000px $input-bg inset;
+}
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0px 0 1px 2px #2980b9, inset 0 1px 2px 1000px white;
+}
+
+html, body, main{
+  position: relative;
+  float: left;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 0;
+
+  padding:0;
+  margin:0;
+}
+
+
+main{
+  background-image: url('/assets/bg1.jpg');
+  background-size: cover;
+}
+
+.page-container{
+  position: absolute;
+
+  width: 600px;
+  top: calc(50% - 278px);
+  left: calc(50% - 233px);
+  background: rgba( 0, 0, 0, .5 );
+
+  border-radius: 20px;
+
+  padding: 30px 20px;
+}
+
+// -------------
+// SIGN UP TITLE
+// -------------
+
+.signup-title-wrapper{
+  position: relative;
+  float: left;
+
+  height: 50px;
+  width: 600px;
+  margin-bottom: 30px;
+
+  // background: green;
+
+}
+
+
+.signup-title{
+  // text-align: center;
+
+  position: relative;
+  float: left;
+  
+
+  font-family: ubuntu, sans-serif;
+  font-weight: bold;
+  font-size: 42px;
+  letter-spacing: 2px;
+  // background: blue;
+
+  line-height: 50px;
+}
+
+.fa-lock{
+  position: relative;
+  float: left;
+
+  margin-left: 20px;
+  font-size: 50px !important;
+  // background: red;
+}
+
+
+
+.form-container{
+  position: relative;
+  float: left;
+
+  padding-top: 20px;
+  padding-left: calc(50% - 125px);
+}
+.signup-notification{
+  position: relative;
+  float: left;
+  display: none;
+
+  width: 250px;
+
+  padding: 4px 0px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  // background: #DC3435;
+  background: linear-gradient(to bottom, $light-red, $red);
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #666666;
+
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+
+
+// SIGN IN INPUTS --------------------
+.signup-input{
+  position: relative;
+  float: left;
+  clear: left;
+
+  width: 230px;
+
+  padding: 13px 10px;
+  // margin-left: 10px;
+  margin-bottom: 10px;
+
+ 
+
+  border-radius: 3px;
+  border: none;
+  box-shadow: inset 0 2px 3px rgba( 0, 0, 0, 0.1 );
+
+  font-size: 15px;
+  font-weight: bold;
+
+  color: black;
+  
+  &:focus {
+    box-shadow: 0px 0 1px 2px #2980b9;
+    outline: none;
+  }
+}
+
+
+// PASSWORD TIP
+.password-tip{
+  position: relative;
+  float: left;
+  clear: left;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+
+  color: $light-grey;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: ubuntu;
+}
+
+
+// PASSWORD STRENGTH
+
+#password-strength{
+  // position: relative;
+  // float: left;
+  // clear: left;
+
+  position: absolute;
+  right: 0px;
+  top: 138px;
+
+  margin-left: 10px;
+
+  // background: blue;
+  line-height: 28px;
+  height: 28px;
+}
+.visual{
+  position: relative;
+  float: left;
+
+  width: 117px;
+  margin-right: 20px;
+  margin-top: 12px;
+  
+  // background: red;
+  // background: grey;
+}
+
+.block{
+  position: relative;
+  float: left;
+
+  margin-right: 7px;
+  width: 32px;
+  height: 5px;
+
+  transition: all .5 linear;
+}
+
+.strength-text{
+  position: relative;
+  float: left;
+}
+
+// #register label{
+//   margin-right:5px;
+// }
+// #register input {
+//   padding: 5px 14px;
+//   border: 1px solid #d5d9da;
+//   box-shadow: 0 0 9px #0E34F5 inset;
+//   width: 272px;
+//   font-size: 1em;
+//   height: 25px;
+// }
+
+.short{
+  color:red;
+  .block-1, .block-2, .block-3{display: none}
+  .block{background: red}
+}
+.weak{
+  color:orange;
+  .block-2, .block-3{display: none}
+  .block{background: orange}
+}
+.good{
+  color:blue;
+  .block-3{display: none}
+  .block{background: blue}
+}
+.strong{
+  color: limegreen;
+  .block{background: limegreen}
+}
+
+
+
+
+
+.email{
+  margin-bottom: 10px;
+}
+
+// SIGN IN BUTTON ------------------
+.signup-button{
+  position: relative;
+  float: left;
+  clear: left;
+
+  margin-left: 71px;
+  margin-top: 20px;
+
+  padding: 10px 20px;
+
+  background: linear-gradient(to bottom, $light-blue, $blue);
+
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 1px $input-shadow;
+
+  font-family: Arial;
+  color: white;
+  font-size: 20px;
+
+  text-decoration: none;
+
+  &:hover {
+    background: linear-gradient(to bottom, $hyper-light-blue, $super-light-blue);
+    cursor: pointer;
+  }
+}

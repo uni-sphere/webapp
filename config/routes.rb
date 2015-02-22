@@ -32,9 +32,13 @@ Lms::Application.routes.draw do
 
   root to: 'sessions#new'
 
-  get '/signup',  to: 'users#new'
+  
   get '/signin',  to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'
+
+  get '/signup',  to: 'signup#new'
+  get '/signup/team',  to: 'signup#team', as: 'team_setup'
+
 
   get '/users/:user_id/allgroups', to: 'groups#show_all', as: 'allgroups'
   post '/user/:user_id/group/:group_id', to: 'groups#join_group', as: 'joingroup'
