@@ -161,14 +161,7 @@ input:-webkit-autofill:focus {
   height: 90%;
   width: 100%;
 
-  // background-image: url('bg1.jpg');
-  // background-image: url(image-path('bg1.jpg'));
-  // background-image: image-url("bg1.jpg");
   background-image: url(image-path('bg1.jpg'));
-  // background-image: asset_path("bg1.jpg");
-  // background-image: image-url("logo.png")
-
-  // background-image: url('/assets/bg1.jpg');
   background-size: cover;
 
   color: white;
@@ -236,7 +229,14 @@ input:-webkit-autofill:focus {
   top: calc(50% - 22px);
 }
 
-
+.temp-signup{
+  position: absolute;
+  left: 30%;
+  top: 35px;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+}
 
 .sign-up-input {
   position: relative;

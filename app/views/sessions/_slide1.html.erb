@@ -16,6 +16,9 @@
     </div>
   </div>
   <div class="sign-up-wrapper">
+    <% if Rails.env.development? %>
+      <%= link_to "sign up", new_user_path, class: "temp-signup" %>
+    <% end %>
     <div class="sign-up">
       <input type="text"class="sign-up-input" placeholder="Email Address" /> 
       <div class="sign-up-button">Sign up for Free</div>
