@@ -1,12 +1,15 @@
 var passwordCheck ={
-
   checkStrength: function(password){
    var strength = 0
     if (password.length < 6) {
       $('#password-strength').removeClass()
       $('#password-strength').addClass('short')
       $('.strength-text').text('Too short')
+      $('.password-notif').fadeOut(400)
       return
+    }
+    else{
+      $('.password-notif').fadeIn(400);
     }
     if (password.length > 7) strength += 1
 
@@ -38,17 +41,34 @@ var passwordCheck ={
       $('.strength-text').text('Strong')
     }
   },
-
   init: function(){
     $('#password').keyup(function() {
+      $('#password-strength').fadeIn(400);
       $('.form-container').html(passwordCheck.checkStrength($('#password').val()));
     })
   }
 }
 
 
+var passwordSimilarity={
+  init: function(){
+    $('#password-check').keyup(function(){
+      if($(this).text()==$('#password').text()){
+        console.log($(this).text())
+        // $('.password-check-notif-bad').fadeOut(400)
+        $('.password-check-notif-ok').fadeIn(400)
+      }
+      else{
+        $('.password-check-notif-ok').fadeOut(400)
+        // $('.password-check-notif-bad').fadeIn(400)
+      }
+    })
+  }
+}
+
 mainLayout = function() {
-  passwordCheck.init();
+  passwordCheck.init()
+  passwordSimilarity.init()
 };
 
 $(document).on('ready page:load', function() {

@@ -34,9 +34,9 @@ main{
 .page-container{
   position: absolute;
 
-  width: 600px;
+  width: 800px;
   top: calc(50% - 278px);
-  left: calc(50% - 233px);
+  left: calc(50% - 333px);
   background: rgba( 0, 0, 0, .5 );
 
   border-radius: 20px;
@@ -54,6 +54,7 @@ main{
 
   height: 50px;
   width: 600px;
+  margin-left: calc(50% - 300px);
   margin-bottom: 30px;
 
   // background: green;
@@ -94,29 +95,10 @@ main{
 
   padding-top: 20px;
   padding-left: calc(50% - 125px);
-}
-.signup-notification{
-  position: relative;
-  float: left;
-  display: none;
-
-  width: 250px;
-
-  padding: 4px 0px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-
-  // background: #DC3435;
-  background: linear-gradient(to bottom, $light-red, $red);
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px #666666;
-
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-
+  .fa{
+    display: none;
+    font-size: 20px;
+  }
 }
 
 
@@ -149,7 +131,31 @@ main{
   }
 }
 
+.fa-check{
+  position: absolute;
+  left: calc(50% + 240px);
 
+  color: green;
+}
+
+.fa-times{
+  position: absolute;
+  left: calc(50% + 240px);
+
+  color: red;
+}
+
+.password-notif{
+  top: 30px;
+}
+
+.password-check-notif-ok{
+  top: 110px;
+}
+
+.password-check-notif-bad{
+  top: 110px;
+}
 // PASSWORD TIP
 .password-tip{
   position: relative;
@@ -174,43 +180,77 @@ main{
   // float: left;
   // clear: left;
 
+  display: none;
+
   position: absolute;
-  right: 0px;
-  top: 138px;
+  left: calc(50% + 150px);
+  top: 132px;
 
   margin-left: 10px;
+
+  font-weight: bold;
+  font-family: ubuntu;
+  font-size: 15px;
 
   // background: blue;
   line-height: 28px;
   height: 28px;
 }
-.visual{
+
+.strength-fixed-text{
   position: relative;
   float: left;
 
-  width: 117px;
-  margin-right: 20px;
-  margin-top: 12px;
-  
-  // background: red;
-  // background: grey;
-}
-
-.block{
-  position: relative;
-  float: left;
-
-  margin-right: 7px;
-  width: 32px;
-  height: 5px;
-
-  transition: all .5 linear;
+  margin-right: 10px;
+  color: black;
 }
 
 .strength-text{
   position: relative;
   float: left;
 }
+
+.visual-indicator-container{
+  position: relative;
+  float: left;
+  clear: left;
+  height: 5px;
+  width: 140px;
+  background: grey;
+}
+.visual-indicator{
+  position: relative;
+  float: left;
+  clear: left;
+  transition: all 0.9s ease !important;
+  height: 5px;
+}
+
+// .visual{
+//   position: relative;
+//   float: left;
+//   clear: left;
+
+//   width: 117px;
+//   margin-right: 20px;
+//   margin-top: 12px;
+  
+//   // background: red;
+//   background: grey;
+// }
+
+// .block{
+//   position: relative;
+//   float: left;
+
+//   // margin-right: 7px;
+//   width: 32px;
+//   height: 5px;
+
+//   transition: all .5 ease;
+// }
+
+
 
 // #register label{
 //   margin-right:5px;
@@ -226,22 +266,38 @@ main{
 
 .short{
   color:red;
-  .block-1, .block-2, .block-3{display: none}
-  .block{background: red}
+  // .block-1, .block-2, .block-3{display: none}
+  .visual-indicator{
+    width: 20px;
+    background: red
+  }
+  // .block{background: red}
 }
 .weak{
   color:orange;
-  .block-2, .block-3{display: none}
-  .block{background: orange}
+  // .block-2, .block-3{display: none}
+  .visual-indicator{
+    width: 60px;
+    background: orange;
+  }
+  // .block{background: orange}
 }
 .good{
   color:blue;
-  .block-3{display: none}
-  .block{background: blue}
+  // .block-3{display: none}
+  .visual-indicator{
+    width: 100px;
+    background: blue;
+  }
+  // .block{background: blue}
 }
 .strong{
   color: limegreen;
-  .block{background: limegreen}
+  .visual-indicator{
+    width: 140px;
+    background: limegreen;
+  }
+  // .block{background: limegreen}
 }
 
 
@@ -280,3 +336,8 @@ main{
     cursor: pointer;
   }
 }
+
+
+
+
+
