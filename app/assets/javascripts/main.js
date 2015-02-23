@@ -19,6 +19,7 @@
 //= require fullcalendar
 //= require gcal
 //= require twitter/typeahead
+//= require bootstrap-tokenfield
 //= require gravtastic
 //= require rails-timeago
 //= require_tree ./main

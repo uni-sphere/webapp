@@ -37,7 +37,7 @@ Lms::Application.routes.draw do
   ##################
   
   put '/user/group/send_invitation', to: 'groups#send_invitation', as: 'send_invitation'
-  put '/user/group/autocomplete', to: 'groups#autocomplete', as: 'autocomplete'
+  get '/user/group/autocomplete', to: 'groups#autocomplete', as: 'autocomplete'
   
   #
   

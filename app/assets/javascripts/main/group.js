@@ -26,9 +26,9 @@ $(document).on('ready page:load', function() {
 var users = new Bloodhound({
 	datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
 	queryTokenizer: Bloodhound.tokenizers.whitespace,
-	limit: 5,
+	limit: 4,
 	remote: {
-		url: '../groups/:id/autocomplete?query=%QUERY',
+		url: '/user/group/autocomplete?query=%QUERY'
 	}
 
 });
@@ -62,10 +62,10 @@ $(document).on('ready page:load', function() {
 
   users.initialize();
 	$('.typeahead').tokenfield({
-		typeahead: (null, {
+	  typeahead: [null, {
 			name: 'users',
-			displayKey: 'email',
-			source: users.ttAdapter()})
-  });
+	  	displayKey: 'email',
+	  	source: users.ttAdapter()}]
+	});
 
 });

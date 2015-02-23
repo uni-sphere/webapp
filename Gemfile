@@ -29,6 +29,7 @@ gem 'will_paginate'
 gem 'jbuilder'
 gem 'momentjs-rails'
 gem 'twitter-typeahead-rails'
+gem 'bootstrap_tokenfield_rails'
 gem 'public_activity'
 gem 'roo'
 gem 'iconv'
@@ -55,7 +56,7 @@ group :development, :test do
 end
 
 group :production do
- gem 'mysql'
+ # gem 'mysql'
 end
 
 # group :doc do

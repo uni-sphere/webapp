@@ -34,6 +34,7 @@ GEM
     best_in_place (3.0.0)
       actionpack (>= 3.2)
       railties (>= 3.2)
+    bootstrap_tokenfield_rails (0.0.7)
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -100,7 +101,6 @@ GEM
     momentjs-rails (2.8.3)
       railties (>= 3.1)
     multi_json (1.10.1)
-    mysql (2.9.1)
     nav_link_to (0.0.4)
     netrc (0.7.9)
     nokogiri (1.6.4.1)
@@ -207,6 +207,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   best_in_place
+  bootstrap_tokenfield_rails
   faye
   faye-websocket
   font-awesome-rails
@@ -219,7 +220,6 @@ DEPENDENCIES
   jquery-ui-rails
   mime-types
   momentjs-rails
-  mysql
   nav_link_to
   netrc
   paperclip

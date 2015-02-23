@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :group_params, only: [:update]
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
-  before_action :set_user 
+  before_action :set_user, except: [:autocomplete]
   before_action :set_users, only: [:send_invitation]
   before_action :correct_user?, except: [:autocomplete, :send_invitation]
   before_action :set_group_origin, only: [:show, :edit, :update]
