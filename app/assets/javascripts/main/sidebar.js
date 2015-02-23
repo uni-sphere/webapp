@@ -1,3 +1,5 @@
+
+
 var folder = {
 	init: function() {
 		// console.log(typeof typeof localStorage['lastIndex']);

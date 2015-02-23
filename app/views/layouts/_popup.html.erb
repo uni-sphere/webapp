@@ -1,85 +1,77 @@
-
 <div id="background-grey"></div>
 
-<div id="slide-more-groups" class="slide">
+<div id="slide-new-group" class="slide">
   <div class="slide-container">
     <div class="slide-header">
-      <span class="header-title">Groups gestion</span>
-      <div class="fa fa-close" id="close-popup"></div> 
+      <span class="header-title">New group</span>
+      <div class="fa fa-close" id="close-new-group"></div>
     </div>
     <div class="slide-body">
-
-      <!-- NOTIF -->
-      <div class="slide-notif"></div>
-
-      <!-- LEFT -->
-      <div class="left-container">
-        
-        <!-- NEW GROUP -->
-        <div class="grey-wrapper">
-          <div class="new-group-wrapper wrapper-default">
-            <span class="new-group-title title-default">Create a new group</span>
-
-            <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
-            <div class="submit-default" id="new-group-submit">Create</div>
-          </div>
-        </div>
-        
-       <!--  <div class="new-member-wrapper wrapper-default">
-          <span class="new-member-title title-default">Add Member</span>
-
-          <%#= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
-          <div class="submit-default" id="new-member-submit">Add</div>
-        </div>
- -->
-        <div class="new-member-wrapper wrapper-default">
-          <span class="new-member-title title-default">Add Member</span>
-            <div id="user_search">
-              <input class="typeahead" type="text" placeholder="Invite users" name="user[email]">
-              <input type="submit" value="Submit">
-            </div>
-          
-          
-        </div>
-
-        
-
-        <!-- ADD USER -->
-
-       <!--  <div class="wrapper-default", id="list-member-wrapper">
-          <span class="title-default" id="list-member-title">Member list</span>
-          <div class="member-added">
-            <span class="fa fa-user"></span>
-            <span class="user-name">Glouffi</span>
-            <span class="fa fa-close delete-added-user"></span> 
-          </div>
-          <div class="member-added">
-            <span class="fa fa-user"></span>
-            <span class="user-name">Claire</span>
-            <span class="fa fa-close delete-added-user"></span> 
-          </div>
-        </div> -->
-
-        <!-- <div class="new-member">
-          <span class="fa fa-user"></span>
-          <%= text_field_tag :name, '', class: "user-name-add" %>
-        </div> -->
+      <div class="wrapper-default" id="new-group-wrapper">
+        <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
+        <div class="submit-default" id="new-group-submit">Create</div>
       </div>
-      
-      <!-- RIGHT -->
-      <div id="display-all-groups">
-        <% current_groups.each do |group| %>
-          <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
-            <object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object>
-            <span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
-          <% end %>
-        <% end %>
-      </div>
-
     </div>
     <div class="slide-footer"></div>
   </div>
 </div>
+
+
+<div id="slide-all-groups" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">Select a group</span>
+      <div class="fa fa-close" id="close-all-groups"></div> 
+    </div>
+    <div class="slide-body">
+      <div class="wrapper-default" id="all-groups-wrapper ">
+        <% current_groups.each do |group| %>
+          <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
+            <i class="fa fa-group"></i>
+            <span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+</div>
+
+<div id="slide-group-config" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">Configuration</span>
+      <div class="fa fa-close" id="close-group-config"></div> 
+    </div>
+    <div class="slide-body">
+      <div class="wrapper-default" id="group-config-wrapperwrapper ">
+       
+
+
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

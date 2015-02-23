@@ -1,19 +1,17 @@
 var popupShow = {
-	init: function() {
-		$('#more-groups').on('click', function() {
+	init: function(source,target) {
+		$(source).on('click', function() {
 			$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
-			// $('#slide-more-groups').show( "slide", 200 );
-			$('#slide-more-groups').slideDown(400);
+			$(target).slideDown(400);
 		});
 	}
 }
 
 var popupHide = {
-	init: function() {
-		$('#close-popup').on('click', function() {
+	init: function(source,target) {
+		$(source).on('click', function() {
 			$("#background-grey").css({"opacity" : "0.7"}).fadeOut(400);
-			// $('#slide-more-groups').show( "slide", 200 );
-			$('#slide-more-groups').slideUp(200);
+			$(target).slideUp(200);
 		});
 	}
 }
@@ -109,9 +107,14 @@ var activeMenu = {
 
 
 	mainLayout = function() {
-		popupShow.init();
-		popupHide.init();
-		activeMenu.init();
+		popupShow.init("#new-group","#slide-new-group")
+		popupShow.init("#all-groups","#slide-all-groups")
+		popupShow.init("#current-group-config","#slide-group-config")
+
+		popupHide.init("#close-new-group","#slide-new-group")
+		popupHide.init("#close-all-groups","#slide-all-groups")
+		popupHide.init("#close-group-config","#slide-group-config")
+		activeMenu.init()
 	};
 
 	// $(function () { /* ... */ });

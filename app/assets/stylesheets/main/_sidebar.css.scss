@@ -325,45 +325,29 @@
 // CURRENT GROUPS
 // --------------
 
-.current-group-wrapper{
+.subtitle-default{
   position: relative;
   float: left;
 
   // background: red;
   height: 40px;
-  width: 120px;
+  // min-width: 110px;
   line-height: 40px;
   margin-bottom: 9px;
+  // margin-right
 
-  border-bottom: 1px solid $dark;
+  border-bottom: 1px solid $grey;
 
-
-
-  // white-space: nowrap;
-  .current-group-pic{
-    position: relative;
-    float: left;
-
-    width: 23px;
-    line-height: 40px;
-   
-    // line-height: 26px;
-
-    padding-left: 5px;
-    padding-right: 5px;
-
-    font-size: 30px;
-    color: $nav-fa;
-
-    // background: blue;
+   &:hover{
+    .fa{color: $dark;}
+    cursor: pointer;
   }
-  .current-group-name{
+
+  .name-text{
     position: relative;
     float: left;
-    width: 60px;
-    // height: 25px;
 
-    padding-left: 10px;
+    // padding-left: 10px;
     
     font-size: 15px;
     text-align: left;
@@ -371,6 +355,22 @@
     color: $nav-fa;
 
     // background: green;
+  }
+  .fa{
+    position: relative;
+    float: left;
+
+    width: 22px;
+    line-height: 40px;
+   
+    // line-height: 26px;
+
+    padding-left: 10px;
+
+    font-size: 18px;
+    color: $grey;
+
+
   }
 }
 #active-group-nav{
@@ -387,7 +387,7 @@
 // ----------
 
 #groups-nav{
-  top: 280px;
+  top: 200px;
 }
 
 
@@ -434,7 +434,7 @@
   background: $separator;
 
 }
-#more-groups{
+#all-groups{
   position: relative;
   float: left;
   clear: left;
@@ -446,17 +446,17 @@
   margin-top: 3px;
 
   font-style: italic;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: $grey-dark;
+ 
   .fa{
-    width: 14px;
+    // width: 14px;
+    margin-right: 5px;
     font-size: 14px;
     line-height: 22px;
   }
   &:hover{
     cursor: pointer;
+    color: $dark;
   }
 }
 

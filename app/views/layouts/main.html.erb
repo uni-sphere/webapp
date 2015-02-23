@@ -20,7 +20,11 @@
 		<div role="navigation" id="navbar"> <%= render 'layouts/navbar' %> </div>
 		<main id="central-page">
 			<% if @under_construction == true %>
-				<%= render 'layouts/under_construction' %>
+				<div class="first-row"></div>
+				<div class="main-page">
+					<div class="separator"></div>
+					<%= render 'layouts/under_construction' %>
+				</div>
 			<% else %>
 				<%= yield %>
 			<% end %>
