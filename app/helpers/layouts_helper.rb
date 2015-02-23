@@ -9,10 +9,7 @@ module LayoutsHelper
   end
   
   def current_group
-    if params[:group_id]
-      current_group = current_user.groups.find(params[:group_id])
-    else
-      render 'layouts/no_groups'
+    current_group = current_user.groups.find(params[:group_id])
   end
   
   def current_group_exists?

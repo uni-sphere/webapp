@@ -1,6 +1,7 @@
 class GroupdocumentsController < ApplicationController
   
   before_action :authenticate?
+  before_action :has_group?
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]
     
@@ -118,6 +119,10 @@ class GroupdocumentsController < ApplicationController
   end
   
   private
+  
+  def has_group?
+    render 'layouts/no_groups' if !params[:group_id]
+  end
   
   def groupdocuments_params
     { 

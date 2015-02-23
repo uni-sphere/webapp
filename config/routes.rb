@@ -104,4 +104,13 @@ Lms::Application.routes.draw do
   post '/user/group/chat/message/create', to: 'messages#create', as: 'create_message'
   post '/user/group/chat/chat/create', to: 'groupchats#create', as: 'create_chat'
   
+  ###############
+  ### firepad ###
+  ###############
+  
+  get '/user/group/document/firepad/read', to: 'firepads#read', as: 'read_firepad'
+  post '/user/group/document/firepad/create', to: 'firepads#create', as: 'create_firepad'
+  put '/user/group/document/firepad/update', to: 'firepads#update', as: 'update_firepad'
+  # destroy '/user/group/document/firepad/destroy', to: 'firepads#destroy', as: 'destroy_firepad'
+  
 end
