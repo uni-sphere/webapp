@@ -116,7 +116,8 @@ Lms::Application.routes.draw do
   
   get '/user/group/document/firepad/read', to: 'firepads#read', as: 'read_firepad'
   post '/user/group/document/firepad/create', to: 'firepads#create', as: 'create_firepad'
-  put '/user/group/document/firepad/update', to: 'firepads#update', as: 'update_firepad'
-  # destroy '/user/group/document/firepad/destroy', to: 'firepads#destroy', as: 'destroy_firepad'
+  put '/user/group/document/firepad/rename', to: 'firepads#rename', as: 'rename_firepad'
+  put '/user/group/document/firepad/move', to: 'firepads#move', as: 'move_firepad'
+  delete '/user/group/document/firepad/destroy', to: 'firepads#destroy', as: 'destroy_firepad'
   
 end

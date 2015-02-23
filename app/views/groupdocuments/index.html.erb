@@ -5,7 +5,7 @@
 	<!-- ------ -->
 
 	<div class="first-row" id="breadcrumb-seachbar">
-		<div id="breadcrumb" folder_id="<%= params[:folder] %>" group_id="<%= params[:group_id] %>" group_name="<%= @current_group.name %>" >
+		<div id="breadcrumb" folder_id="<%= @folder.id %>" group_id="<%= params[:group_id] %>" group_name="<%= @current_group.name %>" >
 			
 			<% @breadcrumbs.each do |document| %>
 				<%= link_to document[:name], get_group_documents_path(folder_id: document[:id], group_id: params[:group_id]), class: "breadcrumb-redirection name-document" %>
@@ -46,7 +46,11 @@
           <span class="fa fa-sort-up"></span>
         </div>
       </div>
-
+				
+    <!-- ------------------- -->
+    <!-- FOLDERS             -->
+    <!-- ------------------- -->
+		
         <% @group_folders.each do |folder| %>
     	    <div class="box_document" document-selected="false">
             <span class="dragAndDrop icon-and-name" item_id="<%= folder.id %>" item="folder" name="<%= folder.name %>" >
@@ -65,6 +69,10 @@
             <div class="size-doc">-</div>
           </div>
         <% end %>
+				
+    <!-- ------------------- -->
+    <!-- DOCUMENTS           -->
+    <!-- ------------------- -->
 		
 				<% @group_documents.each do |document| %>
 				<% if document.deleted == false && document.name %>
@@ -86,9 +94,31 @@
 				</div>
 				<% end %>
 				<% end %>
+				
+    <!-- ------------------- -->
+    <!-- FIREPADS            -->
+    <!-- ------------------- -->
+		
+        <% @firepads.each do |firepad| %>
+				<% if firepad.deleted == false %>
+    	    <div class="box_document" document-selected="false">
+            <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
+              <%= link_to read_firepad_path(firepad_id: firepad.id) do %>
+                <%= fa_icon("folder-o") %>
+                <span class="name-document go-file"><%= firepad.name %></span>
+              <% end %>
+              <%= text_field_tag :name, firepad.name, class: "hidden input-rename-document" %>
+            </span>
             
-
-    		  
+            <%= fa_icon("pencil", class: "document-rename") %>
+            <div class="modified-doc">
+              <span class="date-time"><%= time_ago_in_words Time.at(firepad.created_at.to_i) %></span>
+              <span class="person"></span>
+            </div>
+            <div class="size-doc">-</div>
+          </div>
+        <% end %>
+				<% end %>		  
       
     </div> 
 
@@ -112,8 +142,8 @@
           <% end %>
           <div id="create-doc">
             <!-- <span id="create-doc-title>"<i class="fa fa-file"></i>New</span> -->
-            <a class="create-list"><i class="fa fa-file-o"></i>Firepad</a>
-            <a class="create-list"><i class="fa fa-file-o"></i>Google doc</a>
+						
+            <a id="create-firepad" class="create-list"><i class="fa fa-file-o"></i>Firepad</a>
           </div>
         </div>
       </div>

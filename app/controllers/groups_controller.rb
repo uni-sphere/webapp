@@ -16,10 +16,10 @@ class GroupsController < ApplicationController
   
   def create
     respond_to do |format|
-      if @user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: Group.last.name, parent_id: 100)
-        Group.last.groupchats.create(name: 'general', channel: channel_key )
-        format.html { redirect_to user_groups_path(@user) }
-        format.json { render action: 'show', status: :created, location: @group }
+      if current_user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: Group.last.name, parent_id: 100)
+        Group.last.groupchats.create(name: 'general', channel: random_key)
+        format.html { render :nothing => true }
+        format.json { render :nothing => true }
       else
         format.html { render action: 'new' }
         format.json { render json: @group.errors, status: :unprocessable_entity }

@@ -6,10 +6,13 @@ class GroupdocumentsController < ApplicationController
   before_action :get_file, only: [:destroy_file]
     
   def read_folder
+    
     @group_folders = current_group.groupfolders.where(parent_id: params[:folder_id])
     @new_folder = @folder.groupdocuments.new()
     @group_documents = @folder.groupdocuments
     @current_group = current_group
+    
+    @firepads = @folder.firepads.all
     
     @breadcrumbs = []
     @root = true

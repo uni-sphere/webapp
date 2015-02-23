@@ -91,5 +91,14 @@ module ApplicationHelper
     ''
   end
   
+  # random key
+  
+  def random_key
+    chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789'
+    password = ''
+    8.times { password << chars[rand(chars.size)] }
+    password
+  end
+  
 end
 

@@ -164,14 +164,25 @@ var dragAndDrop = {
 			dragged: dragAndDrop.drag.attr("document_id"),
 			dropped: dragAndDrop.drop.attr("document_id")
 		}
+		dragAndDrop.move(url, data);
 	},
 	
 	group: function() {
-		url = '/user/group/' + dragAndDrop.item + '/move';
-		data = {
-			dragged: dragAndDrop.drag.attr("item_id"),
-			dropped: dragAndDrop.drop.attr("item_id"),
+		if (dragAndDrop.drag.attr("item") == 'file') {
+			url = '/user/group/' + dragAndDrop.item + '/move';
+			data = {
+				dragged: dragAndDrop.drag.attr("item_id"),
+				dropped: dragAndDrop.drop.attr("item_id"),
+			}
+		} else if (dragAndDrop.drag.attr("item") ==  'firepad') {
+			console.log(dragAndDrop.drag);
+			url = '/user/group/document/firepad/move';
+			data = {
+				dragged: dragAndDrop.drag.attr("item_id"),
+				dropped: dragAndDrop.drop.attr("item_id"),
+			}
 		}
+		
 		dragAndDrop.move(url, data);
 	},
 	
@@ -248,11 +259,20 @@ var rename = {
 	},
 	
 	group: function(url, data) {
-		url = '/user/group/' + rename.docType + '/rename';
-		data = {
-			name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
-			item_id: rename.target.parent().attr('item_id')
-		};
+		if (rename.docType == 'folder' || rename.docType == 'file') {
+			url = '/user/group/' + rename.docType + '/rename';
+			data = {
+				name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
+				item_id: rename.target.parent().attr('item_id')
+			}
+		} else if (docSelection.target.attr('item') == 'firepad') {
+			url = '/user/group/document/firepad/rename';
+			data = {
+				firepad_id: docSelection.target.attr('item_id'),
+				name: renameInput.val()
+			}
+		}
+		
 		rename.rename(url, data);
 	},
 	
@@ -297,8 +317,11 @@ var trash = {
 		} else if (docSelection.target.attr('item') == 'folder') {
 			url = '/user/group/document/folder/delete';
 			params = { folder_id: docSelection.target.attr('item_id') }
+		} else if (docSelection.target.attr('item') == 'firepad') {
+			url = '/user/group/document/firepad/destroy';
+			params = { firepad_id: docSelection.target.attr('item_id') }
 		};
-		trash.trash(url, params );
+		trash.trash(url, params);
 	},
 	
 	perso: function() {
@@ -427,6 +450,9 @@ var shareLink = {
 		if (docSelection.target.attr('item') == 'file') {
 			shareLink.createLink('/user/group/file/create_shared_link')
 		}
+		if (docSelection.target.attr('item') == 'firepad') {
+			// window.location = 'https://luminous-heat-5158.firebaseio.com/' + docSelection.target.attr('firepad_ref')
+		}
 	},
 	
 	createLink: function(shareUrl) {
@@ -551,6 +577,32 @@ var folderRedirection = {
 	}
 }; // OK
 
+var firepadList = {
+
+	create: function() {
+		$.ajax({
+			url: '/user/group/document/firepad/create',
+			type:"POST",
+			dataType: 'JSON',
+			data: {
+				groupfolder_id: $('#breadcrumb').attr('folder_id'),
+				group_id: $('#breadcrumb').attr('group_id')
+			},
+			complete: function() {
+			}
+		})
+	},
+	
+	init: function() {
+		$('#create-firepad').on('click', function() {
+			firepadList.create()
+		})
+		
+	}
+
+};
+
+
 setLocation = function(target) {
 	if (window.location.href.indexOf("group") >= 0) {
 		target.group();
@@ -570,6 +622,7 @@ mainSimpleDocument = function() {
 	shareLink.init();
 	download.init();
 	hover.init();
+	firepadList.init();
 	
 	$(window).on('popstate', function() {
 		$( '#loader' ).addClass("hidden");

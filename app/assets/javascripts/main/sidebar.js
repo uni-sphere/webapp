@@ -1,9 +1,10 @@
 var folder = {
 	init: function() {
-		if (typeof localStorage['lastIndex'] != 'undefined') {
-			var id = JSON.parse(localStorage[localStorage['lastIndex'] + 'breadcrumb']).box_id;
-			$('#perso-folder').html( '<a href="/user/documents?folder=' + id + '" ><i class="fa fa-folder-open"></i>Folder </a>')
-		}
+		// console.log(typeof typeof localStorage['lastIndex']);
+// 		if (typeof localStorage['lastIndex'] != 'undefined' || localStorage['lastIndex'] != 'NaN') {
+// 			var id = JSON.parse(localStorage[localStorage['lastIndex'] + 'breadcrumb']).box_id;
+// 			$('#perso-folder').html( '<a href="/user/documents?folder=' + id + '" ><i class="fa fa-folder-open"></i>Folder </a>')
+// 		}
 	}
 }
 

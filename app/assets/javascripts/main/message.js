@@ -157,10 +157,10 @@ var channel = {
 }
 
 $(document).on('ready page:load', function() {
-	faye.init();
-	channel.init();
+	// faye.init();
+// 	channel.init();
 });
 
 $(document).on('page:before-unload', function() {
-	if (subscription != null) {subscription.cancel()};
+	// if (subscription != null) {subscription.cancel()};
 });
