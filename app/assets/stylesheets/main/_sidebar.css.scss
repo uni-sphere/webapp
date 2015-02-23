@@ -159,7 +159,7 @@
 }
 
 // --------------------------------------------------
-// ------------------- CONTENT WRAPPER --------------
+// ------------------- REAL SIDEBAR --------------
 // --------------------------------------------------
 #row-and-content-wrapper{
 	letter-spacing: 1px;
@@ -219,7 +219,7 @@
 }
 
 // ---------------
-// CONTENT WRAPPER
+// CONTENT WRAPPER -----------------------------
 // ---------------
 
 #content-wrapper {
@@ -247,6 +247,8 @@
   padding-left: 5px;
 
   text-align: left;
+  white-space: nowrap;
+  // background: blue;
 }
 
 .lateral-nav-element{
@@ -277,68 +279,118 @@
     // background: $inside-bg;
   }
   .fa, img, object{
-  position: relative;
-  float: left;
+    position: relative;
+    float: left;
 
-  width: 23px;
-  height: 26px;
-  line-height: 26px;
+    width: 23px;
+    height: 26px;
+    line-height: 26px;
 
-  padding-left: 5px;
-  padding-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 
-  font-size: 18px;
+    font-size: 18px;
+    color: $nav-fa;
+  }
+}
+
+.section-title{
+  width: 60px;
+  height: 25px;
+
+  padding-left: 10px;
+  margin-bottom: 5px;
+  
+  line-height: 25px;
+
+  font-size: 15px;
+  text-align: left;
+  font-weight: bold;
   color: $nav-fa;
-}
+
+  &:hover{cursor: default}
 }
 
+// -------------
+//     PERSO
+// -------------
 
-// .nav-element-active{
-//   border-left: solid 2px $hover-border;
-//   &:hover{cursor: auto;}
-// }
 
 #nav-perso{
   top: 31px;
 }
 
-// -------------
-// ACTIVE GROUPS
-// -------------
 
+// --------------
+// CURRENT GROUPS
+// --------------
+
+.current-group-wrapper{
+  position: relative;
+  float: left;
+
+  // background: red;
+  height: 40px;
+  width: 120px;
+  line-height: 40px;
+  margin-bottom: 9px;
+
+  border-bottom: 1px solid $dark;
+
+
+
+  // white-space: nowrap;
+  .current-group-pic{
+    position: relative;
+    float: left;
+
+    width: 23px;
+    line-height: 40px;
+   
+    // line-height: 26px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    font-size: 30px;
+    color: $nav-fa;
+
+    // background: blue;
+  }
+  .current-group-name{
+    position: relative;
+    float: left;
+    width: 60px;
+    // height: 25px;
+
+    padding-left: 10px;
+    
+    font-size: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: $nav-fa;
+
+    // background: green;
+  }
+}
 #active-group-nav{
   top: 31px;
+}
+
+#current-group{
+  top: 170px;
+  // background: red;
+
 }
 // ----------
 // GROUPS NAV
 // ----------
 
 #groups-nav{
-  top: 170px;
+  top: 280px;
 }
 
-.groups-title{
-  // display: block;
-  width: 60px;
-  height: 25px;
-  line-height: 25px;
-  font-size: 15px;
 
-  text-align: left;
-
-  padding-left: 10px;
-  margin-bottom: 5px;
-
-  font-weight: bold;
-  // border-radius: 5px;
-  // background: $nav-fa;
-  // color: white;
-
-  color: $nav-fa;
-
-  &:hover{cursor: default}
- 
-}
 
 .active-menu{
   position: absolute;

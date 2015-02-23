@@ -67,5 +67,4 @@ $(document).on('ready page:load', function() {
 	  	displayKey: 'email',
 	  	source: users.ttAdapter()}]
 	});
-
 });

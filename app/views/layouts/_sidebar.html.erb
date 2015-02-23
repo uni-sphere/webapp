@@ -22,7 +22,12 @@
 		<% if request.url.include? 'group' %>
 			<% if current_group_exists? %>
 				<div class="lateral-nav" id="active-group-nav" group_id="<%= current_group.id %>">
-					<div class="groups-title">Tools</div>
+					<div class="current-group-wrapper">
+
+						<!-- <div class="current-group-pic fa fa-group"></div> -->
+						<div class="current-group-name"><%=current_group.name%></div>
+						<div class="fa fa-gear"></div>
+					</div> 
 					<div class="active-menu"></div>
 					<a href="<%= get_group_documents_path(group_id: params[:group_id], parent_id: 100) %>" data-space="1" class="lateral-nav-element <%= 'active' if current_page?(get_group_documents_path(group_id: params[:group_id], parent_id: 100)) %> <%= 'previous' if url_for(:back) == get_group_documents_url(group_id: params[:group_id], parent_id: 100) %>">
 						<i class="fa fa-folder-open-o"></i>Folder
@@ -40,10 +45,11 @@
 
 
 			<div class="lateral-nav" id="groups-nav" >
-				<div class="groups-title">Groups</div>
+				<div class="section-title">Other groups</div>
 				<% current_groups.each do |group| %>
 					<%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
-						<object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object>
+						<i class="fa fa-group"></i>
+						<!-- <object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object> -->
 						<span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
 					<% end %>
 				<% end %>
@@ -55,7 +61,7 @@
 
 		<% elsif  %>
 			<div class="lateral-nav" id="nav-perso">
-				<div class="groups-title">Tools</div>
+				<div class="section-title">Tools</div>
 				<div class="active-menu"></div>
 
 				<a href="<%= get_user_documents_path(folder: '0') %>" data-space="1" class="lateral-nav-element <%= 'active' if current_page?(get_user_documents_path(folder: '0')) %> <%= 'previous' if url_for(:back) == get_user_documents_url(folder: '0') %>">
