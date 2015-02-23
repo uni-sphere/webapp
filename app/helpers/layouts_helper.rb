@@ -11,6 +11,7 @@ module LayoutsHelper
   def current_group
     current_group = current_user.groups.find(params[:group_id])
   end
+
   
   def current_group_exists?
     current_user.groups.exists?(params[:group_id])
