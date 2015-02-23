@@ -13,6 +13,9 @@ class SessionsController < ActionController::Base
 
   layout "sessions"
   
+  def roadmap
+  end
+  
   def new
     @title = "home";
   end

@@ -49,6 +49,12 @@ Lms::Application.routes.draw do
   get '/users/:user_id/groups/:group_id/courses/:course_id/evaluations/:evaluation_id/marks/average', to: 'evaluations#get_average', as: 'get_average_evaluation'
   get '/users/:user_id/groups/:group_id/courses/:course_id/average', to: 'courses#get_average', as: 'get_average_course'
   
+  ###############
+  ### roadmap ###
+  ###############
+  
+  get '/roadmap',  to: 'sessions#roadmap', as: 'roadmap'
+  
   ###########
   ### box ###
   ###########
