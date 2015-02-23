@@ -1,10 +1,10 @@
 module ApplicationHelper
   
-  def force_under_construction
+  def set_under_construction
     @under_construction = true if Rails.env.production?
   end
   
-  def super_force_under_construction
+  def force_under_construction
     @under_construction = true
   end
   

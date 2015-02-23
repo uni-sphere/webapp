@@ -14,6 +14,7 @@ class SessionsController < ActionController::Base
   layout "sessions"
   
   def roadmap
+    set_under_construction
   end
   
   def new

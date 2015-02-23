@@ -13,7 +13,11 @@
 </head>
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+    <% if @under_construction == true %>
+      <%= render 'layouts/under_construction' %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
 

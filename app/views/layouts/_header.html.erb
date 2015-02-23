@@ -1,8 +1,8 @@
 <header class="navbar" data-activeslide="1" role="navigation">
   <div class="logo">
-    <%= link_to root_path do %>
+    <a href="<%= root_path %>">
       <object type="image/svg+xml" data="<%= asset_path 'mickey_2.svg' %>" id="logo"></object>
-    <% end %>
+    </a>
   </div>
 
   <% if @title == "home" %> 
@@ -29,7 +29,7 @@
   <% end %>
 
   <div class="nav-right">
-    <a href="#" class="right-nav-item">
+    <a href="<%= roadmap_path %>" class="right-nav-item">
       <span class="fa fa-bus"></span>
       <span class="text">ROADMAP</span>
     </a>
