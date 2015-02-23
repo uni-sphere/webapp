@@ -11,8 +11,8 @@ Lms::Application.routes.draw do
     resources :notifications, only: [:index]  
 		resources :groups do
       member do
-        get 'autocomplete'
-        patch 'send_invitation'
+        # get 'autocomplete'
+        # put 'send_invitation'
       end
       resources :courses, only: [:index, :create, :update, :destroy] do
         resources :evaluations, only: [:create, :update, :destroy] do
@@ -32,6 +32,14 @@ Lms::Application.routes.draw do
 
   root to: 'sessions#new'
 
+  ##################
+  ### invitation ###
+  ##################
+  
+  put '/user/group/send_invitation', to: 'groups#send_invitation', as: 'send_invitation'
+  put '/user/group/autocomplete', to: 'groups#autocomplete', as: 'autocomplete'
+  
+  #
   
   get '/signin',  to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'

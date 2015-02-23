@@ -1,13 +1,12 @@
 class GroupsController < ApplicationController
 
-  before_action :group_params, only: [:create, :update]
+  before_action :group_params, only: [:update]
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
   before_action :set_user 
   before_action :set_users, only: [:send_invitation]
   before_action :correct_user?, except: [:autocomplete, :send_invitation]
-  before_action :authorized_acces_group?, only: [:set_group]
-  before_action :set_group_origin, only: [:show, :edit, :update, :send_invitation]
+  before_action :set_group_origin, only: [:show, :edit, :update]
   
 
   def new
@@ -16,7 +15,7 @@ class GroupsController < ApplicationController
   
   def create
     respond_to do |format|
-      if current_user.groups.create(group_params) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: Group.last.name, parent_id: 100)
+      if current_user.groups.create(name: params[:name]) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: Group.last.name, parent_id: 100)
         Group.last.groupchats.create(name: 'general', channel: random_key)
         format.html { render :nothing => true }
         format.json { render :nothing => true }
@@ -72,8 +71,8 @@ class GroupsController < ApplicationController
 	    rescue ActiveRecord::StatementInvalid => e
 		    if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
 		      respond_to do |format|
-		        format.html { redirect_to user_groups_path(@user) }
-         	  format.json { render action: 'show', status: :created}
+		        format.html { render :nothing => true }
+         	  format.json { render :nothing => true }
           end
 		    end
 	    end
@@ -109,9 +108,12 @@ class GroupsController < ApplicationController
   end 
 
   def send_invitation
+    @group = current_user.groups.last
     @users.each do |email|
       if @user = User.where(email: email).first
-        @user.create_activity :send_invitation, owner: @group, recipient: @user
+        render joingroup_path(user_id: @user.id, group_id: @group.id)
+        # @user.create_activity :send_invitation, owner: @group, recipient: @user
+        
       end
     end
     redirect_to root_path
