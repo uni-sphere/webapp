@@ -16,14 +16,40 @@
       <div class="left-container">
         
         <!-- NEW GROUP -->
-        <div class="new-name-group">
-          <span class="actual-name-title">New group:</span>
-          <span class="actual-name">Hello</span>
+        <div class="grey-wrapper">
+          <div class="new-group-wrapper wrapper-default">
+            <span class="new-group-title title-default">Create a new group</span>
+
+            <%= text_field_tag :name, '', class: "input-wrapper", id:"new-group-input" %>
+            <div class="submit-default" id="new-group-submit">Create</div>
+          </div>
         </div>
-        <%= text_field_tag :name, '', class: "hidden input-new-name-group" %>
+        
+       <!--  <div class="new-member-wrapper wrapper-default">
+          <span class="new-member-title title-default">Add Member</span>
+
+          <%#= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
+          <div class="submit-default" id="new-member-submit">Add</div>
+        </div>
+ -->
+        <div class="new-member-wrapper wrapper-default">
+          <span class="new-member-title title-default">Add Member</span>
+
+          <%= form_for Group.last, url: { action: "send_invitation" } do |f| %>
+            <div id="user_search">
+              <input class="typeahead" type="text" placeholder="Invite a user" name="user[email]">
+              <input type="submit" value="Submit">
+            </div>
+          <% end %>
+          
+        </div>
+
+        
 
         <!-- ADD USER -->
-        <div class="added-member-list">
+
+       <!--  <div class="wrapper-default", id="list-member-wrapper">
+          <span class="title-default" id="list-member-title">Member list</span>
           <div class="member-added">
             <span class="fa fa-user"></span>
             <span class="user-name">Glouffi</span>
@@ -34,13 +60,12 @@
             <span class="user-name">Claire</span>
             <span class="fa fa-close delete-added-user"></span> 
           </div>
-        </div>
+        </div> -->
 
-        <div class="new-member">
+        <!-- <div class="new-member">
           <span class="fa fa-user"></span>
           <%= text_field_tag :name, '', class: "user-name-add" %>
-          
-        </div>
+        </div> -->
       </div>
       
       <!-- RIGHT -->
