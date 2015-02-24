@@ -7,7 +7,7 @@ $(document).on('ready page:load', function() {
 		// console.log(firepadRef.child('users')); to get methods
 		var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
 	  var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-	  	{ richTextToolbar: true, richTextShortcuts: true, defaultText: 'Hello, World!', userId: userId});
+	  	{ richTextToolbar: true, richTextShortcuts: true, defaultText: 'Start working in collaboration!', userId: userId});
 			
 		// var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
 // 			document.getElementById('userlist'), userId);
