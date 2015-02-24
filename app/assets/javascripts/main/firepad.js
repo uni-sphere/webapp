@@ -1,40 +1,20 @@
-// var firepadDisplay = {
-//
-// 	init: function() {
-// 		console.log('https://luminous-heat-5158.firebaseio.com/' + $('#firepad').attr('firepad_ref'));
-// 		var firepadRef = new Firebase('https://luminous-heat-5158.firebaseio.com/' + $('#firepad').attr('firepad_ref'));
-// 		var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-//
-// 		// Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
-//     // var userId = Math.floor(Math.random() * 9999999999).toString();
-//
-// 		// Create Firepad (with rich text features and our desired userId).
-//     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-//     	{ richTextToolbar: true, richTextShortcuts: true, defaultText: 'Hello, World!'});
-//
-//
-//
-// 		// Create FirepadUserList (with our desired userId).
-//     // var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
-//     // 	document.getElementById('userlist'), userId);
-// 	}
-//
-// }
-
 $(document).on('ready page:load', function() {
 	
 	if (window.location.href.indexOf("firepad") >= 0) {
+		
+		var userId = $('.user-name').attr('current_user_id')
 		var firepadRef = new Firebase('https://luminous-heat-5158.firebaseio.com/' + $('#firepad').attr('firepad_ref'));
+		// console.log(firepadRef.child('users')); to get methods
 		var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
 	  var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-	  	{ richTextToolbar: true, richTextShortcuts: true, defaultText: 'Hello, World!'});
+	  	{ richTextToolbar: true, richTextShortcuts: true, defaultText: 'Hello, World!', userId: userId});
 			
-				// var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
-			// 		document.getElementById('userlist'));
-			
-				firepad.on('ready', function() {
-				  // console.log(firepad.getText());
-				});
+		// var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
+// 			document.getElementById('userlist'), userId);
+//
+// 		firepad.on('ready', function() {
+// 			console.log(firepad.getText());
+// 		});
 	}
 		
 });
