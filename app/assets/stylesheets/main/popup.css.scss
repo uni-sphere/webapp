@@ -72,6 +72,11 @@
   border-bottom: 1px solid grey;
 
   background: $popup-header-bg;
+  background: $blue;
+  background: linear-gradient(to bottom, $light-blue, $blue);
+  // box-shadow: 1px 1px 1px black;
+  border-bottom: 2px solid black;
+
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 
@@ -79,7 +84,7 @@
     position: relative;
     float: right;
     margin-right: 8px;
-    color: $popup-exit;
+    color: black;
     &:hover{
       cursor: pointer;
       color: $popup-exit-focus;
@@ -90,7 +95,7 @@
 .header-title{
   position: relative;
   float: left;
-  margin-left: 5px;
+  margin-left: calc(45% - 55px);
   font-weight: bold;
 }
 
@@ -273,42 +278,97 @@
 
 .document-to-transfer{
   position: absolute;
-  top: 10%;
+  top: calc(50% - 20px);
   left: 20px;
 
   width: calc(50% - 80px);
-  height: 80%; 
+  height: 40px; 
 
   // background: green;
+  font-size: 20px;
+  line-height: 40px;
+  .fa-file-o{padding-right: 5px;}
 }
 .fa-long-arrow-right{
   position: absolute;
 
-  left: calc(50% - 40px);
+  left: calc(45% - 40px);
   top: calc(50% - 40px);
   font-size: 80px !important;
+  color: $grey;
+  // background: red;
 }
 .group-list{
   position: absolute;
-  top: 10%;
-  right: 20px;
+  display: none;
 
-  width: calc(50% - 80px);
-  height: 80%; 
+  left: calc(50% + 60px);
+}
+
+.list-element{
+  position: relative;
+  float: left;
+  clear: left;
+
+  height: 26px;
+  line-height: 26px;
+
+  margin: 2px 0px;
+  padding-left: 7px;
+
+  color: $nav;
+ 
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;      //keep the text on one line
+  overflow: hidden;         //prevent the text from being shown outside the border
+  text-overflow: ellipsis;  //cut off text with an elipsis
+
+  border-left: solid 3px $inside-bg;
 
   // background: green;
+  &:hover, &.active{
+    border-left: solid 3px $dark;
+    cursor: pointer;
+    // background: $dark;
+  }
+  .fa, img, object{
+    position: relative;
+    float: left;
+
+    width: 23px;
+    height: 26px;
+    line-height: 26px;
+
+    padding-right: 7px;
+
+    font-size: 20px;
+    color: $nav-fa;
+  }
 }
 
-#transfer-document-cancel{
-  position: absolute;
-  top: calc(50% - 13px);
-  left: calc(50% + 60px);
-  width: 100px;
-}
+
+
+
 
 #transfer-document-submit{
   position: absolute;
   width: 100px;
   top: calc(50% - 13px);
-  left: calc( 50% - 190px);
+  left: calc( 45% - 50px);
 }
+
+// #transfer-document-submit{
+//   position: absolute;
+//   width: 100px;
+//   top: calc(50% - 13px);
+//   left: calc( 50% - 190px);
+// }
+
+// #transfer-document-cancel{
+//   position: absolute;
+//   top: calc(50% - 13px);
+//   left: calc(50% + 60px);
+//   width: 100px;
+// }
+
