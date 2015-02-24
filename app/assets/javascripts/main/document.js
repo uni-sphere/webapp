@@ -354,6 +354,9 @@ var download = {
 		if (docSelection.target.attr('item') == 'file') {
 			download.download('/user/group/document/download')
 		}
+		if (docSelection.target.attr('item') == 'firepad') {
+			window.location = docSelection.target.find('a').attr('href')
+		}
 	},	
 	
 	perso: function() {
