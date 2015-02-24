@@ -4,24 +4,57 @@ var popup = {
 		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
 		$(target).slideDown(400);
 	},
+
+	showTransferFile: function(){
+		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
+		$('#slide-transfer-document').slideDown(400, function(){
+			var height = $('#transfer-document-wrapper').height()/2 - $('.group-list').height()/2
+			$('.group-list').css('top', height).fadeIn(1);
+		});
+	},
 	
 	hide: function(target) {
 		$("#background-grey").css({"opacity" : "0.7"}).fadeOut(400);
 		$(target).slideUp(200);
+	},
+
+	selectGroup: function(){
+		$(".list-element").on('click', function() { 
+			$('.list-element').removeClass('active');
+			$(this).addClass('active');
+		} )
 	},
 	
 	init: function() {
 		$("#new-group").on('click', function() { popup.show("#slide-new-group") } );
 		$("#all-groups").on('click', function() { popup.show("#slide-all-groups") } );
 		$("#current-group-config").on('click', function() { popup.show("#slide-group-config") } );
-		$("#transfer-file").on('click', function() { popup.show("#slide-transfer-document") } );
+		$("#transfer-file").on('click', function() { popup.showTransferFile() } );
 		
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
 		$("#close-all-groups").on('click', function() { popup.hide("#slide-all-groups") } );
 		$("#close-group-config").on('click', function() { popup.hide("#slide-group-config") } )
 		$(".close-transfer-document").on('click', function() { popup.hide("#slide-transfer-document") } )
+		
+		popup.selectGroup();
 	}
 };
+
+var transferFilePopup = {
+
+	resize: function() {
+		var height = $('#transfer-document-wrapper').height()/2 - $('.group-list').height()/2
+		$('.group-list').css('top', height)
+	},
+
+	init: function(){
+		transferFilePopup.resize();
+
+		$(window).resize(function(){
+			transferFilePopup.resize();
+		})
+	}
+}
 
 var group = {
 	
@@ -65,6 +98,7 @@ var usersSearch = new Bloodhound({
 
 mainPopup = function() {
 
+	transferFilePopup.init();
 	group.init();
 	
  //  usersSearch.initialize();
