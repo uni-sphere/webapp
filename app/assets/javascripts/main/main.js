@@ -109,11 +109,11 @@ var activeMenu = {
 	mainLayout = function() {
 		popupShow.init("#new-group","#slide-new-group")
 		popupShow.init("#all-groups","#slide-all-groups")
-		popupShow.init("#current-group-config","#slide-group-config")
+		// popupShow.init("#current-group-config","#slide-group-config")
 
 		popupHide.init("#close-new-group","#slide-new-group")
 		popupHide.init("#close-all-groups","#slide-all-groups")
-		popupHide.init("#close-group-config","#slide-group-config")
+		// popupHide.init("#close-group-config","#slide-group-config")
 		activeMenu.init()
 	};
 
