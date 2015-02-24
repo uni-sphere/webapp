@@ -1,22 +1,3 @@
-var popupShow = {
-	init: function(source,target) {
-		$(source).on('click', function() {
-			$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
-			$(target).slideDown(400);
-		});
-	}
-}
-
-var popupHide = {
-	init: function(source,target) {
-		$(source).on('click', function() {
-			$("#background-grey").css({"opacity" : "0.7"}).fadeOut(400);
-			$(target).slideUp(200);
-		});
-	}
-}
-
-
 var activeMenu = {
 	
 	previousTop: "18",
@@ -103,22 +84,10 @@ var activeMenu = {
 // 		}
 }
 
+mainLayout = function() {
+	activeMenu.init()
+};
 
-
-
-	mainLayout = function() {
-		popupShow.init("#new-group","#slide-new-group")
-		popupShow.init("#all-groups","#slide-all-groups")
-		popupShow.init("#current-group-config","#slide-group-config")
-
-		popupHide.init("#close-new-group","#slide-new-group")
-		popupHide.init("#close-all-groups","#slide-all-groups")
-		popupHide.init("#close-group-config","#slide-group-config")
-		activeMenu.init()
-	};
-
-	// $(function () { /* ... */ });
-
-	$(document).on('ready page:load', function() {
-		mainLayout();
-	});
+$(document).on('ready page:load', function() {
+	mainLayout();
+});
