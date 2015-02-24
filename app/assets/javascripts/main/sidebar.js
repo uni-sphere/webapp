@@ -18,17 +18,22 @@ var groupRedirection = {
 		if (typeof localStorage['lastGroupViewed'] != 'undefined') {window.location = localStorage['lastGroupViewed']} 
 	},
 	
+	storeGroup: function() {
+		localStorage['lastGroupViewed'] = '/user/group/documents?group_id=' + groupRedirection.target.attr("group_id") + '&parent_id=100'
+	},
+	
+	deleteStorage: function() {
+		localStorage.clear();
+	},
+	
 	init: function() {
+		$('.deco').on('click', groupRedirection.deleteStorage)
 		$('#tab-group').on('click', groupRedirection.redirect)
 		$('.group-name-sidebar').on('click', function() {
 			console.log('fill group');
 			groupRedirection.target = $(this);
 			groupRedirection.storeGroup()
 		})
-	},
-	
-	storeGroup: function() {
-		localStorage['lastGroupViewed'] = '/user/group/documents?group_id=' + groupRedirection.target.attr("group_id") + '&parent_id=100'
 	}
 }
 
