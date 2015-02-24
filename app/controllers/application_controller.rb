@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include BoxHelper
   
-  before_action :set_datas, only: [:index_notification]
-  before_action :index_notification
-  
+  # before_action :set_datas, only: [:index_notification]
+  # before_action :index_notification
+  before_action :has_group? 
   
  
 
@@ -33,7 +33,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
-
+  def has_group?
+    render 'layouts/no_groups' if request.url.include? 'group' and current_groups == nil
+  end
 
 end
 

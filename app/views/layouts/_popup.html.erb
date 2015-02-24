@@ -45,17 +45,18 @@
       <div class="fa fa-close" id="close-group-config"></div> 
     </div>
     <div class="slide-body">
-      <div class="wrapper-default" id="group-config-wrapper">
-      <% if params[:group_id] %>
-          <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
-                <input class="typeahead" id="tokenfield" type="text" placeholder="Invite users" name="user[email]">
-                <input type="submit" value="Create" class="submit-default" id="new-group-config-submit">
-        <% end %>
-      <% end %>
-      </div>
-      <div class="slide-footer">
+      <div class="wrapper-default" id="group-config-wrapperwrapper ">
+			<% if params[:group_id] %>
+				<%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
+       		<div id="user_search">
+         		<input class="typeahead" type="text" placeholder="Invite users" name="user[email]">
+         		<input type="submit" value="Submit">
+       		</div>
+				<% end %>
+			<% end %>
       </div>
     </div>
+    <div class="slide-footer"></div>
   </div>
 </div>
 
