@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150222180212) do
 
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", force: true do |t|
     t.integer  "trackable_id"
     t.string   "trackable_type"
     t.integer  "owner_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
 
-  create_table "calendars", force: :cascade do |t|
+  create_table "calendars", force: true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
     t.string   "name"
@@ -38,32 +38,32 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "courses", force: :cascade do |t|
+  create_table "courses", force: true do |t|
     t.string   "name"
-    t.decimal  "average",     precision: 2
-    t.decimal  "coefficient",               default: 1.0
+    t.decimal  "average",     precision: 2, scale: 0
+    t.decimal  "coefficient",                         default: 1.0
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "etherpads", force: :cascade do |t|
+  create_table "etherpads", force: true do |t|
     t.string   "name"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "evaluations", force: :cascade do |t|
+  create_table "evaluations", force: true do |t|
     t.string   "name"
-    t.decimal  "average",     precision: 2
-    t.decimal  "coefficient",               default: 1.0
+    t.decimal  "average",     precision: 2, scale: 0
+    t.decimal  "coefficient",                         default: 1.0
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", force: true do |t|
     t.string   "title"
     t.boolean  "allDay"
     t.datetime "start"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "firepads", force: :cascade do |t|
+  create_table "firepads", force: true do |t|
     t.string   "firebase_url"
     t.string   "name"
     t.integer  "groupfolder_id"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "groupchats", force: :cascade do |t|
+  create_table "groupchats", force: true do |t|
     t.string   "name"
     t.string   "channel"
     t.integer  "group_id"
@@ -94,9 +94,10 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "groupdocuments", force: :cascade do |t|
+  create_table "groupdocuments", force: true do |t|
     t.integer  "box_id"
     t.string   "share_url"
+    t.string   "dl_url"
     t.integer  "groupfolder_id"
     t.string   "name"
     t.string   "owner"
@@ -106,7 +107,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "groupfolders", force: :cascade do |t|
+  create_table "groupfolders", force: true do |t|
     t.string   "name"
     t.integer  "group_id"
     t.integer  "parent_id"
@@ -114,13 +115,13 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "groups", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "marks", force: :cascade do |t|
+  create_table "marks", force: true do |t|
     t.decimal  "score"
     t.string   "comment"
     t.integer  "evaluation_id"
@@ -129,7 +130,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "messages", force: true do |t|
     t.string   "content"
     t.integer  "owner_id"
     t.integer  "groupchat_id"
@@ -137,7 +138,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "microposts", force: :cascade do |t|
+  create_table "microposts", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
     t.integer  "group_id"
@@ -145,7 +146,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "relationgroups", force: :cascade do |t|
+  create_table "relationgroups", force: true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"
@@ -156,7 +157,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
   add_index "relationgroups", ["user_id", "group_id"], name: "index_relationgroups_on_user_id_and_group_id", unique: true
   add_index "relationgroups", ["user_id"], name: "index_relationgroups_on_user_id"
 
-  create_table "simpledocuments", force: :cascade do |t|
+  create_table "simpledocuments", force: true do |t|
     t.integer  "user_id"
     t.integer  "box_id"
     t.string   "box_name"
@@ -164,7 +165,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", force: true do |t|
     t.string   "name"
     t.time     "date"
     t.integer  "group_id"
@@ -173,7 +174,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "salt"
@@ -185,7 +186,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
-  create_table "viewparams", force: :cascade do |t|
+  create_table "viewparams", force: true do |t|
     t.integer  "user_id"
     t.integer  "notification_view", default: 0
     t.datetime "created_at"

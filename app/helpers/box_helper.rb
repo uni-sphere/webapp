@@ -111,7 +111,7 @@ module BoxHelper
           download_url: JSON.parse(response)['shared_link']['download_url']
         }
         document = Groupdocument.where(box_id: params[:box_id]).first
-        document.update(share_url: @link[:preview_url]) if document
+        document.update(share_url: @link[:preview_url], dl_url: @link[:download_url]) if document
       end
     }
   end
