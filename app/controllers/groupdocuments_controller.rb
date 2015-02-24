@@ -2,6 +2,7 @@ class GroupdocumentsController < ApplicationController
   
   before_action :authenticate?
   before_action :has_group?
+  before_action :refresh_token, only: [:read_folder]
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]
     
@@ -88,7 +89,6 @@ class GroupdocumentsController < ApplicationController
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
       check_request_success(response, "upload file")
       @response = JSON.parse(response)
-      logger.info @response['entries']
       @doc_params = {
         box_id: @response['entries'].first['id'],
         name: params[:file].original_filename,

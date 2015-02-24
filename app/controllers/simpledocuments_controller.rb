@@ -48,8 +48,8 @@ class SimpledocumentsController < ApplicationController
 
     box_content_resources[:basic]["folders/#{params[:folder]}/items"].get(params: req_params) { |response, request, result, &block|
       check_request_success(response, "index")
-      if response.code == 400
-        redirect_to send_oauth_path
+      if @return
+        return
       else
         @folder_name = JSON.parse(response)['name']
         @documents = []

@@ -31,12 +31,10 @@ module BoxHelper
     }
   end
   
-  def check_request_success(response, comment)
-    logger.info comment
-    case response.code
-    when 401 then refresh_token
-    when 200 then logger.info(response.code)
-    when 400 then logger.info(response.code)
+  def check_request_success(response, url)
+    if response.code == 400 || 401
+      redirect_to send_oauth_path
+      @return = true
     end
   end
   
@@ -71,7 +69,6 @@ module BoxHelper
       }
   
       box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
-        check_request_success(response, "refresh token")
         set_token(JSON.parse(response))
       }
     
@@ -103,7 +100,6 @@ module BoxHelper
     }
       
     box_content_resources[:basic]["files/#{box_id}"].put(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "create link")
       logger.info response
       if response.code == 200
         @link = {
