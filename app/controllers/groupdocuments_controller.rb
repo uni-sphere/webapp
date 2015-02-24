@@ -1,7 +1,7 @@
 class GroupdocumentsController < ApplicationController
   
   before_action :authenticate?
-  # before_action :has_group?
+  before_action :has_group?
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]
     
@@ -37,18 +37,23 @@ class GroupdocumentsController < ApplicationController
   end
   
   def read_file
-    if pro
-      create_link(params[:box_id])
+    create_link(params[:box_id])
+    if @link # owner
       redirect_to @link[:preview_url]
-    elsif pas pro
-      document = Groupdocuments.where(box_id: params[:box_id])
+    else # not owner
+      document = Groupdocument.where(box_id: params[:box_id]).first
       redirect_to document.share_url
     end
   end
   
   def download_file
     create_link(params[:box_id])
-    render json: {url: @link[:download_url]}.to_json 
+    if @link
+      render json: {url: @link[:download_url]}.to_json 
+    else
+      document = Groupdocument.where(box_id: params[:box_id]).first
+      render json: {url: document.share_url}.to_json
+    end
   end
   
   def rename_file
@@ -65,7 +70,12 @@ class GroupdocumentsController < ApplicationController
   
   def create_shared_link
     create_link(params[:box_id])
-    render json: @link[:preview_url]
+    if @link
+      render json: @link[:preview_url]
+    else
+      document = Groupdocument.where(box_id: params[:box_id]).first
+      render json: document.share_url
+    end
   end
   
   def create_file
@@ -83,8 +93,7 @@ class GroupdocumentsController < ApplicationController
         box_id: @response['entries'].first['id'],
         name: params[:file].original_filename,
         size: @response['entries'].first['size'],
-        owner: @response['entries'].first['created_by']['name'],
-        share_url: @response['entries'].first['shared_link']
+        owner: @response['entries'].first['created_by']['name']
       }
     }
     @folder.groupdocuments.create(@doc_params)
@@ -128,10 +137,6 @@ class GroupdocumentsController < ApplicationController
   end
   
   private
-  
-  def has_group?
-    render 'layouts/no_groups' if !params[:group_id]
-  end
   
   def groupdocuments_params
     { 
