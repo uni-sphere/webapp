@@ -33,7 +33,7 @@ module BoxHelper
   
   def check_request_success(response, url)
     if response.code == 400 || 401
-      redirect_to send_oauth_path
+      # redirect_to send_oauth_path
       @return = true
     end
   end

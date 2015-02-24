@@ -589,6 +589,7 @@ var firepadList = {
 				group_id: $('#breadcrumb').attr('group_id')
 			},
 			complete: function() {
+				window.location = '/user/group/documents?group_id=' + $('#breadcrumb').attr('group_id') + '&folder_id=' + $('#breadcrumb').attr('folder_id')
 			}
 		})
 	},

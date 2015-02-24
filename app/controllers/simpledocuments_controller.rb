@@ -48,14 +48,10 @@ class SimpledocumentsController < ApplicationController
 
     box_content_resources[:basic]["folders/#{params[:folder]}/items"].get(params: req_params) { |response, request, result, &block|
       check_request_success(response, "index")
-      if @return
-        return
-      else
-        @folder_name = JSON.parse(response)['name']
-        @documents = []
-        JSON.parse(response)['entries'].each do |file|
-          @documents << file
-        end
+      @folder_name = JSON.parse(response)['name']
+      @documents = []
+      JSON.parse(response)['entries'].each do |file|
+        @documents << file
       end
     }
   end
