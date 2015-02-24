@@ -104,7 +104,7 @@
     	    <div class="box_document" document-selected="false">
             <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
               <%= link_to read_firepad_path(firepad_id: firepad.id, group_id: current_group.id) do %>
-                <%= fa_icon("folder-o") %>
+                <%= fa_icon("fire") %>
                 <span class="name-document go-file"><%= firepad.name %></span>
               <% end %>
               <%= text_field_tag :name, firepad.name, class: "hidden input-rename-document" %>
@@ -143,7 +143,7 @@
           <div id="create-doc">
             <!-- <span id="create-doc-title>"<i class="fa fa-file"></i>New</span> -->
 						
-            <a id="create-firepad" class="create-list"><i class="fa fa-file-o"></i>Firepad</a>
+            <a id="create-firepad" class="create-list"><i class="fa fa-fire"></i>Firepad</a>
           </div>
         </div>
       </div>
