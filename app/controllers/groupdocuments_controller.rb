@@ -37,11 +37,11 @@ class GroupdocumentsController < ApplicationController
   end
   
   def read_file
-    if pro
-      create_link(params[:box_id])
+    create_link(params[:box_id])
+    if @link # owner
       redirect_to @link[:preview_url]
-    elsif pas pro
-      document = Groupdocuments.where(box_id: params[:box_id])
+    else # not owner
+      document = Groupdocument.where(box_id: params[:box_id]).first
       redirect_to document.share_url
     end
   end
