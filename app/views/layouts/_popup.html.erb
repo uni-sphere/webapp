@@ -26,7 +26,7 @@
     <div class="slide-body">
       <div class="wrapper-default" id="all-groups-wrapper ">
         <% current_groups.each do |group| %>
-          <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
+          <%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "lateral-nav-element" do %>
             <i class="fa fa-group"></i>
             <span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
           <% end %>

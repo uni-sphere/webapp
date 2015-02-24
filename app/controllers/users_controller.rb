@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     respond_to do |format|
-      if @user.save and @user.create_viewparam(notification_view: '0') and create_box(params[:email])
+      if @user.save and @user.create_viewparam(notification_view: '0') and create_box(params[:email]) and @user.groups.create(name: 'My first group') and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar')
         format.html { redirect_to @user }
         format.json { render action: 'show', status: :created, location: @user }
 	      sign_in @user
