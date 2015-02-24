@@ -1,5 +1,7 @@
 class GroupchatsController < ApplicationController
   
+  before_action :force_under_construction
+
   def index
     if (params[:channel])
       @groupchat = current_group.groupchats.where(channel: params[:channel]).first
