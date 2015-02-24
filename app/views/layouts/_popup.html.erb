@@ -61,7 +61,35 @@
 
 
 
-
+<div id="slide-transfer-document" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">Transfer file</span>
+      <div class="fa fa-close close-transfer-document"></div> 
+    </div>
+    <div class="slide-body">
+      <div class="wrapper-default" id="transfer-document-wrapper">
+        <div class="document-to-transfer">
+          <i class="fa fa-file-o"></i>
+          <span class="file-name">bonjour</span>
+        </div>
+        <div class="fa fa-long-arrow-right"></div>
+        <div class="group-list">
+          <% current_groups.each do |group| %>
+            <%= link_to user_group_calendar_path(current_user, group, group.calendar), class: "lateral-nav-element" do %>
+              <i class="fa fa-group"></i>
+              <span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <input value="Transfer" class="submit-default" id="transfer-document-submit">
+      <input value="Cancel" class="submit-default close-transfer-document" id="transfer-document-cancel">
+    </div>
+  </div>
+</div>
 
 
 

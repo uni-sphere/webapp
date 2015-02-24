@@ -14,10 +14,12 @@ var popup = {
 		$("#new-group").on('click', function() { popup.show("#slide-new-group") } );
 		$("#all-groups").on('click', function() { popup.show("#slide-all-groups") } );
 		$("#current-group-config").on('click', function() { popup.show("#slide-group-config") } );
+		$("#transfer-file").on('click', function() { popup.show("#slide-transfer-document") } );
 		
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
 		$("#close-all-groups").on('click', function() { popup.hide("#slide-all-groups") } );
 		$("#close-group-config").on('click', function() { popup.hide("#slide-group-config") } )
+		$(".close-transfer-document").on('click', function() { popup.hide("#slide-transfer-document") } )
 	}
 };
 
