@@ -63,12 +63,11 @@ class GroupsController < ApplicationController
 	    begin 
 		    @relation.save!
         # @relation.create_activity :join_group, owner: set_group, recipient: @user
-        reutrn
 	    rescue ActiveRecord::StatementInvalid => e
 		    if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
-		      return
 		    end
 	    end
+    redirect_to get_group_documents_path(group_id: params[:group_id], parent_id: 100)
   end
 
   def leave_group

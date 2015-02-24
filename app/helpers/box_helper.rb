@@ -95,7 +95,8 @@ module BoxHelper
   
   def create_link(box_id)
     req_params = {
-      shared_link: {access: "open",
+      shared_link: {
+        access: "open",
         can_download: true,
         can_preview: true
       }
@@ -103,11 +104,13 @@ module BoxHelper
       
     box_content_resources[:basic]["files/#{box_id}"].put(req_params.to_json) { |response, request, result, &block|
       check_request_success(response, "create link")
-      # logger.info response
+      logger.info response
       @link = {
         preview_url: JSON.parse(response)['shared_link']['url'],
         download_url: JSON.parse(response)['shared_link']['download_url']
       }
+      @document = Groupdocuments.where(box_id: box_id).first
+      @document.update(share_url: JSON.parse(response)['shared_link']['url'])
     }
   end
 

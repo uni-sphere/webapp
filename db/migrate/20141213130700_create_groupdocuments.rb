@@ -2,6 +2,7 @@ class CreateGroupdocuments < ActiveRecord::Migration
   def change
     create_table :groupdocuments do |t|
       t.integer :box_id
+      t.string :share_url
       t.integer :groupfolder_id
       t.string :name
       t.string :owner

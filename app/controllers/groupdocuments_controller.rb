@@ -1,7 +1,7 @@
 class GroupdocumentsController < ApplicationController
   
   before_action :authenticate?
-  before_action :has_group?
+  # before_action :has_group?
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]
     
@@ -37,8 +37,13 @@ class GroupdocumentsController < ApplicationController
   end
   
   def read_file
-    create_link(params[:box_id])
-    redirect_to @link[:preview_url]
+    if pro
+      create_link(params[:box_id])
+      redirect_to @link[:preview_url]
+    elsif pas pro
+      document = Groupdocuments.where(box_id: params[:box_id])
+      redirect_to document.share_url
+    end
   end
   
   def download_file
@@ -73,16 +78,17 @@ class GroupdocumentsController < ApplicationController
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
       check_request_success(response, "upload file")
       @response = JSON.parse(response)
+      logger.info @response['entries']
       @doc_params = {
         box_id: @response['entries'].first['id'],
         name: params[:file].original_filename,
         size: @response['entries'].first['size'],
-        owner: @response['entries'].first['created_by']['name']
+        owner: @response['entries'].first['created_by']['name'],
+        share_url: @response['entries'].first['shared_link']
       }
     }
-    logger.info @doc_params
     @folder.groupdocuments.create(@doc_params)
-
+    create_link(@response['entries'].first['id'])
     redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id])
 
   end
