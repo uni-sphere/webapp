@@ -8,10 +8,8 @@
     </div>
     <div class="slide-body">
       <div class="wrapper-default" id="new-group-wrapper">
-        <div id="user_search">
-          <input class="typeahead" type="text" placeholder="Invite users" name="user[email]">
-          <input type="submit" value="Submit">
-        </div>
+        <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
+        <div class="submit-default" id="new-group-submit">Create</div>
       </div>
     </div>
     <div class="slide-footer"></div>
@@ -48,15 +46,38 @@
     </div>
     <div class="slide-body">
       <div class="wrapper-default" id="group-config-wrapperwrapper ">
-       <div id="user_search">
-          <input class="typeahead" type="text" placeholder="Invite users" name="user[email]">
-          <input type="submit" value="Submit">
-        </div>
+			<% if params[:group_id] %>
+				<%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
+       		<div id="user_search">
+         		<input class="typeahead" type="text" placeholder="Invite users" name="user[email]">
+         		<input type="submit" value="Submit">
+       		</div>
+				<% end %>
+			<% end %>
       </div>
     </div>
     <div class="slide-footer"></div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
