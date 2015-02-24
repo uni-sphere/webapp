@@ -94,16 +94,18 @@ $(document).on('ready page:load', function() {
 	    var data = e.attrs.value.split('|')
 	    e.attrs.value = data[1] || data[0]
 	    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
+	    $('.token').unwrap()
 	  })
 	  .on('tokenfield:createdtoken', function (e) {
 	    var re = /\S+@\S+\.\S+/
 	    var valid = re.test(e.attrs.value)
 	    if (!valid) {
 	      $(e.relatedTarget).addClass('invalid fa fa-user-times')
-	    }
+	    } 
 	    else{
 	    	$(e.relatedTarget).addClass('fa fa-user')
 	    }
+	    $(".token").wrapAll( "<div class='token-container'/>");
 	  })
 	  .on('tokenfield:edittoken', function (e) {
 	    if (e.attrs.label !== e.attrs.value) {
@@ -112,14 +114,8 @@ $(document).on('ready page:load', function() {
 	    }
 	  })
 	  .on('tokenfield:removedtoken', function (e) {
-	    alert('Token removed! Token value was: ' + e.attrs.value)
+	    // alert('Token removed! Token value was: ' + e.attrs.value)
 	  })
-
-	  // .on('tokenfield:createdtoken', function (e) {
-	  //   $(e.relatedTarget).addClass('fa fa-user')
-	  // })
-
-
 	  .tokenfield()
 
 });
