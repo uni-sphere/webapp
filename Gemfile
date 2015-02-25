@@ -23,7 +23,7 @@ gem 'sass-rails'      #scss minifier
 gem 'uglifier'        #js minifiers
 
 
-gem "activerecord-mysql-unsigned"
+# gem "activerecord-mysql-unsigned"
 gem 'jquery-turbolinks' 
 gem 'fullcalendar2-rails'
 gem 'will_paginate'
