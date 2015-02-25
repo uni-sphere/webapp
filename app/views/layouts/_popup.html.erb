@@ -17,26 +17,7 @@
 </div>
 
 
-<div id="slide-all-groups" class="slide">
-  <div class="slide-container">
-    <div class="slide-header">
-      <span class="header-title">Select a group</span>
-      <div class="fa fa-close" id="close-all-groups"></div> 
-    </div>
-    <div class="slide-body">
-      <div class="wrapper-default" id="all-groups-wrapper ">
-        <% current_groups.each do |group| %>
-          <%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "lateral-nav-element" do %>
-            <i class="fa fa-group"></i>
-            <span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
-          <% end %>
-        <% end %>
 
-      </div>
-    </div>
-    <div class="slide-footer"></div>
-  </div>
-</div>
 
 <div id="slide-group-config" class="slide">
   <div class="slide-container">
@@ -75,6 +56,35 @@
           <span class="file-name">bonjour</span>
         </div>
         <div class="fa fa-long-arrow-right"></div>
+        <div class="group-list group-list-transfer-document">
+          <% current_groups.each do |group| %>
+            <div class="list-element">
+              <i class="fa fa-group"></i>
+              <span class="list-element-name" group_id="<%= group.id %>"><%= group.name %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <input value="Transfer" class="submit-default validate-default" id="transfer-document-submit">
+      <!-- <input value="Cancel" class="submit-default close-transfer-document" id="transfer-document-cancel"> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div id="slide-all-groups" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">Select a group</span>
+      <div class="fa fa-close" id="close-all-groups"></div> 
+    </div>
+    <div class="slide-body">
+      <div class="wrapper-default" id="all-groups-wrapper">
         <div class="group-list">
           <% current_groups.each do |group| %>
             <div class="list-element">
@@ -86,17 +96,10 @@
       </div>
     </div>
     <div class="slide-footer">
-      <input value="Transfer" class="submit-default" id="transfer-document-submit">
-      <!-- <input value="Cancel" class="submit-default close-transfer-document" id="transfer-document-cancel"> -->
+      <input value="Select" class="submit-default validate-default" id="all-groups-submit">
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 
 
