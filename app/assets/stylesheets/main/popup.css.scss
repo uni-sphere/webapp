@@ -20,9 +20,7 @@
   // opacity: 1;
 
   top: 20%;
-  left: 35%;
-
-  width: 30%;
+  
   height: 60%;
 
   display: none;
@@ -95,7 +93,7 @@
 .header-title{
   position: relative;
   float: left;
-  margin-left: calc(45% - 55px);
+  margin-left: calc(50% - 55px);
   font-weight: bold;
 }
 
@@ -130,15 +128,33 @@
 
 // WRAPPER DEFAULT
 .wrapper-default{
-  position: relative;
-  float: left;
-  clear: left;
-  // background: red;
-  font-size: 16px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
 
   width: 100%;
-  height: 100%;
+
+  // background: blue;
+  font-size: 16px;
+
+ 
+
+  
 }
+
+// GROUP LIST ------------------
+.group-list{
+  position: absolute;
+  overflow-y: scroll;
+
+  top: 20px !important;
+  // background: red;
+
+  // max-height: 200px;
+  
+}
+
 
 
 // TITLE ----------------------
@@ -170,6 +186,7 @@
   font-size: 14px;
   font-weight: bold;
   color: black;
+
   
   &:focus {
     box-shadow: 0px 0 1px 2px #2980b9;
@@ -201,21 +218,11 @@
   position: absolute;
   width: 100px;
   top: calc(50% - 13px);
-  left: calc( 45% - 50px);
+  left: calc( 50% - 50px);
 }
 
 
 
-// GROUP LIST ------------------
-
-
-.group-list{
-  position: absolute;
-  // display: none;
-
-  // left: calc(50% + 60px);
-  background: red;
-}
 
 
 .list-element{
@@ -228,6 +235,7 @@
 
   margin: 2px 0px;
   padding-left: 7px;
+  padding-right: 20px;
 
   color: $nav;
  
@@ -239,7 +247,7 @@
 
   border-left: solid 3px $inside-bg;
 
-  background: green;
+  // background: green;
   &:hover, &.active{
     border-left: solid 3px $dark;
     cursor: pointer;
@@ -261,6 +269,19 @@
 }
 
 // ---------------
+// NEW GROUP
+// ---------------
+
+
+#slide-new-group{
+  left: 40%;
+  right: 40%;
+  // display: inline-block !important;
+}
+
+
+
+// ---------------
 // SEE ALL GROUPS
 // ---------------
 
@@ -269,12 +290,109 @@
 }
 
 #slide-all-groups{
+  left: 40%;
+  right: 40%;
   // display: inline-block !important;
 }
 
+
 #all-groups-wrapper{
-  left: calc(45% - 60px);
+   width: 60% !important;
+   display: none;
+  // width: calc(55% + 60px);
+  // background: blue;
 }
+
+
+
+
+
+
+// --------------------
+// TRANSFERT DOCUMENT -------------------------------
+// --------------------
+
+// .group-list-transfer-document{
+//   left: calc(50% + 60px);
+// }
+
+
+
+
+#slide-transfer-document{
+  left: 35%;
+  right: 35%;
+  // display: inline-block !important;
+}
+
+#transfer-document-wrapper{
+  display: none;
+
+
+  // background: grey;
+}
+
+.document-to-transfer{
+  position: absolute;
+  top: calc(50% - 20px);
+  left: 20px;
+
+  width: calc(50% - 80px);
+  height: 40px; 
+
+  // background: green;
+  font-size: 20px;
+  line-height: 40px;
+  .fa-file-o{padding-right: 5px;}
+}
+.fa-long-arrow-right{
+  position: absolute;
+
+  left: calc(45% - 40px);
+  top: calc(50% - 40px);
+  font-size: 80px !important;
+  color: $grey;
+  // background: red;
+}
+
+
+
+
+
+
+#transfer-document-submit{
+ 
+}
+
+// #transfer-document-submit{
+//   position: absolute;
+//   width: 100px;
+//   top: calc(50% - 13px);
+//   left: calc( 50% - 190px);
+// }
+
+// #transfer-document-cancel{
+//   position: absolute;
+//   top: calc(50% - 13px);
+//   left: calc(50% + 60px);
+//   width: 100px;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // AUTOCOMPLETE
 
@@ -339,65 +457,3 @@
 .invalid{
   color: red;
 }
-
-
-// --------------------
-// TRANSFERT DOCUMENT -------------------------------
-// ---------------------
-
-#slide-transfer-document{
-  // display: inline-block !important;
-}
-
-#transfer-document-wrapper{
-
-
-  // background: grey;
-}
-
-.document-to-transfer{
-  position: absolute;
-  top: calc(50% - 20px);
-  left: 20px;
-
-  width: calc(50% - 80px);
-  height: 40px; 
-
-  // background: green;
-  font-size: 20px;
-  line-height: 40px;
-  .fa-file-o{padding-right: 5px;}
-}
-.fa-long-arrow-right{
-  position: absolute;
-
-  left: calc(45% - 40px);
-  top: calc(50% - 40px);
-  font-size: 80px !important;
-  color: $grey;
-  // background: red;
-}
-
-
-
-
-
-
-#transfer-document-submit{
- 
-}
-
-// #transfer-document-submit{
-//   position: absolute;
-//   width: 100px;
-//   top: calc(50% - 13px);
-//   left: calc( 50% - 190px);
-// }
-
-// #transfer-document-cancel{
-//   position: absolute;
-//   top: calc(50% - 13px);
-//   left: calc(50% + 60px);
-//   width: 100px;
-// }
-
