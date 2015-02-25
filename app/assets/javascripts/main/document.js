@@ -355,7 +355,7 @@ var download = {
 			download.download('/user/group/document/download')
 		}
 		if (docSelection.target.attr('item') == 'firepad') {
-			window.location = docSelection.target.find('a').attr('href')
+			download.download('/user/group/document/download')
 		}
 	},	
 	
@@ -454,7 +454,8 @@ var shareLink = {
 			shareLink.createLink('/user/group/file/create_shared_link')
 		}
 		if (docSelection.target.attr('item') == 'firepad') {
-			// window.location = 'https://luminous-heat-5158.firebaseio.com/' + docSelection.target.attr('firepad_ref')
+			$('#link-display').html('Not available');
+			shareLink.fnSelect('link-display');
 		}
 	},
 	
@@ -469,7 +470,6 @@ var shareLink = {
 					box_id: docSelection.target.attr('document_id'),
 				},
 				complete: function(data) {
-					console.log(data.responseText);
 					$('#link-display').html(data.responseText);
 					shareLink.fnSelect('link-display');
 					$( '#loader' ).addClass("hidden");
