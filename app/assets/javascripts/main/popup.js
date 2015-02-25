@@ -5,12 +5,39 @@ var popup = {
 		$(target).slideDown(400);
 	},
 
+
+	// getMaxElementWidth: function (element){
+	//   var maxWidth = 0;
+	//   element.each(function(i){
+	//   	console.log(typeof $(this))
+	//   	console.log($(this).width());
+	//     if($(this).width() > maxWidth){
+	//       maxWidth = $(this).width();
+	//     }
+	//   });
+	//   console.log(maxWidth);
+	//   return maxWidth;
+	// },
+
+	
+
 	showWithListFile: function(target){
 		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
 		$(target).slideDown(400, function(){
-			var top = $(target).find('.wrapper-default').height()/2 - $(target).find('.group-list').height()/2;
-			var height = $(target).find('.wrapper-default').height() - 40;
-			$(target).find('.group-list').css('top', top).css('height-max',height);
+			// var top = $(target).find('.wrapper-default').height()/2 - $(target).find('.group-list').height()/2;
+			var maxHeight = $(target).find('.wrapper-default').height() - 40;
+			// var width = $(target).find('.group-list').width();
+			// var maxItemWidth = popup.getMaxElementWidth($(target).find('.list-element')) + 15
+			// console.log(maxItemWidth);
+			// var width = $('#slide-all-groups').width()/2 + $(target).find('.group-list').width()/2;
+
+
+			$(target).find('.wrapper-default').fadeIn(1);
+			$(target).find('.group-list').css('max-height', maxHeight);
+			// $(target).find('.group-list').css('top', top).fadeIn(1);
+
+			// $(target).find('.group-list').css({'max-height': height, 'top':top}).fadeIn(1);
+			// $(target).find('.group-list').css('top', top).fadeIn(1);
 		});
 	},
 	
@@ -30,11 +57,11 @@ var popup = {
 		$("#new-group").on('click', function() { popup.show("#slide-new-group") } );
 		// $("#all-groups").on('click', function() { popup.show("#slide-all-groups") } );
 		$("#current-group-config").on('click', function() { popup.show("#slide-group-config") } );
-		$("#transfer-file").on('click', function() { popup.showTransferFile('#slide-transfer-document') } );
+		$("#transfer-file").on('click', function() { popup.showWithListFile('#slide-transfer-document') } );
 		$("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
 
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
-		// $("#close-all-groups").on('click', function() { popup.hide("#slide-all-groups") } );
+		$("#close-all-groups").on('click', function() { popup.hide("#slide-all-groups") } );
 		$("#close-group-config").on('click', function() { popup.hide("#slide-group-config") } )
 		$(".close-transfer-document").on('click', function() { popup.hide("#slide-transfer-document") } )
 		

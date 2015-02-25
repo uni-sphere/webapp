@@ -48,17 +48,17 @@
 						<div class="fa fa-plus"  id="new-group"></div>
 				</div> 
 				
-				<% current_groups.each do |group| %>
-					<%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "lateral-nav-element" do %>
-						<i class="fa fa-group"></i>
-						<!-- <object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object> -->
-						<span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
+				<div class="sidebar-list-group">
+					<% current_groups.each do |group| %>
+						<%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "lateral-nav-element" do %>
+							<i class="fa fa-group"></i>
+							<!-- <object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object> -->
+							<span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>
+						<% end %>
 					<% end %>
-				<% end %>
-				<!-- <div class="line-separator"></div> -->
-				<div id="all-groups">
-					<i class="fa fa-eye"></i>See all groups
 				</div>
+				<!-- <div class="line-separator"></div> -->
+				<div id="all-groups"><i class="fa fa-eye"></i>See all groups</div>
 			</div>
 
 		<% elsif %>
