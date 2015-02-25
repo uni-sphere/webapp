@@ -140,7 +140,7 @@
 
  
 
-  display: none;
+  
 }
 
 // GROUP LIST ------------------
@@ -269,6 +269,19 @@
 }
 
 // ---------------
+// NEW GROUP
+// ---------------
+
+
+#slide-new-group{
+  left: 40%;
+  right: 40%;
+  // display: inline-block !important;
+}
+
+
+
+// ---------------
 // SEE ALL GROUPS
 // ---------------
 
@@ -285,6 +298,7 @@
 
 #all-groups-wrapper{
    width: 60% !important;
+   display: none;
   // width: calc(55% + 60px);
   // background: blue;
 }
@@ -312,6 +326,7 @@
 }
 
 #transfer-document-wrapper{
+  display: none;
 
 
   // background: grey;

@@ -1,5 +1,11 @@
 module BoxHelper
   
+  # https://unisphereapp.appsdeck.eu/user/receive_oauth
+  # https://www.unisphereapp.appsdeck.eu/user/documentsunisphereapp.appsdeck.eu/user/documents
+
+  # http://localhost:3000/user/receive_oauth
+  # http://localhost:3000/user/documentsunisphereapp.appsdeck.eu/user/documents
+
   RestClient.log =
   Object.new.tap do |proxy|
     def proxy.<<(message)
