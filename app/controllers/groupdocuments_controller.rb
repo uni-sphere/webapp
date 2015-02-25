@@ -88,16 +88,35 @@ class GroupdocumentsController < ApplicationController
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
       check_request_success(response, "upload file")
-      @response = JSON.parse(response)
-      @doc_params = {
-        box_id: @response['entries'].first['id'],
-        name: params[:file].original_filename,
-        size: @response['entries'].first['size'],
-        owner: @response['entries'].first['created_by']['name']
-      }
+      if response.code != 409
+        @response = JSON.parse(response)
+        @doc_params = {
+          box_id: @response['entries'].first['id'],
+          name: params[:file].original_filename,
+          size: @response['entries'].first['size'],
+          owner: @response['entries'].first['created_by']['name']
+        }
+      elsif response.code == 409
+        @search_id = JSON.parse(response)['context_info']['conflicts']['id']
+        @need_to_search = true
+      end
     }
+    
+    if @need_to_search == true
+      box_content_resources[:basic]["files/#{@search_id}"].get() { |response, request, result, &block|
+        check_request_success(response, "get informations")
+        @response = JSON.parse(response)
+        @doc_params = {
+          box_id: @search_id,
+          name: @response['name'],
+          size: @response['size'],
+          owner: @response['created_by']['name']
+        }
+      }
+    end
+      
     @folder.groupdocuments.create(@doc_params)
-    create_link(@response['entries'].first['id'])
+    create_link(@doc_params[:box_id])
     redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id])
 
   end
