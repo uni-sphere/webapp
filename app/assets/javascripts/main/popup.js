@@ -4,40 +4,26 @@ var popup = {
 		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
 		$(target).slideDown(400);
 	},
-
-
-	// getMaxElementWidth: function (element){
-	//   var maxWidth = 0;
-	//   element.each(function(i){
-	//   	console.log(typeof $(this))
-	//   	console.log($(this).width());
-	//     if($(this).width() > maxWidth){
-	//       maxWidth = $(this).width();
-	//     }
-	//   });
-	//   console.log(maxWidth);
-	//   return maxWidth;
-	// },
-
 	
-
 	showWithListFile: function(target){
 		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
 		$(target).slideDown(400, function(){
-			// var top = $(target).find('.wrapper-default').height()/2 - $(target).find('.group-list').height()/2;
-			var maxHeight = $(target).find('.wrapper-default').height() - 40;
-			// var width = $(target).find('.group-list').width();
-			// var maxItemWidth = popup.getMaxElementWidth($(target).find('.list-element')) + 15
-			// console.log(maxItemWidth);
-			// var width = $('#slide-all-groups').width()/2 + $(target).find('.group-list').width()/2;
-
-
-			$(target).find('.wrapper-default').fadeIn(1);
+			var maxHeight = $(target).find('.slide-body').height() - 40;
+			$(target).find('.wrapper-group-list').css('max-height', maxHeight);
 			$(target).find('.group-list').css('max-height', maxHeight);
-			// $(target).find('.group-list').css('top', top).fadeIn(1);
 
-			// $(target).find('.group-list').css({'max-height': height, 'top':top}).fadeIn(1);
-			// $(target).find('.group-list').css('top', top).fadeIn(1);
+			var top = $(target).find('.slide-body').height()/2 - $(target).find('.wrapper-group-list').height()/2;
+			$(target).find('.wrapper-group-list').css('top', top).fadeIn(1);
+
+			if($(target).attr('id') == 'slide-transfer-document'){
+				var maxHeight = $(target).find('.slide-body').height() - 40;
+				$(target).find('.wrapper-document-to-transfer').css('max-height', maxHeight);
+				$(target).find('.document-to-transfer').css('max-height', maxHeight);
+
+				var top = $(target).find('.slide-body').height()/2 - $(target).find('.wrapper-document-to-transfer').height()/2;
+				$(target).find('.wrapper-document-to-transfer').css('margin-top', top).fadeIn(1);
+				$(target).find('.arrow-wrapper').fadeIn(1);
+			}
 		});
 	},
 	
@@ -49,13 +35,12 @@ var popup = {
 	selectGroup: function(){
 		$(".list-element").on('click', function() { 
 			$('.list-element').removeClass('active');
-			$(this).addClass('active');
+			$(this).addClass('#slide-transfer-document');
 		} )
 	},
 	
 	init: function() {
 		$("#new-group").on('click', function() { popup.show("#slide-new-group") } );
-		// $("#all-groups").on('click', function() { popup.show("#slide-all-groups") } );
 		$("#current-group-config").on('click', function() { popup.show("#slide-group-config") } );
 		$("#transfer-file").on('click', function() { popup.showWithListFile('#slide-transfer-document') } );
 		$("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
@@ -114,72 +99,87 @@ var group = {
 	init: function() {
 		$('#new-group-submit').on('click', group.create)
 	}
-};
+},
 
-var usersSearch = new Bloodhound({
-	datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
-	queryTokenizer: Bloodhound.tokenizers.whitespace,
-	limit: 4,
-	remote: {
-		url: '/user/group/autocomplete?query=%QUERY'
-	}
-});
+// var engine = new Bloodhound({
+//   local: [{value: 'red'}, {value: 'blue'}, {value: 'green'} , {value: 'yellow'}, {value: 'violet'}, {value: 'brown'}, {value: 'purple'}, {value: 'black'}, {value: 'white'}],
+//   datumTokenizer: function(d) {
+//     return Bloodhound.tokenizers.whitespace(d.value);
+//   },
+//   queryTokenizer: Bloodhound.tokenizers.whitespace
+// });
+
+
+
+// var autoComplete = {
+// 	usersSearch: function(){
+// 		new Bloodhound({
+// 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
+// 			queryTokenizer: Bloodhound.tokenizers.whitespace,
+// 			limit: 4,
+// 			remote: {
+// 				url: '/user/group/autocomplete?query=%QUERY'
+// 			}
+// 		})
+// 	},
+	
+// 	tokenfield: function() {
+// 		$('#tokenfield')
+// 			.on('tokenfield:createtoken', function (e) {
+// 		    var data = e.attrs.value.split('|')
+// 		    e.attrs.value = data[1] || data[0]
+// 		    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
+// 		    $('.token').unwrap()
+// 		  })
+
+// 		  .on('tokenfield:createdtoken', function (e) {
+// 		    var re = /\S+@\S+\.\S+/
+// 		    var valid = re.test(e.attrs.value)
+// 		    if (!valid) {
+// 		      $(e.relatedTarget).addClass('invalid fa fa-user-times')
+// 		    } 
+// 		    else{
+// 		    	$(e.relatedTarget).addClass('fa fa-user')
+// 		    }
+// 		    $(".token").wrapAll( "<div class='token-container'/>");
+// 		  })
+
+// 		  .on('tokenfield:edittoken', function (e) {
+// 		    if (e.attrs.label !== e.attrs.value) {
+// 		      var label = e.attrs.label.split(' (')
+// 		      e.attrs.value = label[0] + '|' + e.attrs.value
+// 		    }
+// 		  })
+
+// 		  .on('tokenfield:removedtoken', function (e) {
+// 		    // alert('Token removed! Token value was: ' + e.attrs.value)
+// 		  })
+
+// 		  // .tokenfield();
+
+// 		  .tokenfield({
+// 	      typeahead: [null, {
+// 	        name: 'users',
+// 	        displayKey: 'email',
+// 	        source: usersSearch.ttAdapter()}]
+// 	    });
+// 	},
+
+// 	init: function() {
+// 		autoComplete.usersSearch();
+// 		autoComplete.tokenfield();
+// 	};
+// }
 
 mainPopup = function() {
 
 	transferFilePopup.init();
 	group.init();
-	
- //  usersSearch.initialize();
-	// $('.typeahead').tokenfield({
-	//   typeahead: [null, {
-	// 		name: 'users',
-	//   	displayKey: 'email',
-	//   	source: usersSearch.ttAdapter()}]
-	// });
-	
 	popup.init();
-	
+	// autoComplete.init();
 };
+
 
 $(document).on('ready page:load', function() {
 	mainPopup();
-
-	usersSearch.initialize();
-	
-	$('#tokenfield')
-		.on('tokenfield:createtoken', function (e) {
-	    var data = e.attrs.value.split('|')
-	    e.attrs.value = data[1] || data[0]
-	    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
-	    $('.token').unwrap()
-	  })
-	  .on('tokenfield:createdtoken', function (e) {
-	    var re = /\S+@\S+\.\S+/
-	    var valid = re.test(e.attrs.value)
-	    if (!valid) {
-	      $(e.relatedTarget).addClass('invalid fa fa-user-times')
-	    } 
-	    else{
-	    	$(e.relatedTarget).addClass('fa fa-user')
-	    }
-	    $(".token").wrapAll( "<div class='token-container'/>");
-	  })
-	  .on('tokenfield:edittoken', function (e) {
-	    if (e.attrs.label !== e.attrs.value) {
-	      var label = e.attrs.label.split(' (')
-	      e.attrs.value = label[0] + '|' + e.attrs.value
-	    }
-	  })
-	  .on('tokenfield:removedtoken', function (e) {
-	    // alert('Token removed! Token value was: ' + e.attrs.value)
-	  })
-
-	  .tokenfield({
-      typeahead: [null, {
-        name: 'users',
-        displayKey: 'email',
-        source: usersSearch.ttAdapter()}]
-    });
-
 });

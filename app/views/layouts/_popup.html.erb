@@ -1,20 +1,6 @@
 <div id="background-grey"></div>
 
-<div id="slide-new-group" class="slide">
-  <div class="slide-container">
-    <div class="slide-header">
-      <span class="header-title">New group</span>
-      <div class="fa fa-close" id="close-new-group"></div>
-    </div>
-    <div class="slide-body">
-      <div class="wrapper-default" id="new-group-wrapper">
-        <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
-        <div class="submit-default" id="new-group-submit">Create</div>
-      </div>
-    </div>
-    <div class="slide-footer"></div>
-  </div>
-</div>
+
 
 
 
@@ -25,19 +11,16 @@
       <span class="header-title">Configuration</span>
       <div class="fa fa-close" id="close-group-config"></div> 
     </div>
-    <div class="slide-body">
-      <div class="wrapper-default" id="group-config-wrapperwrapper ">
-			<% if params[:group_id] %>
-				<%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
-       		<div id="user_search">
-         		<input class="typeahead" type="text" placeholder="Invite users" name="user[email]">
-         		<input type="submit" value="Submit">
-       		</div>
-				<% end %>
-			<% end %>
-      </div>
+    <div class="body-group-config">
+      <% if params[:group_id] %>
+        <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
+            
+            <input type="text" class="form-control" id="tokenfield" placeholder="User Email" />
+
+            <input value="Invite" class="submit-default validate-default" id="group-config-add-user">
+        <% end %>
+      <% end %>
     </div>
-    <div class="slide-footer"></div>
   </div>
 </div>
 
@@ -50,12 +33,16 @@
       <div class="fa fa-close close-transfer-document"></div> 
     </div>
     <div class="slide-body">
-      <div class="wrapper-default" id="transfer-document-wrapper">
+      <div class="wrapper-document-to-transfer">
         <div class="document-to-transfer">
           <i class="fa fa-file-o"></i>
           <span class="file-name">bonjour</span>
         </div>
+      </div>
+      <div class="arrow-wrapper">
         <div class="fa fa-long-arrow-right"></div>
+      </div>
+      <div class="wrapper-group-list" id="wrapper-group-list-transfer-document">
         <div class="group-list group-list-transfer-document">
           <% current_groups.each do |group| %>
             <div class="list-element">
@@ -74,9 +61,6 @@
 </div>
 
 
-
-
-
 <div id="slide-all-groups" class="slide">
   <div class="slide-container">
     <div class="slide-header">
@@ -84,13 +68,15 @@
       <div class="fa fa-close" id="close-all-groups"></div> 
     </div>
     <div class="slide-body">
-      <div class="wrapper-default" id="all-groups-wrapper">
+      <div class="wrapper-group-list" id="all-groups-wrapper">
         <div class="group-list group-list-all-groups">
           <% current_groups.each do |group| %>
-            <div class="list-element">
+            <%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "list-element" do %>
               <i class="fa fa-group"></i>
-              <span class="list-element-name" group_id="<%= group.id %>"><%= group.name %></span>
-            </div>
+              <span class="list-element-name" group_id="<%= group.id %>">
+                <%= group.name %>
+              </span>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -104,7 +90,22 @@
 
 
 
-
+<div id="slide-new-group" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">New group</span>
+      <div class="fa fa-close" id="close-new-group"></div>
+    </div>
+    <div class="slide-body">
+      <div class="body-wrapper-new-group">
+      <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <input value="Create" class="submit-default validate-default" id="new-group-submit">
+    </div>
+  </div>
+</div>
 
 
 
