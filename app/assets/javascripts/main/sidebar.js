@@ -2,11 +2,10 @@
 
 var folder = {
 	init: function() {
-		// console.log(typeof typeof localStorage['lastIndex']);
-// 		if (typeof localStorage['lastIndex'] != 'undefined' || localStorage['lastIndex'] != 'NaN') {
-// 			var id = JSON.parse(localStorage[localStorage['lastIndex'] + 'breadcrumb']).box_id;
-// 			$('#perso-folder').html( '<a href="/user/documents?folder=' + id + '" ><i class="fa fa-folder-open"></i>Folder </a>')
-// 		}
+		if (typeof localStorage['lastIndex'] != 'undefined' || localStorage['lastIndex'] != 'NaN') {
+			var id = JSON.parse(localStorage[localStorage['lastIndex'] + 'breadcrumb']).box_id;
+			$('#perso-folder').html( '<a href="/user/documents?folder=' + id + '" ><i class="fa fa-folder-open"></i>Folder </a>')
+		}
 	}
 }
 
@@ -30,7 +29,7 @@ var groupRedirection = {
 		$('.deco').on('click', groupRedirection.deleteStorage)
 		$('#tab-group').on('click', groupRedirection.redirect)
 		$('.group-name-sidebar').on('click', function() {
-			console.log('fill group');
+			localStorage.removeItem('lastGroupViewed');
 			groupRedirection.target = $(this);
 			groupRedirection.storeGroup()
 		})

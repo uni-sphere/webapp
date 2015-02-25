@@ -13,7 +13,7 @@ class FirepadsController < ApplicationController
     @firepadRef = @firepad.firebase_url
   end
   
-  def update
+  def rename
     if @firepad.update(name: params[:name])
       render :nothing => true
     else 

@@ -77,7 +77,7 @@ var breadcrumb = {
 		});
 		
 		$('.breadcrumb-redirection').on('click', function() {
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 		});
 		
 		$('.power-off').on('click', function() { localStorage.clear() })
@@ -203,7 +203,7 @@ var autoSubmitUpload = {
 	init: function() {
 		$('#upload-doc').on('click', function() {
 			$('#input-button-upload').click();
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 		});
 		$('#input-button-upload').on('change', function() {
 			$('#submit-button-upload').click();
@@ -227,11 +227,13 @@ var rename = {
 		
 		if (rename.docType == 'file') {
 			var nameWithFormat = renameInput.attr("value");
-			console.log('with:' + nameWithFormat);
 			var nameWithoutFormat = nameWithFormat.slice(0, nameWithFormat.lastIndexOf('.'));
-			console.log('without:' + nameWithoutFormat);
 			rename.format = nameWithFormat.slice(nameWithFormat.lastIndexOf('.'), nameWithFormat.length);
+			console.log('format:');
+			console.log('with:' + nameWithFormat);
+			console.log('without:' + nameWithoutFormat);
 			console.log('format:' + rename.format);
+			console.log('=====');
 		}
 		
 		renameInput.attr("value", nameWithoutFormat);
@@ -241,6 +243,9 @@ var rename = {
 	},
 	
 	ajaxSuccess: function() {
+		console.log('enter test:');
+		console.log(rename.format);
+		console.log('=====');
 		(rename.format == null) ? rename.docName.children('.name-document').html(renameInput.val()) : rename.docName.children('.name-document').html(renameInput.val() + rename.format);
 		renameInput.attr("value", (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format);
 		renameInput.addClass('hidden');
@@ -248,13 +253,13 @@ var rename = {
 	},
 	
 	perso: function(url, data) {
-		console.log(rename.format);
 		url = '/user/' + rename.docType + '/rename';
 		data = {
 			name: (rename.format == null) ? renameInput.val() : renameInput.val() + rename.format,
 			box_id: rename.target.parent().attr('document_id'),
 			type: rename.docType
 		};
+		
 		rename.rename(url, data);
 	},
 	
@@ -277,8 +282,9 @@ var rename = {
 	},
 	
 	rename: function(renameUrl, renameData) {
+		console.log('rename:');
 		console.log(renameData);
-		console.log('ajax');
+		console.log('=====');
 		$.ajax({
 			url: renameUrl,
 			type:"PUT",
@@ -295,7 +301,6 @@ var rename = {
 			rename.target = $(this);
 			if (rename.enterFlag == false) { setLocation(rename) };
 			rename.enterFlag = false;
-			console.log('bla');
 		});
 		$('.input-rename-document').on('keyup', function(event) {
 			if (event.keyCode == $.ui.keyCode.ENTER) {
@@ -342,7 +347,7 @@ var trash = {
 		 
 	init: function() {
 		$('#delete-doc').on('click', function() {
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 			setLocation(trash);
 		})
 	}
@@ -380,7 +385,7 @@ var download = {
 	
 	init: function() {
 		$('#download-doc').on('click', function() {
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 			console.log('download');
 			setLocation(download);
 		})
@@ -407,7 +412,7 @@ var docSelection = {
 		});
 		
 		$('.go-file').on('click', function() {
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 		})
 	}
 }; // OK
@@ -462,7 +467,7 @@ var shareLink = {
 	createLink: function(shareUrl) {
 		console.log('share ajax');
 		if (docSelection.target.attr('item') == 'file') {
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 			$.ajax({
 				url: shareUrl,
 				type:"POST",
@@ -575,7 +580,7 @@ var folderRedirection = {
 	init: function() {
 		$('.go-folder').on('click', function(e) {
 			if (docSelection.target != null) { docSelection.remove() };
-			$( '#loader' ).removeClass("hidden");
+			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
 		})
 	}
 }; // OK
