@@ -595,9 +595,9 @@ var firepadList = {
 			data: {
 				groupfolder_id: $('#breadcrumb').attr('folder_id'),
 				group_id: $('#breadcrumb').attr('group_id')
-			},
-			complete: function() {
-				window.location = '/user/group/documents?group_id=' + $('#breadcrumb').attr('group_id') + '&folder_id=' + $('#breadcrumb').attr('folder_id')
+			}, 
+			complete: function(data) {
+				window.location = '/user/group/document/firepad/read?firepad_id=' + data.responseJSON.id
 			}
 		})
 	},

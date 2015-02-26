@@ -13,7 +13,7 @@
         <div class="wrapper-action">
 					<% if params[:group_id] %>
             <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input" %>
-            <input value="Create" class="submit-default submit-config" id="group-config-add-user-submit">
+            <input type="submit" value="Create" class="submit-default submit-config" id="group-config-add-user-submit">
 					<% end %>
         </div>
       </div>
@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="slide-footer">
-      <input value="Transfer" class="submit-default validate-default" id="transfer-document-submit">
+      <input type="submit" value="Transfer" class="submit-default validate-default" id="transfer-document-submit">
       <!-- <input value="Cancel" class="submit-default close-transfer-document" id="transfer-document-cancel"> -->
     </div>
   </div>
@@ -97,7 +97,7 @@
       </div>
     </div>
     <div class="slide-footer">
-      <input value="Select" class="submit-default validate-default" id="all-groups-submit">
+      <input type="submit" value="Select" class="submit-default validate-default" id="all-groups-submit">
     </div>
   </div>
 </div>
@@ -117,7 +117,7 @@
       </div>
     </div>
     <div class="slide-footer">
-      <input value="Create" class="submit-default validate-default" id="new-group-submit">
+      <input type="submit" value="Create" class="submit-default validate-default" id="new-group-submit">
     </div>
   </div>
 </div>

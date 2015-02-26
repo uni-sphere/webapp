@@ -5,7 +5,7 @@ class FirepadsController < ApplicationController
   def create
     @groupfolder = current_group.groupfolders.find params[:groupfolder_id]
     if @groupfolder.firepads.create(firebase_url: random_key, name: 'New Firepad', groupfolder_id: params[:groupfolder_id], owner: current_user.id)
-      render :nothing => true
+      render json: {id: @groupfolder.firepads.last.id}.to_json 
     end
   end
   
