@@ -1,6 +1,6 @@
 var folder = {
 	init: function() {
-		if (typeof localStorage['lastIndex'] != 'undefined' || localStorage['lastIndex'] != 'NaN') {
+		if (localStorage['lastIndex']) {
 			var id = JSON.parse(localStorage[localStorage['lastIndex'] + 'breadcrumb']).box_id;
 			$('#perso-folder').html( '<a href="/user/documents?folder=' + id + '" ><i class="fa fa-folder-open"></i>Folder </a>')
 		}
