@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.integer  "groupfolder_id"
     t.boolean  "deleted",        default: false
     t.string   "owner"
+    t.boolean  "admin",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,7 +96,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
   end
 
   create_table "groupdocuments", force: true do |t|
-    t.integer  "box_id"
+    t.string   "box_id"
     t.string   "share_url"
     t.string   "dl_url"
     t.integer  "groupfolder_id"
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.string   "owner"
     t.integer  "size"
     t.boolean  "deleted",        default: false
+    t.boolean  "admin",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,6 +119,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
+    t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

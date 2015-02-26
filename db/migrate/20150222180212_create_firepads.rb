@@ -6,6 +6,7 @@ class CreateFirepads < ActiveRecord::Migration
       t.integer :groupfolder_id
       t.boolean :deleted, default: false
       t.string :owner
+      t.boolean :admin, default: false
       
       t.timestamps
     end

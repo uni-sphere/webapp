@@ -75,10 +75,11 @@ module BoxHelper
   def set_token(response)
     cookies.permanent[:access_token] = response['access_token']
     cookies.permanent[:refresh_token] = response['refresh_token']
+    cookies.permanent[:refresh_token_time] = Time.now
   end
   
   def refresh_token
-    if cookies.permanent[:refresh_token]
+    if cookies.permanent[:refresh_token] and cookies.permanent[:refresh_token_time] < 45.minutes.ago
       refresh_token_params = {
         grant_type: 'refresh_token',
         refresh_token: cookies.permanent[:refresh_token],
@@ -127,8 +128,11 @@ module BoxHelper
           preview_url: JSON.parse(response)['shared_link']['url'],
           download_url: JSON.parse(response)['shared_link']['download_url']
         }
-        document = Groupdocument.where(box_id: params[:box_id]).first
-        document.update(share_url: @link[:preview_url], dl_url: @link[:download_url]) if document
+        @document = Groupdocument.where(box_id: box_id).last
+        if @document
+          @document.update_attributes(share_url: @link[:preview_url])
+          @document.update_attributes(dl_url: @link[:download_url])
+        end
       end
     }
   end

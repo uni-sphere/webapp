@@ -12,8 +12,10 @@
         <div class="config-header">Add user</div>
         <div class="wrapper-action">
 					<% if params[:group_id] %>
-            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input" %>
+					<%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
+            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input", name: 'user[email]' %>
             <input type="submit" value="Create" class="submit-default submit-config" id="group-config-add-user-submit">
+					<% end %>
 					<% end %>
         </div>
       </div>

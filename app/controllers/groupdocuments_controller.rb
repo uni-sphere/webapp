@@ -10,10 +10,16 @@ class GroupdocumentsController < ApplicationController
     
     @group_folders = current_group.groupfolders.where(parent_id: params[:folder_id])
     @new_folder = @folder.groupdocuments.new()
-    @group_documents = @folder.groupdocuments
-    @current_group = current_group
     
-    @firepads = @folder.firepads.all
+    if current_user.id == current_group.admin_id
+      @group_documents = @folder.groupdocuments
+      @firepads = @folder.firepads
+    else
+      @group_documents = @folder.groupdocuments.where(admin: true)
+      @firepads = @folder.firepads.where(admin: true)
+    end
+    
+    @current_group = current_group
     
     @breadcrumbs = []
     @root = true
@@ -66,6 +72,7 @@ class GroupdocumentsController < ApplicationController
     @transfered = Groupdocument.new(@attributes)
     @groupfolder = Groupfolder.where(["group_id = :group_id and parent_id = :parent_id", { group_id: params[:group_id], parent_id: 100 }]).first
     @transfered.groupfolder_id = @groupfolder.id
+    @transfered.admin = true if Group.find(params[:group_id]).admin_id == current_user.id 
     @transfered.save
     render :nothing => true
   end
@@ -122,7 +129,7 @@ class GroupdocumentsController < ApplicationController
           box_id: @response['entries'].first['id'],
           name: params[:file].original_filename,
           size: @response['entries'].first['size'],
-          owner: @response['entries'].first['created_by']['name']
+          owner: @response['entries'].first['created_by']['name'],
         }
       elsif response.code == 409
         @search_id = JSON.parse(response)['context_info']['conflicts']['id']
@@ -144,7 +151,10 @@ class GroupdocumentsController < ApplicationController
         }
       }
     end
-      
+    
+    @doc_params[:admin] = true if Group.find(params[:group_id]).admin_id == current_user.id 
+    logger.info Group.find(params[:group_id]).admin_id
+    logger.info current_user.id
     @folder.groupdocuments.create(@doc_params)
     create_link(@doc_params[:box_id])
     redirect_to get_group_documents_path(group_id: params[:group_id], folder_id: params[:folder_id])

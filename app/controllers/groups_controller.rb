@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   
   def create
     respond_to do |format|
-      if current_user.groups.create(name: params[:name]) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: Group.last.name, parent_id: 100)
+      if current_user.groups.create(name: params[:name], admin_id: current_user.id) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupfolders.create(name: Group.last.name, parent_id: 100)
         Group.last.groupchats.create(name: 'general', channel: random_key)
         format.html { render :nothing => true }
         format.json { render json: Group.last }

@@ -5,6 +5,9 @@ class FirepadsController < ApplicationController
   def create
     @groupfolder = current_group.groupfolders.find params[:groupfolder_id]
     if @groupfolder.firepads.create(firebase_url: random_key, name: 'New Firepad', groupfolder_id: params[:groupfolder_id], owner: current_user.id)
+      logger.info current_user.id
+      logger.info Group.find(params[:group_id]).admin_id
+      @groupfolder.firepads.last.update(admin: true) if Group.find(params[:group_id]).admin_id == current_user.id 
       render json: {id: @groupfolder.firepads.last.id}.to_json 
     end
   end
@@ -30,6 +33,8 @@ class FirepadsController < ApplicationController
     @transfered = Firepad.new(@attributes)
     @groupfolder = Groupfolder.where(["group_id = :group_id and parent_id = :parent_id", { group_id: params[:group_id], parent_id: 100 }]).first
     @transfered.groupfolder_id = @groupfolder.id
+    @transfered[:admin] = true if Group.find(params[:group_id]).admin_id == current_user.id 
+    logger.info @transfered.admin
     @transfered.save
     render :nothing => true
   end
