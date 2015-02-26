@@ -35,7 +35,7 @@ var popup = {
 	selectGroup: function(){
 		$(".list-element").on('click', function() { 
 			$('.list-element').removeClass('active');
-			$(this).addClass('#slide-transfer-document');
+			$(this).addClass('active');
 		} )
 	},
 	
@@ -57,18 +57,56 @@ var popup = {
 	}
 };
 
-var transferFilePopup = {
-
+var transfer = {
+	
+	target: null,
+	
+	run: function(url) {
+		
+		if (docSelection.target.attr('item') == 'file') {
+			url = '/user/group/file/transfer'
+		} else if (docSelection.target.attr('item') == 'folder') {
+			url = '/user/group/folder/transfer'
+		} else if (docSelection.target.attr('item') == 'firepad') {
+			url = '/user/group/document/firepad/transfer'
+		};
+		
+		$.ajax({
+			url: url,
+			type:"PUT",
+			dataType: 'JSON',
+			data: {
+				group_id: transfer.target.attr('group_id'),
+				item_id: docSelection.target.attr('item_id')
+			}
+		});
+		popup.hide("#slide-transfer-document");
+	},
+	
 	resize: function() {
 		var height = $('#transfer-document-wrapper').height()/2 - $('.group-list').height()/2
 		$('.group-list').css('top', height)
 	},
-
-	init: function(){
-		transferFilePopup.resize();
+	
+	init: function() {
+	    
+	    transfer.resize();
 
 		$(window).resize(function(){
-			transferFilePopup.resize();
+			transfer.resize();
+		})
+	    
+		$('.list-element').on('click', function() {
+			transfer.target = $(this).find('span');
+			console.log(transfer.target);
+		});
+		
+		$('#transfer-document-submit').on('click', function() {
+			console.log(transfer.target);
+			if (transfer.target != null) { 
+				transfer.run();
+				transfer.target = null;
+			}
 		})
 	}
 }
@@ -102,122 +140,10 @@ var group = {
 	init: function() {
 		$('#new-group-submit').on('click', group.create)
 	}
-},
-
-// var engine = new Bloodhound({
-//   local: [{value: 'red'}, {value: 'blue'}, {value: 'green'} , {value: 'yellow'}, {value: 'violet'}, {value: 'brown'}, {value: 'purple'}, {value: 'black'}, {value: 'white'}],
-//   datumTokenizer: function(d) {
-//     return Bloodhound.tokenizers.whitespace(d.value);
-//   },
-//   queryTokenizer: Bloodhound.tokenizers.whitespace
-// });
-
-
-
-// var autoComplete = {
-// 	usersSearch: function(){
-// 		new Bloodhound({
-// 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
-// 			queryTokenizer: Bloodhound.tokenizers.whitespace,
-// 			limit: 4,
-// 			remote: {
-// 				url: '/user/group/autocomplete?query=%QUERY'
-// 			}
-// 		})
-// 	},
-	
-// 	tokenfield: function() {
-// 		$('#tokenfield')
-// 			.on('tokenfield:createtoken', function (e) {
-// 		    var data = e.attrs.value.split('|')
-// 		    e.attrs.value = data[1] || data[0]
-// 		    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
-// 		    $('.token').unwrap()
-// 		  })
-
-// 		  .on('tokenfield:createdtoken', function (e) {
-// 		    var re = /\S+@\S+\.\S+/
-// 		    var valid = re.test(e.attrs.value)
-// 		    if (!valid) {
-// 		      $(e.relatedTarget).addClass('invalid fa fa-user-times')
-// 		    } 
-// 		    else{
-// 		    	$(e.relatedTarget).addClass('fa fa-user')
-// 		    }
-// 		    $(".token").wrapAll( "<div class='token-container'/>");
-// 		  })
-
-// 		  .on('tokenfield:edittoken', function (e) {
-// 		    if (e.attrs.label !== e.attrs.value) {
-// 		      var label = e.attrs.label.split(' (')
-// 		      e.attrs.value = label[0] + '|' + e.attrs.value
-// 		    }
-// 		  })
-
-// 		  .on('tokenfield:removedtoken', function (e) {
-// 		    // alert('Token removed! Token value was: ' + e.attrs.value)
-// 		  })
-
-// 		  // .tokenfield();
-
-// 		  .tokenfield({
-// 	      typeahead: [null, {
-// 	        name: 'users',
-// 	        displayKey: 'email',
-// 	        source: usersSearch.ttAdapter()}]
-// 	    });
-// 	},
-
-// 	init: function() {
-// 		autoComplete.usersSearch();
-// 		autoComplete.tokenfield();
-// 	};
-// }
-
-var transfer = {
-	
-	target: null,
-	
-	run: function(url) {
-		
-		if (docSelection.target.attr('item') == 'file') {
-			url = '/user/group/file/transfer'
-		} else if (docSelection.target.attr('item') == 'folder') {
-			url = '/user/group/folder/transfer'
-		} else if (docSelection.target.attr('item') == 'firepad') {
-			url = '/user/group/document/firepad/transfer'
-		};
-		
-		$.ajax({
-			url: url,
-			type:"PUT",
-			dataType: 'JSON',
-			data: {
-				group_id: transfer.target.attr('group_id'),
-      	item_id: docSelection.target.attr('item_id')
-			},
-			complete: function(data) { popup.hide("#slide-new-group") }
-		});
-	},
-	
-	init: function() {
-		$('.list-element').on('click', function() {
-			transfer.target = $(this).find('span');
-			console.log(transfer.target);
-		});
-		
-		$('#transfer-document-submit').on('click', function() {
-			console.log(transfer.target);
-			if (transfer.target != null) { 
-				transfer.run();
-				transfer.target = null;
-			}
-		})
-	}
-}
+};
 
 mainPopup = function() {
-	transferFilePopup.init();
+	transfer.init();
 	group.init();
 	popup.init();
 };

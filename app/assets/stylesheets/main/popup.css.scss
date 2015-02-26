@@ -17,11 +17,6 @@
 .slide{
   position: fixed;
   z-index: 120;
-  // opacity: 1;
-
-  top: 20%;
-  
-  height: 60%;
 
   display: none;
 }
@@ -58,7 +53,7 @@
 .slide-header{
   position: relative;
   float: left;
-    z-index: 120;
+  z-index: 120;
 
 
   width: 100%;
@@ -79,9 +74,8 @@
   border-top-right-radius: 5px;
 
   .fa{
-    position: relative;
-    float: right;
-    margin-right: 8px;
+    position: absolute;
+    right: 8px;
     color: black;
     &:hover{
       cursor: pointer;
@@ -91,9 +85,12 @@
 }
 
 .header-title{
-  position: relative;
-  float: left;
-  margin-left: calc(50% - 61px);
+  display: inline-block;
+
+  margin: 0px auto !important;
+
+  overflow-y: auto;
+
   font-weight: bold;
 }
 
@@ -299,6 +296,9 @@
 #slide-new-group{
   left: 40%;
   right: 40%;
+
+  top: 40%;
+  bottom: 40%;
   // display: inline-block !important;
 }
 
@@ -315,6 +315,9 @@
 #slide-all-groups{
   left: 40%;
   right: 40%;
+
+  top: 20%;
+  bottom: 20%;
 }
 
 #all-groups-wrapper{
@@ -339,6 +342,9 @@
 #slide-transfer-document{
   left: 35%;
   right: 35%;
+
+  top: 25%;
+  bottom: 25%;
   // display: inline-block !important;
 }
 
@@ -427,6 +433,9 @@
 #slide-group-config{
   left: 35%;
   right: 35%;
+
+  top: 25%;
+  bottom: 25%;
 
   // display: inline-block !important;
   form{
