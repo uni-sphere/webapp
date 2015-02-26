@@ -18,9 +18,9 @@ class OauthsController < ApplicationController
     }
 
     box_content_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
-      check_request_success(response, "send oauth")
       redirect_to(request.url)
     }
+    render :nothing => true
   end
   
 end

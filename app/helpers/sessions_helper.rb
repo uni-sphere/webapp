@@ -55,7 +55,7 @@ module SessionsHelper
   end
 
 	def not_authenticate?
-		redirect_to current_user if signed_in?
+		redirect_to get_group_documents_path(group_id: current_user.groups.last.id, parent_id: 100) if signed_in?
 	end
 
 	def correct_user?

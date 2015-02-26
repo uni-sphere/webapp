@@ -2,9 +2,9 @@ class GroupdocumentsController < ApplicationController
   
   before_action :authenticate?
   before_action :has_group?
-  # before_action :refresh_token, only: [:read_folder]
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]
+  before_action :refresh_token, only: [:read_folder]
     
   def read_folder
     
@@ -113,7 +113,9 @@ class GroupdocumentsController < ApplicationController
     }
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
-      check_request_success(response, "upload file")
+      check_request_success(response)
+      return false if @return
+      
       if response.code != 409
         @response = JSON.parse(response)
         @doc_params = {
@@ -130,7 +132,9 @@ class GroupdocumentsController < ApplicationController
     
     if @need_to_search == true
       box_content_resources[:basic]["files/#{@search_id}"].get() { |response, request, result, &block|
-        check_request_success(response, "get informations")
+        check_request_success(response)
+        return false if @return
+      
         @response = JSON.parse(response)
         @doc_params = {
           box_id: @search_id,
