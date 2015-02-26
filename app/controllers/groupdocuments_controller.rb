@@ -57,6 +57,32 @@ class GroupdocumentsController < ApplicationController
     end
   end
   
+  def transfer_file
+    @file = Groupdocument.find params[:item_id]
+    @clone = @file.clone
+    @attributes = {
+      box_id: @clone.box_id, share_url: @clone.share_url, dl_url: @clone.dl_url, groupfolder_id: @clone.groupfolder_id, name: @clone.name, owner: @clone.owner, size: @clone.size
+    }
+    @transfered = Groupdocument.new(@attributes)
+    @groupfolder = Groupfolder.where(["group_id = :group_id and parent_id = :parent_id", { group_id: params[:group_id], parent_id: 100 }]).first
+    @transfered.groupfolder_id = @groupfolder.id
+    @transfered.save
+    render :nothing => true
+  end
+  
+  def transfer_folder
+    @folder = Groupfolder.find params[:item_id]
+    @clone = @folder.clone
+    @attributes = {
+      parent_id: @clone.parent_id, name: @clone.name, group_id: @clone.group_id
+    }
+    @transfered = Groupfolder.new(@attributes)
+    @transfered.group_id = params[:group_id]
+    @transfered.parent_id = Groupfolder.where(group_id: params[:group_id]).first.id
+    @transfered.save
+    render :nothing => true
+  end
+  
   def rename_file
     @file = Groupdocument.find params[:item_id]
     @file.update(name: params[:name])

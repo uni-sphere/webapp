@@ -105,7 +105,8 @@ Lms::Application.routes.draw do
   put '/user/group/file/move', to: 'groupdocuments#move_file', as: 'move_group_file'
   put '/user/group/folder/move', to: 'groupdocuments#move_folder', as: 'move_group_folder'
   put '/user/group/file/rename', to: 'groupdocuments#rename_file', as: 'rename_group_file'
-  put '/user/group/folder/rename', to: 'groupdocuments#rename_folder', as: 'rename_group_folder'
+  put '/user/group/folder/transfer', to: 'groupdocuments#transfer_folder', as: 'transfer_group_folder'
+  put '/user/group/file/transfer', to: 'groupdocuments#transfer_file', as: 'transfer_group_file'
 
   delete '/user/group/document/file/delete', to: 'groupdocuments#destroy_file', as: 'delete_group_file'
   delete '/user/group/document/folder/delete', to: 'groupdocuments#destroy_folder', as: 'delete_group_folder'
@@ -124,8 +125,11 @@ Lms::Application.routes.draw do
   
   get '/user/group/document/firepad/read', to: 'firepads#read', as: 'read_firepad'
   post '/user/group/document/firepad/create', to: 'firepads#create', as: 'create_firepad'
+  
   put '/user/group/document/firepad/rename', to: 'firepads#rename', as: 'rename_firepad'
   put '/user/group/document/firepad/move', to: 'firepads#move', as: 'move_firepad'
+  put '/user/group/document/firepad/transfer', to: 'firepads#transfer', as: 'transfer_firepad'
+  
   delete '/user/group/document/firepad/destroy', to: 'firepads#destroy', as: 'destroy_firepad'
   
 end

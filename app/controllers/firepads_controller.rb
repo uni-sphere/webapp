@@ -21,6 +21,19 @@ class FirepadsController < ApplicationController
     end
   end
   
+  def transfer
+    @firepad = Firepad.find params[:item_id]
+    @clone = @firepad.clone
+    @attributes = {
+      firebase_url: @clone.firebase_url, name: @clone.name, groupfolder_id: @clone.groupfolder_id, owner: @clone.owner
+    }
+    @transfered = Firepad.new(@attributes)
+    @groupfolder = Groupfolder.where(["group_id = :group_id and parent_id = :parent_id", { group_id: params[:group_id], parent_id: 100 }]).first
+    @transfered.groupfolder_id = @groupfolder.id
+    @transfered.save
+    render :nothing => true
+  end
+  
   def move
     @firepad = Firepad.find params[:dragged]
     @firepad.update(groupfolder_id: params[:dropped])

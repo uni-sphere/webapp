@@ -102,7 +102,7 @@
         <% @firepads.each do |firepad| %>
 				<% if firepad.deleted == false %>
     	    <div class="box_document" document-selected="false">
-            <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
+            <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" item_id="<%= firepad.id %>" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
               <%= link_to read_firepad_path(firepad_id: firepad.id, group_id: current_group.id) do %>
                 <%= fa_icon("fire") %>
                 <span class="name-document go-file"><%= firepad.name %></span>

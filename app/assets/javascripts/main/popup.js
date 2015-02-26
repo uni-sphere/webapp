@@ -57,7 +57,10 @@ var popup = {
 		$("#new-group").on('click', function() { popup.show("#slide-new-group") } );
 		// $("#all-groups").on('click', function() { popup.show("#slide-all-groups") } );
 		$("#current-group-config").on('click', function() { popup.show("#slide-group-config") } );
-		$("#transfer-file").on('click', function() { popup.showWithListFile('#slide-transfer-document') } );
+		$("#transfer-file").on('click', function() { 
+			$("#transfered-item-name").html(docSelection.target.attr('name'));
+			popup.showWithListFile('#slide-transfer-document') 
+		});
 		$("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
 
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
@@ -125,26 +128,66 @@ var usersSearch = new Bloodhound({
 	}
 });
 
-mainPopup = function() {
+var transfer = {
+	
+	target: null,
+	
+	run: function(url) {
+		
+		if (docSelection.target.attr('item') == 'file') {
+			url = '/user/group/file/transfer'
+		} else if (docSelection.target.attr('item') == 'folder') {
+			url = '/user/group/folder/transfer'
+		} else if (docSelection.target.attr('item') == 'firepad') {
+			url = '/user/group/document/firepad/transfer'
+		};
+		
+		$.ajax({
+			url: url,
+			type:"PUT",
+			dataType: 'JSON',
+			data: {
+				group_id: transfer.target.attr('group_id'),
+      	item_id: docSelection.target.attr('item_id')
+			},
+			complete: function(data) { popup.hide("#slide-new-group") }
+		});
+	},
+	
+	init: function() {
+		$('.list-element').on('click', function() {
+			transfer.target = $(this).find('span');
+			console.log(transfer.target);
+		});
+		
+		$('#transfer-document-submit').on('click', function() {
+			console.log(transfer.target);
+			if (transfer.target != null) { 
+				transfer.run();
+				transfer.target = null;
+			}
+		})
+	}
+}
 
+mainPopup = function() {
 	transferFilePopup.init();
 	group.init();
-	
- //  usersSearch.initialize();
-	// $('.typeahead').tokenfield({
-	//   typeahead: [null, {
-	// 		name: 'users',
-	//   	displayKey: 'email',
-	//   	source: usersSearch.ttAdapter()}]
-	// });
-	
+	transfer.init();
 	popup.init();
+	
+  //  usersSearch.initialize();
+ 	// $('.typeahead').tokenfield({
+ 	//   typeahead: [null, {
+ 	// 		name: 'users',
+ 	//   	displayKey: 'email',
+ 	//   	source: usersSearch.ttAdapter()}]
+ 	// });
 	
 };
 
 $(document).on('ready page:load', function() {
 	mainPopup();
-
 	usersSearch.initialize();
 	
 	$('#tokenfield')

@@ -53,14 +53,14 @@
       <div class="wrapper-default" id="transfer-document-wrapper">
         <div class="document-to-transfer">
           <i class="fa fa-file-o"></i>
-          <span class="file-name">bonjour</span>
+          <span id="transfered-item-name">bonjour</span>
         </div>
         <div class="fa fa-long-arrow-right"></div>
         <div class="group-list group-list-transfer-document">
           <% current_groups.each do |group| %>
             <div class="list-element">
               <i class="fa fa-group"></i>
-              <span class="list-element-name" group_id="<%= group.id %>"><%= group.name %></span>
+              <span class="list-element-name transfer-list" group_id="<%= group.id %>"><%= group.name %></span>
             </div>
           <% end %>
         </div>
