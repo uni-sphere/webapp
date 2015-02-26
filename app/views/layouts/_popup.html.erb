@@ -12,6 +12,7 @@
       <div class="fa fa-close" id="close-group-config"></div> 
     </div>
     <div class="body-group-config">
+      <!-- <div class="group-config-title">Add users</div> -->
       <% if params[:group_id] %>
         <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
             

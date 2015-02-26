@@ -420,15 +420,7 @@
 // GROUP CONFIG ---------------------------------
 // -------------
 
-
-// #slide-group-config{
-//   left: 35%;
-//   right: 35%;
-
-//   display: inline-block !important;
-// }
-
-
+// GENERAL -------------------------
 
 #slide-group-config{
   left: 35%;
@@ -437,7 +429,7 @@
   top: 25%;
   bottom: 25%;
 
-  // display: inline-block !important;
+  display: inline-block !important;
   form{
     position: relative;
     float: left;
@@ -460,18 +452,33 @@
 }
 
 
+// SUBMIT ADD USER
 #group-config-add-user{
   position: absolute;
   top: 20px;
-  left: 210px;
+  left: 170px;
 }
 
+
+// ADD USER -----------------------
+.group-config-title{
+  position: relative;
+  float: left;
+
+  // margin-left: 10px;
+  margin-top: 20px;
+
+  font-weight: bold;
+  font-size: 18px;
+}
+
+// INPUT USER
 
 .twitter-typeahead{
   position: absolute;
   float: left;
   top: 20px;
-  left: 40px;
+  left: 0px;
 
   .tt-dataset-users{
     font-size: 14px;
@@ -486,11 +493,16 @@
   }
 }
 
+
+// ADDED MEMBER LIST -------------------
 .token-container{
   position: absolute;
 
   top: 60px;
   left: 20px;
+
+  background: blue;
+  display: none;
 }
 
 .token-input{
@@ -541,3 +553,5 @@
 .invalid{
   color: red;
 }
+
+

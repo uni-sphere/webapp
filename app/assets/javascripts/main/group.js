@@ -149,7 +149,8 @@ $(document).on('ready page:load', function() {
         source: engine.ttAdapter()}]
     });
 
-    // $(".token-input").wrapAll( "<div class='token-input-wrapper'/>");
+    // $(".token-input").wrapAll( "<div class='group-config-add-user'/>");
+    // $(".group-config-add-user").prepend("<div class='group-config-title'>Add users</div>");
 
 });
 
