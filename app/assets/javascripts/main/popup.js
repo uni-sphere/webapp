@@ -80,6 +80,7 @@ var transfer = {
 				item_id: docSelection.target.attr('item_id')
 			}
 		});
+		
 		popup.hide("#slide-transfer-document");
 	},
 	

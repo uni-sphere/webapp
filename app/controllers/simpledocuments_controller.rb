@@ -1,6 +1,7 @@
 class SimpledocumentsController < ApplicationController
   
   before_action :authenticate?
+  before_action :refresh_token, only: [:index]
 
   def create_folder
     req_params = {
@@ -9,7 +10,9 @@ class SimpledocumentsController < ApplicationController
     }
 
     box_content_resources[:basic]["folders"].post(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "create folder")
+      check_request_success(response)
+      return false if @return
+      
     }
     redirect_to get_user_documents_path(folder: params[:folder])
   end
@@ -21,7 +24,9 @@ class SimpledocumentsController < ApplicationController
   
   def previous_folder
     box_content_resources[:basic]["folders/#{params[:box_id]}"].get() { |response, request, result, &block|
-      check_request_success(response, "read file")
+      check_request_success(response)
+      return false if @return
+      
       @parent = JSON.parse(response)['parent']['id']
     }
     redirect_to get_user_documents_path(folder: @parent)
@@ -35,7 +40,9 @@ class SimpledocumentsController < ApplicationController
     params[:type] == "folder" ? @box_object = 'folders' : @box_object = 'files'
       
     box_content_resources[:basic]["#{@box_object}/#{params[:box_id]}"].put(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "updated")
+      check_request_success(response)
+      return false if @return
+      
       logger.info response
     }
     render nothing: true
@@ -47,7 +54,9 @@ class SimpledocumentsController < ApplicationController
     }
 
     box_content_resources[:basic]["folders/#{params[:folder]}/items"].get(params: req_params) { |response, request, result, &block|
-      check_request_success(response, "index")
+      check_request_success(response)
+      return false if @return
+      
       @folder_name = JSON.parse(response)['name']
       @documents = []
       JSON.parse(response)['entries'].each do |file|
@@ -64,14 +73,18 @@ class SimpledocumentsController < ApplicationController
     }
 
     box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
-      check_request_success(response, "upload file")
+      check_request_success(response)
+      return false if @return
+      
     }
     redirect_to get_user_documents_path(folder: params[:folder])
   end
 
   def download
     box_content_resources[:basic]["files/#{params[:box_id]}/content"].get() { |response, request, result, &block|
-      check_request_success(response, "download file")
+      check_request_success(response)
+      return false if @return
+      
       @dl_url = response.headers[:location]
     }
     
@@ -92,8 +105,10 @@ class SimpledocumentsController < ApplicationController
     params[:type] == "folder" ? @box_object = 'folders' : @box_object = 'files'
     
     box_content_resources[:basic]["#{@box_object}/#{params[:box_id]}"].delete(params: {recursive: true}) { |response, request, result, &block|
+      check_request_success(response)
+      return false if @return
+      
       @response = response.code
-      check_request_success(response, "destroy")
     }
     render json: @response  
   end
@@ -104,7 +119,9 @@ class SimpledocumentsController < ApplicationController
       parent: { id: params[:dropped] }
     }
     box_content_resources[:basic]["files/#{params[:dragged]}"].put(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "file moved")
+      check_request_success(response)
+      return false if @return
+      
     }
     render nothing: true
   end
@@ -114,7 +131,9 @@ class SimpledocumentsController < ApplicationController
       parent: { id: params[:dropped] }
     }
     box_content_resources[:basic]["folders/#{params[:dragged]}"].put(req_params.to_json) { |response, request, result, &block|
-      check_request_success(response, "folder moved")
+      check_request_success(response)
+      return false if @return
+      
     }
     render nothing: true
   end
@@ -126,7 +145,9 @@ class SimpledocumentsController < ApplicationController
     
     until @parent_id == '0'
       box_content_resources[:basic]["folders/#{@parent_id}"].get() { |response, request, result, &block|
-        check_request_success(response, "create ariane")
+        check_request_success(response)
+        return false if @return
+      
         @parent_id = JSON.parse(response)['parent']['id'] if JSON.parse(response)['parent']
         @ariane_wire[@i] = { name: JSON.parse(response)['name'], id: JSON.parse(response)['id'] }
         @i+=1

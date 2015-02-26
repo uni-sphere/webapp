@@ -1,5 +1,3 @@
-
-
 var folder = {
 	init: function() {
 		if (typeof localStorage['lastIndex'] != 'undefined' || localStorage['lastIndex'] != 'NaN') {
@@ -26,8 +24,8 @@ var groupRedirection = {
 	},
 	
 	init: function() {
-		$('.deco').on('click', groupRedirection.deleteStorage)
-		$('#tab-group').on('click', groupRedirection.redirect)
+		$('.deco').on('click', groupRedirection.deleteStorage);
+		$('#tab-group').on('click', groupRedirection.redirect);
 		$('.group-name-sidebar').on('click', function() {
 			localStorage.removeItem('lastGroupViewed');
 			groupRedirection.target = $(this);

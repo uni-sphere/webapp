@@ -10,10 +10,6 @@ Lms::Application.routes.draw do
 		end
     resources :notifications, only: [:index]  
 		resources :groups do
-      member do
-        # get 'autocomplete'
-        # put 'send_invitation'
-      end
       resources :courses, only: [:index, :create, :update, :destroy] do
         resources :evaluations, only: [:create, :update, :destroy] do
           resources :marks, only: [:index, :update]
@@ -70,7 +66,8 @@ Lms::Application.routes.draw do
   # oauth
   
   get '/user/send_oauth', to: 'oauths#send_oauth', as: 'send_oauth'
-  get '/user/receive_oauth', to: 'oauths#receive_oauth', as: 'receive_oauth' 
+  get '/user/receive_oauth', to: 'oauths#receive_oauth', as: 'receive_oauth'
+  get '/user/refresh_token', to: 'oauths#refresh_token', as: 'refresh_token'  
   
   # perso #
 

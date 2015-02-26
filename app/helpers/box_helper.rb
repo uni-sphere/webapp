@@ -37,11 +37,25 @@ module BoxHelper
     }
   end
   
-  def check_request_success(response, url)
-    if response.code == 400 || 401
-      # redirect_to send_oauth_path
+  def check_request_success(response)
+    @return = false
+    logger.info(response.code)
+    if response.code == 401 || response.code == 400
+      send_oauth
       @return = true
     end
+  end
+  
+  def send_oauth
+    oauth_params = {
+      response_type: 'code',
+      client_id: box_params[:client_id],
+      state: session[:_csrf_token]
+    }
+
+    box_content_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
+      redirect_to(request.url)
+    }
   end
   
   def send_access_token
@@ -53,7 +67,6 @@ module BoxHelper
     }
     
     box_content_resources[:token].post(access_token_params) { |response, request, result, &block|
-      check_request_success(response, "send access token")
       set_token(JSON.parse(response))
     }
     redirect_to get_user_documents_path(folder: params[:folder] ? params[:folder] : '0' )
@@ -62,7 +75,6 @@ module BoxHelper
   def set_token(response)
     cookies.permanent[:access_token] = response['access_token']
     cookies.permanent[:refresh_token] = response['refresh_token']
-    logger.info "set token"
   end
   
   def refresh_token
@@ -75,12 +87,14 @@ module BoxHelper
       }
   
       box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
+        check_request_success(response)
+        return false if @return
         set_token(JSON.parse(response))
       }
-    
       logger.info "refresh token"
     end
   end
+  
   # perso
   
   def create_box(email)
@@ -92,7 +106,7 @@ module BoxHelper
     }
 
     box_content_resources[:token].post(box_creation_params) { |response, request, result, &block|
-      check_request_success(response, "create box")
+      check_request_success(response)
     }
   end
   
@@ -106,7 +120,8 @@ module BoxHelper
     }
       
     box_content_resources[:basic]["files/#{box_id}"].put(req_params.to_json) { |response, request, result, &block|
-      logger.info response
+      check_request_success(response)
+      return false if @return
       if response.code == 200
         @link = {
           preview_url: JSON.parse(response)['shared_link']['url'],
