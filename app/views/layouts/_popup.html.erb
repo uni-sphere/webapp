@@ -13,7 +13,7 @@
         <div class="wrapper-action">
 					<% if params[:group_id] %>
 					<%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
-            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input", name: 'user[email]' %>
+            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-add-user-input", name: 'user[email]' %>
             <input type="submit" value="Create" class="submit-default submit-config" id="group-config-add-user-submit">
 					<% end %>
 					<% end %>
@@ -22,15 +22,16 @@
       <div class="config-wrapper" id="config-rename">
         <div class="config-header">Rename the group</div>
         <div class="wrapper-action">
-          <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input" %>
-          <input value="Create" class="submit-default submit-config" id="group-config-rename-submit">
+					
+          <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-rename-input" %>
+          <input type="submit" value="Create" class="submit-default submit-config" id="group-config-rename-submit">
+					
         </div>
       </div>
       <div class="config-wrapper" id="config-delete">
         <div class="config-header">Delete the group</div>
         <div class="wrapper-action">
-          <span class="config-text">This aczxczxczxction is definitive...</span>
-          <input value="Create" class="submit-default submit-config" id="group-config-rename-submit">
+					<%= link_to 'Destroy', destroy_group_path(group_id: current_group.id, user_id: current_user.id), class: "submit-default submit-config", id: "group-config-delete-submit",  method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
       </div>
     </div>

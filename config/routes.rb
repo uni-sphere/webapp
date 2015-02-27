@@ -27,7 +27,14 @@ Lms::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   root to: 'sessions#new'
-
+  
+  #############
+  ### group ###
+  #############
+  
+  put '/user/group/rename', to: 'groups#update', as: 'rename_group'
+  delete '/user/group/destroy', to: 'groups#destroy', as: 'destroy_group'
+  
   ##################
   ### invitation ###
   ##################

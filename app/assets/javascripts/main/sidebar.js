@@ -46,7 +46,7 @@ var firepad = {
 		firepad.setWidth();
 		$( window ).resize(function() {
 			firepad.setWidth();
-		}
+		})
 	}
 };
 

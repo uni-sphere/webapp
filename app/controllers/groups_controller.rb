@@ -1,12 +1,11 @@
 class GroupsController < ApplicationController
 
-  before_action :group_params, only: [:update]
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
   before_action :set_user, except: [:autocomplete, :send_invitation]
   before_action :set_users, only: [:send_invitation]
   before_action :correct_user?, except: [:autocomplete, :send_invitation]
-  before_action :set_group_origin, only: [:show, :edit, :update]
+  before_action :set_group_origin, only: [:show, :edit]
   
 
   def new
@@ -34,14 +33,18 @@ class GroupsController < ApplicationController
   end
   
   def update
+    @group = Group.find params[:group_id]
     respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to user_groups_path(@user) }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+      if @group.admin_id == current_user.id
+        if @group.update(name: params[:name])
+          format.html { redirect_to user_groups_path(@user) }
+          format.json { render json: {success: true}.to_json }
+        else
+          format.html { render action: 'edit' }
+          format.json { render json: {success: false}.to_json }
+        end
       end
+      format.json { render json: {success: false}.to_json }
     end
   end
 
@@ -57,9 +60,7 @@ class GroupsController < ApplicationController
   end
   
   def join_group
-	  @relation = Relationgroup.new(user_id: params[:user_id], group_id: params[:group_id])	
-    logger.info '----------------------'
-    logger.info(params[:user_id])
+	  @relation = Relationgroup.new(user_id: params[:user_id], group_id: params[:group_id])
 	    begin 
 		    @relation.save!
         # @relation.create_activity :join_group, owner: set_group, recipient: @user
@@ -85,12 +86,13 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
-    # PublicActivity::Activity.where(owner_id: @group.id).destroy
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to allgroups_path }
-      format.json { head :no_content }
+    @group = Group.find(params[:group_id])
+    if @group.admin_id == current_user.id
+      # PublicActivity::Activity.where(owner_id: @group.id).destroy
+      @group.destroy
+      redirect_to get_group_documents_path(group_id: current_user.groups.last.id, parent_id: 100)
+    else
+      redirect_to get_group_documents_path(group_id: params[:group_id], parent_id: 100)
     end
   end
   

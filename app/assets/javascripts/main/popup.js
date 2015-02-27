@@ -138,8 +138,29 @@ var group = {
 		}
 	},
 	
+	rename: function() {
+		if ($('#group-config-rename-input').val() != '') {
+			$.ajax({
+				url: '/user/group/rename',
+				type:"PUT",
+				dataType: 'JSON',
+				data: {
+					user_id: $('#tab-perso').attr('current_user_id'),
+					group_id: $('#active-group-nav').attr('group_id'),
+					name: $('#group-config-rename-input').val()
+				},
+				complete: function(data) {
+					if (data.responseJSON.success == true) {
+						$('#current-group-title').html($('#group-config-rename-input').val())
+					}
+				}
+			})
+		}
+	},
+	
 	init: function() {
-		$('#new-group-submit').on('click', group.create)
+		$('#new-group-submit').on('click', group.create);
+		$('#group-config-rename-submit').on('click', group.rename);
 	}
 };
 
