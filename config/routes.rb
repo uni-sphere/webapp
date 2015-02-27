@@ -109,6 +109,7 @@ Lms::Application.routes.draw do
   put '/user/group/file/move', to: 'groupdocuments#move_file', as: 'move_group_file'
   put '/user/group/folder/move', to: 'groupdocuments#move_folder', as: 'move_group_folder'
   put '/user/group/file/rename', to: 'groupdocuments#rename_file', as: 'rename_group_file'
+  put '/user/group/folder/rename', to: 'groupdocuments#rename_folder', as: 'rename_group_folder'
   put '/user/group/folder/transfer', to: 'groupdocuments#transfer_folder', as: 'transfer_group_folder'
   put '/user/group/file/transfer', to: 'groupdocuments#transfer_file', as: 'transfer_group_file'
 
