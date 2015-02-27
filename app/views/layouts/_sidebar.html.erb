@@ -1,7 +1,7 @@
 
 
 <div id="tabs-container">
-	<%= link_to 'Perso', get_user_documents_path(folder: '0' ) , class: "tab #{url_perso?}", id: "tab-perso" %>
+	<%= link_to 'Perso', get_user_documents_path(folder: '0' ) , class: "tab #{url_perso?}", id: "tab-perso", current_user_id: current_user.id %>
 	<%= link_to 'Groups', get_group_documents_path(group_id: current_user.groups.last, parent_id: 100), class: "tab #{url_groups?}", id: "tab-group" %>
 </div>
 
@@ -17,7 +17,7 @@
 			<% if current_group_exists? %>
 				<div class="lateral-nav" id="active-group-nav" group_id="<%= current_group.id %>">
 					<div id="current-group-wrapper" class="subtitle-default">
-						<div class="name-text"><%=current_group.name%></div>
+						<div class="name-text" id="current-group-title"><%=current_group.name%></div>
 						<div class="fa fa-gear" id="current-group-config"></div>
 					</div> 
 					<div class="active-menu"></div>

@@ -21,21 +21,21 @@ class User < ActiveRecord::Base
 
 # validation before saving
 
-	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-	validates :name,  :presence => true,
-			:length    => { :maximum => 50 }
-	validates :email, :presence => true, 
-			:format     => { :with => email_regex },
-			:uniqueness => { :case_sensitive => false }
-	validates :password, :presence => true,
-      :on        => :create,
-      :confirmation  => true,
-      :length        => { :within => 6..40 }
-
-# callbacks
-
-	before_save :make_encrypt_password
+#   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+#
+#   validates :name,  :presence => false,
+#       :length    => { :maximum => 50 }
+#   validates :email, :presence => false,
+#       :format     => { :with => email_regex },
+#       :uniqueness => { :case_sensitive => false }
+#   validates :password, :presence => false,
+#       :on        => :create,
+#       :confirmation  => true,
+#       :length        => { :within => 6..40 }
+#
+# # callbacks
+#
+#   before_save :make_encrypt_password
 
 # methods
 
@@ -69,20 +69,19 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.import_for_involving(file)
+  def self.import_for_involving(file, group_id)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      relation = Relationgroup.new
-      relation.attributes = row.to_hash
+      relation = Relationgroup.new(group_id: group_id, user_id: User.where(email: row.to_hash['email']).first.id)
       relation.save!
     end
   end
   
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+    when ".csv" then Roo::CSV.new(file.path, csv_options: {encoding: Encoding::UTF_8})
     when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
     when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"

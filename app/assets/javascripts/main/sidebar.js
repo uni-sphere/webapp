@@ -34,8 +34,6 @@ var groupRedirection = {
 	}
 };
 
-
-
 mainSidebar = function() {
 	folder.init();
 	groupRedirection.init();

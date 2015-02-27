@@ -21,9 +21,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    
+    @user.name = random_key if @user.email == nil
+    
     respond_to do |format|
-      if @user.save and @user.create_viewparam(notification_view: '0') and create_box(params[:email]) and @user.groups.create(name: 'My first group') and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar')
-        format.html { redirect_to @user }
+      if @user.save and @user.create_viewparam(notification_view: '0') and create_box(params[:user][:email]) and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: random_key)
+        format.html { redirect_to get_group_documents_path(group_id: @user.groups.last.id, parent_id: 100) }
         format.json { render action: 'show', status: :created, location: @user }
 	      sign_in @user
       else
@@ -35,12 +38,12 @@ class UsersController < ApplicationController
   
   def import_for_creating
     User.import_for_creating(params[:file])
-    redirect_to root_url, notice: "Users imported"
+    redirect_to get_group_documents_path(group_id: current_group.id, parent_id: 100), notice: "Users created"
   end
   
   def import_for_involving
-    User.import_for_involving(params[:file])
-    redirect_to root_url, notice: "Members imported"
+    User.import_for_involving(params[:file], params[:group_id])
+    redirect_to get_group_documents_path(group_id: current_group.id, parent_id: 100), notice: "Members invited"
   end
   
   def edit
