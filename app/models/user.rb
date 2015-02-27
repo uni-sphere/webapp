@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
 # accessor	
 
- 	attr_accessor :password
+   attr_accessor :password, :password_confirmation
 
 # validation before saving
 
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 #
 # # callbacks
 #
-#   before_save :make_encrypt_password
+  before_save :make_encrypt_password
 
 # methods
 
@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
   end
 
   def make_encrypt_password
-    self.salt = make_salt if new_record?
+    self.salt = make_salt
     self.encrypt_password = encrypt(password)
   end
 

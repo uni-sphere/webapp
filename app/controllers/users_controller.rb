@@ -50,9 +50,11 @@ class UsersController < ApplicationController
   end
   
   def update
+    @user.update_attributes(user_params)
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user }
+      if @user.save
+        sign_in @user
+        format.html { redirect_to get_group_documents_path(group_id: current_user.groups.last.id, parent_id: 100), notice: "User created" }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -85,7 +87,7 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :documents_attributes)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def set_user_origin

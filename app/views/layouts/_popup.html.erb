@@ -157,47 +157,29 @@
 
       <div class="form-container">
         
-        <%= form_for User.new, url: users_path(user: {user_id: current_user.id}), method: :put, multipart: true do |f| %>
+        <%= form_for @user = User.new, url: user_path(current_user.id), method: :put, multipart: true do |f| %>
         
-          <input type="password" class="signup-input" placeholder="Create a password" id="password" />
+					<input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
+					<input type="text" class="signup-input" placeholder="Email" id="email" name="user[email]"/>
+          <input type="password" class="signup-input" placeholder="Password" id="password" name="user[password]"/>
           <div class="password-tip">Use at least 6 characters</div>
-          <input type="password" class="signup-input" id="password-check" placeholder="Retype your password" />
-          
-          <div class="field">
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-          </div>
-          <div class="field">
-            <%= f.label :email %>
-            <%= f.text_field :email %>
-          </div>
-          <div class="field">
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-          </div>
-          <div class="field">
-            <%= f.label :password_confirmation, "Confirmation" %>
-            <%= f.password_field :password_confirmation %>
-          </div>
-          <div class="actions">
-            <%= f.submit "submit" %>
-          </div>
-          
-          <%# if @user.errors.any? %>
+          <input type="password" class="signup-input" id="password-check" placeholder="Retype" name="user[password_confirmation]" />
+					
+          <% if @user.errors.any? %>
             <div id="error_explanation">
-              <h2><%#= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
               <ul>
-                <%# @user.errors.full_messages.each do |msg| %>
-                  <li><%#= msg %></li>
-                <%# end %>
+                <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
               </ul>
             </div>
-          <%# end %>
+          <% end %>
         
           <div class="fa fa-check password-notif"></div>
           <div class="fa fa-check password-check-notif-ok"></div>
           <div class="fa fa-times password-check-notif-bad"></div>
-          <%= link_to 'Sign up', "#", class: "signup-button" %>
+          <input class="signup-button" name="commit" type="submit" value="Sign up">
         
         <% end %>
       </div>
