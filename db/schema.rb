@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(version: 20150222180212) do
     t.string   "email"
     t.string   "salt"
     t.string   "encrypt_password"
+    t.boolean  "confirmed",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",            default: false

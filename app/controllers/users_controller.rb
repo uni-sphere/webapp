@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         sign_in @user
+        UserMailer.welcome_email(@user.id, @user.name, @user.email).deliver
         format.html { redirect_to get_group_documents_path(group_id: current_user.groups.last.id, parent_id: 100), notice: "User created" }
         format.json { head :no_content }
       else
