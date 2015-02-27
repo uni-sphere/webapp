@@ -28,10 +28,12 @@
   </div>
 
   <div class="try-it-wrapper">
+		<%= form_tag users_path(user: {name: nil}), multipart: true do %>
     <form class="try-it" method="post" action="users" >
       <input type="submit" class="try-it-text" value="Try it now!"></input>
       <span class="fa fa-arrow-circle-o-right"></span>
     </form>
+		<% end %>
   </div>
 	
 </div>
