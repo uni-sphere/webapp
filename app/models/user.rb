@@ -21,20 +21,20 @@ class User < ActiveRecord::Base
 
 # validation before saving
 
-#   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-#
-#   validates :name,  :presence => false,
-#       :length    => { :maximum => 50 }
-#   validates :email, :presence => false,
-#       :format     => { :with => email_regex },
-#       :uniqueness => { :case_sensitive => false }
-#   validates :password, :presence => false,
-#       :on        => :create,
-#       :confirmation  => true,
-#       :length        => { :within => 6..40 }
-#
-# # callbacks
-#
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :name, on: :update,  presence: false,
+      length: { maximum: 50 }
+  validates :email, on: :update, presence: false,
+      format: { with: email_regex },
+      uniqueness: { case_sensitive: false }
+  validates :password, on: :update, presence: false,
+      on: :create,
+      confirmation: true,
+      length: { within: 6..40 }
+
+# callbacks
+
   before_save :make_encrypt_password
 
 # methods
