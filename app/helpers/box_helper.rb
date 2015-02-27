@@ -107,7 +107,8 @@ module BoxHelper
     }
 
     box_content_resources[:token].post(box_creation_params) { |response, request, result, &block|
-      check_request_success(response)
+      logger.info 'BOOOOOOXXXXXX'
+      logger.info response
     }
   end
   

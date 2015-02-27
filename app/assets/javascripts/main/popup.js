@@ -152,6 +152,7 @@ var group = {
 				complete: function(data) {
 					if (data.responseJSON.success == true) {
 						$('#current-group-title').html($('#group-config-rename-input').val())
+						popup.hide("#slide-group-config");
 					}
 				}
 			})

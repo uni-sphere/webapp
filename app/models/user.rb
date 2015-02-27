@@ -69,20 +69,19 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.import_for_involving(file)
+  def self.import_for_involving(file, group_id)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      relation = Relationgroup.new
-      relation.attributes = row.to_hash
+      relation = Relationgroup.new(group_id: group_id, user_id: User.where(email: row.to_hash['email']).first.id)
       relation.save!
     end
   end
   
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+    when ".csv" then Roo::CSV.new(file.path, csv_options: {encoding: Encoding::UTF_8})
     when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
     when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
