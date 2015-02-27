@@ -29,6 +29,7 @@ module SessionsHelper
     cookies.delete(:remember_token)
     cookies.delete(:access_token)
     cookies.delete(:refresh_token)
+    current_user.destroy unless current_user.email
     current_user = nil
   end
 
