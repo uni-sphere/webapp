@@ -562,16 +562,18 @@ var hover = {
 			}
 		);
 
-		$('.action .fa').mouseover(function() {
+		$('#actions-selected-doc .action .fa').mouseover(function() {
 			if (docSelection.target != null){
 				$(this).addClass('action-hovered')
 			}
 		})
 
+		$('#actions-creation .action .fa').mouseover(function() {
+			$(this).addClass('action-hovered')
+		})
+
 		$('.action .fa').mouseout(function() {
-			if (docSelection.target != null){
 				$(this).removeClass('action-hovered')
-			}
 		})
 	}
 }; // OK

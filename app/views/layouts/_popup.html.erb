@@ -1,4 +1,3 @@
-<% if params[:group_id] %>
 <div id="background-grey"></div>
 
 
@@ -130,14 +129,81 @@
     </div>
   </div>
 </div>
-<% end %>
 
 
 
+<div id="slide-signup" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">New group</span>
+      <div class="fa fa-close" id="close-slide-signup"></div>
+    </div>
+    <div class="slide-body">
+    
+      <div class="signup-title-wrapper">
+        <div class="signup-title">Configure your account</div>
+        <div class="fa fa-lock"></div>
+      </div>
 
 
+      <div id="password-strength" class="short">
+        <span class="strength-fixed-text">Password strength:</span>
+        <span class="strength-text">Too short</span>
+          
+        <div class="visual-indicator-container">
+          <div class="visual-indicator"></div>
+        </div>
+      </div>
 
-
+      <div class="form-container">
+        
+        <%= form_for User.new, url: users_path(user: {user_id: current_user.id}), method: :put, multipart: true do |f| %>
+        
+          <input type="password" class="signup-input" placeholder="Create a password" id="password" />
+          <div class="password-tip">Use at least 6 characters</div>
+          <input type="password" class="signup-input" id="password-check" placeholder="Retype your password" />
+          
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+          </div>
+          <div class="field">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation, "Confirmation" %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="actions">
+            <%= f.submit "submit" %>
+          </div>
+          
+          <%# if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%#= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <ul>
+                <%# @user.errors.full_messages.each do |msg| %>
+                  <li><%#= msg %></li>
+                <%# end %>
+              </ul>
+            </div>
+          <%# end %>
+        
+          <div class="fa fa-check password-notif"></div>
+          <div class="fa fa-check password-check-notif-ok"></div>
+          <div class="fa fa-times password-check-notif-bad"></div>
+          <%= link_to 'Sign up', "#", class: "signup-button" %>
+        
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

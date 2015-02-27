@@ -309,7 +309,9 @@
 
   height: 23px;
   line-height: 23px;
-  min-width: 70%;
+  width: 90%;
+
+  
 
   margin-bottom: 9px;
 
@@ -324,6 +326,12 @@
     position: relative;
     float: left;
 
+    width: 80%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     font-size: 1.2em;
     text-align: left;
     font-weight: bold;
@@ -333,12 +341,13 @@
   .fa{
     position: relative;
     float: right;
+    // background: red;
+    padding-right: 5px;
 
-    width: 22px;
+    width: calc(20% - 5px);
+    text-align: right;
     line-height: 25px;
    
-    padding-left: 10px;
-
     font-size: 1.5em;
     color: $grey;
   }

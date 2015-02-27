@@ -47,7 +47,10 @@ var popup = {
 			popup.showWithListFile('#slide-transfer-document') 
 		});
 		$("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
+		$("#plop").on('click', function() { popup.show("#slide-signup") } );
 
+
+		$("#close-slide-signup").on('click', function() { popup.hide("#slide-signup") } );
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
 		$("#close-all-groups").on('click', function() { popup.hide("#slide-all-groups") } );
 		$("#close-group-config").on('click', function() { popup.hide("#slide-group-config") } )
