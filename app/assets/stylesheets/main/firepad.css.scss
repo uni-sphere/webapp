@@ -1,15 +1,41 @@
+@import "../var";
+
 #firepad{
   position: relative;
   float: left;
 
-  // width: calc(100% - 20px);
-  height: calc(100% - 12px);
+  height: calc(100% - 80px);
 }
 
+#firepad-wrapper{
+  position: fixed;
+  z-index: 50;
+
+  bottom: 10px;
+
+  border: 1px solid $grey;
+  border-bottom: none;
+
+  pointer-events: none;
+  
+}
 .CodeMirror{
-  // background: grey !important;
+  margin-top: 30px;
 }
 
 .powered-by-firepad{
   display: none !important;
+}
+
+.firepad-toolbar{
+  border: none !important;
+  padding-bottom: 30px;
+}
+
+.CodeMirror{
+}
+.CodeMirror-sizer{
+  padding-bottom: 50px !important;
+
+  margin-right: 80px;
 }

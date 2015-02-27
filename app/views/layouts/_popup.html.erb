@@ -11,10 +11,8 @@
       <div class="config-wrapper" id="config-add-user">
         <div class="config-header">Add user</div>
         <div class="wrapper-action">
-					<% if params[:group_id] %>
-            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input" %>
-            <input type="submit" value="Create" class="submit-default submit-config" id="group-config-add-user-submit">
-					<% end %>
+          <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-input" %>
+          <input type="submit" value="Create" class="submit-default submit-config" id="group-config-add-user-submit">
         </div>
       </div>
       <div class="config-wrapper" id="config-rename">

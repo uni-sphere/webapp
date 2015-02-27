@@ -34,26 +34,11 @@ var groupRedirection = {
 	}
 };
 
-var firepad = {
-	setWidth: function(){
-		var width = $('#firepad').height() * 1.41;
-		var margin = $('#central-page').width()/2 - width/2;
-		// console.log(margin);
-		$('#firepad').css('width',width);
-		$('#firepad').css('margin-left',margin);
-	},
-	init: function(){
-		firepad.setWidth();
-		$( window ).resize(function() {
-			firepad.setWidth();
-		}
-	}
-};
+
 
 mainSidebar = function() {
 	folder.init();
 	groupRedirection.init();
-	firepad.setWidth();
 };
 
 $(document).on('ready page:load', function() {
