@@ -3,8 +3,9 @@ var activeMenu = {
 	previousTop: "18",
 	actualTop: "18",
 	
+
 	setHighlighted: function() {
-		var topPos = $(this).offset().top - 103;
+		var topPos = $(this).offset().top - $('.lateral-nav').first().offset().top;
 		var hover_bar = $('<div class="active-menu special-active-menu"></div>')
 		.css('top', topPos)
 		.attr('id', 'special-active-menu-' + $(this).data('space') );
@@ -12,12 +13,15 @@ var activeMenu = {
 	},
 	
 	setFixedPosition: function() {
+		var left = $('.lateral-nav').first().offset().left + 7;
+		$('.active-menu').css('left', left );
+
 		if ($('.lateral-nav').find('.previous').length != 0){
-			activeMenu.previousTop = $('.lateral-nav .previous').offset().top - 103
+			activeMenu.previousTop = $('.lateral-nav .previous').offset().top - $('.lateral-nav').first().offset().top
 		};
 
 		if ($('.lateral-nav').find('.active').length != 0){
-			activeMenu.actualTop = $('.lateral-nav .active').offset().top - 103;
+			activeMenu.actualTop = $('.lateral-nav .active').offset().top - $('.lateral-nav').first().offset().top;
 		}
 	},
 	removeHighlighted: function() {
@@ -36,7 +40,7 @@ var activeMenu = {
 	},
 	
 	init: function() {
-		$('.lateral-nav-element')
+		$('#active-group-nav > .lateral-nav-element')
 			.hover(activeMenu.setHighlighted)
 			.mouseout(activeMenu.removeHighlighted);
 			

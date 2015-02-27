@@ -11,12 +11,6 @@
 	</div>
 	<div id="content-wrapper">
 
-		<div id="platform-choice">
-		<!-- <span class="unifolder"><i class="fa fa-folder-open"></i>Unifolder</span>
-			<a href="#"><span class="unilib"><i class="fa fa-graduation-cap"></i>Unilib</span> -->
-		</div>
-
-		
 		<div class="separator"></div>
 
 		<% if request.url.include? 'group' %>
@@ -50,7 +44,7 @@
 				
 				<div class="sidebar-list-group">
 					<% current_groups.each do |group| %>
-						<%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "lateral-nav-element" do %>
+						<%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "lateral-nav-element current-group-element" do %>
 							<i class="fa fa-group"></i>
 							<!-- <object type="image/svg+xml" data="<%= asset_path 'group-pic.svg' %>" id="profile-pic"></object> -->
 							<span class="group-name-sidebar" group_id="<%= group.id %>"><%= group.name %></span>

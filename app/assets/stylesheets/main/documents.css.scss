@@ -12,9 +12,6 @@
 // HEADER -
 // --------
 
-#breadcrumb-seachbar{
-}
-
 #breadcrumb{
   position: relative;
   float: left;
@@ -24,23 +21,20 @@
   a, .breadcrumb-separator{
     position: relative;
     float: left;
-
-    
-
-    // margin: 3px 0px;
   }
   a{
     line-height: 30px;
     padding: 0px 2px;
 
     color: $breadcrumb;
-    font-size: 13px;
+    font-size: 1em;
 
-    // font-size: 10px;
     &:hover{
       text-decoration: underline!important;
+      &:hover{cursor: pointer;}
     }
   }
+
   .breadcrumb-separator{
     line-height: 31px;
     font-weight: bold;
@@ -49,10 +43,10 @@
   }
 }
 
+// -------------------
+// ---DOCUMENT list --
+// -------------------
 
-// -------------------
-// ---DOCUMENT list ---
-// -------------------
 #list-document{
   position: relative;
   float: left;
@@ -69,8 +63,6 @@
   width: 100%;
 
   margin-bottom:15px;
-
-//  background: red;
 }
 
 // LIST TITLE
@@ -81,81 +73,70 @@
   width: 100%;
   height:23px;
 
-  // background: blue;
   border-bottom: 2px solid $list-title-separator;
-  // background: blue;
-
 }
 
 .cloud-title{
-  position: relative;
   float: left;
-
-
+  position: relative;
 }
+
 .title-text{
   position: relative;
   float: left;
 
   line-height: 25px;
 
-  // background: red;
   height: 100%;
 
   color: $list-title;
-  font-size: 14px;
+  font-size: 1.2em;
   
    &:hover{
     cursor: pointer;
   }
 }
+
 .fa-sort-up{
   position: relative;
   float: left;
-  // line-height: 23px;
 
-  // position: relative;
-  // float: left;
-  // line-height: 14px;
-  color: $list-title-fa;
-  font-size: 12px;
   padding-left: 3px; 
-  // padding-top: 5px;
   padding-top: 10px; 
+
+  color: $list-title-fa;
+  font-size: 1em;
 
    &:hover{
     cursor: pointer;
   }
-  // background: green;
 }
 
 
 #title-name{
-  width: calc(60% + 50px);
+  width: calc(57% + 50px);
 }
 
 #title-modified{
-  width: calc(40% - 150px);
+  width: calc(43% - 150px);
 }
 
 #title-size{
-  width: 100px;
-  text-align: right;
+  float: right;
 }
 
 //  ROW DOCUMENT
 .box_document{
   position: relative;
   float: left;
+
   width: 100%;
   height: 65px;
+
   border-bottom: 1px solid $list-separator;
-  // margin-bottom: 1px;
+
   background: $inside-bg;
-  // background: green;
 }
-
-
 
 // ICON & NAME
 .icon-and-name{
@@ -163,31 +144,29 @@
   float: left;
   clear: left;
 
-  width: calc(60% - 5px);
+  width: calc(57% - 5px);
   height: 65px;
 
   padding-left: 5px;
-  // background: blue;
 
   a{
     position: relative;
     float: left;
 
-    margin: 10px 0px;
-    padding-right: 10px;
-
     line-height: 45px;
-    // background: red;
 
+    margin: 10px 0px;
+
+    padding-right: 10px;
 
     .fa{
       position: relative;
       float: left;
-      line-height: inherit;
 
+      line-height: inherit;
       width: 38px;
 
-      font-size: 32px;
+      font-size: 2.8em;
       color: $list-fa;
     }
 
@@ -197,7 +176,7 @@
 
       line-height: 45px;
 
-      font-size: 15px;
+      font-size: 1.2em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -219,25 +198,25 @@
   width: calc(100% - 42px);
   height: 20px;
 
-  font-size: 15px;
+  font-size: 1.2em;
 
   color: $rename;
   font-family: $font-family;
 }
 
-  // RENAME BUTTON
+// RENAME BUTTON
 .document-rename{
   position: relative;
   float: left;
 
   width: 20px;
   height: 65px;
+
   padding-left: 15px;
   padding-right: 15px;
+  line-height: 65px !important;
 
-  line-height: 65px;
-
-  font-size: 25px;
+  font-size: 2em !important;
 
   color: $inside-bg;
   &:hover{cursor: pointer;}
@@ -248,32 +227,35 @@
   position: relative;
   float: left;
 
-  width: calc(40% - 160px);
+  width: calc(43% - 160px);
   height:50px;
 
   padding-left: 5px;
-  // background: blue;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   .date-time{
     color: $list;
-    font-size: 13px;
+    font-size: 1.1em;
 
-    // background: blue;
     line-height: 65px;
-
   }
+
   .person{
     position:relative;
 
     padding-left: 5px;
 
     line-height: 50px;
-    font-size: 12px; 
-    color: $name;
+    font-size: 1em; 
 
+    color: $name;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
     &:hover{
       text-decoration: underline !important;
       cursor: pointer;
@@ -285,6 +267,7 @@
 .size-doc{
   position: relative;
   float: right;
+
   width: 100px;
   height: 65px;
 
@@ -293,11 +276,10 @@
   padding-left: 5px;
 
   color: $list;
-  font-size: 13px;
-
+  font-size: 1.1em;
   text-align: right;
+
   &:hover{cursor: default;}
-  // background: green;
 }
 
 // -----------------------------
@@ -337,12 +319,15 @@
   height: 130px;
 
   padding-top: 30px;
+
+  transition: all ease-in .5s;
+
   .fa-plus{
     position: relative;
     float: center;
-    font-size: 50px;
+    font-size: 4em;
   }
-  transition: all ease-in .5s;
+
   &:hover{
     padding-top: 18px;
   }
@@ -358,25 +343,24 @@
 
   margin-top: 20px;
 
-  
   a{
     height: 20px;
     line-height: 16px;
-    font-size: 15px;
-    // font-weight: bold;
-    // background: red;
+    font-size: 1.2em;
     color: $action;
+
     &:hover{
       cursor: pointer;
     }
   }
   .fa{
     line-height: 20px;
-    font-size: 18px;
+
     margin-right: 5px;
+
+    font-size: 1.3em;
     color: $action-fa;
   }
-
 }
 
 // NEW FOLDER
@@ -391,8 +375,6 @@
   position: absolute;
 
   left: calc(50% - 28px);
-
-  
 }
 
 // CREATE DOC
@@ -402,13 +384,6 @@
   right: 30px;
 }
 
-// #create-doc-title{
-//   position: relative;
-//   float: left;
-
-//   margin-bottom: 3px;
-// }
-
 .create-list{
   position: relative;
   float: left;
@@ -417,8 +392,7 @@
   margin-bottom: 5px;
 }
 
-
-//----------ACTIONS
+//ACTIONS-----------------------
 
 #actions-doc{
   position: absolute;
@@ -428,8 +402,7 @@
   width: 100%;
   height: 150px;
 
-  .fa{font-size: 45px;}
-  // background: green;
+  .fa{font-size: 4em;}
 }
 // ----------------------
 .selected-action{
@@ -445,8 +418,10 @@
 
   padding-top: 20px;
   padding-bottom: 20px;
+
   margin-left: calc(1/30 * 100%);
   margin-right: calc(1/30 * 100%);
+
   transition: all ease-in .1s;
   color: $unselected-action;
 
@@ -457,7 +432,9 @@
 
 .action-hovered{
   padding-top: 0px;
+
   cursor: pointer;
+
   transition: all .5s;
 }
 
@@ -471,9 +448,8 @@
   margin-left: calc(1/30 * 100%);
   margin-top: 10px;
 
-  font-size: 10px;
+  font-size: 0.9em;
   color: black;
-
 
   white-space: nowrap;
   overflow: hidden;
