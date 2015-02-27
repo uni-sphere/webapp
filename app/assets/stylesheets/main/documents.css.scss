@@ -51,7 +51,7 @@
   position: relative;
   float: left;
 
-  width: 70%;
+  width: 85%;
   text-align: left;
 }
 
@@ -304,140 +304,60 @@
   position: relative;
   float: left;
 
-  width: 30%;
+  width: 15%;
   height: 100%;
 }
 
-
-//----------NEW
-
-#new-doc{
-  position: relative;
-  float: left;
-
-  width: 100%;
-  height: 130px;
-
-  padding-top: 30px;
-
-  transition: all ease-in .5s;
-
-  .fa-plus{
-    position: relative;
-    float: center;
-    font-size: 4em;
-  }
-
-  &:hover{
-    padding-top: 18px;
-  }
-}
-
-
-#new-actions{
-  position: relative;
-  float: left;
-  display: none;
-
-  width: 100%;
-
-  margin-top: 20px;
-
-  a{
-    height: 20px;
-    line-height: 16px;
-    font-size: 1.2em;
-    color: $action;
-
-    &:hover{
-      cursor: pointer;
-    }
-  }
-  .fa{
-    line-height: 20px;
-
-    margin-right: 5px;
-
-    font-size: 1.3em;
-    color: $action-fa;
-  }
-}
-
-// NEW FOLDER
-#new-folder{
+.action-doc{
   position: absolute;
-
-  left: calc(16% - 25px);
-}
-
-// UPLOAD DOC
-#upload-doc{
-  position: absolute;
-
-  left: calc(50% - 28px);
-}
-
-// CREATE DOC
-#create-doc{
-  position: absolute;
-
-  right: 30px;
-}
-
-.create-list{
-  position: relative;
-  float: left;
-  clear: left;
-
-  margin-bottom: 5px;
-}
-
-//ACTIONS-----------------------
-
-#actions-doc{
-  position: absolute;
-
-  top: 175px;
-
-  width: 100%;
-  height: 150px;
-
   .fa{font-size: 4em;}
+  width: 100%;
 }
-// ----------------------
-.selected-action{
-  .action{color: $selected-action;}
+
+#actions-creation{
+  top: 20px;
 }
-// -----------------------
+#actions-selected-doc{
+  top: 400px;
+}
+
 .action{
   position: relative;
-  float: left;
+  // clear: left !important;
+  display: block;
 
-  height: 50px;
-  width: calc(4/15 * 100%);
+  height: 90px;
+  width: 100%;
 
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  margin-left: calc(1/30 * 100%);
-  margin-right: calc(1/30 * 100%);
-
-  transition: all ease-in .1s;
   color: $unselected-action;
 
   .fa{
     height: 50px;
+    width: 50px;
+    padding: 20px 20px;
+    margin-left: 0px;
+    transition: all .5s;
+  }
+}
+
+.action-possible{
+  .action .fa{
+    color: $selected-action;
+    &:hover{cursor: pointer;}
   }
 }
 
 .action-hovered{
-  padding-top: 0px;
+  margin-left: 20px !important;
 
   cursor: pointer;
-
-  transition: all .5s;
 }
 
+
+
+
+
+// LINK DISPLAY ---------------
 #link-display{
   position: relative;
   float: left;

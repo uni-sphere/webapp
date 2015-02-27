@@ -61,7 +61,7 @@
               <%= text_field_tag :name, folder.name, class: "hidden input-rename-document" %>
             </span>
             
-            <%= fa_icon("pencil", class: "document-rename") %>
+            <a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
             <div class="modified-doc">
               <span class="date-time"><%= time_ago_in_words Time.at(folder.created_at.to_i) %></span>
               <span class="person"></span>
@@ -85,7 +85,7 @@
 						<%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
 					</span>
             
-					<%= fa_icon("pencil", class: "document-rename") %>
+					<a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
 					<div class="modified-doc">
 						<span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
 						<span class="person"><%= document.owner %></span>
@@ -110,7 +110,7 @@
               <%= text_field_tag :name, firepad.name, class: "hidden input-rename-document" %>
             </span>
             
-            <%= fa_icon("pencil", class: "document-rename") %>
+            <a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
             <div class="modified-doc">
               <span class="date-time"><%= time_ago_in_words Time.at(firepad.created_at.to_i) %></span>
               <span class="person"></span>
@@ -128,38 +128,39 @@
 
     <div id="right-actions">
 
-      <div id="new-doc" class="">
-        <%= fa_icon("4x plus-square-o")%>
-        <div id="new-actions">
-          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post, id: "new-folder" do%>
-            <%= fa_icon "folder-o" %>Folder
+      <div id="new-actions">
+        <div class="action-doc action-possible" id="actions-creation" >
+          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post, id:"new-folder", class:"action", title:"yopla" do%>
+              <%= fa_icon "folder-o" %>
           <% end %>
 
-          <a id="upload-doc" rel="nofollow"><i class="fa fa-arrow-circle-o-up"></i>Upload</a>
+          <a id="upload-doc" rel="nofollow" class="action" title="Upload a doc">
+            <%= fa_icon("arrow-circle-o-up") %>
+          </a>
           <%= form_tag create_group_file_path(group_id: params[:group_id], folder_id: params[:folder_id]), multipart: true do %>
             <%= file_field_tag :file, id: "input-button-upload", class: "hidden" %>
             <%= submit_tag "upload-doc", class: "hidden", id: "submit-button-upload" %>
           <% end %>
-          <div id="create-doc">
-            <!-- <span id="create-doc-title>"<i class="fa fa-file"></i>New</span> -->
-						
-            <a id="create-firepad" class="create-list"><i class="fa fa-fire"></i>Firepad</a>
-          </div>
+
+          <a id="create-firepad" class="action" title="Create a firepad" rel="nofollow">
+            <i class="fa fa-fire"></i>
+          </a>
         </div>
-      </div>
-      
-      <div id="actions-doc">
-        <div id="download-doc" class="action">
-          <%= fa_icon("arrow-circle-o-down") %>
+        <div class="action-doc" id="actions-selected-doc">
+          <a id="download-doc" class="action" rel="nofollow" title="Download a document">
+            <%= fa_icon("arrow-circle-o-down") %>
+          </a>
+          <a id="delete-doc" class="action" rel="nofollow" title="Delete a document">
+            <%= fa_icon("trash-o") %>
+          </a>
+          <a id="link-doc" class="action" rel="nofollow" title="Share a document">
+            <%= fa_icon("link") %>
+          </a>
+          <a id="transfer-file" class="action" rel="nofollow" title="Transfer a document">
+            <%= fa_icon("exchange") %>
+          </a>
+          <div id="link-display"></div>
         </div>
-        <div id="delete-doc" class="action">
-          <%= fa_icon("trash-o") %>
-        </div>
-        <div id="link-doc" class="action">
-          <%= fa_icon("link") %>
-        </div>
-        <div id="transfer-file" class="action fa fa-rocket"></div>
-				<div id="link-display"</div>
       </div>
     </div>
   </div>

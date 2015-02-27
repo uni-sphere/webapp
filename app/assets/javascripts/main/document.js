@@ -519,14 +519,14 @@ var hover = {
 			if (!$(this).hasClass("document-selected")){
 				$(this).addClass('document-hovered')
 			}
-			$('#actions-doc').addClass('selected-action');
+			$('#actions-selected-doc').addClass('action-possible');
 		})
 
 		$('.box_document').mouseout(function() {
 			if (!$(this).hasClass("document-selected")){
 				$(this).removeClass('document-hovered')
 			}
-			if (docSelection.target == null) { $('#actions-doc').removeClass('selected-action') }
+			if (docSelection.target == null) { $('#actions-selected-doc').removeClass('action-possible') }
 		})
 
 		$('#new-doc').hover(
@@ -562,13 +562,13 @@ var hover = {
 			}
 		);
 
-		$('.action').mouseover(function() {
+		$('.action .fa').mouseover(function() {
 			if (docSelection.target != null){
 				$(this).addClass('action-hovered')
 			}
 		})
 
-		$('.action').mouseout(function() {
+		$('.action .fa').mouseout(function() {
 			if (docSelection.target != null){
 				$(this).removeClass('action-hovered')
 			}
