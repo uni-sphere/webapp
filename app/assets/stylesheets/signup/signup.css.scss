@@ -27,11 +27,8 @@ html, body, main{
 
 
 main{
-  // background-image: url('bg1.jpg');
-  // background-image: url(image-path('bg1.jpg'));
-  background-image: image-url("bg1.jpg");
+  // background-image: image-url("bg1.jpg");
   background-image: asset_path('bg1.jpg');
-  // background-image: image-url("logo.png")
   background-size: cover;
 }
 
@@ -61,23 +58,17 @@ main{
   margin-left: calc(50% - 300px);
   margin-bottom: 30px;
 
-  // background: green;
-
 }
 
 
 .signup-title{
-  // text-align: center;
-
   position: relative;
   float: left;
-  
 
   font-family: ubuntu, sans-serif;
   font-weight: bold;
   font-size: 42px;
   letter-spacing: 2px;
-  // background: blue;
 
   line-height: 50px;
 }
@@ -88,7 +79,6 @@ main{
 
   margin-left: 20px;
   font-size: 50px !important;
-  // background: red;
 }
 
 

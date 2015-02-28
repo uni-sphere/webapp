@@ -1,0 +1,22 @@
+// ---------------
+// NEW GROUP
+// ---------------
+
+
+#slide-new-group{
+  left: 40%;
+  right: 40%;
+
+  top: 40%;
+  bottom: 40%;
+
+  .slide-body{
+    display: none;
+  }
+}
+
+.body-wrapper-new-group{
+  display: inline-block;
+
+  margin: 20px auto !important;
+}

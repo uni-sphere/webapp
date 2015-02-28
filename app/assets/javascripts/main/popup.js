@@ -2,35 +2,47 @@ var popup = {
 	
 	show: function(target) {
 		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
-		$(target).slideDown(400);
+		$(target).slideDown(400, function(){
+      $(target).find('.slide-body').fadeIn(1);
+    });
 	},
 	
 	showWithListFile: function(target){
 		$("#background-grey").css({"opacity" : "0.7"}).fadeIn(200);
 		$(target).slideDown(400, function(){
-			var maxHeight = $(target).find('.slide-body').height() - 40;
-			$(target).find('.wrapper-group-list').css('max-height', maxHeight);
-			$(target).find('.group-list').css('max-height', maxHeight);
-
-			var top = $(target).find('.slide-body').height()/2 - $(target).find('.wrapper-group-list').height()/2;
-			$(target).find('.wrapper-group-list').css('top', top).fadeIn(1);
-
+      popup.verticalAlign(target,'.wrapper-group-list','.group-list');
 			if($(target).attr('id') == 'slide-transfer-document'){
-				var maxHeight = $(target).find('.slide-body').height() - 40;
-				$(target).find('.wrapper-document-to-transfer').css('max-height', maxHeight);
-				$(target).find('.document-to-transfer').css('max-height', maxHeight);
-
-				var top = $(target).find('.slide-body').height()/2 - $(target).find('.wrapper-document-to-transfer').height()/2;
-				$(target).find('.wrapper-document-to-transfer').css('margin-top', top).fadeIn(1);
+        popup.verticalAlign(target,'.wrapper-document-to-transfer','.document-to-transfer');
 				$(target).find('.arrow-wrapper').fadeIn(1);
 			}
 		});
 	},
 	
+  verticalAlign: function(target, wrapper, div){
+    var maxHeight = $(target).find('.slide-body').height() - 40;
+    $(target).find(wrapper).css('max-height', maxHeight);
+    $(target).find(div).css('max-height', maxHeight);
+
+    var top = $(target).find('.slide-body').height()/2 - $(target).find(wrapper).height()/2;
+    $(target).find(wrapper).css('top', top).fadeIn(1);
+  },
+
+  hideWithListFile: function(target){
+    $("#background-grey").css({"opacity" : "0.7"}).fadeOut(400);
+    $(target).slideUp(200);
+    $(target).find('.wrapper-group-list').css('top', top).fadeOut(1);
+    if($(target).attr('id') == 'slide-transfer-document'){
+      $(target).find('.wrapper-document-to-transfer').css('top', top).fadeOut(1);
+      $(target).find('.arrow-wrapper').fadeOut(1);
+    }
+  },
+
 	hide: function(target) {
 		$("#background-grey").css({"opacity" : "0.7"}).fadeOut(400);
 		$(target).slideUp(200);
+    $(target).find('.slide-body').fadeOut(1);
 	},
+
 
 	selectGroup: function(){
 		$(".list-element").on('click', function() { 
@@ -52,13 +64,25 @@ var popup = {
 
 		$("#close-slide-signup").on('click', function() { popup.hide("#slide-signup") } );
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
-		$("#close-all-groups").on('click', function() { popup.hide("#slide-all-groups") } );
+		$("#close-all-groups").on('click', function() { popup.hideWithListFile("#slide-all-groups") } );
 		$("#close-group-config").on('click', function() { popup.hide("#slide-group-config") } )
-		$(".close-transfer-document").on('click', function() { popup.hide("#slide-transfer-document") } )
+		$(".close-transfer-document").on('click', function() { popup.hideWithListFile("#slide-transfer-document") } )
 		
 		popup.selectGroup();
 	}
 };
+
+var autoSubmitExcel = {
+  
+  init: function() {
+    $('#import-excel').on('click', function() {
+      $('#pick-excel').click();
+    });
+    $('#pick-excel').on('change', function() {
+      $('#submit-excel').click();
+    });
+  }
+}; 
 
 var transfer = {
 	
@@ -242,8 +266,9 @@ mainPopup = function() {
 	transfer.init();
 	group.init();
 	popup.init();
-	passwordCheck.init()
-  passwordSimilarity.init()
+	passwordCheck.init();
+  passwordSimilarity.init();
+  autoSubmitExcel.init();
 };
 
 

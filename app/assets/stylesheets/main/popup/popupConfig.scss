@@ -1,0 +1,236 @@
+@import "../../var";
+
+
+#slide-group-config{
+  left: 35%;
+  right: 35%;
+
+  top: 15%;
+  bottom: 15%;
+
+  .slide-body{
+    display: none;
+  }
+
+  // display: inline-block !important;
+}
+
+.config-wrapper{
+  position: relative;
+  position: relative;
+  float: left;
+  clear: left;
+
+  width: calc(100% - 80px);
+  margin: 20px;
+  padding: 20px;
+  // background: grey;
+}
+
+
+
+
+
+.wrapper-action{
+  position: relative;
+  float: left;
+  clear: left;
+
+  // height: 30px;
+  width: 100%;
+  // background: green;
+
+}
+.config-advise{
+  position: relative;
+  float: left;
+  clear: left;
+
+  height: 28px;
+  line-height: 28px;
+  font-size: 1.1em;
+  color: grey;
+}
+
+.submit-config{
+  position: relative;
+}
+
+
+
+#config-exel-import{
+  margin-top: 20px;
+}
+
+/*==========  Submit  ==========*/
+.submit-config{
+  position: relative;
+  float: left;
+
+  margin-left: 20px;
+}
+
+
+/*==========  Submit excel  ==========*/
+
+// #import-excel{
+//   position: relative;
+//   float: left;
+//   clear: left;
+// }
+
+/*==========  Input  ==========*/
+.input-config{
+  width: 200px;
+}
+
+
+/*==========  specific modifs  ==========*/
+
+#add-user-title, {
+  margin-bottom: 15px;
+}
+#rename-group-title{
+  margin-bottom: 10px;
+}
+#delete-group-title{
+  margin-bottom: 5px;
+}
+// -------------
+// GROUP CONFIG ---------------------------------
+// -------------
+
+// GENERAL -------------------------
+
+// #slide-group-config{
+//   left: 35%;
+//   right: 35%;
+
+//   top: 25%;
+//   bottom: 25%;
+
+//   display: inline-block !important;
+//   form{
+//     position: relative;
+//     float: left;
+
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+
+
+// .body-group-config{
+//   z-index: 120;
+
+//   position: relative;
+//   float: left;
+
+//   width: 100%;
+//   height: calc(100% - 40px);
+//   // background: blue;
+// }
+
+
+// // SUBMIT ADD USER
+// #group-config-add-user{
+//   position: absolute;
+//   top: 20px;
+//   left: 170px;
+// }
+
+
+// // ADD USER -----------------------
+// .group-config-title{
+//   position: relative;
+//   float: left;
+
+//   // margin-left: 10px;
+//   margin-top: 20px;
+
+//   font-weight: bold;
+//   font-size: 18px;
+// }
+
+// // INPUT USER
+
+// .twitter-typeahead{
+//   position: absolute;
+//   float: left;
+//   top: 20px;
+//   left: 0px;
+
+//   .tt-dataset-users{
+//     font-size: 14px;
+//     // background: rgba( 0, 0, 0, .5 );
+//     // background: grey;
+//     // font-weight: bold;
+//   }
+//   .tt-dropdown-menu{
+//     // background: grey;
+//     // background: rgba( 0, 0, 0, .5 );
+//     margin-top: 5px;
+//   }
+// }
+
+
+// // ADDED MEMBER LIST -------------------
+// .token-container{
+//   position: absolute;
+
+//   top: 60px;
+//   left: 20px;
+
+//   background: blue;
+//   display: none;
+// }
+
+// .token-input{
+//   width: 150px !important;
+
+//   font-size: 14px;
+//   font-weight: bold;
+//   color: $grey-dark;
+// }
+// #tokenfield-tokenfield{
+//   color: black;
+// }
+
+// .token{
+//   position: relative;
+//   float: left;
+//   clear: left;
+//   margin: 3px 0px;
+
+//   padding-left: 20px;
+
+//   // background: green;
+//   text-align: left;
+
+//   font-size: 18px !important;
+//   font-weight: bold;
+//   // width: 200px !important;
+
+//   &:hover{
+//     .close{
+//       color: black;
+//     }
+//   }
+// }
+
+// .token-label{
+//   margin-left: 10px;
+//   width: 100px !important;
+//   font-family: ubuntu;
+// }
+
+// .close{
+//   position: absolute;
+//   left: 0px;
+//   color: white;
+// }
+
+// .invalid{
+//   color: red;
+// }
+

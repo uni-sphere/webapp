@@ -11,6 +11,7 @@
       <% end %>
     </div>
     <div class="welcome-title">
+      <span class="unisphere">UNISPHERE</span>
       <span class="main-title">Collaborative workspace for students</span>
       <span class="subtitle">Share, communicate and plan</span>
     </div>
@@ -20,8 +21,6 @@
       <%= link_to "sign up", new_user_path, class: "temp-signup" %>
     <%# end %>
     <div class="sign-up">
-      <input type="text"class="sign-up-input" placeholder="Choose a pseudo" />
-      <input type="text"class="sign-up-input" placeholder="Create a password" />
       <input type="text"class="sign-up-input" placeholder="Email Address" /> 
       <div class="sign-up-button">Sign up for Free</div>
     </div>
@@ -29,9 +28,11 @@
 
   <div class="try-it-wrapper">
 		<%= form_tag users_path(user: {name: nil}), multipart: true do %>
-    <form class="try-it" method="post" action="users" >
-      <input type="submit" class="try-it-text" value="Try it now!"></input>
-      <span class="fa fa-arrow-circle-o-right"></span>
+    <form class="try-it-form" method="post" action="users" >
+      <div class="try-it">
+        <input type="submit" class="try-it-text" value="Try it now!"></input>
+        <i class="fa fa-arrow-circle-o-right"></i>
+      </div>
     </form>
 		<% end %>
   </div>

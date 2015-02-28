@@ -1,0 +1,43 @@
+@import "../../var";
+
+
+#slide-transfer-document{
+  left: 30%;
+  right: 30%;
+
+  top: 25%;
+  bottom: 25%;
+  overflow-y: hidden;
+  // display: inline-block !important;
+}
+
+#wrapper-group-list-transfer-document{
+  width: 33%;
+}
+
+#transfer-document-wrapper{
+  display: none;
+}
+
+.arrow-wrapper{
+  position: absolute;
+  left: 33%;
+  top: 0px;
+
+  width: 33%;
+  height: 100%;
+  display: none;
+}
+
+.fa-long-arrow-right{
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+
+  height: 80px;
+  width: 80px;
+
+  font-size: 80px !important;
+  color: $grey;
+}
+

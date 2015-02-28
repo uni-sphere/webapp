@@ -47,10 +47,8 @@
         </div>
       </div>
 				
-    <!-- ------------------- -->
-    <!-- FOLDERS             -->
-    <!-- ------------------- -->
-		
+      <div class="document-rows">
+	
         <% @group_folders.each do |folder| %>
     	    <div class="box_document" document-selected="false">
             <span class="dragAndDrop icon-and-name" item_id="<%= folder.id %>" item="folder" name="<%= folder.name %>" >
@@ -69,57 +67,51 @@
             <div class="size-doc">-</div>
           </div>
         <% end %>
-				
-    <!-- ------------------- -->
-    <!-- DOCUMENTS           -->
-    <!-- ------------------- -->
-		
+			
+	
 				<% @group_documents.each do |document| %>
-				<% if document.deleted == false && document.name %>
-				<div class="box_document" document-selected="false">
-					<span class="dragAndDrop icon-and-name" document_id="<%= document.box_id %>" item="file" name="<%= document.name %>" item_id="<%= document.id %>"%>
-						<%= link_to read_group_file_path(box_id: document.box_id) do %>
-						<%= fa_icon("file-o") %>
-						<span class="name-document"> <%= document.name %> </span>
-						<% end %>
-						<%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
-					</span>
-            
-					<a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
-					<div class="modified-doc">
-						<span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
-						<span class="person"><%= document.owner %></span>
-					</div>
-					<div class="size-doc"><%= document.size/1000 %> kb</div>
-				</div>
+  				<% if document.deleted == false && document.name %>
+  				<div class="box_document" document-selected="false">
+  					<span class="dragAndDrop icon-and-name" document_id="<%= document.box_id %>" item="file" name="<%= document.name %>" item_id="<%= document.id %>"%>
+  						<%= link_to read_group_file_path(box_id: document.box_id) do %>
+  						<%= fa_icon("file-o") %>
+  						<span class="name-document"> <%= document.name %> </span>
+  						<% end %>
+  						<%= text_field_tag :name, document.name, class: "hidden input-rename-document" %>
+  					</span>
+              
+  					<a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
+  					<div class="modified-doc">
+  						<span class="date-time"><%= time_ago_in_words Time.at(document.created_at.to_i) %></span>
+  						<span class="person"><%= document.owner %></span>
+  					</div>
+  					<div class="size-doc"><%= document.size/1000 %> kb</div>
+  				</div>
+  				<% end %>
 				<% end %>
-				<% end %>
-				
-    <!-- ------------------- -->
-    <!-- FIREPADS            -->
-    <!-- ------------------- -->
+
 		
         <% @firepads.each do |firepad| %>
-				<% if firepad.deleted == false %>
-    	    <div class="box_document" document-selected="false">
-            <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" item_id="<%= firepad.id %>" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
-              <%= link_to read_firepad_path(firepad_id: firepad.id, group_id: current_group.id) do %>
-                <%= fa_icon("fire") %>
-                <span class="name-document go-file"><%= firepad.name %></span>
-              <% end %>
-              <%= text_field_tag :name, firepad.name, class: "hidden input-rename-document" %>
-            </span>
-            
-            <a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
-            <div class="modified-doc">
-              <span class="date-time"><%= time_ago_in_words Time.at(firepad.created_at.to_i) %></span>
-              <span class="person"></span>
+  				<% if firepad.deleted == false %>
+      	    <div class="box_document" document-selected="false">
+              <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" item_id="<%= firepad.id %>" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
+                <%= link_to read_firepad_path(firepad_id: firepad.id, group_id: current_group.id) do %>
+                  <%= fa_icon("fire") %>
+                  <span class="name-document go-file"><%= firepad.name %></span>
+                <% end %>
+                <%= text_field_tag :name, firepad.name, class: "hidden input-rename-document" %>
+              </span>
+              
+              <a title="Rename" rel="nofollow"><%= fa_icon("pencil", class: "document-rename") %></a>
+              <div class="modified-doc">
+                <span class="date-time"><%= time_ago_in_words Time.at(firepad.created_at.to_i) %></span>
+                <span class="person"></span>
+              </div>
+              <div class="size-doc">-</div>
             </div>
-            <div class="size-doc">-</div>
-          </div>
-        <% end %>
-				<% end %>		  
-      
+          <% end %>
+				<% end %>
+      </div>
     </div> 
 
     <!-- ------------------- -->
@@ -130,7 +122,7 @@
 
       <div id="new-actions">
         <div class="action-doc action-possible" id="actions-creation" >
-          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post, id:"new-folder", class:"action", title:"yopla" do%>
+          <%= link_to create_group_folder_path(group_id: params[:group_id], folder_id: params[:folder_id]), method: :post, id:"new-folder", class:"action", title:"Create a folder" do%>
               <%= fa_icon "folder-o" %>
           <% end %>
 

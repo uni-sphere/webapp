@@ -1,6 +1,5 @@
 <div id="background-grey"></div>
 
-
 <div id="slide-group-config" class="slide">
   <div class="slide-container">
     <div class="slide-header">
@@ -9,34 +8,40 @@
     </div>
     <div class="slide-body">
       <div class="config-wrapper" id="config-add-user">
-        <div class="config-header">Add user</div>
+        <div class="title-popup-default" id="add-user-title"><i class="fa fa-user-plus"></i>Add user</div>
         <div class="wrapper-action">
-					<%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
-            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-add-user-input", name: 'user[email]' %>
+         <div class="subtitle-popup-default">Add users one by one with their names</div>
+          <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
+            <%= text_field_tag :name, '', class: "input-wrapper input-config", id: "group-config-add-user-input", name: 'user[email]', placeholder: "Input your friends name" %>
             <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit">
-					<% end %>
-				
-					<!-- EXCEL IMPORT -->
-				
-					<%= form_tag import_for_involving_users_path(group_id: current_group.id), multipart: true do %>
-					  <%= file_field_tag :file %>
-					  <%= submit_tag "Invite" %>
-					<% end %>
+          <% end %>
+        </div>
+
+        <!-- EXCEL IMPORT -->
+        <div class="wrapper-action" id="config-exel-import">
+          <div class="subtitle-popup-default">Add users through an excel file</div>
+          <span class="config-advise">Excel columns | email | first name | last name |</span>
+          <div class="submit-default submit-config" id="import-excel">Choose a file</div>
+          <%= form_tag import_for_involving_users_path(group_id: current_group.id), multipart: true do %>
+            <%= file_field_tag :file, id: "pick-excel", class: "hidden" %>
+            <%= submit_tag "Invite", class: "hidden", id: "submit-excel" %>
+          <% end %>
         </div>
       </div>
       <div class="config-wrapper" id="config-rename">
-        <div class="config-header">Rename the group</div>
+        <div class="title-popup-default" id="rename-group-title"><i class="fa fa-pencil-square-o"></i>Rename the group</div>
         <div class="wrapper-action">
-					
-          <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-rename-input" %>
+          <%= text_field_tag :name, '', class: "input-wrapper input-config", id: "group-config-rename-input", placeholder: "New name" %>
           <input type="submit" value="Rename" class="submit-default submit-config" id="group-config-rename-submit">
-					
+          
         </div>
+        
       </div>
       <div class="config-wrapper" id="config-delete">
-        <div class="config-header">Delete the group</div>
+        <div class="title-popup-default" id="delete-group-title"><i class="fa fa-times"></i>Delete the group</div>
         <div class="wrapper-action">
-					<%= link_to 'Delete', destroy_group_path(group_id: current_group.id, user_id: current_user.id), class: "submit-default submit-config", id: "group-config-delete-submit",  method: :delete, data: { confirm: 'Are you sure?' } %>
+          <span class="config-advise"> Deleting this group in an irreversible action</span>
+          <%= link_to 'Delete', destroy_group_path(group_id: current_group.id, user_id: current_user.id), class: "submit-default submit-config", id: "group-config-delete-submit",  method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
       </div>
     </div>
@@ -44,8 +49,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 
@@ -90,7 +93,7 @@
       <span class="header-title">Select a group</span>
       <div class="fa fa-close" id="close-all-groups"></div>
     </div>
-    <div class="slide-body">
+    <div class="slide-body" id="body-all-groups">
       <div class="wrapper-group-list" id="all-groups-wrapper">
         <div class="group-list group-list-all-groups">
           <% current_groups.each do |group| %>
@@ -119,7 +122,7 @@
       <span class="header-title">New group</span>
       <div class="fa fa-close" id="close-new-group"></div>
     </div>
-    <div class="slide-body">
+    <div class="slide-body" id="body-new-group">
       <div class="body-wrapper-new-group">
       <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
       </div>
@@ -142,52 +145,7 @@
 
 
 
-<div id="background-grey"></div>
 
-
-<div id="slide-group-config" class="slide">
-  <div class="slide-container">
-    <div class="slide-header">
-      <span class="header-title">Configuration</span>
-      <div class="fa fa-close" id="close-group-config"></div>
-    </div>
-    <div class="slide-body">
-      <div class="config-wrapper" id="config-add-user">
-        <div class="config-header">Add user</div>
-        <div class="wrapper-action">
-          <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
-            <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-add-user-input", name: 'user[email]' %>
-            <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit">
-          <% end %>
-        
-          <!-- EXCEL IMPORT -->
-        
-          <%= form_tag import_for_involving_users_path(group_id: current_group.id), multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= submit_tag "Invite" %>
-          <% end %>
-        </div>
-      </div>
-      <div class="config-wrapper" id="config-rename">
-        <div class="config-header">Rename the group</div>
-        <div class="wrapper-action">
-          
-          <%= text_field_tag :name, '', class: "input-wrapper", id: "group-config-rename-input" %>
-          <input type="submit" value="Rename" class="submit-default submit-config" id="group-config-rename-submit">
-          
-        </div>
-      </div>
-      <div class="config-wrapper" id="config-delete">
-        <div class="config-header">Delete the group</div>
-        <div class="wrapper-action">
-          <%= link_to 'Delete', destroy_group_path(group_id: current_group.id, user_id: current_user.id), class: "submit-default submit-config", id: "group-config-delete-submit",  method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer">
-    </div>
-  </div>
-</div>
 
 
 
@@ -284,56 +242,58 @@
       <div class="fa fa-close" id="close-slide-signup"></div>
     </div>
 
-    <%= form_for @user = User.new, url: users_path(user: {user_id: current_user.id}), method: :put, multipart: true, class: "forms-container" do |f| %>
-      <div class="slide-body">
-        <div class="body-wrapper" id="signup-body-wrapper">
-          <div class="form-container">
-            <input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
-            <input type="text" class="signup-input" placeholder="Email" id="email" name="user[email]"/>
+    <div class="body-and-footer-wrapper">
+      <%= form_for @user = User.new, url: users_path(user: {user_id: current_user.id}), method: :put, multipart: true, class: "forms-container" do |f| %>
+        <div class="slide-body">
+          <div class="body-wrapper" id="signup-body-wrapper">
+            <div class="form-container">
+              <input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
+              <input type="text" class="signup-input" placeholder="Email" id="email" name="user[email]"/>
 
-            <div class="password-wrapper">
-              <div class="signup-input-wrapper">
-                <input type="password" class="signup-input" placeholder="Password" id="password" name="user[password]"/>
-                <div class="password-tip">Use at least 6 characters</div>
-                <div class="fa fa-check password-notif"></div>
-              </div>
+              <div class="password-wrapper">
+                <div class="signup-input-wrapper">
+                  <input type="password" class="signup-input" placeholder="Password" id="password" name="user[password]"/>
+                  <div class="password-tip">Use at least 6 characters</div>
+                  <div class="fa fa-check password-notif"></div>
+                </div>
 
-              <div id="password-strength" class="short">
-                <span class="strength-fixed-text">Password strength:</span>
-                <span class="strength-text">Too short</span>
-                  
-                <div class="visual-indicator-container">
-                  <div class="visual-indicator"></div>
+                <div id="password-strength" class="short">
+                  <span class="strength-fixed-text">Password strength:</span>
+                  <span class="strength-text">Too short</span>
+                    
+                  <div class="visual-indicator-container">
+                    <div class="visual-indicator"></div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="signup-input-wrapper">
-              <input type="password" class="signup-input" id="password-check" placeholder="Retype" name="user[password_confirmation]">
-              <div class="fa fa-check password-check-notif-ok"></div>
-              <div class="fa fa-times password-check-notif-bad"></div>
-            </div>
-
-
-            
-            <% if @user.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-                <ul>
-                  <% @user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
+              <div class="signup-input-wrapper">
+                <input type="password" class="signup-input" id="password-check" placeholder="Retype" name="user[password_confirmation]">
+                <div class="fa fa-check password-check-notif-ok"></div>
+                <div class="fa fa-times password-check-notif-bad"></div>
               </div>
-            <% end %>
-          
+
+
+              
+              <% if @user.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+                  <ul>
+                    <% @user.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            
+            </div>
           </div>
         </div>
-      </div>
-      <div class="slide-footer">
-      <input id="signup-button" name="commit" type="submit" class="submit-default validate-default" value="Sign up">
-      </div>
-    <% end %>
+        <div class="slide-footer">
+          <input id="signup-button" name="commit" type="submit" class="submit-default validate-default" value="Sign up">
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

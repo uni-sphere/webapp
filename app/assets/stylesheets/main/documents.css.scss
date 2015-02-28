@@ -16,7 +16,7 @@
   position: relative;
   float: left;
 
-  padding-left: 5px;
+  // padding-left: 5px;
 
   a, .breadcrumb-separator{
     position: relative;
@@ -47,6 +47,7 @@
 // ---DOCUMENT list --
 // -------------------
 
+
 #list-document{
   position: relative;
   float: left;
@@ -54,6 +55,15 @@
   width: 85%;
   text-align: left;
 }
+
+.documents-rows{
+  position: relative;
+  float: left;
+
+  width: 100%;
+  overflow-y: auto;
+}
+
 
 .notification-row{
   position: relative;
@@ -310,15 +320,15 @@
 
 .action-doc{
   position: absolute;
-  .fa{font-size: 4em;}
+  .fa{font-size: 3.5em;}
   width: 100%;
 }
 
 #actions-creation{
-  top: 20px;
+  top: 15px;
 }
 #actions-selected-doc{
-  top: 400px;
+  top: 350px;
 }
 
 .action{

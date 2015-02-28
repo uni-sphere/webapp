@@ -112,8 +112,10 @@ body {
     float: left;
     z-index: 1;
 
-    width: 100%;
+    width: 99%;
     height: 30px;
+
+    padding-left: 1%;
 
     background: $gradient;
 
@@ -125,8 +127,10 @@ body {
     float: left;
     z-index: 1;
 
-    width: calc(100% - 4px);
+    width: calc(95% - 4px);
     height: calc(100% - 28px);
+
+    padding-left : 5%; 
 
     background: $inside-bg;
     border-right: solid 4px $header-bg;
