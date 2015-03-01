@@ -22,6 +22,11 @@ class SessionsController < ActionController::Base
   end
 
   def create
+    if params[:confirmation]
+      user.update(confirmed: true) 
+      user = User.find params[:confirmation]
+      create_box(user.email) 
+    end
     user = User.authenticate(params[:session][:email],
                              params[:session][:password])
     respond_to do |format|
@@ -29,7 +34,6 @@ class SessionsController < ActionController::Base
         format.html { redirect_to get_user_documents_path(folder: '0') }
         format.json { head :no_content }
 	      sign_in user
-        user.update(confirmed: true) if params[:confirmation]
         refresh_token
       else
         format.html { redirect_to root_path }

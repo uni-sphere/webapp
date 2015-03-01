@@ -22,12 +22,14 @@ module BoxHelper
   end
   
   def box_content_resources
-    {
-      token: RestClient::Resource.new('https://api.box.com/oauth2/token'),
-      authorize: RestClient::Resource.new('https://app.box.com/api/oauth2/authorize'),
-      basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" }),
-      upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" })                                                                  
-    }
+    if current_user
+      {
+        token: RestClient::Resource.new('https://api.box.com/oauth2/token'),
+        authorize: RestClient::Resource.new('https://app.box.com/api/oauth2/authorize'),
+        basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" }),
+        upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" })                                                                  
+      }
+    end
   end
   
   def box_view_resources
@@ -83,21 +85,23 @@ module BoxHelper
   end
   
   def refresh_token
-    if !current_user.boxtoken.nil?
-      if current_user.boxtoken.updated_at < 30.minutes.ago
-        refresh_token_params = {
-          grant_type: 'refresh_token',
-          refresh_token: current_user.boxtoken.refresh_token,
-          client_id: box_params[:client_id],
-          client_secret: box_params[:client_secret]
-        }
+    if current_user
+      if !current_user.boxtoken.nil?
+        if current_user.boxtoken.updated_at < 30.minutes.ago
+          refresh_token_params = {
+            grant_type: 'refresh_token',
+            refresh_token: current_user.boxtoken.refresh_token,
+            client_id: box_params[:client_id],
+            client_secret: box_params[:client_secret]
+          }
   
-        box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
-          check_request_success(response)
-          return false if @return
-          set_token(JSON.parse(response))
-        }
-        logger.info "refresh token"
+          box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
+            check_request_success(response)
+            return false if @return
+            set_token(JSON.parse(response))
+          }
+          logger.info "refresh token"
+        end
       end
     end
   end
