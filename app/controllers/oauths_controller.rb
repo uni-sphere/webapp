@@ -17,7 +17,7 @@ class OauthsController < ApplicationController
       state: session[:_csrf_token]
     }
 
-    box_content_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
+    box_oauth_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
       redirect_to(request.url)
     }
     render :nothing => true

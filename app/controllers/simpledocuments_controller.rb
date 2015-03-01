@@ -1,6 +1,7 @@
 class SimpledocumentsController < ApplicationController
   
   before_action :authenticate?
+  before_action :force_under_construction
 
   def create_folder
     req_params = {

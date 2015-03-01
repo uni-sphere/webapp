@@ -22,14 +22,19 @@ module BoxHelper
   end
   
   def box_content_resources
-    if current_user
+    if !current_user.boxtoken.nil?
       {
-        token: RestClient::Resource.new('https://api.box.com/oauth2/token'),
-        authorize: RestClient::Resource.new('https://app.box.com/api/oauth2/authorize'),
         basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" }),
         upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" })                                                                  
       }
     end
+  end
+  
+  def box_oauth_resources
+    {
+      token: RestClient::Resource.new('https://api.box.com/oauth2/token'),
+      authorize: RestClient::Resource.new('https://app.box.com/api/oauth2/authorize')                              
+    }
   end
   
   def box_view_resources
@@ -55,7 +60,7 @@ module BoxHelper
       state: session[:_csrf_token]
     }
 
-    box_content_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
+    box_oauth_resources[:authorize].get(params: oauth_params) { |response, request, result, &block|
       redirect_to(request.url)
     }
   end
@@ -68,7 +73,7 @@ module BoxHelper
       client_secret: box_params[:client_secret]
     }
     
-    box_content_resources[:token].post(access_token_params) { |response, request, result, &block|
+    box_oauth_resources[:token].post(access_token_params) { |response, request, result, &block|
       set_token(JSON.parse(response))
     }
     redirect_to get_user_documents_path(folder: params[:folder] ? params[:folder] : '0' )
@@ -95,7 +100,7 @@ module BoxHelper
             client_secret: box_params[:client_secret]
           }
   
-          box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
+          box_oauth_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
             check_request_success(response)
             return false if @return
             set_token(JSON.parse(response))
@@ -116,7 +121,7 @@ module BoxHelper
       username: email
     }
 
-    box_content_resources[:token].post(box_creation_params) { |response, request, result, &block|
+    box_oauth_resources[:token].post(box_creation_params) { |response, request, result, &block|
       logger.info response
     }
   end

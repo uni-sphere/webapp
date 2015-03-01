@@ -137,7 +137,7 @@ var transfer = {
 			}
 		})
 	}
-}
+};
 
 var group = {
 	
@@ -243,7 +243,6 @@ var passwordCheck ={
   }
 };
 
-
 var passwordSimilarity={
   init: function(){
     $('#password-check').keyup(function(){
@@ -260,9 +259,17 @@ var passwordSimilarity={
   }
 };
 
-
+var signup = {
+	
+	init: function() {
+		$(window).on('hashchange', function(e){
+		 console.log(e)
+		});
+	}
+};
 
 mainPopup = function() {
+	signup.init();
 	transfer.init();
 	group.init();
 	popup.init();

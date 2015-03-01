@@ -6,6 +6,7 @@ module ApplicationHelper
   
   def force_under_construction
     @under_construction = true
+    render "layouts/main.html.erb"
   end
   
   def is_production?
