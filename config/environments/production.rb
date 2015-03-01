@@ -7,9 +7,9 @@ Lms::Application.configure do
     address: "mail.gandi.net",
     port: 587,
     authentication: :login,
-    user_name: 'clement.muller@unisphere.eu',
+    user_name: 'hello@unisphere.eu',
     domain: 'unisphere.eu',
-    password: '#PSW44unisphere',
+    password: '//11hello',
     enable_starttls_auto: true
   }
   

@@ -14,7 +14,7 @@
   <body>
     <%= render 'layouts/header' %>
     <% if @under_construction == true %>
-      <%= render 'layouts/under_construction' %>
+        <div class="under-construction"></div>
     <% else %>
       <%= yield %>
     <% end %>
