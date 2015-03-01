@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
 
-  
-  
   layout "main", except: [:new, :create]
-
+  
   # before_filter :check_for_mobile, :only => [:new, :edit]
 
   before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving]
@@ -86,6 +84,11 @@ class UsersController < ApplicationController
     end
   end 
       
+  def signedup
+    user = User.find(params[:user_id])
+    render json: true if user.password
+  end
+    
 private
 
   def user_params

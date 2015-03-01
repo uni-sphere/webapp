@@ -1,10 +1,12 @@
 class GroupsController < ApplicationController
 
+  autocomplete :user, :name, full: true, limit: 5, extra_data: [:email]
+  
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
-  before_action :set_user, except: [:autocomplete, :send_invitation]
+  before_action :set_user, except: [:autocomplete, :send_invitation, :autocomplete_user_name]
   before_action :set_users, only: [:send_invitation]
-  before_action :correct_user?, except: [:autocomplete, :send_invitation]
+  before_action :correct_user?, except: [:autocomplete, :send_invitation, :autocomplete_user_name]
   before_action :set_group_origin, only: [:show, :edit]
   
 

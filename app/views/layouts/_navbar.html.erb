@@ -17,7 +17,8 @@
         <span class="user-name" current_user_name="<%= current_user.name %>" current_user_id="<%= current_user.id %>"><%= current_user.name %></span>
       </a>
      	
-      <%= link_to fa_icon("sign-out", class: "power-off"), signout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "deco"  %>
+			<span class="deco fa fa-sign-out" id="deco"></span>
+      
     </div>
 
 		<%= link_to 'oauth', send_oauth_path, style: "color: white" %>
