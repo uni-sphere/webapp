@@ -221,9 +221,9 @@ var rename = {
 	
 	showInput: function() {
 			
-		rename.docType = $(this).parent().children('span').attr('item');
-		rename.docName = $(this).parent().children('span').children('a');
-		renameInput = $(this).parent().children('span').children('input');
+		rename.docType = $(this).parent().parent().children('span').attr('item');
+		rename.docName = $(this).parent().parent().children('span').children('a');
+		renameInput = $(this).parent().parent().children('span').children('input');
 		
 		if (rename.docType == 'file') {
 			var nameWithFormat = renameInput.attr("value");
@@ -298,9 +298,9 @@ var rename = {
 	init: function() {
 		$('.document-rename').on('click', this.showInput );
 		$('.input-rename-document').on('blur', function() {
-			rename.target = $(this);
-			if (rename.enterFlag == false) { setLocation(rename) };
-			rename.enterFlag = false;
+			// rename.target = $(this);
+// 			if (rename.enterFlag == false) { setLocation(rename) };
+// 			rename.enterFlag = true;
 		});
 		$('.input-rename-document').on('keyup', function(event) {
 			if (event.keyCode == $.ui.keyCode.ENTER) {

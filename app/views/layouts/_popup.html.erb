@@ -143,7 +143,7 @@
     </div>
 
     <div class="body-and-footer-wrapper">
-      <%= form_for @user = User.new, url: users_path(user: {user_id: current_user.id}), method: :put, multipart: true, class: "forms-container" do |f| %>
+      <%= form_for @user = User.new, url: user_path(current_user.id), method: :put, multipart: true, class: "forms-container" do |f| %>
         <div class="slide-body">
           <div class="body-wrapper" id="signup-body-wrapper">
             <div class="form-container">
