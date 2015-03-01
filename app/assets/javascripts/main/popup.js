@@ -196,14 +196,16 @@ var passwordCheck ={
   checkStrength: function(password){
    var strength = 0
     if (password.length < 6) {
-      $('#password-strength').removeClass()
-      $('#password-strength').addClass('short')
-      $('.strength-text').text('Too short')
-      $('.password-notif').fadeOut(400)
+      $('#password-strength').removeClass();
+      $('#password-strength').addClass('short');
+      $('.strength-text').text('Too short');
+      $('.password-notif').fadeOut(400);
+      $('#password').removeClass('valid');
       return
     }
     else{
       $('.password-notif').fadeIn(400);
+      $('#password').addClass('valid');
     }
     if (password.length > 7) strength += 1
 
@@ -246,27 +248,42 @@ var passwordCheck ={
 var passwordSimilarity={
   init: function(){
     $('#password-check').keyup(function(){
-      if($(this).text()==$('#password').text()){
-        console.log($(this).text())
-        // $('.password-check-notif-bad').fadeOut(400)
+      if($(this).val()==$('#password').val() && $('#password').hasClass('valid')){
+        $('.password-check-notif-bad').fadeOut(400)
         $('.password-check-notif-ok').fadeIn(400)
       }
       else{
         $('.password-check-notif-ok').fadeOut(400)
-        // $('.password-check-notif-bad').fadeIn(400)
+        $('.password-check-notif-bad').fadeIn(400)
       }
     })
   }
 };
 
 var signup = {
-	
 	init: function() {
+
 		$(window).on('hashchange', function(e){
 		 console.log(e)
 		});
 	}
 };
+
+var signupGab ={
+  init: function() {
+    $('#before-signup-submit').on('click', function(){
+      $('#signup-button').click();
+      $('#before-signup-body').hide("slide",{direction: "left"},800);
+      $('#before-signup-footer').hide("slide",{direction: "left"},800);
+      $('#after-signup-body').show("slide",{direction: "right"},800);
+      $('#after-signup-footer').show("slide",{direction: "right"},800);
+
+      // $('#before-signup-body').hide("slide",{direction: "left"},800, function(){
+      //   $('#after-signup-body').show("slide",{direction: "right"},800);
+      // });
+    });
+  }
+}
 
 mainPopup = function() {
 	signup.init();
@@ -276,12 +293,14 @@ mainPopup = function() {
 	passwordCheck.init();
   passwordSimilarity.init();
   autoSubmitExcel.init();
+  signupGab.init();
 };
 
 
 $(document).on('ready page:load', function() {
 	mainPopup();
 });
+
 
 
 

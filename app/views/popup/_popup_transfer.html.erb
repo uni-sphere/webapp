@@ -1,0 +1,33 @@
+<div id="slide-transfer-document" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">File transfer</span>
+      <div class="fa fa-close close-transfer-document"></div> 
+    </div>
+    <div class="slide-body">
+      <div class="wrapper-document-to-transfer">
+        <div class="document-to-transfer">
+          <i class="fa fa-file-o"></i>
+          <span id="transfered-item-name">bonjour</span>
+        </div>
+      </div>
+      <div class="arrow-wrapper">
+        <div class="fa fa-long-arrow-right"></div>
+      </div>
+      <div class="wrapper-group-list" id="wrapper-group-list-transfer-document">
+        <div class="group-list group-list-transfer-document">
+          <% current_groups.each do |group| %>
+            <div class="list-element">
+              <i class="fa fa-group"></i>
+              <span class="list-element-name transfer-list" group_id="<%= group.id %>"><%= group.name %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <input type="submit" value="Transfer" class="submit-default validate-default" id="transfer-document-submit">
+      <!-- <input value="Cancel" class="submit-default close-transfer-document" id="transfer-document-cancel"> -->
+    </div>
+  </div>
+</div>

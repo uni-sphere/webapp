@@ -1,0 +1,49 @@
+<div id="slide-group-config" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">Configuration</span>
+      <div class="fa fa-close" id="close-group-config"></div>
+    </div>
+    <div class="slide-body">
+      <div class="config-wrapper" id="config-add-user">
+        <div class="title-popup-default" id="add-user-title"><i class="fa fa-user-plus"></i>Add user</div>
+        <div class="wrapper-action">
+         <div class="subtitle-popup-default">Add users one by one with their names</div>
+          <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
+            <%= text_field_tag :name, '', class: "input-wrapper input-config", id: "group-config-add-user-input", name: 'user[email]', placeholder: "Input your friends name" %>
+            <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit">
+          <% end %>
+        </div>
+
+        <!-- EXCEL IMPORT -->
+        <div class="wrapper-action" id="config-exel-import">
+          <div class="subtitle-popup-default">Add users through an excel file</div>
+          <span class="config-advise">Excel columns | email | first name | last name |</span>
+          <div class="submit-default submit-config" id="import-excel">Choose a file</div>
+          <%= form_tag import_for_involving_users_path(group_id: current_group.id), multipart: true do %>
+            <%= file_field_tag :file, id: "pick-excel", class: "hidden" %>
+            <%= submit_tag "Invite", class: "hidden", id: "submit-excel" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="config-wrapper" id="config-rename">
+        <div class="title-popup-default" id="rename-group-title"><i class="fa fa-pencil-square-o"></i>Rename the group</div>
+        <div class="wrapper-action">
+          <%= text_field_tag :name, '', class: "input-wrapper input-config", id: "group-config-rename-input", placeholder: "New name" %>
+          <input type="submit" value="Rename" class="submit-default submit-config" id="group-config-rename-submit">
+          
+        </div>
+        
+      </div>
+      <div class="config-wrapper" id="config-delete">
+        <div class="title-popup-default" id="delete-group-title"><i class="fa fa-times"></i>Delete the group</div>
+        <div class="wrapper-action">
+          <span class="config-advise"> Deleting this group in an irreversible action</span>
+          <%= link_to 'Delete', destroy_group_path(group_id: current_group.id, user_id: current_user.id), class: "submit-default submit-config", id: "group-config-delete-submit",  method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+    </div>
+  </div>
+</div>

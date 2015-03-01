@@ -1,0 +1,25 @@
+<div id="slide-all-groups" class="slide">
+  <div class="slide-container">
+    <div class="slide-header">
+      <span class="header-title">Select a group</span>
+      <div class="fa fa-close" id="close-all-groups"></div>
+    </div>
+    <div class="slide-body" id="body-all-groups">
+      <div class="wrapper-group-list" id="all-groups-wrapper">
+        <div class="group-list group-list-all-groups">
+          <% current_groups.each do |group| %>
+            <%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "list-element" do %>
+              <i class="fa fa-group"></i>
+              <span class="list-element-name" group_id="<%= group.id %>">
+                <%= group.name %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <input type="submit" value="Select" class="submit-default validate-default" id="all-groups-submit">
+    </div>
+  </div>
+</div>
