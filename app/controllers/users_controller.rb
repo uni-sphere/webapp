@@ -86,6 +86,11 @@ class UsersController < ApplicationController
     end
   end 
       
+  def signedup
+    user = User.find(params[:user_id])
+    render json: true if user.password
+  end
+  
 private
 
   def user_params

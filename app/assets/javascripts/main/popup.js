@@ -261,10 +261,27 @@ var passwordSimilarity={
 
 var signup = {
 	
-	init: function() {
-		$(window).on('hashchange', function(e){
-		 console.log(e)
+	init: function(signedUp) {
+		
+		signedUp = false;
+		
+		$.ajax({
+			url: '/signedup',
+			type:"GET",
+			dataType: 'JSON',
+			data: {
+				user_id: $(".user-name").attr('current_user_id')
+			},
+			complete: function(data) {
+				signedUp = data.responseJSON
+			}
 		});
+		console.log(signedUp);
+		if (signedUp == false) {
+			$("#input-button-upload").attr('type','');
+			$('#deco').off('click');
+			$("#upload-doc, #deco").on('click', function() { popup.show("#slide-signup") } );
+		}
 	}
 };
 

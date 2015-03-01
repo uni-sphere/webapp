@@ -28,6 +28,12 @@ Lms::Application.routes.draw do
 
   root to: 'sessions#new'
   
+  ############
+  ### user ###
+  ############
+  
+  get '/signedup', to: 'users#signedup', as: 'signedup'
+  
   #############
   ### group ###
   #############
