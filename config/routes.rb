@@ -40,6 +40,7 @@ Lms::Application.routes.draw do
   
   put '/user/group/rename', to: 'groups#update', as: 'rename_group'
   delete '/user/group/destroy', to: 'groups#destroy', as: 'destroy_group'
+  get 'user/group/autocomplete_user', to: 'groups#autocomplete_user_name', as: 'autocomplete_user_name'
   
   ##################
   ### invitation ###

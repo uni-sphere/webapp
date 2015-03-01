@@ -13,6 +13,7 @@
          <div class="subtitle-popup-default">Add users one by one with their names</div>
           <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
             <%= text_field_tag :name, '', class: "input-wrapper input-config", id: "group-config-add-user-input", name: 'user[email]', placeholder: "Input your friends name" %>
+						<input type="text" data-autocomplete="autocomplete_user" data-delimiter=',' multiple=true data-auto-focus=true, name='user[email]' >
             <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit">
           <% end %>
         </div>
@@ -148,7 +149,7 @@
           <div class="body-wrapper" id="signup-body-wrapper">
             <div class="form-container">
               <input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
-              <input type="text" class="signup-input" placeholder="Email" id="email" name="user[email]"/>
+              <input type="text" class="signup-input" placeholder="<%= current_user ? current_user.email : 'Email' %>" id="email" name="user[email]"/>
 
               <div class="password-wrapper">
                 <div class="signup-input-wrapper">

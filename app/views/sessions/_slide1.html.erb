@@ -50,7 +50,7 @@
   <div class="sign-up-wrapper">
     <div class="sign-up">
 
-			<%= form_for @user = User.new, url: users_path(), method: :post, multipart: true do |f| %>
+			<%= form_for @user = User.find, url: users_path(), method: :post, multipart: true do |f| %>
 				<input type="text" class="sign-up-input" placeholder="Email Address" name="user[email]"/>
 				<input name="commit" type="submit" class="sign-up-button" value="Sign up">
       	<!-- <div class="sign-up-button">Sign up for Free</div> -->

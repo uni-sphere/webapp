@@ -276,7 +276,7 @@ var signup = {
 				signedUp = data.responseJSON
 			}
 		});
-		console.log(signedUp);
+		
 		if (signedUp == false) {
 			$("#input-button-upload").attr('type','');
 			$('#deco').off('click');
