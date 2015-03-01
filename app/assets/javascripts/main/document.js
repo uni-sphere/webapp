@@ -277,7 +277,6 @@ var rename = {
 				name: renameInput.val()
 			}
 		}
-		
 		rename.rename(url, data);
 	},
 	
@@ -298,16 +297,18 @@ var rename = {
 	init: function() {
 		$('.document-rename').on('click', this.showInput );
 		$('.input-rename-document').on('blur', function() {
-			// rename.target = $(this);
-// 			if (rename.enterFlag == false) { setLocation(rename) };
-// 			rename.enterFlag = true;
+			rename.target = $(this);
+			if (rename.enterFlag == false) { setLocation(rename) };
+			rename.enterFlag = true;
+			setTimeout(function(){ rename.enterFlag = false }, 300);
 		});
 		$('.input-rename-document').on('keyup', function(event) {
 			if (event.keyCode == $.ui.keyCode.ENTER) {
 				rename.target = $(this);
 				$(this).blur();
 				setLocation(rename);
-				rename.enterFlag = true
+				rename.enterFlag = true;
+				setTimeout(function(){ rename.enterFlag = false }, 300);
 			};
 		})
 	}
