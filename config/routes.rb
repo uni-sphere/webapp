@@ -44,6 +44,7 @@ Lms::Application.routes.draw do
   
   #
   
+  get '/confirmation',  to: 'sessions#create'
   get '/signin',  to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'
 

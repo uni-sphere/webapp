@@ -22,16 +22,21 @@ class SessionsController < ActionController::Base
   end
 
   def create
-    if params[:confirmation]
+    
+    if params[:confid]
+      user = User.find params[:confid]
       user.update(confirmed: true) 
-      user = User.find params[:confirmation]
       create_box(user.email) 
     end
-    user = User.authenticate(params[:session][:email],
+    
+    if params[:session]
+      user = User.authenticate(params[:session][:email],
                              params[:session][:password])
+    end
+    
     respond_to do |format|
       if !user.nil?
-        format.html { redirect_to get_user_documents_path(folder: '0') }
+        format.html { redirect_to get_group_documents_path(group_id: user.groups.last, parent_id: 100) }
         format.json { head :no_content }
 	      sign_in user
         refresh_token
