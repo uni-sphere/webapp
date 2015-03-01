@@ -115,104 +115,6 @@
 
 
 
-
-<div id="slide-new-group" class="slide">
-  <div class="slide-container">
-    <div class="slide-header">
-      <span class="header-title">New group</span>
-      <div class="fa fa-close" id="close-new-group"></div>
-    </div>
-    <div class="slide-body" id="body-new-group">
-      <div class="body-wrapper-new-group">
-      <%= text_field_tag :name, '', class: "input-wrapper", id: "new-group-input" %>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <input type="submit" value="Create" class="submit-default validate-default" id="new-group-submit">
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="slide-transfer-document" class="slide">
-  <div class="slide-container">
-    <div class="slide-header">
-      <span class="header-title">File transfer</span>
-      <div class="fa fa-close close-transfer-document"></div> 
-    </div>
-    <div class="slide-body">
-      <div class="wrapper-document-to-transfer">
-        <div class="document-to-transfer">
-          <i class="fa fa-file-o"></i>
-          <span id="transfered-item-name">bonjour</span>
-        </div>
-      </div>
-      <div class="arrow-wrapper">
-        <div class="fa fa-long-arrow-right"></div>
-      </div>
-      <div class="wrapper-group-list" id="wrapper-group-list-transfer-document">
-        <div class="group-list group-list-transfer-document">
-          <% current_groups.each do |group| %>
-            <div class="list-element">
-              <i class="fa fa-group"></i>
-              <span class="list-element-name transfer-list" group_id="<%= group.id %>"><%= group.name %></span>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <input type="submit" value="Transfer" class="submit-default validate-default" id="transfer-document-submit">
-      <!-- <input value="Cancel" class="submit-default close-transfer-document" id="transfer-document-cancel"> -->
-    </div>
-  </div>
-</div>
-
-
-<div id="slide-all-groups" class="slide">
-  <div class="slide-container">
-    <div class="slide-header">
-      <span class="header-title">Select a group</span>
-      <div class="fa fa-close" id="close-all-groups"></div>
-    </div>
-    <div class="slide-body">
-      <div class="wrapper-group-list" id="all-groups-wrapper">
-        <div class="group-list group-list-all-groups">
-          <% current_groups.each do |group| %>
-            <%= link_to get_group_documents_path(group_id: group.id, parent_id: 100), class: "list-element" do %>
-              <i class="fa fa-group"></i>
-              <span class="list-element-name" group_id="<%= group.id %>">
-                <%= group.name %>
-              </span>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <input type="submit" value="Select" class="submit-default validate-default" id="all-groups-submit">
-    </div>
-  </div>
-</div>
-
-
 <div id="slide-new-group" class="slide">
   <div class="slide-container">
     <div class="slide-header">
@@ -229,8 +131,6 @@
     </div>
   </div>
 </div>
-
-
 
 <div id="slide-signup" class="slide">
   <div class="slide-container">

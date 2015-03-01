@@ -12,7 +12,19 @@
 
   top: calc(50% - 210px);
   height: 420px;
+
   // display: inline-block !important;
+  .slide-body{
+    display: none;
+  }
+
+  form{
+    position: relative;
+    float: left;
+
+    height: 100%;
+    width: 100%;
+  }
 }
 
 
