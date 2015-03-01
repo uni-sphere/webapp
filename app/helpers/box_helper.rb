@@ -25,8 +25,8 @@ module BoxHelper
     {
       token: RestClient::Resource.new('https://api.box.com/oauth2/token'),
       authorize: RestClient::Resource.new('https://app.box.com/api/oauth2/authorize'),
-      basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{cookies.permanent[:access_token]}" }),
-      upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{cookies.permanent[:access_token]}" })                                                                  
+      basic: RestClient::Resource.new('https://api.box.com/2.0/', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" }),
+      upload: RestClient::Resource.new('https://upload.box.com/api/2.0/files/content', headers: { Authorization: "Bearer #{current_user.boxtoken.access_token}" })                                                                  
     }
   end
   
@@ -73,26 +73,32 @@ module BoxHelper
   end
   
   def set_token(response)
-    cookies.permanent[:access_token] = response['access_token']
-    cookies.permanent[:refresh_token] = response['refresh_token']
-    cookies.permanent[:refresh_token_time] = Time.now
+    
+    if !current_user.boxtoken.nil?
+      current_user.boxtoken.update(access_token: response['access_token'], refresh_token: response['refresh_token'])
+    else
+      current_user.create_boxtoken(access_token: response['access_token'], refresh_token: response['refresh_token'])
+    end
+    
   end
   
   def refresh_token
-    if cookies.permanent[:refresh_token] and cookies.permanent[:refresh_token_time] < 45.minutes.ago
-      refresh_token_params = {
-        grant_type: 'refresh_token',
-        refresh_token: cookies.permanent[:refresh_token],
-        client_id: box_params[:client_id],
-        client_secret: box_params[:client_secret]
-      }
+    if !current_user.boxtoken.nil?
+      if current_user.boxtoken.updated_at < 30.minutes.ago
+        refresh_token_params = {
+          grant_type: 'refresh_token',
+          refresh_token: current_user.boxtoken.refresh_token,
+          client_id: box_params[:client_id],
+          client_secret: box_params[:client_secret]
+        }
   
-      box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
-        check_request_success(response)
-        return false if @return
-        set_token(JSON.parse(response))
-      }
-      logger.info "refresh token"
+        box_content_resources[:token].post(refresh_token_params,  :accept => :json ) { |response, request, result, &block|
+          check_request_success(response)
+          return false if @return
+          set_token(JSON.parse(response))
+        }
+        logger.info "refresh token"
+      end
     end
   end
   
@@ -107,7 +113,6 @@ module BoxHelper
     }
 
     box_content_resources[:token].post(box_creation_params) { |response, request, result, &block|
-      logger.info 'BOOOOOOXXXXXX'
       logger.info response
     }
   end

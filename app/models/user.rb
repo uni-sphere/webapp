@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 	has_many :calendars, dependent: :delete_all
   
   has_one :viewparam
+  
+  has_one :boxtoken
 
 # accessor	
 

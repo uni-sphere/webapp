@@ -4,7 +4,6 @@ class GroupdocumentsController < ApplicationController
   before_action :has_group?
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]
-  before_action :refresh_token, only: [:read_folder]
     
   def read_folder
     

@@ -1,7 +1,6 @@
 class SimpledocumentsController < ApplicationController
   
   before_action :authenticate?
-  before_action :refresh_token, only: [:index]
 
   def create_folder
     req_params = {

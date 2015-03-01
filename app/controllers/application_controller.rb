@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   
   # before_action :set_datas, only: [:index_notification]
   # before_action :index_notification
-  before_action :has_group? 
+  before_action :has_group?
+  before_action :refresh_token
   
  
 
