@@ -33,8 +33,8 @@ class FirepadsController < ApplicationController
     @transfered = Firepad.new(@attributes)
     @groupfolder = Groupfolder.where(["group_id = :group_id and parent_id = :parent_id", { group_id: params[:group_id], parent_id: 100 }]).first
     @transfered.groupfolder_id = @groupfolder.id
-    @transfered[:admin] = true if Group.find(params[:group_id]).admin_id == current_user.id 
-    logger.info @transfered.admin
+    @transfered.admin = true if Group.find(params[:group_id]).admin_id == current_user.id 
+    @transfered.firebase_url = random_key
     @transfered.save
     render :nothing => true
   end

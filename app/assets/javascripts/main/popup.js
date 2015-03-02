@@ -151,8 +151,8 @@ var group = {
 					
 					popup.hide("#slide-new-group");
 					
-					$('#all-groups').before(' \
-					<a class="lateral-nav-element" href="/user/group/documents?group_id=' + group.id + '&parent_id=100"> \
+					$('.sidebar-list-group').append(' \
+					<a class="lateral-nav-element current-group-element" href="/user/group/documents?group_id=' + group.id + '&parent_id=100"> \
 						<i class="fa fa-group"></i> \
 						<!-- <object type="image/svg+xml" data="/assets/group-pic.svg" id="profile-pic"></object> --> \
 						<span class="group-name-sidebar" group_id="' + group.id + '">' + group.name + '</span> \
@@ -176,7 +176,13 @@ var group = {
 				},
 				complete: function(data) {
 					if (data.responseJSON.success == true) {
-						$('#current-group-title').html($('#group-config-rename-input').val())
+						$('.group-name-sidebar').each( function() {
+							if ( $(this).html() === $('#current-group-title').html() ) {
+								console.log('hello');
+								$(this).html($('#group-config-rename-input').val())
+							}
+						})
+						$('#current-group-title').html($('#group-config-rename-input').val());
 						popup.hide("#slide-group-config");
 					}
 				}
@@ -266,27 +272,26 @@ var passwordSimilarity = {
 
 var signup = {
 
-  // showMailSent: function() {
-  //   $('#before-signup-body').hide("slide",{direction: "left"},800);
-  //   $('#before-signup-footer').hide("slide",{direction: "left"},800);
-  //   $('#after-signup-body').show("slide",{direction: "right"},800);
-  //   $('#after-signup-footer').show("slide",{direction: "right"},800);
-  // },
-
-  
+  showMailSent: function() {
+    $('#before-signup-body').hide("slide",{direction: "left"},800);
+    $('#before-signup-footer').hide("slide",{direction: "left"},800);
+    $('#after-signup-body').show("slide",{direction: "right"},800);
+    $('#after-signup-footer').show("slide",{direction: "right"},800);
+  },
 	
-  // showSignup: function() {
-  //   $('#after-signup-body').hide("slide",{direction: "right"},800);
-  //   $('#after-signup-footer').hide("slide",{direction: "right"},800);
-  //   $('#before-signup-body').show("slide",{direction: "left"},800);
-  //   $('#before-signup-footer').show("slide",{direction: "left"},800);
-  //   $('#password').val('');
-  //   $('#password-check').val('');
-  //   $('.password-check-notif-bad').fadeOut(1);
-  //   $('#password-strength').fadeOut(1);
-  // },
+  showSignup: function() {
+    $('#after-signup-body').hide("slide",{direction: "right"},800);
+    $('#after-signup-footer').hide("slide",{direction: "right"},800);
+    $('#before-signup-body').show("slide",{direction: "left"},800);
+    $('#before-signup-footer').show("slide",{direction: "left"},800);
+    $('#password').val('');
+    $('#password-check').val('');
+    $('.password-check-notif-bad').fadeOut(1);
+    $('#password-strength').fadeOut(1);
+  },
 	
 	send: function() {
+		console.log('hello');
 		$.ajax({
 			url: '/user/update',
 			type:"PUT",
@@ -326,7 +331,7 @@ var signup = {
     $("#signup-button-navbar").on('click', function() { signup.showSignup("signup-username")});
 
     $('#exit-really').on('click', function() { signout.signout() }); 
-		
+	
 		signedUp = false;
 		
 		$.ajax({

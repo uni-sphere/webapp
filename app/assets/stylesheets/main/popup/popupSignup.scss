@@ -1,5 +1,8 @@
 @import "../../var";
 
+// ------------
+// SLIDE SIGNUP -----------------------------
+// ------------
 
 #slide-signup{
   left: calc(50% - 290px);
@@ -34,62 +37,37 @@
   border: none;
   box-shadow: inset 1px 1px 0px 2px rgba( 0, 0, 0, 0.1 );
 
-  font-size: 15px;
-  font-weight: bold;
 
-  color: black;
-  
-  &:focus {
-    box-shadow: 0px 0px 3px 2px $blue;
-    outline: none;
-  }
-}
-
-.footer-signup{
-  position: absolute;
-
-  height: 60px;
-  width: 100%;
-
-  top: 0px;
-  left: 0px;
-
-  line-height: 60px;
-  font-size: 1.4em;
-  
-  .fa{
+  form{
     position: relative;
-    font-size: 1.5em;
-    line-height: 20px;
-    margin-left: 10px;
+    float: left;
+
+    height: 100%;
+    width: 100%;
   }
 }
 
-.arrow-and-sign-up{
+#before-signup-body{
   position: absolute;
 
-  height: 60px;
-  width: 200px;
+  left: calc(50% - 270px);
+  top: 40px;  
+  width: 540px;
+  height: 240px;
 
-  top: 0px;
-  left: calc(50% - 100px);
+  .fa{
+    position: absolute;
+    right: 5px;
+    top: 10px;
 
-  line-height: 60px;
+    height: 20px;
+    width: 20px;
 
+    display: none;
 
-  &:hover{
-    cursor: pointer;
-    padding-left: 15px;
-    width: 195px;
-    // background: green;
+    font-size: 20px;
   }
 }
-
-/*===========================================
-=            signup from signout            =
-===========================================*/
-
-
 
 #signup-from-signout-body{
   display: none;
@@ -122,8 +100,6 @@
   }
 }
 
-/*==========  Footer  ==========*/
-
 #signup-from-signout-footer{
   display: none;
 }
@@ -145,8 +121,6 @@
 /*===========================================
 =            signup from action            =
 ===========================================*/
-
-
 
 #signup-from-action-body{
   display: none;
@@ -185,12 +159,9 @@
   display: none;
 }
 
-
 /*=====================================
 =            email check              =
 =====================================*/
-
-
 
 #email-check-body{
   position: absolute;
@@ -218,6 +189,7 @@
 
   height: 100px;
 }
+
 .hey, .email-sent{
   position: relative;
   float: left;
@@ -234,6 +206,7 @@
   margin-bottom: 10px;
   padding-left: 110px;
 }
+
 .email-sent{
   clear: left;
 }
@@ -282,8 +255,7 @@
   }
 }
 
-// Footer ---------------------------------
-#email-check-footer{
+#after-signup-footer{
   position: absolute;
   display: none;
 
@@ -312,45 +284,69 @@
   }
 }
 
+#before-signup-footer{
+  position: absolute;
 
+  height: 60px;
+  width: 100%;
 
-/*====================================
-=       signup-username              =
-=====================================*/
-
+  top: 0px;
+  left: 0px;
+}
 
 #signup-username-body{
   position: absolute;
   display: none;
 
-  left: calc(50% - 270px);
-  top: 40px;  
-  width: 540px;
-  height: 240px;
-
-  .fa-check, .fa-times{
-    position: absolute;
-    right: 5px;
-    top: 10px;
-
-    height: 20px;
-    width: 20px;
-
-    display: none;
-
-    font-size: 20px;
+  .fa{
+    position: relative;
+    font-size: 1.5em;
+    line-height: 20px;
+    margin-left: 10px;
   }
 
-  .fa-check{
-    color: green;
-  }
-
-  .fa-times{
-    color: red;
+  &:hover{
+    cursor: pointer;
+    padding-left: 15px;
+    width: calc(100% - 15px);
+    // background: green;
   }
 }
 
+// -------
+// FORM ------------------------------------
+// --------
 
+.signup-input-wrapper{
+  position: relative;
+  float: left;
+  clear: left;
+}
+
+.signup-input{
+  position: relative;
+  float: left;
+  clear: left;
+
+  width: 230px;
+
+  padding: 13px 10px;
+  margin-bottom: 10px;
+
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 1px 1px 0px 2px rgba( 0, 0, 0, 0.1 );
+
+  font-size: 15px;
+  font-weight: bold;
+
+  color: black;
+  
+  &:focus {
+    box-shadow: 0px 0px 3px 2px $blue;
+    outline: none;
+  }
+}
 
 // PASSWORD TIP ----------------
 .password-tip{
@@ -368,9 +364,7 @@
   font-family: ubuntu;
 }
 
-
-
-// PASSWORD STRENGH -----------------------
+// PASSWORD STRENGH ------------------------------
 
 #password-strength{
 
@@ -413,6 +407,7 @@
   width: 140px;
   background: grey;
 }
+
 .visual-indicator{
   position: relative;
   float: left;
@@ -420,8 +415,6 @@
   transition: all 0.9s ease !important;
   height: 5px;
 }
-
-
 
 // INTENSITY PASSWORD --------------
 .short{
@@ -460,18 +453,11 @@
   // .block{background: limegreen}
 }
 
-
-
 // Footer --------------------
 
 #signup-username-footer{
   display: none;
 }
-
-
-
-
-
 
 
 

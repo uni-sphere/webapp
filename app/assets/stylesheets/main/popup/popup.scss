@@ -121,9 +121,8 @@
 
 // FOOTER -----------------------
 .slide-footer{
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
+  position: relative;
+  float: left;
   z-index: 120;
 
   height: 60px;

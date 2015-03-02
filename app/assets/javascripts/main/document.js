@@ -203,7 +203,7 @@ var autoSubmitUpload = {
 	init: function() {
 		$('#upload-doc').on('click', function() {
 			$('#input-button-upload').click();
-			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
+			if (docSelection.target != null && docSelection.target.attr('item') == 'file'  ) { $( '#loader' ).removeClass("hidden"); }
 		});
 		$('#input-button-upload').on('change', function() {
 			$('#submit-button-upload').click();
@@ -361,7 +361,7 @@ var download = {
 			download.download('/user/group/document/download')
 		}
 		if (docSelection.target.attr('item') == 'firepad') {
-			download.download('/user/group/document/download')
+			// download.download('/user/group/document/download')
 		}
 	},	
 	
@@ -386,7 +386,7 @@ var download = {
 	
 	init: function() {
 		$('#download-doc').on('click', function() {
-			if (docSelection.target != null) { $( '#loader' ).removeClass("hidden"); }
+			if (docSelection.target != null && docSelection.target.attr('item') == 'file' ) { $( '#loader' ).removeClass("hidden"); }
 			console.log('download');
 			setLocation(download);
 		})
