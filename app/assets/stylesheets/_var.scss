@@ -60,6 +60,15 @@ $font-family: "Titillium Web", sans-serif;
   src: local("Titillium WebThin"), local("TitilliumWeb-Thin"), url("http://fonts.gstatic.com/s/titilliumweb/v4/anMUvcNT0H1YN4FII8wpr-JQgxo1bqIW_GZqCarw8nE.woff") format("woff");
 }
 
+.mobile-view{
+ position: relative;
+ float: left;
+ height: 100%;
+ width: 100%;
+ background-image: url(image-path('mobile-view.jpg'));
+ background-repeat: no-repeat;
+ background-position: center center;
+}
 
 .under-construction{
   position: relative;

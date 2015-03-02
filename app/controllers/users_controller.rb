@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving]
   before_filter :not_authenticate?, only: [:new, :create]
-  before_filter :prepare_for_mobile, :only => [:show]
   before_filter :is_admin?, only: [:destroy]
   before_action :user_params, only: [:create, :update]
   before_action :set_user_origin, only: [:show, :destroy, :update, :edit]
