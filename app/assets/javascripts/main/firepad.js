@@ -39,7 +39,8 @@ $(document).on('ready page:load', function() {
 	
 	if (window.location.href.indexOf("firepad") >= 0) {
 		
-		var userId = $('.user-name').attr('current_user_id')
+		// var userId = $('.user-name').attr('current_user_id')
+		var userId = Math.floor(Math.random() * 9999999999).toString();
 		var firepadRef = new Firebase('https://luminous-heat-5158.firebaseio.com/' + $('#firepad').attr('firepad_ref'));
 		// console.log(firepadRef.child('users')); to get methods
 		var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });

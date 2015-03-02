@@ -1,4 +1,5 @@
 
+
 var autoSubmitExcel = {
   
   init: function() {
@@ -126,7 +127,8 @@ var group = {
 };
 
 var passwordCheck = {
-  checkStrength: function(password){
+	
+  checkStrength: function(password) {
    var strength = 0
     if (password.length < 6) {
       $('#password-strength').removeClass();
@@ -136,10 +138,11 @@ var passwordCheck = {
       $('#password').removeClass('valid');
       return
     }
-    else{
+    else {
       $('.password-notif').fadeIn(400);
       $('#password').addClass('valid');
     }
+		
     if (password.length > 7) strength += 1
 
     // If password contains both lower and uppercase characters, increase strength value.
