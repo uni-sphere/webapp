@@ -11,47 +11,33 @@
      
     <div class="slide-body">
       <div id="before-signup-body">
-        <%= form_for @user = User.new, url: user_path(current_user.id), method: :put, multipart: true, class: "forms-container" do |f| %>
-          <input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
-          <input type="text" class="signup-input" placeholder="Email" id="email" name="user[email]"/>
+        <input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
+        <input type="text" class="signup-input" placeholder="<%= current_user ? current_user.email : 'Email' %>" id="email" name="user[email]"/>
 
-          <div class="password-wrapper">
-            <div class="signup-input-wrapper">
-              <input type="password" class="signup-input" placeholder="Password" id="password" name="user[password]"/>
-              <div class="password-tip">Use at least 6 characters</div>
-              <div class="fa fa-check password-notif"></div>
-            </div>
-
-            <div id="password-strength" class="short">
-              <span class="strength-fixed-text">Password strength:</span>
-              <span class="strength-text">Too short</span>
-                
-              <div class="visual-indicator-container">
-                <div class="visual-indicator"></div>
-              </div>
-            </div>
-          </div>
-
+        <div class="password-wrapper">
           <div class="signup-input-wrapper">
-            <input type="password" class="signup-input" id="password-check" placeholder="Retype" name="user[password_confirmation]">
-            <div class="fa fa-check password-check-notif-ok"></div>
-            <div class="fa fa-times password-check-notif-bad"></div>
+            <input type="password" class="signup-input" placeholder="Password" id="password" name="user[password]"/>
+            <div class="password-tip">Use at least 6 characters</div>
+            <div class="fa fa-check password-notif"></div>
           </div>
 
-          <input id="signup-button" name="commit" type="submit" class="hidden">
-        
-          <% if @user.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-              <ul>
-                <% @user.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
+          <div id="password-strength" class="short">
+            <span class="strength-fixed-text">Password strength:</span>
+            <span class="strength-text">Too short</span>
+              
+            <div class="visual-indicator-container">
+              <div class="visual-indicator"></div>
             </div>
-          <% end %>
+          </div>
+        </div>
 
-        <% end %>
+        <div class="signup-input-wrapper">
+          <input type="password" class="signup-input" id="password-check" placeholder="Retype" name="user[password_confirmation]">
+          <div class="fa fa-check password-check-notif-ok"></div>
+          <div class="fa fa-times password-check-notif-bad"></div>
+        </div>
+
+        <input id="signup-button" name="commit" type="submit" class="hidden">
       </div>
 
       <div id="after-signup-body">
@@ -68,7 +54,6 @@
       </div>
     </div>
 
-
     <div class="slide-footer" >
 
       <div id="before-signup-footer">
@@ -84,15 +69,6 @@
          </div>
       </div>
     </div>
-
-      <!-- <div id="after-signup"> 
-        <div class="slide-body">
-        BORDEL
-        </div>
-        <div class="slide-footer">
-          <input class="submit-default validate-default" value="YO up">
-        </div>
-      </div> -->
 
   </div>
 </div>
