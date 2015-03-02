@@ -120,6 +120,40 @@ body {
     background: $gradient;
 
     border-top-right-radius: 20px;
+
+    #prompt-signup{
+      position: absolute;
+      top: 0px;
+      left: calc(50% - 225px);
+
+
+
+
+
+      line-height: 30px;
+
+      font-size: 1.4em;
+      letter-spacing: 1px;
+      color: white;
+      &:hover{cursor: default;}
+    }
+    #signup-button{
+      height: 20px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      // margin-left: 1px;
+      
+      .fa{
+        margin-right: 10px;
+      }
+      &:hover{
+        // margin-left: 0px;
+        // border: 1px solid white;
+        background: white;
+        color: black;
+        cursor: pointer;
+      }
+    }
   }
   
   .main-page{

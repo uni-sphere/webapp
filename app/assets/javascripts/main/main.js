@@ -89,7 +89,12 @@ var activeMenu = {
 }
 
 mainLayout = function() {
-	activeMenu.init()
+	activeMenu.init();
+	console.log('oppp');
+	$("#signup-button").on('click', function() { 
+		console.log('oppp');
+		popup.show("#slide-signup");
+	});
 };
 
 

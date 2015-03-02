@@ -59,7 +59,6 @@ var popup = {
 			popup.showWithListFile('#slide-transfer-document') 
 		});
 		$("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
-		$("#plop").on('click', function() { popup.show("#slide-signup") } );
 
 
 		$("#close-slide-signup").on('click', function() { popup.hide("#slide-signup") } );
@@ -196,14 +195,16 @@ var passwordCheck ={
   checkStrength: function(password){
    var strength = 0
     if (password.length < 6) {
-      $('#password-strength').removeClass()
-      $('#password-strength').addClass('short')
-      $('.strength-text').text('Too short')
-      $('.password-notif').fadeOut(400)
+      $('#password-strength').removeClass();
+      $('#password-strength').addClass('short');
+      $('.strength-text').text('Too short');
+      $('.password-notif').fadeOut(400);
+      $('#password').removeClass('valid');
       return
     }
     else{
       $('.password-notif').fadeIn(400);
+      $('#password').addClass('valid');
     }
     if (password.length > 7) strength += 1
 
