@@ -239,8 +239,13 @@ var passwordCheck ={
   },
   init: function(){
     $('#password').keyup(function() {
-      $('#password-strength').fadeIn(400);
-      $('.form-container').html(passwordCheck.checkStrength($('#password').val()));
+      if($(this).val()){
+        $('#password-strength').fadeIn(400);
+        $('.form-container').html(passwordCheck.checkStrength($('#password').val()));
+      }
+      else{
+        $('#password-strength').fadeOut(400);
+      }
     })
   }
 };
@@ -249,12 +254,15 @@ var passwordSimilarity={
   init: function(){
     $('#password-check').keyup(function(){
       if($(this).val()==$('#password').val() && $('#password').hasClass('valid')){
-        $('.password-check-notif-bad').fadeOut(400)
-        $('.password-check-notif-ok').fadeIn(400)
+        $('.password-check-notif-bad').fadeOut(400);
+        $('.password-check-notif-ok').fadeIn(400);
+      }
+      else if($(this).val()){
+        $('.password-check-notif-ok').fadeOut(400);
+        $('.password-check-notif-bad').fadeIn(400);
       }
       else{
-        $('.password-check-notif-ok').fadeOut(400)
-        $('.password-check-notif-bad').fadeIn(400)
+        $('.password-check-notif-bad').fadeOut(400);
       }
     })
   }
@@ -286,19 +294,27 @@ var signup = {
 	}
 };
 
-var signupGab ={
-  init: function() {
-    $('#before-signup-submit').on('click', function(){
-      $('#signup-button').click();
-      $('#before-signup-body').hide("slide",{direction: "left"},800);
-      $('#before-signup-footer').hide("slide",{direction: "left"},800);
-      $('#after-signup-body').show("slide",{direction: "right"},800);
-      $('#after-signup-footer').show("slide",{direction: "right"},800);
-
-      // $('#before-signup-body').hide("slide",{direction: "left"},800, function(){
-      //   $('#after-signup-body').show("slide",{direction: "right"},800);
-      // });
-    });
+var signup ={
+  showMailSent: function() {
+    // $('#signup-button').click();
+    $('#before-signup-body').hide("slide",{direction: "left"},800);
+    $('#before-signup-footer').hide("slide",{direction: "left"},800);
+    $('#after-signup-body').show("slide",{direction: "right"},800);
+    $('#after-signup-footer').show("slide",{direction: "right"},800);
+  },
+  showSignup: function() {
+    $('#after-signup-body').hide("slide",{direction: "right"},800);
+    $('#after-signup-footer').hide("slide",{direction: "right"},800);
+    $('#before-signup-body').show("slide",{direction: "left"},800);
+    $('#before-signup-footer').show("slide",{direction: "left"},800);
+    $('#password').val('');
+    $('#password-check').val('');
+    $('.password-check-notif-bad').fadeOut(1);
+    $('#password-strength').fadeOut(1);
+  },
+  init: function(){
+    $('#back-to-signup').on('click', function(){signup.showSignup()});
+    $('#before-signup-submit').on('click', function(){signup.showMailSent()});
   }
 }
 
@@ -310,7 +326,7 @@ mainPopup = function() {
 	passwordCheck.init();
   passwordSimilarity.init();
   autoSubmitExcel.init();
-  signupGab.init();
+  signup.init();
 };
 
 

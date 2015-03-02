@@ -118,24 +118,12 @@
   overflow-y: auto;
 }
 
-.body-and-footer-wrapper{
-  z-index: 120;
-
-  position: relative;
-  float: left;
-
-  width: 100%;
-  height: calc(100% - 40px);
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
 
 // FOOTER -----------------------
 .slide-footer{
-  position: absolute;
+  position: relative;
+  float: left;
   z-index: 120;
-
-  bottom: 0px;
 
   height: 60px;
   width: 100%;
@@ -163,8 +151,6 @@
   font-size: 16px;
 
   display: none;
-
-  // background: blue;
 }
 
 // GROUP LIST ------------------
@@ -182,7 +168,6 @@
 
   width: 33%;
   display: none;
-
 }
 .document-to-transfer{
   display: inline-block;
