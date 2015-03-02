@@ -27,11 +27,10 @@ class SessionsController < ActionController::Base
       user = User.find params[:confid]
       user.update(confirmed: true) 
       create_box(user.email) 
-    end
-    
-    if params[:session]
-      user = User.authenticate(params[:session][:email],
-                             params[:session][:password])
+    elsif params[:session]
+      user = User.authenticate(params[:session][:email], params[:session][:password])
+    elsif params[:id]
+      user = User.find params[:id]
     end
     
     respond_to do |format|

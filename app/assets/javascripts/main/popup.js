@@ -299,6 +299,10 @@ var signup = {
 				email: $('#email').val(),
 				password: $('#password').val(),
 				password_confirmation: $('#password-check').val()
+				},
+				complete: function() {
+					$('#name-after-signup').html($('#name').val());
+					$('#email-after-signup').html($('#email').val());
 				}
 			}
 		});
@@ -307,7 +311,7 @@ var signup = {
 	init: function(signedUp) {
 		$('#back-to-signup').on('click', function(){signup.showSignup()});
     $('#before-signup-submit').on('click', function(){signup.showMailSent()});
-		$('#before-signup-submit').on('click', signup.send );
+		$('#before-signup-submit, #send-new-mail').on('click', signup.send );
 		
 		signedUp = false;
 		
