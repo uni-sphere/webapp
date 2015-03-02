@@ -97,60 +97,61 @@
 // BETTER ONE
 // ----------
 
-// $(document).on('ready page:load', function() {
+$(document).on('ready page:load', function() {
 
-//   var engine = new Bloodhound({
-//     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
-//     queryTokenizer: 
-//       Bloodhound.tokenizers.whitespace,
-//       limit: 4,
-//       remote: {
-//         url: '/user/group/autocomplete?query=%QUERY'
-//       }
-//   });
+  var engine = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
+    queryTokenizer: 
+      Bloodhound.tokenizers.whitespace,
+      limit: 4,
+      remote: {
+        url: '/user/group/autocomplete?query=%QUERY'
+      }
+  });
 
-//   engine.initialize();
+  engine.initialize();
 
-// 	$('#tokenfield')
-// 		.on('tokenfield:createtoken', function (e) {
-// 	    var data = e.attrs.value.split('|')
-// 	    e.attrs.value = data[1] || data[0]
-// 	    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
-// 	    $('.token').unwrap()
-// 	  })
+	$('#tokenfield')
+		.on('tokenfield:createtoken', function (e) {
+	    var data = e.attrs.value.split('|')
+	    e.attrs.value = data[1] || data[0]
+	    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
+	    $('.token').unwrap()
+	  })
 
-// 	  .on('tokenfield:createdtoken', function (e) {
-// 	    var re = /\S+@\S+\.\S+/
-// 	    var valid = re.test(e.attrs.value)
-// 	    if (!valid) {
-// 	      $(e.relatedTarget).addClass('invalid fa fa-user-times')
-// 	    } 
-// 	    else{
-// 	    	$(e.relatedTarget).addClass('fa fa-user')
-// 	    }
-// 	    $(".token").wrapAll( "<div class='token-container'/>");
-// 	  })
+	  .on('tokenfield:createdtoken', function (e) {
+	    var re = /\S+@\S+\.\S+/
+	    var valid = re.test(e.attrs.value)
+	    if (!valid) {
+	      $(e.relatedTarget).addClass('invalid fa fa-user-times')
+	    } 
+	    else{
+	    	$(e.relatedTarget).addClass('fa fa-user')
+	    }
+	    $(".token").wrapAll( "<div class='token-container'/>");
+	  })
 
-// 	  .on('tokenfield:edittoken', function (e) {
-// 	    if (e.attrs.label !== e.attrs.value) {
-// 	      var label = e.attrs.label.split(' (')
-// 	      e.attrs.value = label[0] + '|' + e.attrs.value
-// 	    }
-// 	  })
+	  .on('tokenfield:edittoken', function (e) {
+	    if (e.attrs.label !== e.attrs.value) {
+	      var label = e.attrs.label.split(' (')
+	      e.attrs.value = label[0] + '|' + e.attrs.value
+	    }
+	  })
 
-// 	  .on('tokenfield:removedtoken', function (e) {
-// 	    // alert('Token removed! Token value was: ' + e.attrs.value)
-// 	  })
+	  .on('tokenfield:removedtoken', function (e) {
+	    // alert('Token removed! Token value was: ' + e.attrs.value)
+	  })
 
-//     .tokenfield({
-//       typeahead: [null, {
-//         name: 'users',
-//         displayKey: 'email',
-//         source: engine.ttAdapter()}]
-//     });
+    .tokenfield({
+      typeahead: [null, {
+        name: 'users',
+        displayKey: 'email',
+        source: engine.ttAdapter()}]
+    });
 
-//     // $(".token-input").wrapAll( "<div class='group-config-add-user'/>");
-//     // $(".group-config-add-user").prepend("<div class='group-config-title'>Add users</div>");
+    console.log('yo');
+    // $(".token-input").wrapAll( "<div class='group-config-add-user'/>");
+    // $(".group-config-add-user").prepend("<div class='group-config-title'>Add users</div>");
 
-// });
+});
 
