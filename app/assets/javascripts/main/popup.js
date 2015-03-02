@@ -60,7 +60,6 @@ var popup = {
 		});
 		$("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
 
-
 		$("#close-slide-signup").on('click', function() { popup.hide("#slide-signup") } );
 		$("#close-new-group").on('click', function() { popup.hide("#slide-new-group") } );
 		$("#close-all-groups").on('click', function() { popup.hideWithListFile("#slide-all-groups") } );
@@ -191,20 +190,18 @@ var group = {
 	}
 };
 
-var passwordCheck ={
+var passwordCheck = {
   checkStrength: function(password){
    var strength = 0
     if (password.length < 6) {
-      $('#password-strength').removeClass();
-      $('#password-strength').addClass('short');
-      $('.strength-text').text('Too short');
-      $('.password-notif').fadeOut(400);
-      $('#password').removeClass('valid');
+      $('#password-strength').removeClass()
+      $('#password-strength').addClass('short')
+      $('.strength-text').text('Too short')
+      $('.password-notif').fadeOut(400)
       return
     }
     else{
       $('.password-notif').fadeIn(400);
-      $('#password').addClass('valid');
     }
     if (password.length > 7) strength += 1
 
@@ -249,7 +246,7 @@ var passwordCheck ={
   }
 };
 
-var passwordSimilarity={
+var passwordSimilarity = {
   init: function(){
     $('#password-check').keyup(function(){
       if($(this).val()==$('#password').val() && $('#password').hasClass('valid')){
@@ -275,6 +272,7 @@ var signup = {
     $('#after-signup-body').show("slide",{direction: "right"},800);
     $('#after-signup-footer').show("slide",{direction: "right"},800);
   },
+	
   showSignup: function() {
     $('#after-signup-body').hide("slide",{direction: "right"},800);
     $('#after-signup-footer').hide("slide",{direction: "right"},800);

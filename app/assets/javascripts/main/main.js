@@ -3,7 +3,6 @@ var activeMenu = {
 	previousTop: "18",
 	actualTop: "18",
 	
-
 	setHighlighted: function() {
 		var topPos = $(this).offset().top - $('.lateral-nav').first().offset().top;
 		var hover_bar = $('<div class="active-menu special-active-menu"></div>')
@@ -24,6 +23,7 @@ var activeMenu = {
 			activeMenu.actualTop = $('.lateral-nav .active').offset().top - $('.lateral-nav').first().offset().top;
 		}
 	},
+	
 	removeHighlighted: function() {
 		$('.special-active-menu').remove();
 	},
@@ -90,8 +90,8 @@ var activeMenu = {
 
 mainLayout = function() {
 	activeMenu.init();
-	console.log('oppp');
-	$("#signup-button").on('click', function() { 
+
+	$("#signup-button-navbar").on('click', function() { 
 		console.log('oppp');
 		popup.show("#slide-signup");
 	});
