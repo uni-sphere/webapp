@@ -107,12 +107,27 @@ class GroupsController < ApplicationController
       if @user = User.where(email: email).first
         @relation = Relationgroup.new(user_id: @user.id, group_id: params[:group_id])	
   	    begin 
-  		    @relation.save!
-          logger.info @user.name
+  		    @relation.save! 
   	    rescue ActiveRecord::StatementInvalid => e
   		    if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
   		    end
   	    end
+      else
+        @user = User.new
+        @user.name = random_key
+        @user.email = email
+        group = Group.find params[:group_id]
+        @user.save and @user.create_viewparam(notification_view: '0') and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: random_key)
+        UserMailer.invitation_email(@user.id, current_user.name, @user.name, email, group.name).deliver
+        
+        @relation = Relationgroup.new(user_id: @user.id, group_id: params[:group_id])	
+  	    begin 
+  		    @relation.save! 
+  	    rescue ActiveRecord::StatementInvalid => e
+  		    if e.message == 'SQLite3::ConstraintException: UNIQUE constraint failed: relationgroups.user_id, relationgroups.group_id: INSERT INTO "relationgroups" ("created_at", "group_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)'
+  		    end
+  	    end
+        
       end
     end
     redirect_to get_group_documents_path(group_id: params[:group_id], parent_id: 100)
