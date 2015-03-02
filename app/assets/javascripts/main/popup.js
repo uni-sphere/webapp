@@ -43,7 +43,6 @@ var popup = {
     $(target).find('.slide-body').fadeOut(1);
 	},
 
-
 	selectGroup: function(){
 		$(".list-element").on('click', function() { 
 			$('.list-element').removeClass('active');
@@ -197,7 +196,8 @@ var group = {
 };
 
 var passwordCheck = {
-  checkStrength: function(password){
+	
+  checkStrength: function(password) {
    var strength = 0
     if (password.length < 6) {
       $('#password-strength').removeClass()
@@ -206,9 +206,10 @@ var passwordCheck = {
       $('.password-notif').fadeOut(400)
       return
     }
-    else{
+    else {
       $('.password-notif').fadeIn(400);
     }
+		
     if (password.length > 7) strength += 1
 
     // If password contains both lower and uppercase characters, increase strength value.
