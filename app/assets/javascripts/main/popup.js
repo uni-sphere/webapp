@@ -320,7 +320,7 @@ var signup = {
     $('#back-to-signup').on('click', function(){signup.changePage('email-check','signup-username','right','left')});
 
     $("#signup-button-navbar").on('click', function() { signup.showSignup("signup-username")});
-
+		$("#toward-confirmation").on('click', function() { signup.send() });
     $('#exit-really').on('click', function() { signout.signout() }); 
 		
 		signedUp = false;
