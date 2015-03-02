@@ -191,6 +191,25 @@
   font-size: 1.4em;
   // transition: all .3s linear;
 
+  #before-signup-submit{
+    position: absolute;
+
+    height: 60px;
+    width: 200px;
+
+    top: 0px;
+    left: calc(50% - 100px);
+
+    line-height: 60px;
+
+
+    &:hover{
+      cursor: pointer;
+      padding-left: 15px;
+      width: 195px;
+      // background: green;
+    }
+  }
   .fa{
     position: relative;
     font-size: 1.5em;
@@ -198,11 +217,20 @@
     margin-left: 10px;
   }
 
-  &:hover{
-    cursor: pointer;
-    padding-left: 15px;
-    width: calc(100% - 15px);
-    // background: green;
+
+
+  #exit-really{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+  
+    font-size: 1em;
+    text-decoration: underline;
+
+     &:hover{
+      cursor: pointer;
+      text-decoration: underline !important;
+    }
   }
 }
 

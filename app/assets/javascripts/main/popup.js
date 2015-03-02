@@ -310,6 +310,7 @@ var signup = {
 		$('#back-to-signup').on('click', function(){signup.showSignup()});
     $('#before-signup-submit').on('click', function(){signup.showMailSent()});
 		$('#before-signup-submit, #send-new-mail').on('click', signup.send );
+    $('#exit-really').on('click', function() { signout.signout() }); 
 		
 		signedUp = false;
 		
