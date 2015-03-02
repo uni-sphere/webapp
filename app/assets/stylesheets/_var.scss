@@ -66,10 +66,21 @@ $font-family: "Titillium Web", sans-serif;
   float: left;
   height: 100%;
   width: 100%;
-  background-image: url(image-path('under-construction-3.jpg'));
+  background-image: url(image-path('under-construction.jpg'));
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.mobile-view{
+  position: relative;
+  float: left;
+  height: 100%;
+  width: 100%;
+  background-image: url(image-path('mobile-view.jpg'));
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 
 
 input::-webkit-input-placeholder {color: $place-holder;}

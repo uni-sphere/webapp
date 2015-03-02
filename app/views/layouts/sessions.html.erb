@@ -12,10 +12,13 @@
   <%= render 'layouts/shim' %>
 </head>
   <body>
-    <%= render 'layouts/header' %>
     <% if @under_construction == true %>
-        <div class="under-construction"></div>
+      <%= render 'layouts/header' %>
+      <div class="under-construction"></div>
+    <% elsif @mobile_view == true %>
+        <div class="mobile-view"></div>
     <% else %>
+      <%= render 'layouts/header' %>
       <%= yield %>
     <% end %>
   </body>

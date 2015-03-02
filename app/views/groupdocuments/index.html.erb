@@ -67,7 +67,7 @@
               <span class="date-time"><%= time_ago_in_words Time.at(folder.created_at.to_i) %></span>
               <span class="person"></span>
             </div>
-            <div class="size-doc">-&nbsp&nbsp</div>
+            <div class="size-doc">-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
           </div>
         <% end %>
 			
@@ -99,7 +99,7 @@
       	    <div class="box_document" document-selected="false">
               <span class="dragAndDrop icon-and-name" item_id="<%= firepad.id %>" item="firepad" item_id="<%= firepad.id %>" name="<%= firepad.name %>" firepad_ref="<%= firepad.firebase_url %>">
                 <%= link_to read_firepad_path(firepad_id: firepad.id, group_id: current_group.id) do %>
-                  <%= fa_icon("fire") %>
+                  <%= fa_icon("edit") %>
                   <span class="name-document go-file"><%= firepad.name %></span>
                 <% end %>
                 <%= text_field_tag :name, firepad.name, class: "hidden input-rename-document" %>
@@ -110,7 +110,7 @@
                 <span class="date-time"><%= time_ago_in_words Time.at(firepad.created_at.to_i) %></span>
                 <span class="person"></span>
               </div>
-              <div class="size-doc">-&nbsp&nbsp</div>
+              <div class="size-doc">-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
             </div>
           <% end %>
 				<% end %>
@@ -137,8 +137,8 @@
             <%= submit_tag "upload-doc", class: "hidden", id: "submit-button-upload" %>
           <% end %>
 
-          <a id="create-firepad" class="action" title="Create a firepad" rel="nofollow">
-            <i class="fa fa-fire"></i>
+          <a id="create-firepad" class="action" title="Create a collaborative document" rel="nofollow">
+            <i class="fa fa-edit"></i>
           </a>
         </div>
         <div class="action-doc" id="actions-selected-doc">

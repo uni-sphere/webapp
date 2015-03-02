@@ -1,16 +1,27 @@
 <div id="slide-signup" class="slide">
   <div class="slide-container">
     <div class="slide-header">
-      <div class="header-title">
+      <div class="header-title" id="header-title-sign">
         <span class="header-text">Configure your account</span> 
         <i class="fa fa-lock"></i> 
       </div>
+
       <div class="fa fa-close" id="close-slide-signup"></div>
     </div>
 
-     
+      
     <div class="slide-body">
-      <div id="before-signup-body">
+
+      <div class= "specific-body" id="signup-from-signout-body">
+        <i class="fa fa-warning"></i>
+        <div class="incoming-text">
+          <p>You are using a test version</p>
+          <p>All your work will be lost if you don't sign up</p>
+        </div>
+      </div>
+
+      <div id="signup-username-body">
+
         <input type="text" class="signup-input" placeholder="Username" id="name" name="user[name]"/>
         <input type="text" class="signup-input" placeholder="Email adress" id="email" name="user[email]"/>
 
@@ -40,7 +51,7 @@
         <input id="signup-button" name="commit" type="submit" class="hidden">
       </div>
 
-      <div id="after-signup-body">
+      <div id="email-check-body">
         <i class="fa fa-bullhorn"></i>
         
         <div class="shouted-text">
@@ -56,15 +67,20 @@
 
     <div class="slide-footer" >
 
-      <div id="before-signup-footer">
-        <div id="before-signup-submit">
+      <div class="footer-signup" id="signup-from-signout-footer">
+        <div class="arrow-and-sign-up" id="toward-signup">
           Sign up<i class="fa fa-arrow-right"></i>
         </div>
         <div id="exit-really">skip & exit</div>
-       <!--  <input class="submit-default validate-default" value="Sign up" id="before-signup-submit" type="submit"> -->
       </div>
 
-      <div id="after-signup-footer" class="other-submit">
+      <div class="footer-signup" id="signup-username-footer">
+        <div class="arrow-and-sign-up" id="toward-confirmation">
+          Sign up<i class="fa fa-arrow-right"></i>
+        </div>
+      </div>
+
+      <div id="email-check-footer" class="other-submit">
         <div id="back-to-signup">
             <i class="fa fa-arrow-left"></i>Back to sign up
          </div>

@@ -266,26 +266,27 @@ var passwordSimilarity = {
 
 var signup = {
 
-  showMailSent: function() {
-    $('#before-signup-body').hide("slide",{direction: "left"},800);
-    $('#before-signup-footer').hide("slide",{direction: "left"},800);
-    $('#after-signup-body').show("slide",{direction: "right"},800);
-    $('#after-signup-footer').show("slide",{direction: "right"},800);
-  },
+  // showMailSent: function() {
+  //   $('#before-signup-body').hide("slide",{direction: "left"},800);
+  //   $('#before-signup-footer').hide("slide",{direction: "left"},800);
+  //   $('#after-signup-body').show("slide",{direction: "right"},800);
+  //   $('#after-signup-footer').show("slide",{direction: "right"},800);
+  // },
+
+  
 	
-  showSignup: function() {
-    $('#after-signup-body').hide("slide",{direction: "right"},800);
-    $('#after-signup-footer').hide("slide",{direction: "right"},800);
-    $('#before-signup-body').show("slide",{direction: "left"},800);
-    $('#before-signup-footer').show("slide",{direction: "left"},800);
-    $('#password').val('');
-    $('#password-check').val('');
-    $('.password-check-notif-bad').fadeOut(1);
-    $('#password-strength').fadeOut(1);
-  },
+  // showSignup: function() {
+  //   $('#after-signup-body').hide("slide",{direction: "right"},800);
+  //   $('#after-signup-footer').hide("slide",{direction: "right"},800);
+  //   $('#before-signup-body').show("slide",{direction: "left"},800);
+  //   $('#before-signup-footer').show("slide",{direction: "left"},800);
+  //   $('#password').val('');
+  //   $('#password-check').val('');
+  //   $('.password-check-notif-bad').fadeOut(1);
+  //   $('#password-strength').fadeOut(1);
+  // },
 	
 	send: function() {
-		console.log('hello');
 		$.ajax({
 			url: '/user/update',
 			type:"PUT",
@@ -305,12 +306,24 @@ var signup = {
 			}
 		});
 	},
+
+  changePage: function(tohide, toshow){
+    $('#' + tohide + '-body').hide("slide",{direction: "left"},800);
+    $('#' + tohide + '-footer').hide("slide",{direction: "left"},800);
+    $('#' + toshow + '-body').hide("slide",{direction: "right"},800);
+    $('#' + toshow + '-footer').hide("slide",{direction: "right"},800);
+  },
+
 	
 	init: function(signedUp) {
-		$('#back-to-signup').on('click', function(){signup.showSignup()});
-    $('#before-signup-submit').on('click', function(){signup.showMailSent()});
-		$('#before-signup-submit, #send-new-mail').on('click', signup.send );
-    $('#exit-really').on('click', function() { signout.signout() }); 
+    $('#toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username')});
+    $('#toward-confirmation').on('click', function(){signup.changePage('signup-username','email-check')});
+
+
+		// $('#back-to-signup').on('click', function(){signup.showSignup()});
+  //   $('#before-signup-submit').on('click', function(){signup.showMailSent()});
+		// $('#before-signup-submit, #send-new-mail').on('click', signup.send );
+  //   $('#exit-really').on('click', function() { signout.signout() }); 
 		
 		signedUp = false;
 		

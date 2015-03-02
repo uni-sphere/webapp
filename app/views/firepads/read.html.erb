@@ -1,4 +1,8 @@
-<div class="first-row"></div>
+<div class="first-row">
+  <% if !current_user.confirmed %>
+    <span id="prompt-signup">This is a test version! &nbsp &nbsp For full features &nbsp &nbsp<span id="signup-button-navbar"><i class="fa fa-paw"></i>Sign up</span></span>    
+  <% end %>
+</div>
 <div class="main-page">
   <div class="separator"></div>
   <div id="firepad-wrapper"></div>

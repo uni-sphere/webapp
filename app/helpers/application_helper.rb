@@ -6,34 +6,21 @@ module ApplicationHelper
   
   def force_under_construction
     @under_construction = true
-    render "layouts/main.html.erb"
   end
   
-  def is_production?
-    ENV["PROD_MODE"] || FALSE ? $ready_for_production = false : true 
+  
+  def set_mobile_view
+    @mobile_view = true if is_mobile?
   end
   
-  def set_ready_for_production
-    $ready_for_production = true
+  def force_mobile_view
+    @mobile_view = true
   end
   
-  def check_for_mobile
-    session[:mobile_override] = params[:mobile] if params[:mobile]
-    prepare_for_mobile if mobile_device?
+  def is_mobile?
+    (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
   end
 
-  def prepare_for_mobile
-    prepend_view_path Rails.root + 'app' + 'views_mobile'
-  end
-
-  def mobile_device?
-    if session[:mobile_override]
-      session[:mobile_override] == "1"
-    else
-       (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
-    end
-  end
-  # helper_method :mobile_device?
 
   def full_title(page_title)
     base_title = "Unisphere"
