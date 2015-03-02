@@ -33,6 +33,7 @@ Lms::Application.routes.draw do
   ############
   
   get '/signedup', to: 'users#signedup', as: 'signedup'
+  put '/user/update', to: 'users#update', as: 'user_update'
   
   #############
   ### group ###

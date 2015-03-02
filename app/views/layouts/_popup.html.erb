@@ -144,7 +144,7 @@
     </div>
 
     <div class="body-and-footer-wrapper">
-      <%= form_for @user = User.new, url: user_path(current_user.id), method: :put, multipart: true, class: "forms-container" do |f| %>
+      
         <div class="slide-body">
           <div class="body-wrapper" id="signup-body-wrapper">
             <div class="form-container">
@@ -176,16 +176,7 @@
 
 
               
-              <% if @user.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-                  <ul>
-                    <% @user.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              <% end %>
+             
             
             </div>
           </div>
@@ -193,7 +184,7 @@
         <div class="slide-footer">
           <input id="signup-button" name="commit" type="submit" class="submit-default validate-default" value="Sign up">
         </div>
-      <% end %>
+      
     </div>
   </div>
 </div>
