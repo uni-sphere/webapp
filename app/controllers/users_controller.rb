@@ -4,13 +4,12 @@ class UsersController < ApplicationController
   
   # before_filter :check_for_mobile, :only => [:new, :edit]
 
-  before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving]
+  before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving, :signedup]
   before_filter :not_authenticate?, only: [:new, :create]
-  before_filter :prepare_for_mobile, :only => [:show]
   before_filter :is_admin?, only: [:destroy]
   before_action :user_params, only: [:create, :update]
   before_action :set_user_origin, only: [:show, :destroy, :update, :edit]
-  before_filter :correct_user?, except: [:new, :create, :index, :autocomplete, :import_for_creating, :import_for_involving]
+  before_filter :correct_user?, except: [:new, :create, :index, :autocomplete, :import_for_creating, :import_for_involving, :signedup]
   skip_before_filter :verify_authenticity_token, only: [:create, :update]
 
   def new
@@ -86,7 +85,12 @@ class UsersController < ApplicationController
       
   def signedup
     user = User.find(params[:user_id])
-    render json: true if user.password
+    logger.info user.name
+    if user.password
+      render json: true
+    else
+      render json: false
+    end
   end
     
 private
