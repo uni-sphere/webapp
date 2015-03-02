@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-	<title>   <%= full_title(yield(:title)) %>    </title>
-	<%= stylesheet_link_tag "main", media: "all", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "main", "data-turbolinks-track" => true %>
-	<%#= javascript_include_tag "http://localhost:9292/faye/faye.js" %>
-	<%= csrf_meta_tags %>
-	<%= render 'layouts/shim' %>
-	
-	<!-- Firebase -->
-	<script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+	<head lang="en">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    
+		<title>   <%= full_title(yield(:title)) %>    </title>
+		<%= stylesheet_link_tag "main", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "main", "data-turbolinks-track" => true %>
+		<%#= javascript_include_tag "http://localhost:9292/faye/faye.js" %>
+		<%= csrf_meta_tags %>
+		<%= render 'layouts/shim' %>
+		
+		<!-- Firebase -->
+		<script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
 
-	<!-- CodeMirror -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.css" />
+		<!-- CodeMirror -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.css" />
 
-	<!-- Firepad -->
-	<link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.0/firepad.css" />
-	<script src="https://cdn.firebase.com/libs/firepad/1.1.0/firepad.min.js"></script>
-	
-</head>
+		<!-- Firepad -->
+		<link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.0/firepad.css" />
+		<script src="https://cdn.firebase.com/libs/firepad/1.1.0/firepad.min.js"></script>
+		
+	</head>
 
 
-<body>
-	<% if params[:group_id] %>
-		<%= render 'popup/popup' %>
-	<% end %>
-	<div id="sidebar"> <%= render 'layouts/sidebar' %> </div>
-	<div id="central-area">
-		<div role="navigation" id="navbar"> <%= render 'layouts/navbar' %> </div>
-		<main id="central-page">
-			<% if @under_construction == true %>
-				<div class="first-row">
-				</div>
-				<div class="main-page">
-					<div class="separator"></div>
-					<div class="under-construction"></div>
-				</div>
-			<% else %>
-				<%= yield %>
-			<% end %>
-		</main>
-	</div>
-</body>
+	<body>
+		<% if params[:group_id] %>
+			<%= render 'popup/popup' %>
+		<% end %>
+		<div id="sidebar"> <%= render 'layouts/sidebar' %> </div>
+		<div id="central-area">
+			<div role="navigation" id="navbar"> <%= render 'layouts/navbar' %> </div>
+			<main id="central-page">
+				<% if @under_construction == true %>
+					<div class="first-row">
+					</div>
+					<div class="main-page">
+						<div class="separator"></div>
+						<div class="under-construction"></div>
+					</div>
+				<% else %>
+					<%= yield %>
+				<% end %>
+			</main>
+		</div>
+	</body>
 </html>
 

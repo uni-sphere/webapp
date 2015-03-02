@@ -151,8 +151,8 @@ var group = {
 					
 					popup.hide("#slide-new-group");
 					
-					$('#all-groups').before(' \
-					<a class="lateral-nav-element" href="/user/group/documents?group_id=' + group.id + '&parent_id=100"> \
+					$('.sidebar-list-group').append(' \
+            <a class="lateral-nav-element current-group-element" href="/user/group/documents?group_id=' + group.id + '&parent_id=100"> \
 						<i class="fa fa-group"></i> \
 						<!-- <object type="image/svg+xml" data="/assets/group-pic.svg" id="profile-pic"></object> --> \
 						<span class="group-name-sidebar" group_id="' + group.id + '">' + group.name + '</span> \
@@ -175,11 +175,17 @@ var group = {
 					name: $('#group-config-rename-input').val()
 				},
 				complete: function(data) {
-					if (data.responseJSON.success == true) {
-						$('#current-group-title').html($('#group-config-rename-input').val())
-						popup.hide("#slide-group-config");
-					}
-				}
+          if (data.responseJSON.success == true) {
+            $('.group-name-sidebar').each( function() {
+              if ( $(this).html() === $('#current-group-title').html() ) {
+                console.log('hello');
+                $(this).html($('#group-config-rename-input').val())
+              }
+            })
+            $('#current-group-title').html($('#group-config-rename-input').val());
+            popup.hide("#slide-group-config");
+          }
+        }
 			})
 		}
 	},

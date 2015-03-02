@@ -37,7 +37,7 @@ class SessionsController < ActionController::Base
       if !user.nil?
         format.html { redirect_to get_group_documents_path(group_id: user.groups.last, parent_id: 100) }
         format.json { head :no_content }
-	      sign_in user
+        sign_in user
         refresh_token
       else
         format.html { redirect_to root_path }
@@ -47,7 +47,7 @@ class SessionsController < ActionController::Base
   end
 
   def destroy
-	  sign_out
+    sign_out
     render json: { url: root_path }.to_json
   end
   

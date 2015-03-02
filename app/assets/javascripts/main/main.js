@@ -90,8 +90,6 @@ var activeMenu = {
 
 mainLayout = function() {
 	activeMenu.init();
-
-	
 };
 
 

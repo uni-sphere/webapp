@@ -6,22 +6,29 @@ module ApplicationHelper
   
   def force_under_construction
     @under_construction = true
+    render "layouts/main.html.erb"
   end
   
+  def is_production?
+    ENV["PROD_MODE"] || FALSE ? $ready_for_production = false : true 
+  end
+  
+  def set_ready_for_production
+    $ready_for_production = true
+  end
   
   def set_mobile_view
     @mobile_view = true if is_mobile?
   end
-  
+ 
   def force_mobile_view
     @mobile_view = true
   end
-  
+ 
   def is_mobile?
     (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
   end
-
-
+  
   def full_title(page_title)
     base_title = "Unisphere"
     if page_title.empty?
@@ -45,7 +52,7 @@ module ApplicationHelper
     @group = Group.find(params[:group_id]) 
   end
   
-  def is_member?		
+  def is_member?    
     current_user.groups.each do |current_user_group|
       @answer = true if current_user_group.id == @group.id
     end
@@ -60,9 +67,9 @@ module ApplicationHelper
   
   def set_target
     if request.original_url =~ /groups(.*)/
-	    @target = Group.find(params[:group_id])  
-	    @user = User.find(params[:user_id])
-      correct_user?  	
+      @target = Group.find(params[:group_id])  
+      @user = User.find(params[:user_id])
+      correct_user?   
     else
       @target = User.find(params[:user_id])
       # @user = @target
