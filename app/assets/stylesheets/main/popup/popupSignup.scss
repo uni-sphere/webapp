@@ -8,9 +8,9 @@
   top: calc(50% - 210px);
   height: 420px;
 
-  display: inline-block !important;
+  // display: inline-block !important;
   .slide-body{
-    // display: none;
+    display: none;
   }
 }
 
@@ -92,7 +92,7 @@
 
 
 #signup-from-signout-body{
-  // display: none;
+  display: none;
   position: relative;
   height: 60px;
   width: 450px;
@@ -125,7 +125,7 @@
 /*==========  Footer  ==========*/
 
 #signup-from-signout-footer{
-  // display: none;
+  display: none;
 }
 
 #exit-really{
@@ -141,6 +141,50 @@
     text-decoration: underline !important;
   }
 }
+
+/*===========================================
+=            signup from action            =
+===========================================*/
+
+
+
+#signup-from-action-body{
+  display: none;
+  position: relative;
+  height: 60px;
+  width: 450px;
+
+  margin-left: calc(50% - 225px);
+  top: calc(50% - 30px);
+
+
+  .fa{
+    position: relative;
+    float: left;
+    font-size: 2em;
+    line-height: 50px;
+    margin-right: 15px;
+    font-size: 4em;
+  }
+  .incoming-text{
+    position: relative;
+    float: left;
+  }
+  p{
+    height: 25px;
+    line-height: 20px;
+    margin: 0px;
+    font-size: 1.6em;
+    &:hover{pointer: auto;}
+  }
+}
+
+/*==========  Footer  ==========*/
+
+#signup-from-action-footer{
+  display: none;
+}
+
 
 /*=====================================
 =            email check              =
@@ -277,7 +321,7 @@
 
 #signup-username-body{
   position: absolute;
-  // display: none;
+  display: none;
 
   left: calc(50% - 270px);
   top: 40px;  
@@ -421,7 +465,7 @@
 // Footer --------------------
 
 #signup-username-footer{
-  // display: none;
+  display: none;
 }
 
 

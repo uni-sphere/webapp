@@ -91,10 +91,7 @@ var activeMenu = {
 mainLayout = function() {
 	activeMenu.init();
 
-	$("#signup-button-navbar").on('click', function() { 
-		console.log('oppp');
-		popup.show("#slide-signup");
-	});
+	
 };
 
 

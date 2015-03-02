@@ -7,6 +7,23 @@
   height: calc(100% - 80px);
 }
 
+
+
+#firepad-name{
+  position: absolute;
+
+  height: 20px;
+  margin: 5px 0px;
+
+  border: none;
+
+  background: blue;
+  
+
+  width: 150px;
+  left: calc(50% - 75px);
+}
+
 #firepad-wrapper{
   position: fixed;
   z-index: 50;

@@ -307,23 +307,25 @@ var signup = {
 		});
 	},
 
-  changePage: function(tohide, toshow){
-    $('#' + tohide + '-body').hide("slide",{direction: "left"},800);
-    $('#' + tohide + '-footer').hide("slide",{direction: "left"},800);
-    $('#' + toshow + '-body').hide("slide",{direction: "right"},800);
-    $('#' + toshow + '-footer').hide("slide",{direction: "right"},800);
+  changePage: function(tohide, toshow, posIni, posEnd){
+    $('#' + tohide + '-body, #'+ tohide + '-footer').hide("slide",{direction: posIni},800);
+    $('#' + toshow + '-body, #'+ toshow + '-footer' ).show("slide",{direction: posEnd},800);
+  },
+
+  showSignup: function(toshow){
+    popup.show("#slide-signup");
+    $('#' + toshow + '-body, #'+ toshow + '-footer').fadeIn(1);
   },
 
 	
 	init: function(signedUp) {
-    $('#toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username')});
-    $('#toward-confirmation').on('click', function(){signup.changePage('signup-username','email-check')});
+    $('#signout-toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username','left', 'right')});
+    $('#toward-confirmation').on('click', function(){signup.changePage('signup-username','email-check','left','right')});
+    $('#back-to-signup').on('click', function(){signup.changePage('email-check','signup-username','right','left')});
 
+    $("#signup-button-navbar").on('click', function() { signup.showSignup("signup-username")});
 
-		// $('#back-to-signup').on('click', function(){signup.showSignup()});
-  //   $('#before-signup-submit').on('click', function(){signup.showMailSent()});
-		// $('#before-signup-submit, #send-new-mail').on('click', signup.send );
-  //   $('#exit-really').on('click', function() { signout.signout() }); 
+    $('#exit-really').on('click', function() { signout.signout() }); 
 		
 		signedUp = false;
 		
@@ -342,7 +344,8 @@ var signup = {
 		if (signedUp == false) {
 			$("#input-button-upload").attr('type','');
 			$('#deco').off('click');
-			$("#upload-doc, #deco").on('click', function() { popup.show("#slide-signup") } );
+      $("#deco").on('click', function() { signup.showSignup("signup-from-signout")});
+      $("#upload-doc").on('click', function() { signup.showSignup("signup-from-action")});
 		}
 	}
 };
