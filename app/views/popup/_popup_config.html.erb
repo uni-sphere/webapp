@@ -29,11 +29,13 @@
         <div class="title-popup-default" id="add-user-title"><i class="fa fa-user-plus"></i>Add user</div>
 
         <div class="wrapper-action" id="config-add-user-token">
-          <div class="subtitle-popup-default" id="subtitle-add-one-user">Add users one</div>
+          <div class="subtitle-popup-default" id="subtitle-add-one-user">Add users by one</div>
           <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
             <%= text_field_tag :name, '', id: "tokenfield", name: 'user[email]', placeholder: "Input your friends name" %>
+             <span class="config-advise advise-add-one">Press tab to use the auto-complete</span>
            <!--  <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit"> -->
           <% end %>
+
         </div>
 
         <!-- EXCEL IMPORT -->

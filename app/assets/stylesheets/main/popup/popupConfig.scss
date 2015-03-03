@@ -9,10 +9,10 @@
   bottom: 15%;
 
   .slide-body{
-    display: none;
+    // display: none;
   }
 
-  // display: inline-block !important;
+  display: inline-block !important;
 }
 
 .config-wrapper{
@@ -49,6 +49,10 @@
   cursor: default;
 }
 
+.advise-add-one{
+  font-size: 1em;
+  padding-left: 5px;
+}
 #config-exel-import{
   position: relative;
   float: left;
@@ -97,7 +101,7 @@
 #group-config-add-user-submit{
   position: absolute;
   top: 50%;
-  left: 220px;
+  left: 300px;
 }
 .twitter-typeahead{
   position: relative;
@@ -152,7 +156,16 @@
   color: grey;
 }
 
-
+.tt-dropdown-menu{
+  margin-top: 5px;
+  width: 185px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: 1px solid $grey-dropdown;
+  box-shadow: 0px 1px 2px 0px $grey-dropdown;
+  text-align: left;
+  background: white;
+}
 
 .token-container{
   position: absolute;
