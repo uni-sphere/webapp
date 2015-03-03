@@ -14,7 +14,7 @@
     <div id="user-deco">
       <a id="user-profile" >
         <!-- <object type="image/svg+xml" data="<%#= asset_path 'pic-default-28.svg' %>" id="profile-pic"></object> -->
-        <% if current_user.confirmed %>
+        <% if current_user.confirmation.email_confirmed %>
           <span id="profile-pic" class="fa fa-user"></span>
         <% else %>
           <span id="profile-pic" class="fa fa-user-secret"></span>
