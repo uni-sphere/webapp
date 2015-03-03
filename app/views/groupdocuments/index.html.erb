@@ -13,9 +13,16 @@
 			<% end %>
 		</div>
 
-    <% if !current_user.confirmed %>
-      <span id="prompt-signup">This is a test version! &nbsp &nbsp For full features &nbsp &nbsp<span id="signup-button-navbar"><i class="fa fa-paw"></i>Sign up</span></span>		
-    <% end %>
+    <span id="prompt-signup">
+      <% if !current_user.confirmed %>
+        <% if current_user.created_at == current_user.updated_at %>
+          This is a test version! &nbsp &nbsp For full features &nbsp &nbsp<span id="signup-button-navbar"><i class="fa fa-paw"></i>Sign up</span>
+        <% else %>
+         Your account is not validated yet! &nbsp &nbsp Check your mails
+        <% end %>
+      <% end %>
+    </span>
+
 
 		<!--<div id="perso-file-search" class="col-md-4">-->
 			<!--  <span class="icon"><i class="fa fa-search"></i></span>-->
