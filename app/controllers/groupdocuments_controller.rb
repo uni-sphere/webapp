@@ -137,28 +137,46 @@ class GroupdocumentsController < ApplicationController
           @need_to_search = true
         end
       }
+      
+      if @need_to_search == true
+        box_content_resources[:basic]["files/#{@search_id}"].get() { |response, request, result, &block|
+          check_request_success(response)
+          return false if @return
+      
+          @response = JSON.parse(response)
+          @doc_params = {
+            box_id: @search_id,
+            name: @response['name'],
+            size: @response['size'],
+            owner: @response['created_by']['name']
+          }
+        }
+      end
+      
     else
       send_oauth
       return false
     end
     
-    if @need_to_search == true and !box_content_resources.nil?
-      box_content_resources[:basic]["files/#{@search_id}"].get() { |response, request, result, &block|
-        check_request_success(response)
-        return false if @return
-      
-        @response = JSON.parse(response)
-        @doc_params = {
-          box_id: @search_id,
-          name: @response['name'],
-          size: @response['size'],
-          owner: @response['created_by']['name']
-        }
-      }
-    else
-      send_oauth
-      return false
-    end
+    # if !box_content_resources.nil?
+    #   if @need_to_search == true
+    #     box_content_resources[:basic]["files/#{@search_id}"].get() { |response, request, result, &block|
+    #       check_request_success(response)
+    #       return false if @return
+    #
+    #       @response = JSON.parse(response)
+    #       @doc_params = {
+    #         box_id: @search_id,
+    #         name: @response['name'],
+    #         size: @response['size'],
+    #         owner: @response['created_by']['name']
+    #       }
+    #     }
+    #   end
+    # else
+    #   send_oauth
+    #   return false
+    # end
     
     @doc_params[:admin] = true if Group.find(params[:group_id]).admin_id == current_user.id 
     logger.info Group.find(params[:group_id]).admin_id
