@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   
   # before_filter :check_for_mobile, :only => [:new, :edit]
 
-  # before_action :authenticate?, except: [:new, :create, :autocomplete, :import_for_creating, :import_for_involving, :signedup]
   before_action :correct_user?
   before_filter :is_admin?, only: [:destroy]
   before_action :user_params, only: [:create, :update]

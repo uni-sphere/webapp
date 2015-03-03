@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  autocomplete :user, :name, full: true, limit: 5, extra_data: [:email]
+  # autocomplete :user, :name, full: true, limit: 5, extra_data: [:email]
   
   before_action :authenticate?, except: [:autocomplete, :send_invitation]
   before_action :is_admin?, only: [:destroy]
