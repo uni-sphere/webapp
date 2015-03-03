@@ -7,7 +7,7 @@ class UserMailer < ActionMailer::Base
     if Rails.env.production?
       @url  = 'https://unisphereapp.scalingo.io/confirmation?confid=' + @id.to_s
     else
-      @url  = 'localhost:3000/confirmation?confid=' + @id.to_s
+      @url  = 'http://localhost:3000/confirmation?confid=' + @id.to_s
     end
     mail(to: email, subject: 'Welcome to Unisphere')
   end
@@ -17,7 +17,11 @@ class UserMailer < ActionMailer::Base
     @inviter = inviter
     @name = name
     @group = group
-    @url  = 'https://unisphereapp.scalingo.io/confirmation?id=' + @id.to_s
+    if Rails.env.production?
+      @url  = 'https://unisphereapp.scalingo.io/confirmation?confirmation?id=' + @id.to_s
+    else
+      @url  = 'http://localhost:3000/confirmation?confirmation?id=' + @id.to_s
+    end
     mail(to: email, subject: 'You have been invited by #{inviter} to join Unisphere')
   end
   

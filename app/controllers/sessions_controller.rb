@@ -24,8 +24,9 @@ class SessionsController < ActionController::Base
     
     if params[:confid]
       user = User.find params[:confid]
-      user.update(confirmed: true) 
-      create_box(user.email) 
+      user.confirmed = true
+      user.save(validate: false)
+      create_box(user.email)
     elsif params[:session]
       user = User.authenticate(params[:session][:email], params[:session][:password])
     elsif params[:id]
@@ -46,7 +47,7 @@ class SessionsController < ActionController::Base
   end
 
   def destroy
-    sign_out
+    sign_out  
     current_user.destroy if current_user.updated_at == current_user.created_at
     render json: { url: root_path }.to_json
   end
