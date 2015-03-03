@@ -65,7 +65,7 @@ module BoxHelper
     }
   end
   
-  def send_access_token
+  def send_access_token(current_user)
     access_token_params = {
       grant_type: 'authorization_code',
       code: params[:code],
@@ -74,12 +74,12 @@ module BoxHelper
     }
     
     box_oauth_resources[:token].post(access_token_params) { |response, request, result, &block|
-      set_token(JSON.parse(response))
+      set_token(JSON.parse(response), current_user)
     }
     redirect_to get_user_documents_path(folder: params[:folder] ? params[:folder] : '0' )
   end
   
-  def set_token(response)
+  def set_token(response, current_user)
     
     if !current_user.boxtoken.nil?
       current_user.boxtoken.update(access_token: response['access_token'], refresh_token: response['refresh_token'])

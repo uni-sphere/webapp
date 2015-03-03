@@ -3,11 +3,11 @@ class OauthsController < ApplicationController
   # before_action :authenticate?
   
   def receive_oauth
-    if params[:state] == session[:_csrf_token]
-      send_access_token
-    else
-      render :file => "public/401.html", :status => :unauthorized, :layout => false
-    end
+    # if params[:state] == session[:_csrf_token]
+      send_access_token(current_user)
+    # else
+     # render :file => "public/401.html", :status => :unauthorized, :layout => false
+    # end
   end
   
   def send_oauth
