@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  
   include Gravtastic
    gravtastic secure: true,
      filetype: :png,
@@ -70,13 +70,27 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.import_for_involving(file, group_id)
+  def self.import_for_involving(file, group_id, current_user)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      relation = Relationgroup.new(group_id: group_id, user_id: User.where(email: row.to_hash['email']).first.id)
-      relation.save!
+      
+      if User.exists?(email: row.to_hash['email'])
+        logger.info row.to_hash['email']
+        relation = Relationgroup.new(group_id: group_id, user_id: User.where(email: row.to_hash['email']).first.id)
+        relation.save!
+      else
+        @user = User.new
+        @user.name = ApplicationController.helpers.random_key
+        @user.email = row.to_hash['email']
+        group = Group.find group_id
+        @user.save and @user.create_confirmation(email_confirmed: false) and @user.create_viewparam(notification_view: '0') and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: ApplicationController.helpers.random_key)
+        UserMailer.invitation_email(@user.id, current_user.name, @user.name, row.to_hash['email'], group.name).deliver
+        @relation = Relationgroup.new(user_id: @user.id, group_id: group_id)
+        @relation.save!
+      end
+      
     end
   end
   

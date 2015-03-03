@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
   
   def import_for_involving
-    User.import_for_involving(params[:file], params[:group_id])
+    User.import_for_involving(params[:file], params[:group_id], current_user)
     redirect_to get_group_documents_path(group_id: current_group.id, parent_id: 100), notice: "Members invited"
   end
   
