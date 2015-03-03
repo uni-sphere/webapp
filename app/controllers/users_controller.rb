@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user.email = @user.name if @user.email == nil
       
     respond_to do |format|
-      if @user.save and @user.create_viewparam(notification_view: '0') and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: random_key)
+      if @user.save(validate: false) and @user.create_viewparam(notification_view: '0') and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: random_key)
         format.html { redirect_to get_group_documents_path(group_id: @user.groups.last.id, parent_id: 100) }
         format.json { render action: 'show', status: :created, location: @user }
 	      sign_in @user
