@@ -33,8 +33,8 @@
   clear: left;
 
   // height: 30px;
-  width: 100%;
-  // background: green;
+  // width: 100%;
+  background: green;
 
 }
 .config-advise{
@@ -49,7 +49,11 @@
 }
 
 #config-exel-import{
-  margin-top: 20px;
+  position: relative;
+  float: left;
+  clear: left;
+
+  // height: 30px;
 }
 
 /*==========  Submit  ==========*/
@@ -145,8 +149,10 @@
 .token-container{
   position: absolute;
 
-  top: 0px;
-  right: 20px;
+  width: 200px;
+  height: 200px;
+  top: 80px;
+  left: 0px;
 
 }
 
@@ -156,7 +162,7 @@
   clear: left;
   margin: 3px 0px;
 
-  padding-left: 20px;
+  // padding-left: 20px;
 
   // background: green;
   text-align: left;

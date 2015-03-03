@@ -116,7 +116,8 @@ $(document).on('ready page:load', function() {
 	    var data = e.attrs.value.split('|')
 	    e.attrs.value = data[1] || data[0]
 	    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
-	    $('.token').unwrap()
+	    $('.token').unwrap();
+      $('.list-members-to-add').remove();
 	  })
 
 	  .on('tokenfield:createdtoken', function (e) {
@@ -129,6 +130,7 @@ $(document).on('ready page:load', function() {
 	    	$(e.relatedTarget).addClass('fa fa-user')
 	    }
 	    $(".token").wrapAll( "<div class='token-container'/>");
+      $('.token-container').prepend("<div class='list-members-to-add subtitle-popup-default'>Members to Add</div>");
 	  })
 
 	  .on('tokenfield:edittoken', function (e) {
@@ -148,6 +150,8 @@ $(document).on('ready page:load', function() {
         displayKey: 'email',
         source: engine.ttAdapter()}]
     });
+
+
     // $(".token-input").wrapAll( "<div class='group-config-add-user'/>");
     // $(".group-config-add-user").prepend("<div class='group-config-title'>Add users</div>");
 
