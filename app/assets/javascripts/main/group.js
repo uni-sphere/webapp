@@ -118,6 +118,7 @@ $(document).on('ready page:load', function() {
 	    e.attrs.label = data[1] ? data[0] + ' (' + data[1] + ')' : data[0]
 	    $('.token').unwrap();
       $('.list-members-to-add').remove();
+      $('#group-config-add-user-submit').remove();
 	  })
 
 	  .on('tokenfield:createdtoken', function (e) {
@@ -130,6 +131,7 @@ $(document).on('ready page:load', function() {
 	    	$(e.relatedTarget).addClass('fa fa-user')
 	    }
 	    $(".token").wrapAll( "<div class='token-container'/>");
+      $('.token-container').prepend("<input type='submit' value='Invite' class='submit-default' id='group-config-add-user-submit'>");
       $('.token-container').prepend("<div class='list-members-to-add subtitle-popup-default'>Members to Add</div>");
 	  })
 

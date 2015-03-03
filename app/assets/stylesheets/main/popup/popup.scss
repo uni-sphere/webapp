@@ -191,6 +191,8 @@
   font-size: 1.8em;
   font-weight: bold;
 
+  cursor: default;
+
   .fa{
     margin-right: 7px;
   }
@@ -211,6 +213,7 @@
   font-size: 1.4em;
   color: $dark-grey;
   font-weight: bold;
+  cursor: default;
 }
 
 /*==========  input-wrapper  ==========*/

@@ -46,12 +46,14 @@
   line-height: 28px;
   font-size: 1.1em;
   color: grey;
+  cursor: default;
 }
 
 #config-exel-import{
   position: relative;
   float: left;
-  clear: left;
+
+  margin-left: 60px;
 
   // height: 30px;
 }
@@ -88,9 +90,15 @@
 }
 
 #subtitle-add-one-user{
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
 }
 
+
+#group-config-add-user-submit{
+  position: absolute;
+  top: 50%;
+  left: 160px;
+}
 .twitter-typeahead{
   position: relative;
   float: left;
@@ -149,11 +157,10 @@
 .token-container{
   position: absolute;
 
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  // max-height: 200px;
   top: 80px;
   left: 0px;
-
 }
 
 .token{
@@ -162,14 +169,10 @@
   clear: left;
   margin: 3px 0px;
 
-  // padding-left: 20px;
-
-  // background: green;
   text-align: left;
 
   font-size: 18px !important;
   font-weight: bold;
-  // width: 200px !important;
 
   &:hover{
     .close{
@@ -179,6 +182,22 @@
 }
 
 
+.token-label{
+  margin-left: 10px;
+  width: 100px !important;
+  font-family: ubuntu;
+  cursor: default;
+}
+
+.close{
+  position: absolute;
+  left: -20px;
+  color: white;
+}
+
+.invalid{
+  color: red;
+}
 
 
 
@@ -284,19 +303,5 @@
 
 
 
-// .token-label{
-//   margin-left: 10px;
-//   width: 100px !important;
-//   font-family: ubuntu;
-// }
 
-// .close{
-//   position: absolute;
-//   left: 0px;
-//   color: white;
-// }
-
-// .invalid{
-//   color: red;
-// }
 
