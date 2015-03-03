@@ -10,9 +10,8 @@
         <div class="wrapper-action" id="config-add-user-token">
          <div class="subtitle-popup-default">Add users one by one with their names</div>
           <%= form_for Group.new, url: { controller: "groups", action: "send_invitation", group_id: current_group.id }, method: :put do |f| %>
-            <input type="text" id="tokenfield">
-            <%#= text_field_tag :name, '', class: "input-wrapper input-config", id: "group-config-add-user-input", name: 'user[email]', placeholder: "Input your friends name" %>
-            <!-- <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit"> -->
+            <%= text_field_tag :name, '', id: "tokenfield", name: 'user[email]', placeholder: "Input your friends name" %>
+            <input type="submit" value="Invite" class="submit-default submit-config" id="group-config-add-user-submit">
           <% end %>
         </div>
 
