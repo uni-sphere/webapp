@@ -28,11 +28,12 @@ class SessionsController < ActionController::Base
       user.save(validate: false)
       create_box(user.email)
     elsif params[:session]
-      user = User.authenticate(params[:session][:email], params[:session][:password])
+      user = User.authenticate(params[:session][:email],
+                              params[:session][:password])
     elsif params[:id]
       user = User.find params[:id]
     end
-    
+    logger.info user
     respond_to do |format|
       if !user.nil?
         format.html { redirect_to get_group_documents_path(group_id: user.groups.last, parent_id: 100) }
