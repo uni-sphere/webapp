@@ -288,6 +288,9 @@
   height: 20px;
   line-height: 20px;
   // padding-top: calc(50% - 100px);
+   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   font-size: 1.4em;
 

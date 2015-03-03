@@ -319,7 +319,7 @@ var signup = {
     $('#signout-toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username','left', 'right')});
     $('#action-toward-signup').on('click', function(){signup.changePage('signup-from-action','signup-username','left', 'right')});
     $('#toward-confirmation').on('click', function(){signup.changePage('signup-username','email-check','left','right')});
-    $('#back-to-signup').on('click', function(){signup.changePage('email-check','signup-username','right','left')});
+    $('#back-to-signup').on('click', function(){ signup.changePage('email-check','signup-username','right','left')});
 
     $("#signup-button-navbar").on('click', function() { signup.showSignup("signup-username")});
 		$("#toward-confirmation").on('click', function() { signup.send() });
@@ -377,7 +377,6 @@ mainPopup = function() {
 	passwordCheck.init();
   passwordSimilarity.init();
   autoSubmitExcel.init();
-  signup.init();
 };
 
 $(document).on('ready page:load', function() {
