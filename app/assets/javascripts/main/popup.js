@@ -295,6 +295,7 @@ var signup = {
 				complete: function() {
 					$('#name-after-signup').html($('#name').val());
 					$('#email-after-signup').html($('#email').val());
+					$('#prompt-signup').html('Your account is not validated yet! &nbsp &nbsp Check your mails');
 					signedUp.signedUp = true;
 					signedUp.listen();
 				}
