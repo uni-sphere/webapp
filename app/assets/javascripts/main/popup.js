@@ -317,6 +317,7 @@ var signup = {
 	
 	init: function() {
     $('#signout-toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username','left', 'right')});
+    $('#action-toward-signup').on('click', function(){signup.changePage('signup-from-action','signup-username','left', 'right')});
     $('#toward-confirmation').on('click', function(){signup.changePage('signup-username','email-check','left','right')});
     $('#back-to-signup').on('click', function(){signup.changePage('email-check','signup-username','right','left')});
 
