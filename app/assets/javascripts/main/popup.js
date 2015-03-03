@@ -287,20 +287,20 @@ var signup = {
 			data: {
 				id: $('#tab-perso').attr('current_user_id'),
 				user: {
-				name: $('#name').val(),
-				email: $('#email').val(),
-				password: $('#password').val(),
-				password_confirmation: $('#password-check').val()
-				},
-				complete: function() {
-					$('#name-after-signup').html($('#name').val());
-					$('#email-after-signup').html($('#email').val());
-					$('#prompt-signup').html('Your account is not validated yet! &nbsp &nbsp Check your mails');
-					signedUp.signedUp = true;
-					signedUp.listen();
+					name: $('#name').val(),
+					email: $('#email').val(),
+					password: $('#password').val(),
+					password_confirmation: $('#password-check').val()
 				}
+			},
+			complete: function() {
+				$('#name-after-signup').html($('#name').val());
+				$('#email-after-signup').html($('#email').val());
+				$('#prompt-signup').html('Your account is not validated yet! &nbsp &nbsp Check your mails');
+				signedUp.signedUp = true;
+				signedUp.listen();
 			}
-		});
+		})
 	},
 
   changePage: function(tohide, toshow, posIni, posEnd){
