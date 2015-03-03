@@ -312,7 +312,6 @@ var signup = {
     popup.show("#slide-signup");
     $('#' + toshow + '-body, #'+ toshow + '-footer').fadeIn(1);
   },
-
 	
 	init: function(signedUp) {
     $('#signout-toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username','left', 'right')});

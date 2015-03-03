@@ -1,6 +1,7 @@
 class GroupdocumentsController < ApplicationController
   
   before_action :authenticate?
+  before_action :correct_user?
   before_action :has_group?
   before_action :get_folder, only: [:read_folder, :create_file]
   before_action :get_file, only: [:destroy_file]

@@ -27,9 +27,7 @@ module SessionsHelper
 
 	def sign_out
     cookies.delete(:remember_token)
-    cookies.delete(:access_token)
-    cookies.delete(:refresh_token)
-    current_user.destroy unless current_user.email
+    current_user.destroy unless current_user.password
     current_user = nil
   end
 
@@ -52,15 +50,17 @@ module SessionsHelper
   end
 
 	def authenticate?
-    redirect_to root_path unless signed_in?
+    if signed_in?
+      get_group_documents_path(group_id: current_user.groups.last.id, parent_id: 100)
+    else
+      redirect_to root_path
+    end
   end
 
-	def not_authenticate?
-		redirect_to get_group_documents_path(group_id: current_user.groups.last.id, parent_id: 100) if signed_in?
-	end
-
 	def correct_user?
-    redirect_to root_path unless current_user?(@user) or current_user.nil? or current_user.admin?
+    if @user
+      redirect_to root_path unless current_user?(@user) or current_user.nil? or current_user.admin?
+    end
 	end
 
 	def correct_target

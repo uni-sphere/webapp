@@ -5,7 +5,6 @@ class SessionsController < ActionController::Base
   include BoxHelper
   include ApplicationHelper
   
-  before_filter :not_authenticate?, only: [:new]
   before_filter :authenticate?, only: [:destroy]
   before_action :set_mobile_view
 

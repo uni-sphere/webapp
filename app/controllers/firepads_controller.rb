@@ -1,5 +1,7 @@
 class FirepadsController < ApplicationController
   
+  before_action :authenticate?
+  before_action :correct_user?
   before_action :get_firepad, except: [:create, :move]
   
   def create
@@ -17,11 +19,8 @@ class FirepadsController < ApplicationController
   end
   
   def rename
-    if @firepad.update(name: params[:name])
-      render :nothing => true
-    else 
-      logger.info 'PROBLEME'
-    end
+    @firepad.update(name: params[:name])
+    render :nothing => true
   end
   
   def transfer
