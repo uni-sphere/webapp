@@ -148,8 +148,6 @@ $(document).on('ready page:load', function() {
         displayKey: 'email',
         source: engine.ttAdapter()}]
     });
-
-    console.log('yo');
     // $(".token-input").wrapAll( "<div class='group-config-add-user'/>");
     // $(".group-config-add-user").prepend("<div class='group-config-title'>Add users</div>");
 

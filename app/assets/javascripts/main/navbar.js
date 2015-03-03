@@ -12,7 +12,14 @@ var signout = {
 	},
 	
 	init: function() {
-		$("#deco").on('click', function() { signout.signout() } );
+		$("#deco").on('click', function() {
+			signedUp.check();
+			if (signedUp.signedUp == true) { 
+				signout.signout() 
+			} else if (signedUp.signedUp == false) {
+				signup.showSignup("signup-from-signout")
+			}
+		});
 	}
 };
 

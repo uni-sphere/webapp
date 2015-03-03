@@ -84,7 +84,7 @@ class UsersController < ApplicationController
       
   def signedup
     user = User.find(params[:user_id])
-    if user.password
+    if user.updated_at != user.created_at
       render json: true
     else
       render json: false

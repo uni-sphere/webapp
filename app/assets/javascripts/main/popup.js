@@ -313,7 +313,7 @@ var signup = {
     $('#' + toshow + '-body, #'+ toshow + '-footer').fadeIn(1);
   },
 	
-	init: function(signedUp) {
+	init: function() {
     $('#signout-toward-signup').on('click', function(){signup.changePage('signup-from-signout','signup-username','left', 'right')});
     $('#toward-confirmation').on('click', function(){signup.changePage('signup-username','email-check','left','right')});
     $('#back-to-signup').on('click', function(){signup.changePage('email-check','signup-username','right','left')});
@@ -322,8 +322,14 @@ var signup = {
 		$("#toward-confirmation").on('click', function() { signup.send() });
     $('#exit-really').on('click', function() { signout.signout() }); 
 		
-		signedUp = false;
-		
+	}
+};
+
+var signedUp = {
+	
+	signedUp: true,
+	
+	check: function() {
 		$.ajax({
 			url: '/signedup',
 			type:"GET",
@@ -332,20 +338,27 @@ var signup = {
 				user_id: $(".user-name").attr('current_user_id')
 			},
 			complete: function(data) {
-				signedUp = data.responseJSON
+				signedUp.signedUp = data.responseJSON
 			}
 		});
-		
-		if (signedUp == false) {
+	},
+	
+	listen: function() {
+		if (signedUp.signedUp == false) {
 			$("#input-button-upload").attr('type','');
-			$('#deco').off('click');
-      $("#deco").on('click', function() { signup.showSignup("signup-from-signout")});
-      $("#upload-doc").on('click', function() { signup.showSignup("signup-from-action")});
+	    $("#upload-doc").on('click', function() { signup.showSignup("signup-from-action")});
 		}
+	},
+	
+	init: function() {
+		signedUp.check();
+		signedUp.listen();
 	}
+	
 };
 
 mainPopup = function() {
+	signedUp.init();
 	signup.init();
 	transfer.init();
 	group.init();
