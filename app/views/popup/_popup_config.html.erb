@@ -18,8 +18,8 @@
 
         <!-- EXCEL IMPORT -->
         <div class="wrapper-action" id="config-exel-import">
-          <div class="subtitle-popup-default">Add users through an excel file</div>
-          <span class="config-advise">Excel columns | email | first name | last name |</span>
+          <div class="subtitle-popup-default">Add users through an csv file</div>
+          <span class="config-advise">CSV file column: email</span>
           <div class="submit-default submit-config" id="import-excel">Choose a file</div>
           <%= form_tag import_for_involving_users_path(group_id: current_group.id), multipart: true do %>
             <%= file_field_tag :file, id: "pick-excel", class: "hidden" %>
