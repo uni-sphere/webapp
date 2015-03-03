@@ -298,6 +298,8 @@ var signup = {
 				complete: function() {
 					$('#name-after-signup').html($('#name').val());
 					$('#email-after-signup').html($('#email').val());
+					signedUp.signedUp = true;
+					signedUp.listen();
 				}
 			}
 		});
@@ -338,21 +340,29 @@ var signedUp = {
 				user_id: $(".user-name").attr('current_user_id')
 			},
 			complete: function(data) {
-				signedUp.signedUp = data.responseJSON
+				signedUp.signedUp = data.responseJSON;
+				signedUp.listen();
 			}
 		});
 	},
 	
 	listen: function() {
-		if (signedUp.signedUp == false) {
+		if (signedUp.signedUp == true) {
+			$("#upload-doc").off('click');
+			$("#deco").off('click');
+			$("#input-button-upload").attr('type','file');
+			$("#deco").on('click', function() { signout.signout() });
+		} else {
+			$("#upload-doc").off('click');
+			$("#deco").off('click');
 			$("#input-button-upload").attr('type','');
 	    $("#upload-doc").on('click', function() { signup.showSignup("signup-from-action")});
+			$("#deco").on('click', function() { signup.showSignup("signup-from-signout")});
 		}
 	},
 	
 	init: function() {
 		signedUp.check();
-		signedUp.listen();
 	}
 	
 };
