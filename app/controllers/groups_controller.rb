@@ -117,7 +117,7 @@ class GroupsController < ApplicationController
         @user.name = random_key
         @user.email = email
         group = Group.find params[:group_id]
-        @user.save and @user.create_viewparam(notification_view: '0') and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: random_key)
+        @user.save and @user.create_confirmation(email_confirmed: false) and @user.create_viewparam(notification_view: '0') and @user.groups.create(name: 'My first group', admin_id: @user.id) and @user.groups.last.groupfolders.create(name: Group.last.name, parent_id: 100) and Group.last.create_calendar(name: 'group calendar') and Group.last.groupchats.create(name: 'general', channel: random_key)
         UserMailer.invitation_email(@user.id, current_user.name, @user.name, email, group.name).deliver
         
         @relation = Relationgroup.new(user_id: @user.id, group_id: params[:group_id])	
