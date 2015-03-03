@@ -2,8 +2,8 @@
 
 
 #slide-group-config{
-  left: 35%;
-  right: 35%;
+  left: 25%;
+  right: 25%;
 
   top: 15%;
   bottom: 15%;
@@ -83,6 +83,9 @@
   margin-bottom: 100px;
 }
 
+#subtitle-add-one-user{
+  margin-bottom: 10px;
+}
 
 .twitter-typeahead{
   position: relative;
@@ -139,8 +142,35 @@
 
 
 
+.token-container{
+  position: absolute;
 
+  top: 0px;
+  right: 20px;
 
+}
+
+.token{
+  position: relative;
+  float: left;
+  clear: left;
+  margin: 3px 0px;
+
+  padding-left: 20px;
+
+  // background: green;
+  text-align: left;
+
+  font-size: 18px !important;
+  font-weight: bold;
+  // width: 200px !important;
+
+  &:hover{
+    .close{
+      color: black;
+    }
+  }
+}
 
 
 
@@ -246,27 +276,7 @@
 //   color: black;
 // }
 
-// .token{
-//   position: relative;
-//   float: left;
-//   clear: left;
-//   margin: 3px 0px;
 
-//   padding-left: 20px;
-
-//   // background: green;
-//   text-align: left;
-
-//   font-size: 18px !important;
-//   font-weight: bold;
-//   // width: 200px !important;
-
-//   &:hover{
-//     .close{
-//       color: black;
-//     }
-//   }
-// }
 
 // .token-label{
 //   margin-left: 10px;
