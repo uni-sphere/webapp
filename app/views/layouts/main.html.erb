@@ -24,7 +24,6 @@
 		
 	</head>
 
-
 	<body>
 		<% if params[:group_id] %>
 			<%= render 'popup/popup' %>
@@ -40,7 +39,10 @@
 						<div class="separator"></div>
 						<div class="under-construction"></div>
 					</div>
-				<% else %>
+				<% elsif @mobile_view == true %>
+          <div class="website-not-mobile">no mobile website yet :/</div>
+        	<div class="mobile-view"></div>
+    		<% else %>
 					<%= yield %>
 				<% end %>
 			</main>

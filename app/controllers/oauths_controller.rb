@@ -1,6 +1,6 @@
 class OauthsController < ApplicationController
   
-  before_action :authenticate?
+  # before_action :authenticate?
   
   def receive_oauth
     if params[:state] == session[:_csrf_token]

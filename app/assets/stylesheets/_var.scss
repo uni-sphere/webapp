@@ -61,7 +61,13 @@ $font-family: "Titillium Web", sans-serif;
   src: local("Titillium WebThin"), local("TitilliumWeb-Thin"), url("http://fonts.gstatic.com/s/titilliumweb/v4/anMUvcNT0H1YN4FII8wpr-JQgxo1bqIW_GZqCarw8nE.woff") format("woff");
 }
 
-
+.website-not-mobile{
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+}
 .under-construction{
   position: relative;
   float: left;
