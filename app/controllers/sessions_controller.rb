@@ -24,8 +24,7 @@ class SessionsController < ActionController::Base
     
     if params[:confid]
       user = User.find params[:confid]
-      user.confirmed = true
-      user.save(validate: false)
+      user.confirmation.update(email_confirmed: true)
       create_box(user.email)
     elsif params[:session]
       user = User.authenticate(params[:session][:email],
