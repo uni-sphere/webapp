@@ -1,5 +1,3 @@
-
-
 var autoSubmitExcel = {
   
   init: function() {
@@ -108,7 +106,6 @@ var group = {
           if (data.responseJSON.success == true) {
             $('.group-name-sidebar').each( function() {
               if ( $(this).html() === $('#current-group-title').html() ) {
-                console.log('hello');
                 $(this).html($('#group-config-rename-input').val())
               }
             })
@@ -249,7 +246,6 @@ var popup = {
     $(target).find('.slide-body').fadeOut(1);
   },
 
-
   selectGroup: function(){
     $(".list-element").on('click', function() { 
       $('.list-element').removeClass('active');
@@ -283,6 +279,7 @@ var popup = {
 var signup = {
 
 	send: function() {
+		console.log('ajax');
 		$.ajax({
 			url: '/user/update',
 			type:"PUT",
@@ -369,8 +366,8 @@ var signedUp = {
 };
 
 mainPopup = function() {
+  signup.init();
 	signedUp.init();
-	signup.init();
 	transfer.init();
 	group.init();
 	popup.init();

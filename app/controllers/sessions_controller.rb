@@ -47,7 +47,7 @@ class SessionsController < ActionController::Base
 
   def destroy
     sign_out
-    current_user.destroy if !current_user.confirmed
+    current_user.destroy if current_user.modified_at == current_user.updated_at
     render json: { url: root_path }.to_json
   end
   
