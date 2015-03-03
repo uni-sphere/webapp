@@ -44,13 +44,13 @@ var transfer = {
 	
 	init: function() {
 	    
-	    transfer.resize();
+	  transfer.resize();
 
 		$(window).resize(function(){
 			transfer.resize();
 		})
 	    
-		$('.list-element').on('click', function() {
+		$('.list-element-group-transfer').on('click', function() {
 			transfer.target = $(this).find('span');
 			console.log(transfer.target);
 		});
@@ -86,6 +86,22 @@ var group = {
 						<span class="group-name-sidebar" group_id="' + group.id + '">' + group.name + '</span> \
 					</a> \
 					');
+					
+					$('.group-list-transfer-document').append(' \
+            <div class="list-element"> \
+              <i class="fa fa-group"></i> \
+              <span class="list-element-name transfer-list" group_id="'+ group.id +'">'+ group.name +'</span> \
+            </div> \
+					');
+					
+					$('.group-list-all-groups').append(' \
+					<a class="list-element" href="/user/group/documents?group_id='+ group.id +'&parent_id=100"> \
+          	<i class="fa fa-group"></i> \
+            <span class="list-element-name" group_id="'+ group.id +'"> \
+                '+ group.name +' \
+            </span> \
+					</a> \
+					');
 				}
 			})
 		}
@@ -109,6 +125,13 @@ var group = {
                 $(this).html($('#group-config-rename-input').val())
               }
             })
+						
+            $('.list-element-name').each( function() {
+              if ( $(this).html() === $('#current-group-title').html() ) {
+                $(this).html($('#group-config-rename-input').val())
+              }
+            })
+						
             $('#current-group-title').html($('#group-config-rename-input').val());
             popup.hide("#slide-group-config");
           }
@@ -256,9 +279,11 @@ var popup = {
   init: function() {
     $("#new-group").on('click', function() { popup.show("#slide-new-group") } );
     $("#current-group-config").on('click', function() { popup.show("#slide-group-config") } );
-    $("#transfer-file").on('click', function() { 
-      $("#transfered-item-name").html(docSelection.target.attr('name'));
-      popup.showWithListFile('#slide-transfer-document') 
+    $("#transfer-file").on('click', function() {
+			if (docSelection.target != null && docSelection.target.attr('item') != 'folder') {
+	      $("#transfered-item-name").html(docSelection.target.attr('name'));
+	      popup.showWithListFile('#slide-transfer-document') 
+			}
     });
     $("#all-groups").on('click', function() { popup.showWithListFile('#slide-all-groups') } );
 
@@ -347,7 +372,6 @@ var signedUp = {
 	
 	listen: function() {
 		if (signedUp.signedUp == true) {
-			$("#upload-doc").off('click');
 			$("#deco").off('click');
 			$("#input-button-upload").attr('type','file');
 			$("#deco").on('click', function() { signout.signout() });

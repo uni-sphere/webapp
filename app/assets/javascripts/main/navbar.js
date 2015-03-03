@@ -7,6 +7,7 @@ var signout = {
 			dataType: 'JSON',
 			complete: function(data) {
 				window.location = data.responseJSON.url
+				localStorage.clear();
 			}
 		});
 	},

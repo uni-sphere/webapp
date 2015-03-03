@@ -342,6 +342,7 @@ var trash = {
 			complete: function(data) {
 				docSelection.target.parent('.box_document').remove();
 				$( '#loader' ).addClass("hidden");
+				docSelection.target = null;
 			}
 		});
 	},
