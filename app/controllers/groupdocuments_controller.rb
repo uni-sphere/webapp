@@ -118,26 +118,31 @@ class GroupdocumentsController < ApplicationController
                     parent: {id: 0 }}.to_json,
       file: File.new(params[:file].path)
     }
-
-    box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
-      check_request_success(response)
-      return false if @return
-      
-      if response.code != 409
-        @response = JSON.parse(response)
-        @doc_params = {
-          box_id: @response['entries'].first['id'],
-          name: params[:file].original_filename,
-          size: @response['entries'].first['size'],
-          owner: @response['entries'].first['created_by']['name'],
-        }
-      elsif response.code == 409
-        @search_id = JSON.parse(response)['context_info']['conflicts']['id']
-        @need_to_search = true
-      end
-    }
     
-    if @need_to_search == true
+    if !box_content_resources.nil?
+      box_content_resources[:upload].post(req_params, :content_type => "application/json") { |response, request, result, &block|
+        check_request_success(response)
+        return false if @return
+      
+        if response.code != 409
+          @response = JSON.parse(response)
+          @doc_params = {
+            box_id: @response['entries'].first['id'],
+            name: params[:file].original_filename,
+            size: @response['entries'].first['size'],
+            owner: @response['entries'].first['created_by']['name'],
+          }
+        elsif response.code == 409
+          @search_id = JSON.parse(response)['context_info']['conflicts']['id']
+          @need_to_search = true
+        end
+      }
+    else
+      send_oauth
+      return false
+    end
+    
+    if @need_to_search == true and !box_content_resources.nil?
       box_content_resources[:basic]["files/#{@search_id}"].get() { |response, request, result, &block|
         check_request_success(response)
         return false if @return
@@ -150,6 +155,9 @@ class GroupdocumentsController < ApplicationController
           owner: @response['created_by']['name']
         }
       }
+    else
+      send_oauth
+      return false
     end
     
     @doc_params[:admin] = true if Group.find(params[:group_id]).admin_id == current_user.id 
